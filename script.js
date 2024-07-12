@@ -20,4 +20,19 @@ function clearData() {
     document.getElementById('ids').value = '';
     document.getElementById('commaSeparated').value = '';
     document.getElementById('singleQuotes').value = '';
+    document.getElementById('countInput').value = '';
+    document.getElementById('countDisplay').innerText = '';
+    document.getElementById('withoutSpaceCountDisplay').innerText = '';
+}
+
+function countData() {
+    const input = document.getElementById('countInput').value;
+    const count = input.length; // Counts all characters including whitespaces
+    document.getElementById('countDisplay').innerText = `Count: ${count}`;
+}
+
+function countExcludingSpace() {
+    const input = document.getElementById('countInput').value;
+    const withoutSpaceCount = input.replace(/\s/g, '').length; // Removes all whitespace and counts remaining characters
+    document.getElementById('withoutSpaceCountDisplay').innerText = `Ex-space Count: ${withoutSpaceCount}`;
 }
