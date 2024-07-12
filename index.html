@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <label for="ids">Enter ID:</label>
+        <input type="text" id="ids" oninput="resizeInput(this)">
+    </div>
+
+    <div class="container">
+        <button onclick="convertToCommaSeparated()">Comma Separated</button>
+        <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)">
+        <div class="btn-container">
+            <button onclick="copyToClipboard('commaSeparated')">Copy</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <button onclick="convertToSingleQuotes()">Single Quotes</button>
+        <input type="text" id="singleQuotes" readonly oninput="resizeInput(this)">
+        <div class="btn-container">
+            <button onclick="copyToClipboard('singleQuotes')">Copy</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <button onclick="clearData()" class="clear-button">Clear</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Function to resize input based on content length
+        function resizeInput(input) {
+            // Reset input size to auto to calculate width based on content length
+            input.style.width = 'auto';
+            // Set the width of the input based on the content length
+            input.style.width = (input.scrollWidth + 10) + 'px';
+        }
+    </script>
+</body>
+</html>
