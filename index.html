@@ -14,6 +14,15 @@
     </div>
 
     <div class="container">
+        <label for="countInput">Count Data:</label>
+        <input type="text" id="countInput" oninput="resizeInput(this)">
+        <button onclick="countData()">Count</button>
+        <button onclick="countExcludingSpace()">Count Excluding Space</button>
+        <span id="countDisplay"></span>
+        <span id="withoutSpaceCountDisplay"></span>
+    </div>
+
+    <div class="container">
         <button onclick="convertToCommaSeparated()">Comma Separated</button>
         <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)">
         <div class="btn-container">
