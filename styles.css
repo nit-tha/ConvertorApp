@@ -72,3 +72,15 @@ body {
 .clear-button:hover {
     background-color: #312fd3;
 }
+
+.tooltip {
+    position: absolute;
+    background-color: #91bcc4;
+    color: white;
+    padding: 6px;
+    border-radius: 10px;
+    z-index: 1;
+    top: 6px;
+    left: 870px;
+    width: 260px;
+}
