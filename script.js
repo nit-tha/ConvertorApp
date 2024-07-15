@@ -23,6 +23,8 @@ function clearData() {
     document.getElementById('countInput').value = '';
     document.getElementById('countDisplay').innerText = '';
     document.getElementById('withoutSpaceCountDisplay').innerText = '';
+    document.getElementById('commaRemoved').value = '';
+    document.getElementById('commaRemovedContainer').style.display = 'none';
 }
 
 function countData() {
@@ -35,4 +37,18 @@ function countExcludingSpace() {
     const input = document.getElementById('countInput').value;
     const withoutSpaceCount = input.replace(/\s/g, '').length; // Removes all whitespace and counts remaining characters
     document.getElementById('withoutSpaceCountDisplay').innerText = `Ex-space Count: ${withoutSpaceCount}`;
+}
+
+function resizeInput(input) {
+    // Reset input size to auto to calculate width based on content length
+    input.style.width = 'auto';
+    // Set the width of the input based on the content length
+    input.style.width = (input.scrollWidth + 10) + 'px';
+}
+
+function removeCommaData() {
+    const inputData = document.getElementById('ids').value;
+    const dataWithoutComma = inputData.replace(/,/g, ' ');
+    document.getElementById('commaRemoved').value = dataWithoutComma;
+    document.getElementById('commaRemovedContainer').style.display = 'flex';
 }

@@ -11,13 +11,19 @@
     <div class="container">
         <label for="ids">Enter Data:</label>
         <input type="text" id="ids" oninput="resizeInput(this)">
+        <button onclick="removeCommaData()">Remove Comma</button>
+    </div>
+
+    <div class="container" id="commaRemovedContainer" style="display:none;">
+        <input type="text" id="commaRemoved" readonly oninput="resizeInput(this)">
+        <button onclick="copyToClipboard('commaRemoved')">Copy</button>
     </div>
 
     <div class="container">
         <label for="countInput">Count Data:</label>
         <input type="text" id="countInput" oninput="resizeInput(this)">
         <button onclick="countData()">Count</button>
-        <button onclick="countExcludingSpace()">Count Excluding Space</button>
+        <button onclick="countExcludingSpace()">Count Ex</button>
         <span id="countDisplay"></span>
         <span id="withoutSpaceCountDisplay"></span>
     </div>
@@ -43,14 +49,5 @@
     </div>
 
     <script src="script.js"></script>
-    <script>
-        // Function to resize input based on content length
-        function resizeInput(input) {
-            // Reset input size to auto to calculate width based on content length
-            input.style.width = 'auto';
-            // Set the width of the input based on the content length
-            input.style.width = (input.scrollWidth + 10) + 'px';
-        }
-    </script>
 </body>
 </html>
