@@ -1,86 +1,122 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 45px;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
 }
 
-.container {
+nav {
     display: flex;
+    justify-content: center;
+    background-color: #4CAF50;
+    padding: 10px;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #be3874;
+}
+
+/* SQL Converter Styles */
+.sql-container, .hex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: 20px auto;
+}
+
+.sql-container .container, .hex-container .container {
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
     margin-bottom: 20px;
+    width: 100%;
 }
 
-.container > * {
-    margin: 0 5px;
-}
-
-.container label {
+.sql-container label, .hex-container label {
     margin-right: 10px;
-    margin-top: 10px;
     font-weight: bold;
     color: #333;
 }
 
-.container input[type="text"] {
+.sql-container input[type="text"], .hex-container input[type="text"] {
     padding: 8px;
-    width: 50%; /* Extend the textboxes to fill available space */
-    max-width: 100%;
+    width: 70%;
     box-sizing: border-box;
     resize: vertical;
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 4px;
     transition: border-color 0.3s;
 }
 
-.container input[type="text"]:focus {
+.sql-container input[type="text"]:focus, .hex-container input[type="text"]:focus {
     border-color: #af65d9;
 }
 
-.container button {
+.sql-container button, .hex-container button {
     padding: 8px 12px;
+    margin: 5px;
     border: none;
     background-color: #4CAF50;
     color: white;
     cursor: pointer;
+    border-radius: 4px;
     transition: background-color 0.3s;
-    width: auto;
-    border-radius: 10px;
-    text-align: center;
 }
 
-.container button:first-child {
-    width: 150px; /* Adjust width specifically for the first button */
-}
-
-.container button:nth-child(2) { /* Adjust size for the second button (Copy) */
-    padding: 5px 10px; /* Smaller padding */
-}
-
-.container button:hover {
+.sql-container button:hover, .hex-container button:hover {
     background-color: #be3874;
 }
 
-.btn-container {
-    display: flex;
-    align-items: center;
-}
-
-.clear-button {
+.sql-container .clear-button {
     background-color: #f44336;
 }
 
-.clear-button:hover {
+.sql-container .clear-button:hover {
     background-color: #312fd3;
 }
 
-.tooltip {
-    position: absolute;
-    background-color: #91bcc4;
-    color: white;
-    padding: 6px;
-    border-radius: 10px;
-    z-index: 1;
-    top: 6px;
-    left: 870px;
-    width: 260px;
+.sql-container span {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+/* Adjustments for Hex/Text Converter */
+.hex-container .container {
+    flex-wrap: wrap;
+}
+
+.hex-container .container:nth-child(2),
+.hex-container .container:nth-child(3) {
+    flex: 1 1 48%;
+    margin-right: 2%;
+}
+
+.hex-container .container:nth-child(3) {
+    margin-right: 0;
+}
+
+.hex-container .container:nth-child(4),
+.hex-container .container:nth-child(5) {
+    flex: 1 1 48%;
+    margin-right: 2%;
+}
+
+.hex-container .container:nth-child(5) {
+    margin-right: 0;
+}
+
+.hex-container input[type="text"] {
+    width: 80%;
 }

@@ -3,54 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Converter for SQL</title>
+    <title>Multi Converter</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <nav>
+        <a id="sqlConverterLink" href="#">SQL Converter</a>
+        <a id="hexConverterLink" href="#">Hex/Text Converter</a>
+    </nav>
 
-    <div class="container">
-        <label for="ids">Enter Data:</label>
-        <input type="text" id="ids" oninput="resizeInput(this)">
-    </div>
+    <div id="sqlConverter" class="sql-container">
+        <div class="container">
+            <label for="ids">Enter Data:</label>
+            <input type="text" id="ids" oninput="resizeInput(this)" placeholder="Data needs to be entered here for Comma and Single Quotes button to work.">
+            <button onclick="removeCommaData()">Remove Comma</button>
+            <button onclick="refreshPage()">Refresh</button>
+        </div>
 
-    <div class="container">
-        <label for="countInput">Count Data:</label>
-        <input type="text" id="countInput" oninput="resizeInput(this)">
-        <button onclick="countData()">Count</button>
-        <button onclick="countExcludingSpace()">Count Ex Space</button>
-        <span id="countDisplay"></span>
-        <span id="withoutSpaceCountDisplay"></span>
-    </div>
+        <div class="container" id="commaRemovedContainer" style="display:none;">
+            <input type="text" id="commaRemoved" readonly oninput="resizeInput(this)">
+            <button onclick="copyToClipboard('commaRemoved')">Copy</button>
+        </div>
 
-    <div class="container">
-        <button onclick="convertToCommaSeparated()">Comma Separated</button>
-        <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)">
-        <div class="btn-container">
-            <button onclick="copyToClipboard('commaSeparated')">Copy</button>
+        <div class="container">
+            <label for="countInput">Count Data:</label>
+            <input type="text" id="countInput" oninput="resizeInput(this)" placeholder="Enter data here click on Count includes space and Ex-Space for exluding spaces. ">
+            <button onclick="countData()">Count</button>
+            <button onclick="countExcludingSpace()">Count Ex-Space</button>
+            <span id="countDisplay"></span>
+            <span id="withoutSpaceCountDisplay"></span>
+        </div>
+
+        <div class="container">
+            <button onclick="convertToCommaSeparated()">Comma Separated</button>
+            <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)" placeholder="Shows data comma separated click on the button">
+            <div class="btn-container">
+                <button onclick="copyToClipboard('commaSeparated')">Copy</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <button onclick="convertToSingleQuotes()">Single Quotes</button>
+            <input type="text" id="singleQuotes" readonly oninput="resizeInput(this)" placeholder="Adds single quotes with comma to the data">
+            <div class="btn-container">
+                <button onclick="copyToClipboard('singleQuotes')">Copy</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <button onclick="clearData()" class="clear-button">Clear</button>
         </div>
     </div>
 
-    <div class="container">
-        <button onclick="convertToSingleQuotes()">Single Quotes</button>
-        <input type="text" id="singleQuotes" readonly oninput="resizeInput(this)">
-        <div class="btn-container">
-            <button onclick="copyToClipboard('singleQuotes')">Copy</button>
+   <div id="hexConverter" class="hex-container" style="display:none;">
+        <!-- <div class="container"> -->
+            <!-- <h1>Multi-Converter</h1> -->
+        <!-- </div> -->
+        <div class="container">
+            <label for="textInput">Text:</label>
+            <input type="text" id="textInput" placeholder="Enter data here">
+            <button onclick="convertToHex()">Convert to Hex</button>
         </div>
-    </div>
-
-    <div class="container">
-        <button onclick="clearData()" class="clear-button">Clear</button>
+        <div class="container">
+            <label for="hexOutput">Hex:</label>
+            <input type="text" id="hexOutput" placeholder="Hex output conversion here">
+            <button onclick="convertToText()">Convert to Text</button>
+        </div>
+        <div class="container">
+            <label for="textOutput">Text:</label>
+            <input type="text" id="textOutput" placeholder="Hex to Text conversion here">
+        </div>
+        <div class="container">
+            <label for="numberInput">Number:</label>
+            <input type="text" id="numberInput" placeholder="Enter data here">
+            <button onclick="convertToBinary()">Convert to Binary</button>
+        </div>
+        <div class="container">
+            <label for="binaryOutput">Binary:</label>
+            <input type="text" id="binaryOutput" placeholder="Binary conversion here">
+        </div>
+        <div class="buttons">
+            <button onclick="clearFields()">Clear</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
-    <script>
-        // Function to resize input based on content length
-        function resizeInput(input) {
-            // Reset input size to auto to calculate width based on content length
-            input.style.width = 'auto';
-            // Set the width of the input based on the content length
-            input.style.width = (input.scrollWidth + 10) + 'px';
-        }
-    </script>
 </body>
 </html>

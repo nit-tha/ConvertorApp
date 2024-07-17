@@ -1,3 +1,4 @@
+// SQL Converter functions
 function convertToCommaSeparated() {
     const ids = document.getElementById('ids').value.trim().split(/\s+/).join(',');
     document.getElementById('commaSeparated').value = ids;
@@ -23,6 +24,8 @@ function clearData() {
     document.getElementById('countInput').value = '';
     document.getElementById('countDisplay').innerText = '';
     document.getElementById('withoutSpaceCountDisplay').innerText = '';
+    document.getElementById('commaRemoved').value = '';
+    document.getElementById('commaRemovedContainer').style.display = 'none';
 }
 
 function countData() {
@@ -35,4 +38,73 @@ function countExcludingSpace() {
     const input = document.getElementById('countInput').value;
     const withoutSpaceCount = input.replace(/\s/g, '').length; // Removes all whitespace and counts remaining characters
     document.getElementById('withoutSpaceCountDisplay').innerText = `Ex-space Count: ${withoutSpaceCount}`;
+}
+
+function resizeInput(input) {
+    // Reset input size to auto to calculate width based on content length
+    input.style.width = 'auto';
+    // Set the width of the input based on the content length
+    input.style.width = (input.scrollWidth + 10) + 'px';
+}
+
+function removeCommaData() {
+    const inputData = document.getElementById('ids').value;
+    const dataWithoutComma = inputData.replace(/,/g, ' ');
+    document.getElementById('commaRemoved').value = dataWithoutComma;
+    document.getElementById('commaRemovedContainer').style.display = 'flex';
+}
+
+function refreshPage() {
+    location.reload();
+}
+
+// Hex/Text Converter functions
+function convertToHex() {
+    const text = document.getElementById('textInput').value;
+    let hex = '';
+    for (let i = 0; i < text.length; i++) {
+        hex += text.charCodeAt(i).toString(16).padStart(2, '0');
+    }
+    document.getElementById('hexOutput').value = hex.toUpperCase();
+}
+
+function convertToText() {
+    const hex = document.getElementById('hexOutput').value;
+    let text = '';
+    for (let i = 0; i < hex.length; i += 2) {
+        text += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+    }
+    document.getElementById('textOutput').value = text;
+}
+
+function clearFields() {
+    document.getElementById('textInput').value = '';
+    document.getElementById('hexOutput').value = '';
+    document.getElementById('numberInput').value = '';
+    document.getElementById('binaryOutput').value = '';
+}
+
+// Navigation
+document.getElementById('sqlConverterLink').addEventListener('click', function() {
+    document.getElementById('sqlConverter').style.display = 'block';
+    document.getElementById('hexConverter').style.display = 'none';
+});
+
+document.getElementById('hexConverterLink').addEventListener('click', function() {
+    document.getElementById('sqlConverter').style.display = 'none';
+    document.getElementById('hexConverter').style.display = 'block';
+});
+
+// Function to convert number to binary
+function convertToBinary() {
+    var numberInput = document.getElementById('numberInput').value;
+    var binaryOutput = document.getElementById('binaryOutput');
+
+    // Check if the input is a valid number
+    if (!isNaN(numberInput) && numberInput !== '') {
+        var binary = Number(numberInput).toString(2); // Convert to binary string
+        binaryOutput.value = binary; // Display binary output
+    } else {
+        binaryOutput.value = 'Invalid input'; // Handle invalid input
+    }
 }
