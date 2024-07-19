@@ -15,7 +15,7 @@
     <div id="sqlConverter" class="sql-container">
         <div class="container">
             <label for="ids">Enter Data:</label>
-            <input type="text" id="ids" oninput="resizeInput(this)" placeholder="Data needs to be entered here for Comma and Single Quotes button to work.">
+            <input type="text" id="ids" oninput="resizeInput(this)" placeholder="Enter data here">
             <button onclick="removeCommaData()">Remove Comma</button>
             <button onclick="refreshPage()">Refresh</button>
         </div>
@@ -27,7 +27,7 @@
 
         <div class="container">
             <label for="countInput">Count Data:</label>
-            <input type="text" id="countInput" oninput="resizeInput(this)" placeholder="Enter data here click on Count includes space and Ex-Space for exluding spaces. ">
+            <input type="text" id="countInput" oninput="resizeInput(this)" placeholder="Count button includes and Ex-Space excludes spaces. ">
             <button onclick="countData()">Count</button>
             <button onclick="countExcludingSpace()">Count Ex-Space</button>
             <span id="countDisplay"></span>
@@ -36,7 +36,7 @@
 
         <div class="container">
             <button onclick="convertToCommaSeparated()">Comma Separated</button>
-            <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)" placeholder="Shows data comma separated click on the button">
+            <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)" placeholder="Shows data comma separated">
             <div class="btn-container">
                 <button onclick="copyToClipboard('commaSeparated')">Copy</button>
             </div>
@@ -44,7 +44,7 @@
 
         <div class="container">
             <button onclick="convertToSingleQuotes()">Single Quotes</button>
-            <input type="text" id="singleQuotes" readonly oninput="resizeInput(this)" placeholder="Adds single quotes with comma to the data">
+            <input type="text" id="singleQuotes" readonly oninput="resizeInput(this)" placeholder="Shows data with quotes and comma">
             <div class="btn-container">
                 <button onclick="copyToClipboard('singleQuotes')">Copy</button>
             </div>
