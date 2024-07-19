@@ -65,7 +65,7 @@ nav a:hover {
 }
 
 .sql-container button, .hex-container button {
-    padding: 8px 12px;
+    padding: 8px 8px;
     margin: 5px;
     border: none;
     background-color: #4CAF50;
