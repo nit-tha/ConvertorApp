@@ -109,3 +109,12 @@ function convertToBinary() {
         binaryOutput.value = 'Invalid input'; // Handle invalid input
     }
 }
+//Function to update epoch time
+function updateCurrentEpoch() {
+    const currentEpochTime = Math.floor(Date.now() / 1000);
+    document.getElementById('ecclock').textContent = currentEpochTime;
+}
+// Update the current epoch time every second
+setInterval(updateCurrentEpoch, 1000);
+// Initialize the current epoch time
+updateCurrentEpoch();
