@@ -23,6 +23,7 @@ body {
 .ecclock {
     margin-left: 5px;
     font-weight: bold;
+    color: #ff0000ed;
 }
 
 nav {
@@ -40,7 +41,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #be3874;
+    color: #ff0000ed;
 }
 
 .copy-button {
@@ -101,26 +102,28 @@ nav a:hover {
 }
 
 .sql-container button, .hex-container button {
-    padding: 8px 8px;
-    margin: 5px;
-    border: none;
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
+ background-color: #fff;
+    color: #4CAF50;
+    border: 1px solid #4CAF50;
+    padding: 7px 7px;
     border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .sql-container button:hover, .hex-container button:hover {
-    background-color: #be3874;
+   background-color: #4CAF50;
+    color: white;
 }
 
 .sql-container .clear-button {
-    background-color: #f44336;
+    background-color: #fff;
 }
 
 .sql-container .clear-button:hover {
-    background-color: #312fd3;
+   background-color: #4CAF50;
+    color: white;
 }
 
 .sql-container span {
