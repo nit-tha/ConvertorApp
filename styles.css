@@ -43,6 +43,22 @@ nav a:hover {
     color: #be3874;
 }
 
+.copy-button {
+    background-color: #fff;
+    color: #4CAF50;
+    border: 1px solid #4CAF50;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.copy-button:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
 /* SQL Converter Styles */
 .sql-container, .hex-container {
     display: flex;
