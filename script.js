@@ -118,3 +118,12 @@ function updateCurrentEpoch() {
 setInterval(updateCurrentEpoch, 1000);
 // Initialize the current epoch time
 updateCurrentEpoch();
+
+
+// Function to copy the epoch timestamp to clipboard
+function copyEpoch() {
+    const epochText = document.getElementById('ecclock').textContent;
+    navigator.clipboard.writeText(epochText).catch(err => {
+        console.error('Failed to copy epoch time: ', err);
+    });
+}
