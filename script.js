@@ -82,6 +82,7 @@ function clearFields() {
     document.getElementById('hexOutput').value = '';
     document.getElementById('numberInput').value = '';
     document.getElementById('binaryOutput').value = '';
+    document.getElementById('textOutput').value = '';
 }
 
 // Navigation
