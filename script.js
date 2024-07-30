@@ -83,6 +83,7 @@ function clearFields() {
     document.getElementById('numberInput').value = '';
     document.getElementById('binaryOutput').value = '';
     document.getElementById('textOutput').value = '';
+    document.getElementById('base64Output').value = '';
 }
 
 // Navigation
@@ -126,4 +127,11 @@ function copyEpoch() {
     navigator.clipboard.writeText(epochText).catch(err => {
         console.error('Failed to copy epoch time: ', err);
     });
+}
+
+// Base64 Converter functions
+function encodeToBase64() {
+    const data = document.getElementById('numberInput').value;
+    const encoded = btoa(data);
+    document.getElementById('base64Output').value = encoded;
 }

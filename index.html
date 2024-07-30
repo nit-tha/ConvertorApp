@@ -17,10 +17,10 @@
             </div>
         </div>
     </div>
-	
+    
     <nav>
         <a id="sqlConverterLink" href="#">SQL Converter</a>
-        <a id="hexConverterLink" href="#">Hex/Text Converter</a>
+        <a id="hexConverterLink" href="#">Hex/B64 Converter</a>
     </nav>
 
     <div id="sqlConverter" class="sql-container">
@@ -38,26 +38,26 @@
 
         <div class="container">
             <label for="countInput">Count Data:</label>
-            <input type="text" id="countInput" oninput="resizeInput(this)" placeholder="Count button includes and Ex-Space excludes spaces. ">
+            <input type="text" id="countInput" oninput="resizeInput(this)" placeholder="Count shows and Ex excludes space. ">
             <button onclick="countData()">Count</button>
-            <button onclick="countExcludingSpace()">Count Ex-Space</button>
+            <button onclick="countExcludingSpace()">Ex-Space</button>
             <span id="countDisplay"></span>
             <span id="withoutSpaceCountDisplay"></span>
         </div>
 
         <div class="container">
-            <button onclick="convertToCommaSeparated()">Comma Separated</button>
-            <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)" placeholder="Shows data comma separated">
+            <button onclick="convertToCommaSeparated()">Button1</button>
+            <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)" placeholder="Shows comma separated">
             <div class="btn-container">
                 <button onclick="copyToClipboard('commaSeparated')">Copy</button>
             </div>
         </div>
 
         <div class="container">
-            <button onclick="convertToSingleQuotes()">Single Quotes</button>
-            <input type="text" id="singleQuotes" readonly oninput="resizeInput(this)" placeholder="Shows data with quotes and comma">
+            <button onclick="convertToSingleQuotes()">Button2</button>
+            <input type="text" id="singleQuotes" readonly oninput="resizeInput(this)" placeholder="Shows quotes and comma">
             <div class="btn-container">
-                <button onclick="copyToClipboard('singleQuotes')">Copy</button>
+            <button onclick="copyToClipboard('singleQuotes')">Copy</button>
             </div>
         </div>
 
@@ -77,31 +77,38 @@
         </div>
         <div class="container">
             <label for="hexOutput">Hex:</label>
-            <input type="text" id="hexOutput" placeholder="Hex output conversion here">
+            <input type="text" id="hexOutput" placeholder="Hex conversion here">
             <button onclick="convertToText()">Convert to Text</button>
         </div>
         <div class="container">
             <label for="textOutput">Text:</label>
-            <input type="text" id="textOutput" placeholder="Hex to Text conversion here">
+            <input type="text" id="textOutput" placeholder="Hex to Text here">
         </div>
         <div class="container">
-            <label for="numberInput">Number:</label>
+            <label for="numberInput">Data:</label>
             <input type="text" id="numberInput" placeholder="Enter data here">
-            <button onclick="convertToBinary()">Convert to Binary</button>
+            <button onclick="convertToBinary()">Binary</button>
+            <button onclick="encodeToBase64()">Base64</button>
         </div>
         <div class="container">
-            <label for="binaryOutput">Binary:</label>
-            <input type="text" id="binaryOutput" placeholder="Binary conversion here">
+           <label for="binaryOutput">Binary:</label>
+            <input type="text" id="binaryOutput" placeholder="Converted to Binary ">  
+            <button onclick="copyToClipboard('binaryOutput')">Copy</button>         
+        </div>
+        <div class="container">           
+            <label for="base64Output">Base64:</label>
+            <input type="text" id="base64Output" placeholder="Converted to Base64">
+            <button onclick="copyToClipboard('base64Output')">Copy</button> 
         </div>
         <div class="buttons">
             <button onclick="clearFields()">Clear</button>
         </div>
     </div>
-	
+    
   <footer>
-        <p>Version 1.1.0 (NT)</p>    
+        <p>Version 1.1.2 (NT)</p>    
     </footer>
-	
+    
     <script src="script.js"></script>
 </body>
 </html>
