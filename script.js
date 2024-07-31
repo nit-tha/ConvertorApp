@@ -129,6 +129,31 @@ function copyEpoch() {
     });
 }
 
+// Visit Counter
+function updateVisitCounter() {
+    const currentMonth = new Date().getMonth(); // Get the current month (0-11)
+
+    // Get the stored count and month from localStorage
+    let visitCount = localStorage.getItem('visitCount');
+    let storedMonth = localStorage.getItem('visitMonth');
+    // Initialize count and month if they don't exist or if the month has changed
+    if (!visitCount || storedMonth == null || currentMonth !== parseInt(storedMonth)) {
+        visitCount = 0;
+        storedMonth = currentMonth;
+    } else {
+        visitCount = parseInt(visitCount);
+    }
+    // Increment the count
+    visitCount++;
+    // Save the updated count and month back to localStorage
+    localStorage.setItem('visitCount', visitCount);
+    localStorage.setItem('visitMonth', currentMonth);
+    // Display the visit count in the footer
+    document.getElementById('visit-counter').innerText = `Visit count: ${visitCount}`;
+}
+// Call the function to update and display the visit counter
+updateVisitCounter();
+
 // Base64 Converter functions
 function encodeToBase64() {
     const data = document.getElementById('numberInput').value;
