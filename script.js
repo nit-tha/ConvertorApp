@@ -26,6 +26,9 @@ function clearData() {
     document.getElementById('withoutSpaceCountDisplay').innerText = '';
     document.getElementById('commaRemoved').value = '';
     document.getElementById('commaRemovedContainer').style.display = 'none';
+    document.getElementById('epochTime').value = '';           // Clear the epoch time input field
+    document.getElementById('timezoneSelect').value = '';      // Reset the timezone dropdown to default
+    document.getElementById('result').innerHTML = '';          // Clear the result display
 }
 
 function countData() {
@@ -160,3 +163,38 @@ function encodeToBase64() {
     const encoded = btoa(data);
     document.getElementById('base64Output').value = encoded;
 }
+// Function to convert the entered epoch time to GMT and local time
+function convertEpochTime() {
+            const epochInput = document.getElementById('epochTime').value;
+            const epochTime = parseInt(epochInput, 10);
+            const timezoneSelect = document.getElementById('timezoneSelect').value;
+			 // Check if the entered epoch time is a valid number
+            if (!isNaN(epochTime)) {
+                const date = new Date(epochTime * 1000);
+                const gmtOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: 'GMT', timeZoneName: 'short' };
+                const gmtFormattedDate = date.toLocaleString('en-US', gmtOptions);
+
+                let resultText = `GMT: ${gmtFormattedDate}`;
+				// If a timezone is selected, calculate and display the local time
+                if (timezoneSelect) {
+                    const timezoneOffset = parseTimezoneOffset(timezoneSelect);
+                    const localDate = new Date(date.getTime() + timezoneOffset * 60 * 1000);
+					// Options for formatting the local date and time
+                    const localOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+                    const localFormattedDate = localDate.toLocaleString('en-US', localOptions);
+                    resultText += `<br>LocalTime: ${localFormattedDate}`;
+                }
+				// Display the result text
+                document.getElementById('result').innerHTML = resultText;
+            } else {
+                document.getElementById('result').innerText = 'Invalid epoch time. Please enter a valid number.';
+            }
+        }
+		// Function to parse the timezone offset string (e.g., "+05:30") and convert it to minutes
+        function parseTimezoneOffset(offset) {
+            const sign = offset[0] === '+' ? 1 : -1;
+            const [hours, minutes] = offset.slice(1).split(':').map(Number);
+            return sign * (hours * 60 + minutes);
+		}
+	   
+
