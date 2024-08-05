@@ -66,7 +66,7 @@
         <button onclick="convertEpochTime()">Button3</button>
         <input type="text" id="epochTime" placeholder="Enter epoch time">
         <div class="dropdown-container">
-            <select id="timezoneSelect">
+            <select id="timezoneSelect" onchange="convertEpochTime()>
                 <option value="">Select Timezone</option>
                 <option value="-12:00">GMT-12:00</option>
                 <option value="-11:00">GMT-11:00</option>
@@ -146,7 +146,7 @@
     </div>
     
   <footer>
-        <span>Version 1.1.7 (NT)</span>  <br>
+        <span>Version 1.1.8 (NT)</span>  <br>
 		<span id="visit-counter">Visit count: Loading...</span>
     </footer>
     
