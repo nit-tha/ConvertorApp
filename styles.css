@@ -169,3 +169,22 @@ footer {
     width: 100%;
     bottom: 0;
 }
+/* Adjustments for Button3 */
+   .epochs-container {
+            display: flex;
+            align-items: center;
+        }
+        .btn-container {
+            margin-left: 10px;
+        }
+        #epochTime {
+            width: 20ch;
+        }
+        #result {
+            margin-left: 10px;
+            color: #2c3e50; /* Change the color as needed */
+        }
+        .dropdown-container {
+            margin-left: 10px;
+        }
+		
