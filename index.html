@@ -62,6 +62,45 @@
             </div>
         </div>
 
+	<div class="epochs-container">
+        <button onclick="convertEpochTime()">Button3</button>
+        <input type="text" id="epochTime" placeholder="Enter epoch time">
+        <div class="dropdown-container">
+            <select id="timezoneSelect">
+                <option value="">Select Timezone</option>
+                <option value="-12:00">GMT-12:00</option>
+                <option value="-11:00">GMT-11:00</option>
+                <option value="-10:00">GMT-10:00</option>
+                <option value="-09:00">GMT-09:00</option>
+                <option value="-08:00">GMT-08:00</option>
+                <option value="-07:00">GMT-07:00</option>
+                <option value="-06:00">GMT-06:00</option>
+                <option value="-05:00">GMT-05:00</option>
+                <option value="-04:00">GMT-04:00</option>
+                <option value="-03:00">GMT-03:00</option>
+                <option value="-02:00">GMT-02:00</option>
+                <option value="-01:00">GMT-01:00</option>
+                <option value="00:00">GMT+00:00</option>
+                <option value="+01:00">GMT+01:00</option>
+                <option value="+02:00">GMT+02:00</option>
+                <option value="+03:00">GMT+03:00</option>
+                <option value="+04:00">GMT+04:00</option>
+                <option value="+05:00">GMT+05:00</option>
+                <option value="+05:30">GMT+05:30</option>
+                <option value="+06:00">GMT+06:00</option>
+                <option value="+07:00">GMT+07:00</option>
+                <option value="+08:00">GMT+08:00</option>
+                <option value="+09:00">GMT+09:00</option>
+                <option value="+10:00">GMT+10:00</option>
+                <option value="+11:00">GMT+11:00</option>
+                <option value="+12:00">GMT+12:00</option>
+                <option value="+13:00">GMT+13:00</option>
+                <option value="+14:00">GMT+14:00</option>
+            </select>
+        </div>
+        <div id="result"></div>
+    </div>
+
         <div class="container">
             <button onclick="clearData()" class="clear-button">Clear</button>
         </div>
@@ -107,7 +146,7 @@
     </div>
     
   <footer>
-        <span>Version 1.1.5 (NT)</span>  <br>
+        <span>Version 1.1.7 (NT)</span>  <br>
 		<span id="visit-counter">Visit count: Loading...</span>
     </footer>
     
