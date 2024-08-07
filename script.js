@@ -102,17 +102,25 @@ document.getElementById('hexConverterLink').addEventListener('click', function()
 
 // Function to convert number to binary
 function convertToBinary() {
-    var numberInput = document.getElementById('numberInput').value;
+    var numberInput = document.getElementById('numberInput').value.trim();
     var binaryOutput = document.getElementById('binaryOutput');
-
-    // Check if the input is a valid number
+    
+    // Check if the input is a valid decimal number
     if (!isNaN(numberInput) && numberInput !== '') {
-        var binary = Number(numberInput).toString(2); // Convert to binary string
+        var binary = Number(numberInput).toString(2); // Convert decimal to binary string
         binaryOutput.value = binary; // Display binary output
-    } else {
-        binaryOutput.value = 'Invalid input'; // Handle invalid input
+    } 
+    // Check if the input is a valid hexadecimal number
+    else if (/^[0-9a-fA-F]+$/.test(numberInput)) {
+        var binary = parseInt(numberInput, 16).toString(2); // Convert hexadecimal to binary
+        binaryOutput.value = binary; // Display binary output
+    } 
+    // Handle invalid input
+    else {
+        binaryOutput.value = 'Invalid input';
     }
 }
+
 //Function to update epoch time
 function updateCurrentEpoch() {
     const currentEpochTime = Math.floor(Date.now() / 1000);
