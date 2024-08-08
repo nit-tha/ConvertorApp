@@ -27,19 +27,19 @@
     <div id="sqlConverter" class="sql-container">
         <div class="container">
             <label for="ids">Enter Data:</label>
-            <input type="text" id="ids" oninput="resizeInput(this)" placeholder="Enter data here">
+            <input type="text" id="ids" oninput="resizeInput(this)" placeholder="Enter data here for Comma & Quotes conversion">
             <button onclick="removeCommaData()">Remove Comma</button>
             <button onclick="refreshPage()">Refresh</button>
         </div>
 
         <div class="container" id="commaRemovedContainer" style="display:none;">
-            <input type="text" id="commaRemoved" readonly oninput="resizeInput(this)">
+            <input type="text" id="commaRemoved" readonly oninput="resizeInput(this)" placeholder="If first textbox has data with comma can be removed through Remove button">
             <button onclick="copyToClipboard('commaRemoved')">Copy</button>
         </div>
 
         <div class="container">
             <label for="countInput">Count Data:</label>
-            <input type="text" id="countInput" oninput="resizeInput(this)" placeholder="Count shows and Ex excludes space. ">
+            <input type="text" id="countInput" oninput="resizeInput(this)" placeholder="Count shows and Ex button excludes space.">
             <button onclick="countData()">Count</button>
             <button onclick="countExcludingSpace()">Ex-Space</button>
             <span id="countDisplay"></span>
@@ -47,7 +47,7 @@
         </div>
 
         <div class="container">
-            <button onclick="convertToCommaSeparated()">Button1</button>
+            <button onclick="convertToCommaSeparated()">Add Comma</button>
             <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)" placeholder="Shows comma separated">
             <div class="btn-container">
                 <button onclick="copyToClipboard('commaSeparated')">Copy</button>
@@ -55,7 +55,7 @@
         </div>
 
         <div class="container">
-            <button onclick="convertToSingleQuotes()">Button2</button>
+            <button onclick="convertToSingleQuotes()">Add Quote</button>
             <input type="text" id="singleQuotes" readonly oninput="resizeInput(this)" placeholder="Shows quotes and comma">
             <div class="btn-container">
             <button onclick="copyToClipboard('singleQuotes')">Copy</button>
@@ -63,7 +63,7 @@
         </div>
 
 	<div class="epochs-container">
-        <button onclick="convertEpochTime()">Button3</button>
+        <button onclick="convertEpochTime()">Epoch to Date</button>
         <input type="text" id="epochTime" placeholder="Enter epoch time">
         <div class="dropdown-container">
             <select id="timezoneSelect" onchange="convertEpochTime()">
@@ -146,7 +146,7 @@
     </div>
     
   <footer>
-        <span>Version 1.1.9 (NT)</span>  <br>
+        <span>Version 1.2.0 (NT)</span>  <br>
 		<span id="visit-counter">Visit count: Loading...</span>
     </footer>
     
