@@ -57,6 +57,13 @@ function removeCommaData() {
     document.getElementById('commaRemovedContainer').style.display = 'flex';
 }
 
+function removeDuplicates() {
+    const inputData = document.getElementById('ids').value.trim().split(/\s+/);
+    const uniqueData = [...new Set(inputData)].join(' ');
+    document.getElementById('commaRemoved').value = uniqueData;
+    document.getElementById('commaRemovedContainer').style.display = 'flex';
+}
+
 function refreshPage() {
     location.reload();
 }
