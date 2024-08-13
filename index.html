@@ -27,9 +27,10 @@
     <div id="sqlConverter" class="sql-container">
         <div class="container">
             <label for="ids">Enter Data:</label>
-            <input type="text" id="ids" oninput="resizeInput(this)" placeholder="Enter data here for Comma & Quotes conversion">
-            <button onclick="removeCommaData()">Remove Comma</button>
-            <button onclick="refreshPage()">Refresh</button>
+            <input type="text" id="ids" oninput="resizeInput(this)" placeholder="Enter data here for Comma & Quotes conversion" style="width: 680px;">
+            <button onclick="removeCommaData()">DelCom</button>
+            <button onclick="removeDuplicates()">Unique</button>
+            <button onclick="refreshPage()">R</button>
         </div>
 
         <div class="container" id="commaRemovedContainer" style="display:none;">
@@ -146,7 +147,7 @@
     </div>
     
   <footer>
-        <span>Version 1.2.1 (NT)</span>  <br>
+        <span>Version 1.2.3 (NT)</span>  <br>
 		<span id="visit-counter">Visit count: Loading...</span>
     </footer>
     
