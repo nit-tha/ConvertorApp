@@ -28,10 +28,19 @@
         <div class="container">
             <label for="ids">Enter Data:</label>
             <input type="text" id="ids" oninput="resizeInput(this)" placeholder="Enter data here for Comma & Quotes conversion" style="width: 680px;">
-            <button onclick="removeCommaData()">DelCom</button>
-            <button onclick="removeDuplicates()">Unique</button>
-            <button onclick="refreshPage()">R</button>
-        </div>
+            <div class="tooltip">
+       	    <button onclick="removeCommaData()">DelCom</button>
+            <span class="tooltiptext">Remove's Comma</span>
+    	</div>    
+    <div class="tooltip">
+        <button onclick="removeDuplicates()">Unique</button>
+        <span class="tooltiptext">Removes Duplicate Data</span>
+    </div>    
+    <div class="tooltip">
+        <button onclick="refreshPage()">Ref</button>
+        <span class="tooltiptext">Refreshes Page</span>
+    </div>
+    </div>
 
         <div class="container" id="commaRemovedContainer" style="display:none;">
             <input type="text" id="commaRemoved" readonly oninput="resizeInput(this)" placeholder="If first textbox has data with comma can be removed through Remove button">
@@ -41,8 +50,14 @@
         <div class="container">
             <label for="countInput">Count Data:</label>
             <input type="text" id="countInput" oninput="resizeInput(this)" placeholder="Count shows and Ex button excludes space.">
-            <button onclick="countData()">Count</button>
+           <div class="tooltip">
+           <button onclick="countData()">Count</button>
+           <span class="tooltiptext">Count's with space</span>
+            </div>
+            <div class="tooltip">
             <button onclick="countExcludingSpace()">Ex-Space</button>
+            <span class="tooltiptext">Count's excluding space</span>
+            </div>
             <span id="countDisplay"></span>
             <span id="withoutSpaceCountDisplay"></span>
         </div>
@@ -64,7 +79,10 @@
         </div>
 
 	<div class="epochs-container">
-        <button onclick="convertEpochTime()">Epoch to Date</button>
+         <div class="tooltip">
+      	 <button onclick="convertEpochTime()">Date</button>
+         <span class="tooltiptext">Convert epochtime to human date</span> 
+         </div>
         <input type="text" id="epochTime" placeholder="Enter epoch time">
         <div class="dropdown-container">
             <select id="timezoneSelect" onchange="convertEpochTime()">
@@ -107,10 +125,7 @@
         </div>
     </div>
 
-   <div id="hexConverter" class="hex-container" style="display:none;">
-        <!-- <div class="container"> -->
-            <!-- <h1>Multi-Converter</h1> -->
-        <!-- </div> -->
+   <div id="hexConverter" class="hex-container" style="display:none;">        
         <div class="container">
             <label for="textInput">Text:</label>
             <input type="text" id="textInput" placeholder="Enter data here">
@@ -147,7 +162,7 @@
     </div>
     
   <footer>
-        <span>Version 1.2.3 (NT)</span>  <br>
+        <span>Version 1.2.4 (NT)</span>  <br>
 		<span id="visit-counter">Visit count: Loading...</span>
     </footer>
     
