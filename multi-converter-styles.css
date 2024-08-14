@@ -187,4 +187,32 @@ footer {
         .dropdown-container {
             margin-left: 10px;
         }
-		
+/* Section for Tooltip */	
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 150px;
+    background-color: #d3d3d3; /* Light grey background */
+    color: #000; /* Black text */
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -75px; /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px; /* Smaller font size */
+    font-weight: normal; /* Non-bold text */
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
