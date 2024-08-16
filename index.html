@@ -46,7 +46,7 @@
 
         <div class="container" id="commaRemovedContainer" style="display:none;">
             <input type="text" id="commaRemoved" readonly oninput="resizeInput(this)" placeholder="Shows data for removed comma or unique data.">
-            <button onclick="copyToClipboard('commaRemoved')">Copy</button>
+            <button onclick="copyToClipboard()"> <i class="fas fa-copy"></i> <!-- Copy icon --></button>
         </div>
 
         <div class="container">
@@ -68,7 +68,7 @@
             <button onclick="convertToCommaSeparated()">Add Comma</button>
             <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)" placeholder="Shows comma separated data.">
             <div class="btn-container">
-                <button onclick="copyToClipboard('commaSeparated')">Copy</button>
+            <button onclick="copyToClipboard()"> <i class="fas fa-copy"></i> <!-- Copy icon --></button>
             </div>
         </div>
 
@@ -76,7 +76,7 @@
             <button onclick="convertToSingleQuotes()">Add Quote</button>
             <input type="text" id="singleQuotes" readonly oninput="resizeInput(this)" placeholder="Shows quotes and comma to data.">
             <div class="btn-container">
-            <button onclick="copyToClipboard('singleQuotes')">Copy</button>
+            <button onclick="copyToClipboard()"> <i class="fas fa-copy"></i> <!-- Copy icon --></button>
             </div>
         </div>
 
@@ -151,12 +151,12 @@
         <div class="container">
            <label for="binaryOutput">Binary:</label>
             <input type="text" id="binaryOutput" placeholder="Converted to Binary ">  
-            <button onclick="copyToClipboard('binaryOutput')">Copy</button>         
+            <button onclick="copyToClipboard()"> <i class="fas fa-copy"></i> <!-- Copy icon --></button> 
         </div>
         <div class="container">           
             <label for="base64Output">Base64:</label>
             <input type="text" id="base64Output" placeholder="Converted to Base64">
-            <button onclick="copyToClipboard('base64Output')">Copy</button> 
+            <button onclick="copyToClipboard()"> <i class="fas fa-copy"></i> <!-- Copy icon --></button>
         </div>
         <div class="buttons">
             <button onclick="clearFields()">Clear</button>
