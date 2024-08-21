@@ -18,17 +18,14 @@ function copyToClipboard(elementId) {
 }
 
 function clearData() {
-    document.getElementById('ids').value = '';
-    document.getElementById('commaSeparated').value = '';
-    document.getElementById('singleQuotes').value = '';
-    document.getElementById('countInput').value = '';
+    const elementsToClear = [
+        'ids', 'commaSeparated', 'singleQuotes', 'countInput', 
+        'commaRemoved', 'epochTime', 'timezoneSelect', 'result'
+    ];
+    elementsToClear.forEach(id => document.getElementById(id).value = '');
     document.getElementById('countDisplay').innerText = '';
     document.getElementById('withoutSpaceCountDisplay').innerText = '';
-    document.getElementById('commaRemoved').value = '';
     document.getElementById('commaRemovedContainer').style.display = 'none';
-    document.getElementById('epochTime').value = '';           // Clear the epoch time input field
-    document.getElementById('timezoneSelect').value = '';      // Reset the timezone dropdown to default
-    document.getElementById('result').innerHTML = '';          // Clear the result display
 }
 
 function countData() {
@@ -44,9 +41,7 @@ function countExcludingSpace() {
 }
 
 function resizeInput(input) {
-    // Reset input size to auto to calculate width based on content length
     input.style.width = 'auto';
-    // Set the width of the input based on the content length
     input.style.width = (input.scrollWidth + 10) + 'px';
 }
 
@@ -71,64 +66,69 @@ function refreshPage() {
 // Hex/Text Converter functions
 function convertToHex() {
     const text = document.getElementById('textInput').value;
-    let hex = '';
-    for (let i = 0; i < text.length; i++) {
-        hex += text.charCodeAt(i).toString(16).padStart(2, '0');
-    }
-    document.getElementById('hexOutput').value = hex.toUpperCase();
+    const hex = Array.from(text).map(c => c.charCodeAt(0).toString(16).padStart(2, '0')).join('').toUpperCase();
+    document.getElementById('hexOutput').value = hex;
 }
 
 function convertToText() {
     const hex = document.getElementById('hexOutput').value;
-    let text = '';
-    for (let i = 0; i < hex.length; i += 2) {
-        text += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
-    }
+    const text = hex.match(/.{1,2}/g).map(byte => String.fromCharCode(parseInt(byte, 16))).join('');
     document.getElementById('textOutput').value = text;
 }
 
 function clearFields() {
-    document.getElementById('textInput').value = '';
-    document.getElementById('hexOutput').value = '';
-    document.getElementById('numberInput').value = '';
-    document.getElementById('binaryOutput').value = '';
-    document.getElementById('textOutput').value = '';
-    document.getElementById('base64Output').value = '';
+    const elementsToClear = [
+        'textInput', 'hexOutput', 'numberInput', 
+        'binaryOutput', 'textOutput', 'base64Output'
+    ];
+    elementsToClear.forEach(id => document.getElementById(id).value = '');
 }
 
 // Navigation
 document.getElementById('sqlConverterLink').addEventListener('click', function() {
     document.getElementById('sqlConverter').style.display = 'block';
     document.getElementById('hexConverter').style.display = 'none';
+    document.getElementById('xmlToBlockSection').style.display = 'none';
+    document.getElementById('queryToJsonSection').style.display = 'none';
 });
 
 document.getElementById('hexConverterLink').addEventListener('click', function() {
     document.getElementById('sqlConverter').style.display = 'none';
     document.getElementById('hexConverter').style.display = 'block';
+    document.getElementById('xmlToBlockSection').style.display = 'none';
+    document.getElementById('queryToJsonSection').style.display = 'none';
+});
+
+// New Tools
+document.getElementById('xmlToBlockLink').addEventListener('click', function() {
+    document.getElementById('sqlConverter').style.display = 'none';
+    document.getElementById('hexConverter').style.display = 'none';
+    document.getElementById('xmlToBlockSection').style.display = 'block';
+    document.getElementById('queryToJsonSection').style.display = 'none';
+});
+
+document.getElementById('queryToJsonLink').addEventListener('click', function() {
+    document.getElementById('sqlConverter').style.display = 'none';
+    document.getElementById('hexConverter').style.display = 'none';
+    document.getElementById('xmlToBlockSection').style.display = 'none';
+    document.getElementById('queryToJsonSection').style.display = 'block';
 });
 
 // Function to convert number to binary
 function convertToBinary() {
-    var numberInput = document.getElementById('numberInput').value.trim();
-    var binaryOutput = document.getElementById('binaryOutput');
+    const numberInput = document.getElementById('numberInput').value.trim();
+    const binaryOutput = document.getElementById('binaryOutput');
     
-    // Check if the input is a valid decimal number
     if (!isNaN(numberInput) && numberInput !== '') {
-        var binary = Number(numberInput).toString(2); // Convert decimal to binary string
-        binaryOutput.value = binary; // Display binary output
-    } 
-    // Check if the input is a valid hexadecimal number
-    else if (/^[0-9a-fA-F]+$/.test(numberInput)) {
-        var binary = parseInt(numberInput, 16).toString(2); // Convert hexadecimal to binary
-        binaryOutput.value = binary; // Display binary output
-    } 
-    // Handle invalid input
-    else {
+        binaryOutput.value = Number(numberInput).toString(2);
+    } else if (/^[0-9a-fA-F]+$/.test(numberInput)) {
+        binaryOutput.value = parseInt(numberInput, 16).toString(2);
+    } else {
         binaryOutput.value = 'Invalid input';
     }
 }
 
-//Function to update epoch time
+// Function to update the current epoch time
 function updateCurrentEpoch() {
     const currentEpochTime = Math.floor(Date.now() / 1000);
     document.getElementById('ecclock').textContent = currentEpochTime;
@@ -137,7 +137,6 @@ function updateCurrentEpoch() {
 setInterval(updateCurrentEpoch, 1000);
 // Initialize the current epoch time
 updateCurrentEpoch();
-
 
 // Function to copy the epoch timestamp to clipboard
 function copyEpoch() {
@@ -149,24 +148,21 @@ function copyEpoch() {
 
 // Visit Counter
 function updateVisitCounter() {
-    const currentMonth = new Date().getMonth(); // Get the current month (0-11)
-
-    // Get the stored count and month from localStorage
+    const currentMonth = new Date().getMonth();
     let visitCount = localStorage.getItem('visitCount');
     let storedMonth = localStorage.getItem('visitMonth');
-    // Initialize count and month if they don't exist or if the month has changed
+
     if (!visitCount || storedMonth == null || currentMonth !== parseInt(storedMonth)) {
         visitCount = 0;
         storedMonth = currentMonth;
     } else {
         visitCount = parseInt(visitCount);
     }
-    // Increment the count
+
     visitCount++;
-    // Save the updated count and month back to localStorage
     localStorage.setItem('visitCount', visitCount);
     localStorage.setItem('visitMonth', currentMonth);
-    // Display the visit count in the footer
+
     document.getElementById('visit-counter').innerText = `Visit count: ${visitCount}`;
 }
 // Call the function to update and display the visit counter
@@ -184,49 +180,123 @@ function convertEpochTime() {
     const epochInput = document.getElementById('epochTime').value;
     const epochTime = parseInt(epochInput, 10);
     const timezoneSelect = document.getElementById('timezoneSelect').value;
-    // Check if the entered epoch time is a valid number
+
     if (!isNaN(epochTime)) {
         const date = new Date(epochTime * 1000);
-        // Formatting options for GMT
-        const gmtOptions = {
+
+        const gmtFormattedDate = date.toLocaleString('en-US', {
             weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
             hour: 'numeric', minute: 'numeric', second: 'numeric',
             timeZone: 'UTC', timeZoneName: 'short'
-        };
-        const gmtFormattedDate = date.toLocaleString('en-US', gmtOptions);
+        });
+
         let resultText = `GMT: ${gmtFormattedDate}`;
-        // If a timezone is selected, calculate and display the local time
+
         if (timezoneSelect) {
             const timezoneOffset = parseTimezoneOffset(timezoneSelect);
-            // Convert the offset from minutes to milliseconds
-            const localOffsetMilliseconds = timezoneOffset * 60 * 1000;
-            // Adjust the local time by adding the timezone offset to the GMT time
-            const localDate = new Date(date.getTime() + localOffsetMilliseconds);
-            // Formatting options for local time
-            const localOptions = {
+            const localDate = new Date(date.getTime() + timezoneOffset * 60000);
+            const localFormattedDate = localDate.toLocaleString('en-US', {
                 weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
                 hour: 'numeric', minute: 'numeric', second: 'numeric',
                 timeZone: 'UTC', timeZoneName: 'short'
-            };
-            const localFormattedDate = localDate.toLocaleString('en-US', localOptions);
-            // Append the selected timezone offset to the local time display
+            });
             resultText += `<br>Local Time: ${localFormattedDate} ${timezoneSelect}`;
         } else {
             resultText += `<br>Local Time: Please select a timezone.`;
         }
-        // Display the result text
+
         document.getElementById('result').innerHTML = resultText;
     } else {
         document.getElementById('result').innerText = 'Invalid epoch time. Please enter a valid number.';
     }
 }
-// Function to parse the timezone offset string (e.g., "+05:30") and convert it to minutes
+
+// Function to parse the timezone offset string and convert it to minutes
 function parseTimezoneOffset(offset) {
     const sign = offset[0] === '+' ? 1 : -1;
     const [hours, minutes] = offset.slice(1).split(':').map(Number);
-    return sign * (hours * 60 + minutes); // Convert hours and minutes to total minutes and apply sign
+    return sign * (hours * 60 + minutes);
 }
+
 // Initialize the conversion when the page loads
 window.onload = function() {
     document.getElementById('timezoneSelect').addEventListener('change', convertEpochTime);
 };
+
+
+// Function for Block Conversion
+function convertToBlock() {
+    const fullXmlTextarea = document.getElementById('fullXml');
+    const blockXmlTextarea = document.getElementById('blockXml');
+    const errorMsg = document.getElementById('errorMsg');
+    try {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(fullXmlTextarea.value, "text/xml");
+
+        if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
+            throw new Error("Error parsing XML. Please check your XML structure.");
+        }
+        // Extract the BlockNumber value separately
+        const blockNumberElement = xmlDoc.querySelector('BlockNumber');
+        const blockNumber = blockNumberElement ? blockNumberElement.textContent.trim() : '';
+
+        // Recursive function to extract all text content except <BlockNumber>
+        function extractTextContent(node) {
+            let textContent = '';
+            if (node.nodeType === Node.ELEMENT_NODE && node.nodeName !== 'BlockNumber') {
+                for (let i = 0; i < node.childNodes.length; i++) {
+                    textContent += extractTextContent(node.childNodes[i]);
+                }
+            } else if (node.nodeType === Node.TEXT_NODE) {
+                const trimmedValue = node.nodeValue.trim();
+                if (trimmedValue) {
+                    textContent += trimmedValue + ',';
+                }
+            }
+            return textContent;
+        }
+
+        // Extract text content and remove the trailing comma
+        let blockXml = extractTextContent(xmlDoc.documentElement).slice(0, -1);
+        // Output BlockNumber and BlockData separately
+        blockXmlTextarea.value = `<BlockNumber>${blockNumber}</BlockNumber>\n<BlockData>${blockXml}</BlockData>`;
+        errorMsg.textContent = '';
+    } catch (error) {
+        errorMsg.textContent = error.message;
+        highlightErrorLine(fullXmlTextarea, error.message);
+    }
+}
+
+
+
+//Function for Json conversion
+function convertToJson() {
+    const queryStringTextarea = document.getElementById('queryString');
+    const jsonOutputTextarea = document.getElementById('jsonOutput');
+    const errorMsg = document.getElementById('jsonErrorMsg');
+    const queryString = queryStringTextarea.value.trim();
+
+    try {
+        const params = new URLSearchParams(queryString);
+        const jsonObject = {};
+        for (const [key, value] of params.entries()) {
+            jsonObject[key] = value;
+        }
+
+        jsonOutputTextarea.value = JSON.stringify(jsonObject, null, 2);
+        errorMsg.textContent = '';
+    } catch (error) {
+        errorMsg.textContent = "Error converting query string to JSON. Please check your input.";
+    }
+}
+
+function clearText(inputId, outputId, errorId) {
+    document.getElementById(inputId).value = '';
+    document.getElementById(outputId).value = '';
+    document.getElementById(errorId).textContent = '';
+}
+
+function highlightErrorLine(textarea, errorMessage) {
+    textarea.classList.add('error-highlight');
+    // You can add more logic to find the exact line with the error if needed
+}
