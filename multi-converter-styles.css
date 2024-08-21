@@ -5,6 +5,7 @@ body {
     padding: 0;
 }
 
+/* Container for Epoch Clock and Tools */
 .epoch-container {
     display: flex;
     justify-content: center;
@@ -23,14 +24,17 @@ body {
 .ecclock {
     margin-left: 5px;
     font-weight: bold;
-    color: #ff0000ed; 
+    color: #ff0000ed;
 }
 
+/* Navigation Styling */
 nav {
     display: flex;
     justify-content: center;
-    background-color: #2c3e50; /* Updated to subtle color */
+    background-color: #2c3e50; /* Subtle color */
     padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
 }
 
 nav a {
@@ -42,11 +46,13 @@ nav a {
 
 nav a:hover {
     color: #ff0000ed;
+    text-decoration: underline;
 }
 
+/* Copy Button Styles */
 .copy-button {
     background-color: #fff;
-    color: #2c3e50; /* Updated to subtle color */
+    color: #2c3e50; /* Subtle color */
     border: 1px solid #2c3e50;
     padding: 5px 10px;
     border-radius: 4px;
@@ -56,12 +62,12 @@ nav a:hover {
 }
 
 .copy-button:hover {
-    background-color: #2c3e50; /* Updated to subtle color */
+    background-color: #2c3e50;
     color: white;
 }
 
-/* SQL Converter Styles */
-.sql-container, .hex-container {
+/* SQL and Hex/Text Converter Styles */
+.sql-container, .hex-container, .converter-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -103,7 +109,7 @@ nav a:hover {
 
 .sql-container button, .hex-container button {
     background-color: #fff;
-    color: #2c3e50; /* Updated to subtle color */
+    color: #2c3e50; /* Subtle color */
     border: 1px solid #2c3e50;
     padding: 7px 7px;
     border-radius: 4px;
@@ -112,8 +118,8 @@ nav a:hover {
     transition: background-color 0.3s;
 }
 
-.sql-container button:hover, .hex-container button:hover {
-    background-color: #2c3e50; /* Updated to subtle color */
+.sql-container button:hover, .hex-container button:hover, .converter-container button:hover {
+    background-color: #2c3e50;
     color: white;
 }
 
@@ -122,7 +128,7 @@ nav a:hover {
 }
 
 .sql-container .clear-button:hover {
-    background-color: #2c3e50; /* Updated to subtle color */
+    background-color: #2c3e50;
     color: white;
 }
 
@@ -160,34 +166,41 @@ nav a:hover {
     width: 78%;
 }
 
+/* Footer Styles */
 footer {
     text-align: center;
     padding: 3px;
-    background-color: #2c3e50; /* Updated to subtle color */
+    background-color: #2c3e50;
     color: white;
     position: fixed;
     width: 100%;
     bottom: 0;
 }
-/* Adjustments for Button3 */
-   .epochs-container {
-            display: flex;
-            align-items: center;
-        }
-        .btn-container {
-            margin-left: 10px;
-        }
-        #epochTime {
-            width: 20ch;
-        }
-        #result {
-            margin-left: 10px;
-            color: #2c3e50; /* Change the color as needed */
-        }
-        .dropdown-container {
-            margin-left: 10px;
-        }
-/* Section for Tooltip */	
+
+/* Epoch Time and Button3 Adjustments */
+.epochs-container {
+    display: flex;
+    align-items: center;
+}
+
+.btn-container {
+    margin-left: 10px;
+}
+
+#epochTime {
+    width: 20ch;
+}
+
+#result {
+    margin-left: 10px;
+    color: #2c3e50; /* Subtle color */
+}
+
+.dropdown-container {
+    margin-left: 10px;
+}
+
+/* Tooltip Styles */
 .tooltip {
     position: relative;
     display: inline-block;
@@ -196,8 +209,8 @@ footer {
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 150px;
-    background-color: #d3d3d3; /* Light grey background */
-    color: #000; /* Black text */
+    background-color: #d3d3d3;
+    color: #000;
     text-align: center;
     border-radius: 5px;
     padding: 5px;
@@ -205,14 +218,56 @@ footer {
     z-index: 1;
     bottom: 100%;
     left: 50%;
-    margin-left: -75px; /* Center the tooltip */
+    margin-left: -75px;
     opacity: 0;
     transition: opacity 0.3s;
-    font-size: 12px; /* Smaller font size */
-    font-weight: normal; /* Non-bold text */
+    font-size: 12px;
+    font-weight: normal;
 }
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    input[type="text"] {
+        width: 100%;
+    }
+
+    .sql-container, .hex-container {
+        width: 95%;
+        margin: 10px auto;
+    }
+}
+
+/* Error Message Styles */
+.error-message {
+    color: #ff0000;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+
+ 
+button {
+    background-color: #fff;
+    color: #2c3e50; /* Subtle color */
+    border: 1px solid #2c3e50;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:focus {
+    outline: none;
+}
+
