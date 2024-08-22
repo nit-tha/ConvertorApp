@@ -20,13 +20,19 @@ function copyToClipboard(elementId) {
 function clearData() {
     const elementsToClear = [
         'ids', 'commaSeparated', 'singleQuotes', 'countInput', 
-        'commaRemoved', 'epochTime', 'timezoneSelect', 'result'
-    ];
-    elementsToClear.forEach(id => document.getElementById(id).value = '');
+        'commaRemoved', 'epochTime', 'result'
+    ];    
+    // Clear the value of each input element
+    elementsToClear.forEach(id => document.getElementById(id).value = '');    
+    // Clear the inner text of specific display elements
     document.getElementById('countDisplay').innerText = '';
     document.getElementById('withoutSpaceCountDisplay').innerText = '';
-    document.getElementById('commaRemovedContainer').style.display = 'none';
+    // Hide the comma removed container
+    document.getElementById('commaRemovedContainer').style.display = 'none';    
+    // Reset the select element to its default option
+    document.getElementById('timezoneSelect').selectedIndex = 0;
 }
+
 
 function countData() {
     const input = document.getElementById('countInput').value;
