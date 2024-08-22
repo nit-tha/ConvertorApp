@@ -39,6 +39,7 @@ function clearData() {
     document.getElementById('timezoneSelect').selectedIndex = 0;
 }
 
+
 function countData() {
     const input = document.getElementById('countInput').value;
     const count = input.length; // Counts all characters including whitespaces
