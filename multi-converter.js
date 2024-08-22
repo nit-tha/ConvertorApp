@@ -23,7 +23,13 @@ function clearData() {
         'commaRemoved', 'epochTime', 'result'
     ];    
     // Clear the value of each input element
-    elementsToClear.forEach(id => document.getElementById(id).value = '');    
+    elementsToClear.forEach(id => {
+        let element = document.getElementById(id);
+        if (element) {
+            element.value = '';
+            element.innerHTML = ''; // Clear the inner HTML for divs like 'result'
+        }
+    });    
     // Clear the inner text of specific display elements
     document.getElementById('countDisplay').innerText = '';
     document.getElementById('withoutSpaceCountDisplay').innerText = '';
@@ -32,7 +38,6 @@ function clearData() {
     // Reset the select element to its default option
     document.getElementById('timezoneSelect').selectedIndex = 0;
 }
-
 
 function countData() {
     const input = document.getElementById('countInput').value;
@@ -123,8 +128,7 @@ document.getElementById('queryToJsonLink').addEventListener('click', function() 
 // Function to convert number to binary
 function convertToBinary() {
     const numberInput = document.getElementById('numberInput').value.trim();
-    const binaryOutput = document.getElementById('binaryOutput');
-    
+    const binaryOutput = document.getElementById('binaryOutput');    
     if (!isNaN(numberInput) && numberInput !== '') {
         binaryOutput.value = Number(numberInput).toString(2);
     } else if (/^[0-9a-fA-F]+$/.test(numberInput)) {
@@ -133,7 +137,6 @@ function convertToBinary() {
         binaryOutput.value = 'Invalid input';
     }
 }
-
 // Function to update the current epoch time
 function updateCurrentEpoch() {
     const currentEpochTime = Math.floor(Date.now() / 1000);
@@ -157,18 +160,15 @@ function updateVisitCounter() {
     const currentMonth = new Date().getMonth();
     let visitCount = localStorage.getItem('visitCount');
     let storedMonth = localStorage.getItem('visitMonth');
-
     if (!visitCount || storedMonth == null || currentMonth !== parseInt(storedMonth)) {
         visitCount = 0;
         storedMonth = currentMonth;
     } else {
         visitCount = parseInt(visitCount);
     }
-
     visitCount++;
     localStorage.setItem('visitCount', visitCount);
     localStorage.setItem('visitMonth', currentMonth);
-
     document.getElementById('visit-counter').innerText = `Visit count: ${visitCount}`;
 }
 // Call the function to update and display the visit counter
@@ -186,18 +186,14 @@ function convertEpochTime() {
     const epochInput = document.getElementById('epochTime').value;
     const epochTime = parseInt(epochInput, 10);
     const timezoneSelect = document.getElementById('timezoneSelect').value;
-
     if (!isNaN(epochTime)) {
         const date = new Date(epochTime * 1000);
-
         const gmtFormattedDate = date.toLocaleString('en-US', {
             weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
             hour: 'numeric', minute: 'numeric', second: 'numeric',
             timeZone: 'UTC', timeZoneName: 'short'
         });
-
         let resultText = `GMT: ${gmtFormattedDate}`;
-
         if (timezoneSelect) {
             const timezoneOffset = parseTimezoneOffset(timezoneSelect);
             const localDate = new Date(date.getTime() + timezoneOffset * 60000);
@@ -210,7 +206,6 @@ function convertEpochTime() {
         } else {
             resultText += `<br>Local Time: Please select a timezone.`;
         }
-
         document.getElementById('result').innerHTML = resultText;
     } else {
         document.getElementById('result').innerText = 'Invalid epoch time. Please enter a valid number.';
@@ -273,8 +268,6 @@ function convertToBlock() {
     }
 }
 
-
-
 //Function for Json conversion
 function convertToJson() {
     const queryStringTextarea = document.getElementById('queryString');
@@ -304,5 +297,5 @@ function clearText(inputId, outputId, errorId) {
 
 function highlightErrorLine(textarea, errorMessage) {
     textarea.classList.add('error-highlight');
-    // You can add more logic to find the exact line with the error if needed
+    // Can add more logic to find the exact line with the error if needed
 }
