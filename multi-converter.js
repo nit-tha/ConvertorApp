@@ -19,9 +19,9 @@ function copyToClipboard(elementId) {
 
 function clearData() {
     const elementsToClear = [
-        'ids', 'commaSeparated', 'singleQuotes', 'countInput', 
+        'ids', 'commaSeparated', 'singleQuotes', 'countInput',
         'commaRemoved', 'epochTime', 'result'
-    ];    
+    ];
     // Clear the value of each input element
     elementsToClear.forEach(id => {
         let element = document.getElementById(id);
@@ -29,14 +29,20 @@ function clearData() {
             element.value = '';
             element.innerHTML = ''; // Clear the inner HTML for divs like 'result'
         }
-    });    
+    });
     // Clear the inner text of specific display elements
     document.getElementById('countDisplay').innerText = '';
     document.getElementById('withoutSpaceCountDisplay').innerText = '';
     // Hide the comma removed container
-    document.getElementById('commaRemovedContainer').style.display = 'none';    
+    document.getElementById('commaRemovedContainer').style.display = 'none';
     // Reset the select element to its default option
     document.getElementById('timezoneSelect').selectedIndex = 0;
+    // Clear the 'results' section
+    document.getElementById('minutesToSubtract').value = '';
+    document.getElementById('oldEpochTime').innerText = '';
+    document.getElementById('newEpochTime').innerText = '';
+    document.getElementById('timeDiff').innerText = '';
+    document.getElementById('results').style.display = 'none'; // Optionally hide the section
 }
 
 
@@ -90,7 +96,7 @@ function convertToText() {
 
 function clearFields() {
     const elementsToClear = [
-        'textInput', 'hexOutput', 'numberInput', 
+        'textInput', 'hexOutput', 'numberInput',
         'binaryOutput', 'textOutput', 'base64Output'
     ];
     elementsToClear.forEach(id => document.getElementById(id).value = '');
@@ -129,7 +135,8 @@ document.getElementById('queryToJsonLink').addEventListener('click', function() 
 // Function to convert number to binary
 function convertToBinary() {
     const numberInput = document.getElementById('numberInput').value.trim();
-    const binaryOutput = document.getElementById('binaryOutput');    
+    const binaryOutput = document.getElementById('binaryOutput');
+
     if (!isNaN(numberInput) && numberInput !== '') {
         binaryOutput.value = Number(numberInput).toString(2);
     } else if (/^[0-9a-fA-F]+$/.test(numberInput)) {
@@ -138,6 +145,7 @@ function convertToBinary() {
         binaryOutput.value = 'Invalid input';
     }
 }
+
 // Function to update the current epoch time
 function updateCurrentEpoch() {
     const currentEpochTime = Math.floor(Date.now() / 1000);
@@ -161,15 +169,18 @@ function updateVisitCounter() {
     const currentMonth = new Date().getMonth();
     let visitCount = localStorage.getItem('visitCount');
     let storedMonth = localStorage.getItem('visitMonth');
+
     if (!visitCount || storedMonth == null || currentMonth !== parseInt(storedMonth)) {
         visitCount = 0;
         storedMonth = currentMonth;
     } else {
         visitCount = parseInt(visitCount);
     }
+
     visitCount++;
     localStorage.setItem('visitCount', visitCount);
     localStorage.setItem('visitMonth', currentMonth);
+
     document.getElementById('visit-counter').innerText = `Visit count: ${visitCount}`;
 }
 // Call the function to update and display the visit counter
@@ -187,26 +198,43 @@ function convertEpochTime() {
     const epochInput = document.getElementById('epochTime').value;
     const epochTime = parseInt(epochInput, 10);
     const timezoneSelect = document.getElementById('timezoneSelect').value;
+
     if (!isNaN(epochTime)) {
         const date = new Date(epochTime * 1000);
+
         const gmtFormattedDate = date.toLocaleString('en-US', {
-            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
-            hour: 'numeric', minute: 'numeric', second: 'numeric',
-            timeZone: 'UTC', timeZoneName: 'short'
+            weekday: 'short',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            timeZone: 'UTC',
+            timeZoneName: 'short'
         });
+
         let resultText = `GMT: ${gmtFormattedDate}`;
+
         if (timezoneSelect) {
             const timezoneOffset = parseTimezoneOffset(timezoneSelect);
             const localDate = new Date(date.getTime() + timezoneOffset * 60000);
             const localFormattedDate = localDate.toLocaleString('en-US', {
-                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
-                hour: 'numeric', minute: 'numeric', second: 'numeric',
-                timeZone: 'UTC', timeZoneName: 'short'
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                timeZone: 'UTC',
+                timeZoneName: 'short'
             });
             resultText += `<br>Local Time: ${localFormattedDate} ${timezoneSelect}`;
         } else {
             resultText += `<br>Local Time: Please select a timezone.`;
         }
+
         document.getElementById('result').innerHTML = resultText;
     } else {
         document.getElementById('result').innerText = 'Invalid epoch time. Please enter a valid number.';
@@ -238,36 +266,60 @@ function convertToBlock() {
         if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
             throw new Error("Error parsing XML. Please check your XML structure.");
         }
+
         // Extract the BlockNumber value separately
         const blockNumberElement = xmlDoc.querySelector('BlockNumber');
         const blockNumber = blockNumberElement ? blockNumberElement.textContent.trim() : '';
 
-        // Recursive function to extract all text content except <BlockNumber>
-        function extractTextContent(node) {
+        // Recursive function to extract all text content except <BlockNumber> and count the tags
+        function extractTextContentAndCount(node) {
             let textContent = '';
+            let valueCount = 0;
+            let tagCount = 0;
+
             if (node.nodeType === Node.ELEMENT_NODE && node.nodeName !== 'BlockNumber') {
+                tagCount++; // Count the tag itself
                 for (let i = 0; i < node.childNodes.length; i++) {
-                    textContent += extractTextContent(node.childNodes[i]);
+                    const {
+                        text,
+                        values,
+                        tags
+                    } = extractTextContentAndCount(node.childNodes[i]);
+                    textContent += text;
+                    valueCount += values;
+                    tagCount += tags;
                 }
             } else if (node.nodeType === Node.TEXT_NODE) {
                 const trimmedValue = node.nodeValue.trim();
                 if (trimmedValue) {
                     textContent += trimmedValue + ',';
+                    valueCount++; // Count each value
                 }
             }
-            return textContent;
-        }
 
-        // Extract text content and remove the trailing comma
-        let blockXml = extractTextContent(xmlDoc.documentElement).slice(0, -1);
-        // Output BlockNumber and BlockData separately
-        blockXmlTextarea.value = `<BlockNumber>${blockNumber}</BlockNumber>\n<BlockData>${blockXml}</BlockData>`;
+            return {
+                text: textContent,
+                values: valueCount,
+                tags: tagCount
+            };
+        }
+        // Extract text content, counts, and remove the trailing comma
+        const {
+            text: blockXml,
+            values: valueCount,
+            tags: tagCount
+        } = extractTextContentAndCount(xmlDoc.documentElement);
+        const formattedBlockXml = blockXml.slice(0, -1); // Remove trailing comma
+
+        // Output BlockNumber, BlockData, and counts
+        blockXmlTextarea.value = `<BlockNumber>${blockNumber}</BlockNumber>\n<BlockData>${formattedBlockXml}</BlockData>\nTotal Values in BlockData: ${valueCount}\nTotal Tags in XML (excluding BlockNumber): ${tagCount}`;
         errorMsg.textContent = '';
     } catch (error) {
         errorMsg.textContent = error.message;
         highlightErrorLine(fullXmlTextarea, error.message);
     }
 }
+
 
 //Function for Json conversion
 function convertToJson() {
@@ -298,5 +350,52 @@ function clearText(inputId, outputId, errorId) {
 
 function highlightErrorLine(textarea, errorMessage) {
     textarea.classList.add('error-highlight');
-    // Can add more logic to find the exact line with the error if needed
+    // You can add more logic to find the exact line with the error if needed
 }
+
+// Add event listener to all elements with the class 'pasteable'
+document.querySelectorAll('.pasteable').forEach(function(textbox) {
+    textbox.addEventListener('contextmenu', function(event) {
+        event.preventDefault(); // Prevent the default context menu from appearing
+        navigator.clipboard.readText().then(function(text) {
+            // Insert the copied text into the clicked textbox
+            event.target.value = text;
+        }).catch(function(err) {
+            console.error('Failed to read clipboard contents: ', err);
+        });
+    });
+});
+
+function calculateNewEpochTime() {
+    const epochTimeInput = document.getElementById('epochTime');
+    const minutesToSubtractInput = document.getElementById('minutesToSubtract');
+    const epochTime = parseInt(epochTimeInput.value);
+    const minutesToSubtract = parseInt(minutesToSubtractInput.value);
+
+    if (isNaN(epochTime) || isNaN(minutesToSubtract)) {
+        alert("Please enter valid numbers for both fields.");
+        return;
+    }
+    // Convert epoch time to JavaScript date
+    const date = new Date(epochTime * 1000);
+    // Subtract the minutes
+    date.setMinutes(date.getMinutes() - minutesToSubtract);
+    // Convert back to epoch time
+    const newEpochTime = Math.floor(date.getTime() / 1000);
+
+    // Display results
+    document.getElementById('oldEpochTime').innerText = epochTime;
+    document.getElementById('newEpochTime').innerText = newEpochTime;
+    document.getElementById('timeDiff').innerText = minutesToSubtract;
+    document.getElementById('results').style.display = 'block';
+}
+
+// Function to clear results on page load
+function clearResultsOnPageLoad() {
+    document.getElementById('results').style.display = 'none'; // Hide the results section
+    document.getElementById('oldEpochTime').innerText = '';
+    document.getElementById('newEpochTime').innerText = '';
+    document.getElementById('timeDiff').innerText = '';
+}
+// Call this function when the page loads
+window.onload = clearResultsOnPageLoad;
