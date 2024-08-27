@@ -1,214 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi Converter</title>
-    <link rel="stylesheet" href="multi-converter-styles.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-
-<body>
-    <div class="epoch-container">
-        <div class="inline" id="clocktext">
-            The current epoch time is&nbsp;
-            <div id="ecclock" class="ecclock">Loading...</div>
-            <button class="copy-button" onclick="copyEpoch()"><i class="fas fa-copy"></i></button>
-            <div class="clocknotice" id="clocknotice" style="display: none;">
-                <i class="fa fa-pause" aria-hidden="true"></i>
-            </div>
-        </div>
-    </div>
-
-    <nav>
-        <a id="sqlConverterLink" href="#">Query Formatter</a>
-        <a id="hexConverterLink" href="#">Conversion Suite</a>
-        <a id="xmlToBlockLink"   href="#">Block Conversion</a>
-        <a id="queryToJsonLink"  href="#">JSON Conversion</a>
-    </nav>
-
-    <div id="sqlConverter" class="sql-container">
-        <div class="container">
-            <label for="ids">Enter Data:</label>
-            <input type="text" id="ids" oninput="resizeInput(this)" placeholder="Enter data here for conversion.">
-            <div class="tooltip">
-                <button onclick="removeCommaData()">DelCom</button>
-                <span class="tooltiptext">Remove's Comma</span>
-            </div>
-            <div class="tooltip">
-                <button onclick="removeDuplicates()">Unique</button>
-                <span class="tooltiptext">Remove Duplicate Data</span>
-            </div>
-            <div class="tooltip">
-                <button onclick="refreshPage()">
-                    <i class="fas fa-sync"></i>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Multi Converter</title>
+        <link rel="stylesheet" href="multi-converter-styles.css" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    </head>
+    <body>
+        <div class="epoch-container">
+            <div class="inline" id="clocktext">
+                The current epoch time is&nbsp;
+                <div id="ecclock" class="ecclock">Loading...</div>
+                <button class="copy-button" onclick="copyEpoch()">
+                    <i class="fas fa-copy"></i>
                 </button>
-                <span class="tooltiptext">Refresh Page</span>
+                <div class="clocknotice" id="clocknotice" style="display: none;">
+                    <i class="fa fa-pause" aria-hidden="true"></i>
+                </div>
             </div>
         </div>
-
-        <div class="container" id="commaRemovedContainer" style="display:none;">
-            <input type="text" id="commaRemoved" readonly oninput="resizeInput(this)" placeholder="Shows data for removed comma or unique data.">
-            <button onclick="copyToClipboard('commaRemoved')"><i class="fas fa-copy"></i></button>
-        </div>
-
-        <div class="container">
-            <label for="countInput">Count Data:</label>
-            <input type="text" id="countInput" oninput="resizeInput(this)" placeholder="Enter data for counting characters.">
-            <div class="tooltip">
-                <button onclick="countData()">Count</button>
-                <span class="tooltiptext">Count with space</span>
+        <nav>
+            <a id="sqlConverterLink" href="#">Query Formatter</a>
+            <a id="hexConverterLink" href="#">Conversion Suite</a>
+            <a id="xmlToBlockLink" href="#">Block Conversion</a>
+            <a id="queryToJsonLink" href="#">JSON Conversion</a>
+        </nav>
+        <div id="sqlConverter" class="sql-container">
+            <div class="container">
+                <label for="ids">Enter Data:</label>
+                <input type="text" id="ids" oninput="resizeInput(this)" placeholder="Enter data here for conversion." />
+                <div class="tooltip">
+                    <button onclick="removeCommaData()">DelCom</button>
+                    <span class="tooltiptext">Remove's Comma</span>
+                </div>
+                <div class="tooltip">
+                    <button onclick="removeDuplicates()">Unique</button>
+                    <span class="tooltiptext">Remove Duplicate Data</span>
+                </div>
+                <div class="tooltip">
+                    <button onclick="refreshPage()">
+                        <i class="fas fa-sync"></i>
+                    </button>
+                    <span class="tooltiptext">Refresh Page</span>
+                </div>
             </div>
-            <div class="tooltip">
-                <button onclick="countExcludingSpace()">Ex-Space</button>
-                <span class="tooltiptext">Count without space</span>
+            <div class="container" id="commaRemovedContainer" style="display: none;">
+                <input type="text" id="commaRemoved" readonly oninput="resizeInput(this)" placeholder="Shows data for removed comma or unique data." />
+                <button onclick="copyToClipboard('commaRemoved')">
+                    <i class="fas fa-copy"></i>
+                </button>
             </div>
-            <span id="countDisplay"></span>
-            <span id="withoutSpaceCountDisplay"></span>
-        </div>
-
-        <div class="container">
-            <button onclick="convertToCommaSeparated()">Add Comma</button>
-            <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)" placeholder="Shows comma-separated data.">
-            <div class="btn-container">
-                <button onclick="copyToClipboard('commaSeparated')"><i class="fas fa-copy"></i></button>
+            <div class="container">
+                <label for="countInput">Count Data:</label>
+                <input type="text" id="countInput" oninput="resizeInput(this)" placeholder="Enter data for counting characters." />
+                <div class="tooltip">
+                    <button onclick="countData()">Count</button>
+                    <span class="tooltiptext">Count with space</span>
+                </div>
+                <div class="tooltip">
+                    <button onclick="countExcludingSpace()">Ex-Space</button>
+                    <span class="tooltiptext">Count without space</span>
+                </div>
+                <span id="countDisplay"></span>
+                <span id="withoutSpaceCountDisplay"></span>
             </div>
-        </div>
-
-        <div class="container">
-            <button onclick="convertToSingleQuotes()">Add Quote</button>
-            <input type="text" id="singleQuotes" readonly oninput="resizeInput(this)" placeholder="Shows quotes and comma to data.">
-            <div class="btn-container">
-                <button onclick="copyToClipboard('singleQuotes')"><i class="fas fa-copy"></i></button>
+            <div class="container">
+                <button onclick="convertToCommaSeparated()">Add Comma</button>
+                <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)" placeholder="Shows comma-separated data." />
+                <div class="btn-container">
+                    <button onclick="copyToClipboard('commaSeparated')">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-
-        <div class="epochs-container">
-            <div class="tooltip">
-                <button onclick="convertEpochTime()">Date</button>
-                <span class="tooltiptext">Convert epoch time to human date</span>
+            <div class="container">
+                <button onclick="convertToSingleQuotes()">Add Quote</button>
+                <input type="text" id="singleQuotes" readonly oninput="resizeInput(this)" placeholder="Shows quotes and comma to data." />
+                <div class="btn-container">
+                    <button onclick="copyToClipboard('singleQuotes')">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
             </div>
-            <input type="text" id="epochTime" placeholder="Enter epoch time">
-            <div class="dropdown-container">
-                <select id="timezoneSelect" onchange="convertEpochTime()" style="
-    background-color: aliceblue;
-">
-                <option value="">Select Timezone</option>
-                <option value="-12:00">GMT-12:00</option>
-                <option value="-11:00">GMT-11:00</option>
-                <option value="-10:00">GMT-10:00</option>
-                <option value="-09:00">GMT-09:00</option>
-                <option value="-08:00">GMT-08:00</option>
-                <option value="-07:00">GMT-07:00</option>
-                <option value="-06:00">GMT-06:00</option>
-                <option value="-05:00">GMT-05:00</option>
-                <option value="-04:00">GMT-04:00</option>
-                <option value="-03:00">GMT-03:00</option>
-                <option value="-02:00">GMT-02:00</option>
-                <option value="-01:00">GMT-01:00</option>
-                <option value="00:00">GMT+00:00</option>
-                <option value="+01:00">GMT+01:00</option>
-                <option value="+02:00">GMT+02:00</option>
-                <option value="+03:00">GMT+03:00</option>
-                <option value="+04:00">GMT+04:00</option>
-                <option value="+05:00">GMT+05:00</option>
-                <option value="+05:30">GMT+05:30</option>
-                <option value="+06:00">GMT+06:00</option>
-                <option value="+07:00">GMT+07:00</option>
-                <option value="+08:00">GMT+08:00</option>
-                <option value="+09:00">GMT+09:00</option>
-                <option value="+10:00">GMT+10:00</option>
-                <option value="+11:00">GMT+11:00</option>
-                <option value="+12:00">GMT+12:00</option>
-                <option value="+13:00">GMT+13:00</option>
-                <option value="+14:00">GMT+14:00</option>
-            </select>
+            <div class="epochs-container">
+                <div class="tooltip">
+                    <button onclick="convertEpochTime()">Date</button>
+                    <span class="tooltiptext">Convert epoch time to human date</span>
+                </div>
+                <input type="text" id="epochTime" placeholder="Enter epoch time" />
+                <div class="dropdown-container">
+                    <select id="timezoneSelect" onchange="convertEpochTime()" style="background-color: aliceblue;">
+                        <option value="">Select Timezone</option>
+                        <option value="-12:00">GMT-12:00</option>
+                        <option value="-11:00">GMT-11:00</option>
+                        <option value="-10:00">GMT-10:00</option>
+                        <option value="-09:00">GMT-09:00</option>
+                        <option value="-08:00">GMT-08:00</option>
+                        <option value="-07:00">GMT-07:00</option>
+                        <option value="-06:00">GMT-06:00</option>
+                        <option value="-05:00">GMT-05:00</option>
+                        <option value="-04:00">GMT-04:00</option>
+                        <option value="-03:00">GMT-03:00</option>
+                        <option value="-02:00">GMT-02:00</option>
+                        <option value="-01:00">GMT-01:00</option>
+                        <option value="00:00">GMT+00:00</option>
+                        <option value="+01:00">GMT+01:00</option>
+                        <option value="+02:00">GMT+02:00</option>
+                        <option value="+03:00">GMT+03:00</option>
+                        <option value="+04:00">GMT+04:00</option>
+                        <option value="+05:00">GMT+05:00</option>
+                        <option value="+05:30">GMT+05:30</option>
+                        <option value="+06:00">GMT+06:00</option>
+                        <option value="+07:00">GMT+07:00</option>
+                        <option value="+08:00">GMT+08:00</option>
+                        <option value="+09:00">GMT+09:00</option>
+                        <option value="+10:00">GMT+10:00</option>
+                        <option value="+11:00">GMT+11:00</option>
+                        <option value="+12:00">GMT+12:00</option>
+                        <option value="+13:00">GMT+13:00</option>
+                        <option value="+14:00">GMT+14:00</option>
+                    </select>
+                </div>
+                <div id="result"></div>
+                <div class="epo-container">
+                    <input type="number" id="minutesToSubtract" placeholder="Minutes to Subtract" style="margin-left: 10px;" />
+                    <button onclick="calculateNewEpochTime()">Calculate</button>
+                </div>
             </div>
-            <div id="result"></div>
-        </div>
-
-        <div class="container">
-            <button onclick="clearData()" class="clear-button">Clear</button>
-        </div>
-    </div>
-
-    <div id="hexConverter" class="hex-container" style="display:none;">
-        <div class="container">
-            <label for="textInput">Text:</label>
-            <input type="text" id="textInput" placeholder="Enter data here">
-            <button onclick="convertToHex()">Convert to Hex</button>
-        </div>
-        <div class="container">
-            <label for="hexOutput">Hex:</label>
-            <input type="text" id="hexOutput" placeholder="Hex conversion here">
-            <button onclick="convertToText()">Convert to Text</button>
-        </div>
-        <div class="container">
-            <label for="textOutput">Text:</label>
-            <input type="text" id="textOutput" placeholder="Hex to Text here">
-        </div>
-        <div class="container">
-            <label for="numberInput">Data:</label>
-            <input type="text" id="numberInput" placeholder="Enter data here">
-            <div class="tooltip">
-                <button onclick="convertToBinary()">Binary</button>
-                <span class="tooltiptext">Convert to Binary</span>
+            <div class="results" id="results" style="display: block;">
+                <span>Result: </span>
+                <span>Old Epoch: <span id="oldEpochTime">1724755342</span>, </span>
+                <span>New Epoch: <span id="newEpochTime">1724749342</span>, </span>
+                <span>Time Difference (Minutes): <span id="timeDiff">100</span> </span>
             </div>
-            <div class="tooltip">
-                <button onclick="encodeToBase64()">Base64</button>
-                <span class="tooltiptext">Base64 Encoding</span>
+            <div class="container">
+                <button onclick="clearData()" class="clear-button">Clear</button>
             </div>
         </div>
-        <div class="container">
-            <label for="binaryOutput">Binary:</label>
-            <input type="text" id="binaryOutput" placeholder="Converted to Binary">
-            <button onclick="copyToClipboard('binaryOutput')"><i class="fas fa-copy"></i></button>
+        <div id="hexConverter" class="hex-container" style="display: none;">
+            <div class="container">
+                <label for="textInput">Text:</label>
+                <input type="text" id="textInput" placeholder="Enter data here" />
+                <button onclick="convertToHex()">Convert to Hex</button>
+            </div>
+            <div class="container">
+                <label for="hexOutput">Hex:</label>
+                <input type="text" id="hexOutput" placeholder="Hex conversion here" />
+                <button onclick="convertToText()">Convert to Text</button>
+            </div>
+            <div class="container">
+                <label for="textOutput">Text:</label>
+                <input type="text" id="textOutput" placeholder="Hex to Text here" />
+            </div>
+            <div class="container">
+                <label for="numberInput">Data:</label>
+                <input type="text" id="numberInput" placeholder="Enter data here" />
+                <div class="tooltip">
+                    <button onclick="convertToBinary()">Binary</button>
+                    <span class="tooltiptext">Convert to Binary</span>
+                </div>
+                <div class="tooltip">
+                    <button onclick="encodeToBase64()">Base64</button>
+                    <span class="tooltiptext">Base64 Encoding</span>
+                </div>
+            </div>
+            <div class="container">
+                <label for="binaryOutput">Binary:</label>
+                <input type="text" id="binaryOutput" placeholder="Converted to Binary" />
+                <button onclick="copyToClipboard('binaryOutput')">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="container">
+                <label for="base64Output">Base64:</label>
+                <input type="text" id="base64Output" placeholder="Converted to Base64" />
+                <button onclick="copyToClipboard('base64Output')">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="buttons">
+                <button onclick="clearFields()">Clear</button>
+            </div>
         </div>
-        <div class="container">
-            <label for="base64Output">Base64:</label>
-            <input type="text" id="base64Output" placeholder="Converted to Base64">
-            <button onclick="copyToClipboard('base64Output')"><i class="fas fa-copy"></i></button>
+        <div id="xmlToBlockSection" class="converter-container" style="display: none;">
+            <h2>XML to Block XML Converter</h2>
+            <textarea id="fullXml" class="pasteable" placeholder="Paste your full XML here..." style="width: 449px; height: 160px;"></textarea>
+            <button onclick="convertToBlock()">Convert</button>
+            <button onclick="clearText('fullXml', 'blockXml', 'errorMsg')">Clear</button>
+            <h2>Block XML Output</h2>
+            <textarea id="blockXml" readonly style="width: 826px; height: 93px;"></textarea>
+            <button onclick="copyToClipboard('blockXml')">
+                <i class="fas fa-copy"></i>
+            </button>
+            <p class="error" id="errorMsg"></p>
         </div>
-        <div class="buttons">
-            <button onclick="clearFields()">Clear</button>
+        <div id="queryToJsonSection" class="converter-container" style="display: none;">
+            <h2>Query String to JSON Converter</h2>
+            <textarea id="queryString" placeholder="Paste your query string here..." style="width: 449px; height: 160px;"></textarea>
+            <button onclick="convertToJson()">Convert</button>
+            <button onclick="clearText('queryString', 'jsonOutput', 'jsonErrorMsg')">Clear</button>
+            <h2>JSON Output</h2>
+            <textarea id="jsonOutput" readonly style="width: 826px; height: 93px;"></textarea>
+            <button onclick="copyToClipboard('jsonOutput')">
+                <i class="fas fa-copy"></i>
+            </button>
+            <p class="error" id="jsonErrorMsg"></p>
         </div>
-    </div>
-
-    <div id="xmlToBlockSection" class="converter-container" style="display:none;">
-        <h2>XML to Block XML Converter</h2>
-        <textarea id="fullXml" placeholder="Paste your full XML here..." style="width: 449px; height: 160px;"></textarea>
-        <button onclick="convertToBlock()">Convert</button>
-        <button onclick="clearText('fullXml', 'blockXml', 'errorMsg')">Clear</button>
-
-        <h2>Block XML Output</h2>
-        <textarea id="blockXml" readonly style="width: 826px; height: 93px;"></textarea>
-        <button onclick="copyToClipboard('blockXml')"><i class="fas fa-copy"></i></button>
-        
-
-        <p class="error" id="errorMsg"></p>
-    </div>
-
-    <div id="queryToJsonSection" class="converter-container" style="display:none;">
-        <h2>Query String to JSON Converter</h2>
-        <textarea id="queryString" placeholder="Paste your query string here..." style="width: 449px; height: 160px;"></textarea>
-        <button onclick="convertToJson()">Convert</button>
-        <button onclick="clearText('queryString', 'jsonOutput', 'jsonErrorMsg')">Clear</button>
-
-        <h2>JSON Output</h2>
-        <textarea id="jsonOutput" readonly style="width: 826px; height: 93px;"></textarea>
-        <button onclick="copyToClipboard('jsonOutput')"><i class="fas fa-copy"></i></button>
-
-        <p class="error" id="jsonErrorMsg"></p>
-    </div>
-
-    <footer>
-        <span>Version 2.0.1 (NT)</span> <br>
-        <span id="visit-counter">Visit count: Loading...</span>
-    </footer>
-
-    <script src="multi-converter.js"></script>
-</body>
-
+        <footer>
+            <span>Version 2.0.2 (NT)</span>
+            <br />
+            <span id="visit-counter">Visit count: Loading...</span>
+        </footer>
+        <script src="multi-converter.js"></script>
+    </body>
 </html>
