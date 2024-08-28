@@ -93,34 +93,20 @@
                 <div class="dropdown-container">
                     <select id="timezoneSelect" onchange="convertEpochTime()" style="background-color: aliceblue;">
                         <option value="">Select Timezone</option>
-                        <option value="-12:00">GMT-12:00</option>
-                        <option value="-11:00">GMT-11:00</option>
-                        <option value="-10:00">GMT-10:00</option>
-                        <option value="-09:00">GMT-09:00</option>
-                        <option value="-08:00">GMT-08:00</option>
-                        <option value="-07:00">GMT-07:00</option>
-                        <option value="-06:00">GMT-06:00</option>
-                        <option value="-05:00">GMT-05:00</option>
-                        <option value="-04:00">GMT-04:00</option>
-                        <option value="-03:00">GMT-03:00</option>
-                        <option value="-02:00">GMT-02:00</option>
-                        <option value="-01:00">GMT-01:00</option>
-                        <option value="00:00">GMT+00:00</option>
-                        <option value="+01:00">GMT+01:00</option>
-                        <option value="+02:00">GMT+02:00</option>
-                        <option value="+03:00">GMT+03:00</option>
-                        <option value="+04:00">GMT+04:00</option>
-                        <option value="+05:00">GMT+05:00</option>
-                        <option value="+05:30">GMT+05:30</option>
-                        <option value="+06:00">GMT+06:00</option>
-                        <option value="+07:00">GMT+07:00</option>
-                        <option value="+08:00">GMT+08:00</option>
-                        <option value="+09:00">GMT+09:00</option>
-                        <option value="+10:00">GMT+10:00</option>
-                        <option value="+11:00">GMT+11:00</option>
-                        <option value="+12:00">GMT+12:00</option>
-                        <option value="+13:00">GMT+13:00</option>
-                        <option value="+14:00">GMT+14:00</option>
+                       	<option value="-08:00">GMT-08:00 (-32400)</option>                   
+                        <option value="-08:00">GMT-08:00 (-28800)</option>
+                        <option value="-07:00">GMT-07:00 (-25200)</option>
+                        <option value="-06:00">GMT-06:00 (-21600)</option>
+                        <option value="-05:00">GMT-05:00 (-18000)</option>
+                        <option value="-04:00">GMT-04:00 (-14400)</option>                        
+                        <option value="00:00">GMT+00:00</option>                        
+                        <option value="+04:00">GMT+04:00 (14400)</option>
+                        <option value="+05:00">GMT+05:00 (18000)</option>
+                        <option value="+05:30">GMT+05:30 (19800)</option>
+                        <option value="+06:00">GMT+06:00 (21600)</option>
+                        <option value="+07:00">GMT+07:00 (25200)</option>
+                        <option value="+08:00">GMT+08:00 (28800)</option>
+                        <option value="+09:00">GMT+09:00 (32400)</option>
                     </select>
                 </div>
                 <div id="result"></div>
@@ -209,7 +195,7 @@
             <p class="error" id="jsonErrorMsg"></p>
         </div>
         <footer>
-            <span>Version 2.0.2 (NT)</span>
+            <span>Version 2.0.3 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
