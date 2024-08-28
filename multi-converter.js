@@ -259,6 +259,7 @@ function convertToBlock() {
     const fullXmlTextarea = document.getElementById('fullXml');
     const blockXmlTextarea = document.getElementById('blockXml');
     const errorMsg = document.getElementById('errorMsg');
+
     try {
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(fullXmlTextarea.value, "text/xml");
@@ -266,60 +267,37 @@ function convertToBlock() {
         if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
             throw new Error("Error parsing XML. Please check your XML structure.");
         }
-
         // Extract the BlockNumber value separately
         const blockNumberElement = xmlDoc.querySelector('BlockNumber');
         const blockNumber = blockNumberElement ? blockNumberElement.textContent.trim() : '';
 
-        // Recursive function to extract all text content except <BlockNumber> and count the tags
-        function extractTextContentAndCount(node) {
+        // Recursive function to extract all text content except <BlockNumber>
+        function extractTextContent(node) {
             let textContent = '';
-            let valueCount = 0;
-            let tagCount = 0;
 
             if (node.nodeType === Node.ELEMENT_NODE && node.nodeName !== 'BlockNumber') {
-                tagCount++; // Count the tag itself
                 for (let i = 0; i < node.childNodes.length; i++) {
-                    const {
-                        text,
-                        values,
-                        tags
-                    } = extractTextContentAndCount(node.childNodes[i]);
-                    textContent += text;
-                    valueCount += values;
-                    tagCount += tags;
+                    textContent += extractTextContent(node.childNodes[i]);
                 }
             } else if (node.nodeType === Node.TEXT_NODE) {
                 const trimmedValue = node.nodeValue.trim();
                 if (trimmedValue) {
                     textContent += trimmedValue + ',';
-                    valueCount++; // Count each value
                 }
             }
-
-            return {
-                text: textContent,
-                values: valueCount,
-                tags: tagCount
-            };
+            return textContent;
         }
-        // Extract text content, counts, and remove the trailing comma
-        const {
-            text: blockXml,
-            values: valueCount,
-            tags: tagCount
-        } = extractTextContentAndCount(xmlDoc.documentElement);
-        const formattedBlockXml = blockXml.slice(0, -1); // Remove trailing comma
+        // Extract text content and remove the trailing comma
+        let blockXml = extractTextContent(xmlDoc.documentElement).slice(0, -1);
 
-        // Output BlockNumber, BlockData, and counts
-        blockXmlTextarea.value = `<BlockNumber>${blockNumber}</BlockNumber>\n<BlockData>${formattedBlockXml}</BlockData>\nTotal Values in BlockData: ${valueCount}\nTotal Tags in XML (excluding BlockNumber): ${tagCount}`;
+        // Output BlockNumber and BlockData separately
+        blockXmlTextarea.value = `<BlockNumber>${blockNumber}</BlockNumber>\n<BlockData>${blockXml}</BlockData>`;
         errorMsg.textContent = '';
     } catch (error) {
         errorMsg.textContent = error.message;
         highlightErrorLine(fullXmlTextarea, error.message);
     }
 }
-
 
 //Function for Json conversion
 function convertToJson() {
