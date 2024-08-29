@@ -91,28 +91,51 @@
                 </div>
                 <input type="text" id="epochTime" placeholder="Enter epoch time" />
                 <div class="dropdown-container">
-                    <select id="timezoneSelect" onchange="convertEpochTime()" style="background-color: aliceblue;">
-                        <option value="">Select Timezone</option>
-                       	<option value="-08:00">GMT-08:00 (-32400)</option>                   
-                        <option value="-08:00">GMT-08:00 (-28800)</option>
-                        <option value="+07:00">GMT-07:30 (-27000)</option>
-                        <option value="-07:00">GMT-07:00 (-25200)</option>
-                        <option value="-06:00">GMT-06:30 (-23400)</option>
-                        <option value="-06:00">GMT-06:00 (-21600)</option>
-                        <option value="+05:30">GMT-05:30 (-19800)</option>
-                        <option value="-05:00">GMT-05:00 (-18000)</option>
-                        <option value="-04:00">GMT-04:00 (-14400)</option>                        
-                        <option value="00:00">GMT+00:00</option>                        
-                        <option value="+04:00">GMT+04:00 (14400)</option>
-                        <option value="+05:00">GMT+05:00 (18000)</option>
-                        <option value="+05:30">GMT+05:30 (19800)</option>
-                        <option value="+06:00">GMT+06:00 (21600)</option>
-                        <option value="+06:00">GMT+06:30 (23400)</option>
-                        <option value="+07:00">GMT+07:00 (25200)</option>
-                        <option value="+07:00">GMT+07:30 (27000)</option>
-                        <option value="+08:00">GMT+08:00 (28800)</option>
-                        <option value="+09:00">GMT+09:00 (32400)</option>
-                    </select>
+                   <select id="timezoneSelect" onchange="convertEpochTime()" style="background-color: aliceblue;">
+    <option value="">Select Timezone</option>
+    <!-- Negative Offsets -->
+    <option value="-12:00">GMT-12:00 (-43200)</option>
+    <option value="-11:00">GMT-11:00 (-39600)</option>
+    <option value="-10:00">GMT-10:00 (-36000)</option>
+    <option value="-09:30">GMT-09:30 (-34200)</option>
+    <option value="-09:00">GMT-09:00 (-32400)</option>
+    <option value="-08:00">GMT-08:00 (-28800)</option>
+    <option value="-07:00">GMT-07:00 (-25200)</option>
+    <option value="-06:00">GMT-06:00 (-21600)</option>
+    <option value="-05:00">GMT-05:00 (-18000)</option>
+    <option value="-04:00">GMT-04:00 (-14400)</option>
+    <option value="-03:30">GMT-03:30 (-12600)</option>
+    <option value="-03:00">GMT-03:00 (-10800)</option>
+    <option value="-02:00">GMT-02:00 (-7200)</option>
+    <option value="-01:00">GMT-01:00 (-3600)</option>    
+    <!-- Zero Offset -->
+    <option value="+00:00">GMT+00:00 (0)</option>
+    <!-- Positive Offsets -->
+    <option value="+01:00">GMT+01:00 (3600)</option>
+    <option value="+02:00">GMT+02:00 (7200)</option>
+    <option value="+03:00">GMT+03:00 (10800)</option>
+    <option value="+03:30">GMT+03:30 (12600)</option>
+    <option value="+04:00">GMT+04:00 (14400)</option>
+    <option value="+04:30">GMT+04:30 (16200)</option>
+    <option value="+05:00">GMT+05:00 (18000)</option>
+    <option value="+05:30">GMT+05:30 (19800)</option>
+    <option value="+05:45">GMT+05:45 (20700)</option>
+    <option value="+06:00">GMT+06:00 (21600)</option>
+    <option value="+06:30">GMT+06:30 (23400)</option>
+    <option value="+07:00">GMT+07:00 (25200)</option>
+    <option value="+08:00">GMT+08:00 (28800)</option>
+    <option value="+08:30">GMT+08:30 (30600)</option>
+    <option value="+08:45">GMT+08:45 (31500)</option>
+    <option value="+09:00">GMT+09:00 (32400)</option>
+    <option value="+09:30">GMT+09:30 (34200)</option>
+    <option value="+10:00">GMT+10:00 (36000)</option>
+    <option value="+10:30">GMT+10:30 (37800)</option>
+    <option value="+11:00">GMT+11:00 (39600)</option>
+    <option value="+12:00">GMT+12:00 (43200)</option>
+    <option value="+12:45">GMT+12:45 (45900)</option>
+    <option value="+13:00">GMT+13:00 (46800)</option>
+    <option value="+14:00">GMT+14:00 (50400)</option>
+</select>
                 </div>
                 <div id="result"></div>
                 <div class="epo-container">
@@ -200,7 +223,7 @@
             <p class="error" id="jsonErrorMsg"></p>
         </div>
         <footer>
-            <span>Version 2.0.3 (NT)</span>
+            <span>Version 2.0.4 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
