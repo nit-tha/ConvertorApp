@@ -129,19 +129,20 @@
     <option value="+11:00">GMT+11:00 (39600)</option>
     <option value="+12:00">GMT+12:00 (43200)</option>    
 </select>
-                </div>
+                </div>  
                 <div id="result"></div>
-                <div class="epo-container">
+            </div>
+            <div class="epo-container">
                     <input type="number" id="minutesToSubtract" placeholder="Minutes to Subtract" style="margin-left: 10px;" />
                     <button onclick="calculateNewEpochTime()">Calculate</button>
-                </div>
-            </div>
-            <div class="results" id="results" style="display: block;">
-                <span>Result: </span>
+                     <div class="results" id="results" style="display: block;">
+                     <span>Result: </span>
                 <span>Old Epoch: <span id="oldEpochTime">1724755342</span>, </span>
                 <span>New Epoch: <span id="newEpochTime">1724749342</span>, </span>
                 <span>Time Difference (Minutes): <span id="timeDiff">100</span> </span>
+                </div> 
             </div>
+            
             <div class="container">
                 <button onclick="clearData()" class="clear-button">Clear</button>
             </div>
@@ -216,7 +217,7 @@
             <p class="error" id="jsonErrorMsg"></p>
         </div>
         <footer>
-            <span>Version 2.0.6 (NT)</span>
+            <span>Version 2.0.7 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
