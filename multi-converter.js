@@ -303,21 +303,38 @@ function convertEpochTime() {
     }
 }
 
-// Function to calculate relative time
+// Function to calculate relative time, including future dates
 function calculateRelativeTime(date) {
     const now = new Date();
-    const diffInSeconds = Math.floor((now - date) / 1000);
-    if (diffInSeconds < 60) {
-        return 'A few seconds ago';
-    } else if (diffInSeconds < 3600) {
-        const minutes = Math.floor(diffInSeconds / 60);
-        return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
-    } else if (diffInSeconds < 86400) {
-        const hours = Math.floor(diffInSeconds / 3600);
-        return `${hours} hour${hours > 1 ? 's' : ''} ago`;
-    } else {
-        const days = Math.floor(diffInSeconds / 86400);
-        return `${days} day${days > 1 ? 's' : ''} ago`;
+    const diffInSeconds = Math.floor((date - now) / 1000);
+    const absDiffInSeconds = Math.abs(diffInSeconds);
+
+    if (diffInSeconds < 0) { // Past dates
+        if (absDiffInSeconds < 60) {
+            return 'A few seconds ago';
+        } else if (absDiffInSeconds < 3600) {
+            const minutes = Math.floor(absDiffInSeconds / 60);
+            return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+        } else if (absDiffInSeconds < 86400) {
+            const hours = Math.floor(absDiffInSeconds / 3600);
+            return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+        } else {
+            const days = Math.floor(absDiffInSeconds / 86400);
+            return `${days} day${days > 1 ? 's' : ''} ago`;
+        }
+    } else { // Future dates
+        if (absDiffInSeconds < 60) {
+            return 'In a few seconds';
+        } else if (absDiffInSeconds < 3600) {
+            const minutes = Math.floor(absDiffInSeconds / 60);
+            return `In ${minutes} minute${minutes > 1 ? 's' : ''}`;
+        } else if (absDiffInSeconds < 86400) {
+            const hours = Math.floor(absDiffInSeconds / 3600);
+            return `In ${hours} hour${hours > 1 ? 's' : ''}`;
+        } else {
+            const days = Math.floor(absDiffInSeconds / 86400);
+            return `In ${days} day${days > 1 ? 's' : ''}`;
+        }
     }
 }
 
