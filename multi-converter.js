@@ -303,7 +303,7 @@ function convertEpochTime() {
     }
 }
 
-// Function to calculate relative time, including future dates
+// Function to calculate relative time, including future dates with accurate rounding
 function calculateRelativeTime(date) {
     const now = new Date();
     const diffInSeconds = Math.floor((date - now) / 1000);
@@ -319,20 +319,20 @@ function calculateRelativeTime(date) {
             const hours = Math.floor(absDiffInSeconds / 3600);
             return `${hours} hour${hours > 1 ? 's' : ''} ago`;
         } else {
-            const days = Math.floor(absDiffInSeconds / 86400);
+            const days = Math.ceil(absDiffInSeconds / 86400); // Use Math.ceil to round up for partial days
             return `${days} day${days > 1 ? 's' : ''} ago`;
         }
     } else { // Future dates
         if (absDiffInSeconds < 60) {
             return 'In a few seconds';
         } else if (absDiffInSeconds < 3600) {
-            const minutes = Math.floor(absDiffInSeconds / 60);
+            const minutes = Math.ceil(absDiffInSeconds / 60);
             return `In ${minutes} minute${minutes > 1 ? 's' : ''}`;
         } else if (absDiffInSeconds < 86400) {
-            const hours = Math.floor(absDiffInSeconds / 3600);
+            const hours = Math.ceil(absDiffInSeconds / 3600);
             return `In ${hours} hour${hours > 1 ? 's' : ''}`;
         } else {
-            const days = Math.floor(absDiffInSeconds / 86400);
+            const days = Math.ceil(absDiffInSeconds / 86400); // Use Math.ceil to ensure rounding up for days
             return `In ${days} day${days > 1 ? 's' : ''}`;
         }
     }
