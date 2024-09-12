@@ -309,4 +309,6 @@ button:focus {
     }
     .result-container {
         margin-left: 15px; /* Space between button and result display */
+        align-self: flex-end; /* Position the result container lower */
+        padding-top: 4px; /* Adjust padding to fine-tune position */
     }
