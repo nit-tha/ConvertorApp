@@ -43,6 +43,11 @@ function clearData() {
     document.getElementById('newEpochTime').innerText = '';
     document.getElementById('timeDiff').innerText = '';
     document.getElementById('results').style.display = 'none'; // Optionally hide the section
+    document.getElementById('hf-result').innerText = ''; // Clear the Human Date result
+
+    // Clear all input type number fields
+    const numberInputs = document.querySelectorAll('input[type="number"]');
+    numberInputs.forEach(input => input.value = ''); // Clear all number inputs
 }
 
 
@@ -422,3 +427,60 @@ function clearResultsOnPageLoad() {
 }
 // Call this function when the page loads
 window.onload = clearResultsOnPageLoad;
+
+    // Function to convert Human date to Epoch time
+        function HumanToEpochTZ() {
+            // Prevent the form from clearing inputs by stopping default behavior
+            event.preventDefault();
+
+            const form = document.getElementById('hf');
+            const year = parseInt(form.yyyy.value, 10);
+            const month = parseInt(form.mm.value, 10) - 1; // JavaScript months are 0-based
+            const day = parseInt(form.dd.value, 10);
+            const hour = parseInt(form.hh.value, 10);
+            const minute = parseInt(form.mn.value, 10);
+            const second = parseInt(form.ss.value, 10);
+            const timezone = parseInt(form.tz.value, 10);
+
+            // Create a date object using the provided values
+            const date = new Date(Date.UTC(year, month, day, hour, minute, second));
+
+            // Adjust for the selected timezone offset
+            const offset = timezone * 60; // GMT offset in minutes
+            const epochTime = Math.floor(date.getTime() / 1000) - (offset * 60);
+
+            // Display the calculated epoch time
+            document.getElementById('hf-result').textContent = `Epoch Time: ${epochTime}`;
+        }
+        // Function to convert Epoch time to Human-readable date
+        function EpochToHumanTZ() {
+            const epochInput = parseInt(document.getElementById('epochInput').value, 10);
+            const timezoneSelect = parseInt(document.getElementById('timezoneSelect').value, 10);
+
+            // Check if the input is valid
+            if (isNaN(epochInput)) {
+                document.getElementById('et-result').textContent = 'Invalid epoch time';
+                return;
+            }
+            // Calculate date and time from epoch time
+            const date = new Date(epochInput * 1000);
+
+            // Adjust for the selected timezone offset
+            const offset = timezoneSelect * 60; // GMT offset in minutes
+            date.setMinutes(date.getMinutes() + offset);
+
+            // Format the result as a human-readable date
+            const formattedDate = date.toUTCString();
+
+            // Display the formatted date
+            document.getElementById('et-result').textContent = `Human Date: ${formattedDate}`;
+        }
+        // Function to clear results on page load
+        function clearResultsOnPageLoad() {
+         document.getElementById('results').style.display = 'none'; // Hide the results section
+         document.getElementById('oldEpochTime').innerText = '';
+         document.getElementById('newEpochTime').innerText = '';
+         document.getElementById('timeDiff').innerText = '';
+}
+        // Call this function when the page loads
+        window.onload = clearResultsOnPageLoad;
