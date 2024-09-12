@@ -292,3 +292,21 @@ button {
 button:focus {
     outline: none;
 }
+
+/* Container for the form inputs to display them in a single line */
+        .hf-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; /* Controls the spacing between groups */
+    }
+       .input-group {
+        display: flex;
+        flex-direction: column;
+    }
+    .input-group label {
+        margin-bottom: 2px; /* Reduces gap between label and input box */
+        font-size: 14px; /* Optional: Adjust label font size if needed */
+    }
+    .result-container {
+        margin-left: 15px; /* Space between button and result display */
+    }
