@@ -236,25 +236,37 @@ function convertEpochTime() {
     }
 }
 
-// Updated Function to Calculate Relative Time with Improved Day Handling
+// Updated Function to Calculate Relative Time with Days Converted to Years
 function calculateRelativeTime(date) {
     const now = new Date();
     const diffInSeconds = Math.floor((date - now) / 1000);
     const absDiffInSeconds = Math.abs(diffInSeconds);
+    const absDiffInDays = Math.floor(absDiffInSeconds / 86400);
+
+    // Helper function to format days into years if needed
+    function formatDaysToYears(days) {
+        if (days > 365) {
+            const years = Math.floor(days / 365);
+            const remainingDays = days % 365;
+            return `${days} days | ${years} year${years > 1 ? 's' : ''}${remainingDays > 0 ? ' and ' + remainingDays + ' day' + (remainingDays > 1 ? 's' : '') : ''}`;
+        }
+        return `${days} day${days > 1 ? 's' : ''}`;
+    }
+
     if (diffInSeconds < 0) { // Past dates
         if (absDiffInSeconds < 60) {
             return 'A few seconds ago';
         } else if (absDiffInSeconds < 3600) {
             const minutes = Math.floor(absDiffInSeconds / 60);
             return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
-        } else if (absDiffInSeconds < 86400 && absDiffInSeconds >= 82800) { // Adjusted for values close to a day
-            return 'A day ago'; // Adjusts earlier to "A day ago"
+        } else if (absDiffInSeconds < 86400 && absDiffInSeconds >= 82800) { // Close to a day
+            return 'A day ago';
         } else if (absDiffInSeconds < 86400) {
             const hours = Math.floor(absDiffInSeconds / 3600);
             return `${hours} hour${hours > 1 ? 's' : ''} ago`;
         } else {
-            const days = Math.floor(absDiffInSeconds / 86400);
-            return `${days} day${days > 1 ? 's' : ''} ago`;
+            // Return days and years if applicable
+            return `${formatDaysToYears(absDiffInDays)} ago`;
         }
     } else { // Future dates
         if (absDiffInSeconds < 60) {
@@ -263,13 +275,13 @@ function calculateRelativeTime(date) {
             const minutes = Math.floor(absDiffInSeconds / 60);
             return `In ${minutes} minute${minutes > 1 ? 's' : ''}`;
         } else if (absDiffInSeconds < 86400 && absDiffInSeconds >= 82800) {
-            return 'In a day'; // Similar adjustment for future dates
+            return 'In a day';
         } else if (absDiffInSeconds < 86400) {
             const hours = Math.floor(absDiffInSeconds / 3600);
             return `In ${hours} hour${hours > 1 ? 's' : ''}`;
         } else {
-            const days = Math.floor(absDiffInSeconds / 86400);
-            return `In ${days} day${days > 1 ? 's' : ''}`;
+            // Return days and years if applicable
+            return `In ${formatDaysToYears(absDiffInDays)}`;
         }
     }
 }
