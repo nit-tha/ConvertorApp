@@ -173,9 +173,9 @@
         <div class="input-group">
             <label for="tz">Timezone</label>
             <select id="tz" name="tz">
-                <option value="0" selected>GMT</option>
-                <option value="1">Local time</option>
-            </select>
+            <option value="0" selected>GMT</option>
+            <option value="330">Local Time (IST)</option> <!-- IST = GMT +5:30 -->
+        </select>
         </div>
         <button type="button" onclick="HumanToEpochTZ()">Human Date</button>
         <span id="hf-result" class="result-container"></span>
@@ -256,7 +256,7 @@
             <p class="error" id="jsonErrorMsg"></p>
         </div>
         <footer>
-            <span>Version 2.0.11 (NT)</span>
+            <span>Version 2.0.12 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
