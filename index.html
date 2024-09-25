@@ -55,14 +55,19 @@
                 <input type="text" id="countInput" oninput="resizeInput(this)" placeholder="Enter data for counting characters." />
                 <div class="tooltip">
                     <button onclick="countData()">Count</button>
-                    <span class="tooltiptext">Count with space</span>
+                    <span class="tooltiptext">Character's Count with space</span>
                 </div>
                 <div class="tooltip">
                     <button onclick="countExcludingSpace()">Ex-Space</button>
-                    <span class="tooltiptext">Count without space</span>
+                    <span class="tooltiptext">Character's Count without space</span>
+                </div>
+                <div class="tooltip">
+                    <button onclick="countWords()">Words</button>
+                    <span class="tooltiptext">Word's Count</span>
                 </div>
                 <span id="countDisplay"></span>
                 <span id="withoutSpaceCountDisplay"></span>
+                <span id="wordCountDisplay"></span>
             </div>
             <div class="container">
                 <button onclick="convertToCommaSeparated()">Add Comma</button>
@@ -256,7 +261,7 @@
             <p class="error" id="jsonErrorMsg"></p>
         </div>
         <footer>
-            <span>Version 2.0.12 (NT)</span>
+            <span>Version 2.0.13 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
