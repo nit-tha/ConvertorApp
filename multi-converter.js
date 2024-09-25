@@ -33,6 +33,7 @@ function clearData() {
     // Clear the inner text of specific display elements
     document.getElementById('countDisplay').innerText = '';
     document.getElementById('withoutSpaceCountDisplay').innerText = '';
+    document.getElementById('wordCountDisplay').innerText = '';
     // Hide the comma removed container
     document.getElementById('commaRemovedContainer').style.display = 'none';
     // Reset the select element to its default option
