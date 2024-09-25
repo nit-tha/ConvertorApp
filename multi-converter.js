@@ -63,6 +63,14 @@ function countExcludingSpace() {
     document.getElementById('withoutSpaceCountDisplay').innerText = `Ex-space Count: ${withoutSpaceCount}`;
 }
 
+//Count as words
+function countWords() {
+    const input = document.getElementById('countInput').value;
+    const wordsArray = input.trim().split(/[\s,]+/); // Splits by space or comma, and ignores multiple spaces/commas
+    const wordCount = wordsArray.filter(word => word.length > 0).length; // Filters out empty elements
+    document.getElementById('wordCountDisplay').innerText = `Word Count: ${wordCount}`;
+}
+
 function resizeInput(input) {
     input.style.width = 'auto';
     input.style.width = (input.scrollWidth + 10) + 'px';
