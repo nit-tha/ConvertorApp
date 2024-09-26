@@ -7,7 +7,6 @@ body {
 
 /* Container for Epoch Clock and Tools */
 .epoch-container {
-    display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
@@ -202,7 +201,7 @@ footer {
 .results {
     display: flex;
     align-items: center;
-    gap: 8px; /* Add some space between each result item */
+    gap: 5px; /* Add some space between each result item */
     margin-top: 2px; /* Space above the results */
 }
 
@@ -254,6 +253,14 @@ footer {
 }
 
 /* Responsive Design */
+@media (max-width: 1500px) {
+    .sql-container .container, .hex-container .container{
+        margin-bottom: 3px;
+    }
+    .sql-container, .hex-container, .converter-container{
+        margin-top: 0px;
+    }
+}
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -299,16 +306,73 @@ button:focus {
         flex-wrap: wrap;
         gap: 10px; /* Controls the spacing between groups */
     }
+
        .input-group {
         display: flex;
         flex-direction: column;
     }
+
     .input-group label {
         margin-bottom: 2px; /* Reduces gap between label and input box */
         font-size: 14px; /* Optional: Adjust label font size if needed */
     }
+
     .result-container {
         margin-left: 15px; /* Space between button and result display */
-        align-self: center; /* Center the result container vertically */
-        padding-top: 4px; /* Adjust padding to fine-tune position */
     }
+
+ /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+/* Container for the main content */
+.zone-container {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Flex layout for time zones */
+.timezone-grid {
+    display: flex;
+    justify-content: center; /* Use space-around for equal spacing */
+    align-items: center; /* Center items vertically */
+    max-height: 40px; /* Set a max height to restrict space taken */
+    overflow: hidden; /* Hide overflow if content exceeds */
+    margin-top: 10px; /* Add space above to separate from epoch time */
+    gap:20px;
+}
+
+/* Each timezone item */
+.timezone-row {
+    display: flex;
+    align-items: center; /* Center items vertically */
+}
+
+/* Label for the time zones */
+.timezone-label {
+    margin-left: 5px;
+    font-weight: bold;
+    color: #ff0000ed; /* Your specified color */
+}
+
+/* Time display styling */
+.timezone-time {
+    font-size: 16px;
+    font-weight: bold;
+    color: #34495e;
+    margin-left: 5px; /* Small margin between label and time */
+}
+
+/* Inline clock text styling */
+.inline {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+}
