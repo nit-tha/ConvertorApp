@@ -494,3 +494,56 @@ function EpochToHumanTZ() {
 }
         // Call this function when the page loads
         window.onload = clearResultsOnPageLoad;
+
+    //Different timezones 
+document.addEventListener('DOMContentLoaded', function () {
+    // Function to update time for all timezones
+    function updateTime() {
+        try {
+            // Fetching current time for each timezone
+            const istTime = new Date().toLocaleTimeString('en-US', {
+                timeZone: 'Asia/Kolkata',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: true
+            });
+
+            const estTime = new Date().toLocaleTimeString('en-US', {
+                timeZone: 'America/New_York',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: true
+            });
+
+            const utcTime = new Date().toLocaleTimeString('en-US', {
+                timeZone: 'UTC',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: true
+            });
+
+            const sastTime = new Date().toLocaleTimeString('en-US', {
+                timeZone: 'Africa/Johannesburg',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: true
+            });
+
+            // Displaying the time for each timezone
+            document.getElementById('istTime').textContent = istTime;
+            document.getElementById('estTime').textContent = estTime;
+            document.getElementById('utcTime').textContent = utcTime;
+            document.getElementById('sastTime').textContent = sastTime;
+        } catch (error) {
+            console.error("Error updating time zones:", error);
+        }
+    }
+
+    // Updating the time every second
+    setInterval(updateTime, 1000);
+    updateTime(); // Initial call to display time immediately
+});
