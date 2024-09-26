@@ -201,10 +201,14 @@
                 <label for="hexOutput">Hex:</label>
                 <input type="text" id="hexOutput" placeholder="Hex conversion here" />
                 <button onclick="convertToText()">Convert to Text</button>
+                <button onclick="copyToClipboard('hexOutput')">
+                    <i class="fas fa-copy"></i> </button>
             </div>
             <div class="container">
                 <label for="textOutput">Text:</label>
                 <input type="text" id="textOutput" placeholder="Hex to Text here" />
+                <button onclick="copyToClipboard('textOutput')">
+                    <i class="fas fa-copy"></i> </button>
             </div>
             <div class="container">
                 <label for="numberInput">Data:</label>
@@ -261,7 +265,7 @@
             <p class="error" id="jsonErrorMsg"></p>
         </div>
         <footer>
-            <span>Version 2.0.15 (NT)</span>
+            <span>Version 2.0.16 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
