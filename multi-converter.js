@@ -180,22 +180,21 @@ function copyEpoch() {
 
 // Visit Counter
 function updateVisitCounter() {
-    const currentMonth = new Date().getMonth();
-    let visitCount = localStorage.getItem('visitCount');
-    let storedMonth = localStorage.getItem('visitMonth');
+  const currentYear = new Date().getFullYear();
+  let visitCount = localStorage.getItem('visitCount');
+  let storedYear = localStorage.getItem('visitYear');
 
-    if (!visitCount || storedMonth == null || currentMonth !== parseInt(storedMonth)) {
-        visitCount = 0;
-        storedMonth = currentMonth;
-    } else {
-        visitCount = parseInt(visitCount);
-    }
+  if (!visitCount || storedYear == null || currentYear !== parseInt(storedYear)) {
+    visitCount = 0;
+    storedYear = currentYear;
+  } else {
+    visitCount = parseInt(visitCount);
+  }
+  visitCount++;
+  localStorage.setItem('visitCount', visitCount);
+  localStorage.setItem('visitYear', currentYear);
 
-    visitCount++;
-    localStorage.setItem('visitCount', visitCount);
-    localStorage.setItem('visitMonth', currentMonth);
-
-    document.getElementById('visit-counter').innerText = `Visit count: ${visitCount}`;
+  document.getElementById('visit-counter').innerText = `Visit count: ${visitCount}`;
 }
 // Call the function to update and display the visit counter
 updateVisitCounter();
