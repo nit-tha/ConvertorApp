@@ -109,12 +109,12 @@
             <div class="epochs-container">
                 <div class="tooltip">
                     <button onclick="convertEpochTime()">Date</button>
-                    <span class="tooltiptext">Convert epoch time to human date</span>
-                     <select id="timeFormat">
+                    <span class="tooltiptext">Convert epoch time to human date</span>                     
+                </div>
+                    <select id="timeFormat">
                         <option value="seconds">Sec</option>
                         <option value="milliseconds">Msec</option>
                     </select>
-                </div>
                 <input type="text" id="epochTime" placeholder="Enter epoch time" />
                 <div class="dropdown-container">
                    <select id="timezoneSelect" onchange="convertEpochTime()" style="background-color: aliceblue;">
