@@ -110,6 +110,10 @@
                 <div class="tooltip">
                     <button onclick="convertEpochTime()">Date</button>
                     <span class="tooltiptext">Convert epoch time to human date</span>
+                     <select id="timeFormat">
+                        <option value="seconds">Sec</option>
+                        <option value="milliseconds">Msec</option>
+                    </select>
                 </div>
                 <input type="text" id="epochTime" placeholder="Enter epoch time" />
                 <div class="dropdown-container">
@@ -284,7 +288,7 @@
             <p class="error" id="jsonErrorMsg"></p>
         </div>
         <footer>
-            <span>Version 2.0.18 (NT)</span>
+            <span>Version 2.0.19 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
