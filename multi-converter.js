@@ -462,7 +462,7 @@ function HumanToEpochTZ() {
 
      // Check if any input is invalid (NaN or out of valid ranges)
     if (isNaN(year) || isNaN(month) || isNaN(day) || isNaN(hour) || isNaN(minute) || isNaN(second) || isNaN(timezone)) {
-        document.getElementById('hf-result').textContent = 'Invalid epoch time, please enter a valid data.';
+        document.getElementById('hf-result').textContent = 'Enter valid data to the textboxes.';
         return;
     }
 
