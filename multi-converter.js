@@ -203,7 +203,7 @@ updateVisitCounter();
 function encodeToBase64() {
     const data = document.getElementById('numberInput').value;
     const encoded = btoa(data);
-    document.getElementById('base64Output').value = encoded;
+    document.getElementById('base64Output').value = "Basic " + encoded;
 }
 
 // Function to convert the entered epoch time to GMT, local time, and calculate relative time
