@@ -460,6 +460,12 @@ function HumanToEpochTZ() {
     const second = parseInt(form.ss.value, 10);
     const timezone = parseInt(form.tz.value, 10);  // This now can be 0 (GMT) or 330 (IST)
 
+     // Check if any input is invalid (NaN or out of valid ranges)
+    if (isNaN(year) || isNaN(month) || isNaN(day) || isNaN(hour) || isNaN(minute) || isNaN(second) || isNaN(timezone)) {
+        document.getElementById('hf-result').textContent = 'Invalid epoch time, please enter a valid data.';
+        return;
+    }
+
     // Create a date object using the provided values
     const date = new Date(Date.UTC(year, month, day, hour, minute, second));
 
