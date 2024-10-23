@@ -8,15 +8,15 @@
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     </head>
-    <body>
+   <body>
         <div class="epoch-container">
     <div class="inline" id="clocktext">
         The current epoch time is&nbsp;
         <div id="ecclock" class="ecclock">Loading...</div>
-        <button class="copy-button" onclick="copyEpoch()">
+        <button class="copy-button" onclick="copyEpoch()" title="Copy">
             <i class="fas fa-copy"></i>
         </button>               
-        <button class="copy-button" onclick="refreshPage()">
+        <button class="copy-button" onclick="refreshPage()" title="Home">
             <i class="fa-solid fa-house-chimney"></i>
         </button>                   
     </div>
@@ -26,19 +26,19 @@
     
     <div class="timezone-grid">
         <div class="timezone-row">
-            <div class="timezone-label">IST:</div>
+            <div class="timezone-label" title="Indian Standard Time">IST:</div>
             <div id="istTime" class="timezone-time">Loading...</div>
         </div>
         <div class="timezone-row">
-            <div class="timezone-label">EST/EDT:</div>
+            <div class="timezone-label" title="Eastern Standard Time">EST/EDT:</div>
             <div id="estTime" class="timezone-time">Loading...</div>
         </div>
         <div class="timezone-row">
-            <div class="timezone-label">UTC:</div>
+            <div class="timezone-label" title="Greenwich Mean Time">UTC/GMT:</div>
             <div id="utcTime" class="timezone-time">Loading...</div>
         </div>
         <div class="timezone-row">
-            <div class="timezone-label">SAST:</div>
+            <div class="timezone-label" title="South African Standard Time">SAST:</div>
             <div id="sastTime" class="timezone-time">Loading...</div>
         </div>
     </div>
@@ -55,17 +55,15 @@
                 <label for="ids">Enter Data:</label>
                 <input type="text" id="ids" oninput="resizeInput(this)" placeholder="Enter data here for conversion." />
                 <div class="tooltip">
-                    <button onclick="removeCommaData()">DelCom</button>
-                    <span class="tooltiptext">Remove's Comma</span>
+                    <button onclick="removeCommaData()" title="Remove's Comma">DelCom</button>                    
                 </div>
                 <div class="tooltip">
-                    <button onclick="removeDuplicates()">Unique</button>
-                    <span class="tooltiptext">Remove Duplicate Data</span>
+                    <button onclick="removeDuplicates()"title="Remove Duplicate Data">Unique</button>
                 </div>                
             </div>
             <div class="container" id="commaRemovedContainer" style="display: none;">
                 <input type="text" id="commaRemoved" readonly oninput="resizeInput(this)" placeholder="Shows data for removed comma or unique data." />
-                <button onclick="copyToClipboard('commaRemoved')">
+                <button onclick="copyToClipboard('commaRemoved')" title="Copy">
                     <i class="fas fa-copy"></i>
                 </button>
             </div>
@@ -73,43 +71,36 @@
                 <label for="countInput">Count Data:</label>
                 <input type="text" id="countInput" oninput="resizeInput(this)" placeholder="Enter data for counting characters." />
                 <div class="tooltip">
-                    <button onclick="countData()">Count</button>
-                    <span class="tooltiptext">Character's Count with space</span>
+                    <button onclick="countData()" title="Text count with space">Count</button>
                 </div>
                 <div class="tooltip">
-                    <button onclick="countExcludingSpace()">Trim</button>
-                    <span class="tooltiptext">Character's Count without space</span>
+                    <button onclick="countExcludingSpace()"  title="Text count without space">Trim</button>
                 </div>
                 <div class="tooltip">
-                    <button onclick="countWords()">Words</button>
-                    <span class="tooltiptext">Word's Count</span>
-                </div>
-                <span id="countDisplay"></span>
-                <span id="withoutSpaceCountDisplay"></span>
-                <span id="wordCountDisplay"></span>
+                    <button onclick="countWords()" title="Words Counter">Words</button>
+                </div>               
             </div>
             <div class="container">
-                <button onclick="convertToCommaSeparated()">Add Comma</button>
+                <button onclick="convertToCommaSeparated()" title="Add's Comma to String">Add Comma</button>
                 <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)" placeholder="Shows comma-separated data." />
                 <div class="btn-container">
-                    <button onclick="copyToClipboard('commaSeparated')">
+                    <button onclick="copyToClipboard('commaSeparated')" title="Copy">
                         <i class="fas fa-copy"></i>
                     </button>
                 </div>
             </div>
             <div class="container">
-                <button onclick="convertToSingleQuotes()">Add Quote</button>
+                <button onclick="convertToSingleQuotes()" title="Add's Comma and Quotes to String">Add Quote</button>
                 <input type="text" id="singleQuotes" readonly oninput="resizeInput(this)" placeholder="Shows quotes and comma to data." />
                 <div class="btn-container">
-                    <button onclick="copyToClipboard('singleQuotes')">
+                    <button onclick="copyToClipboard('singleQuotes')" title="Copy">
                         <i class="fas fa-copy"></i>
                     </button>
                 </div>
             </div>
             <div class="epochs-container">
                 <div class="tooltip">
-                    <button onclick="convertEpochTime()">Date</button>
-                    <span class="tooltiptext">Convert epoch time to human date</span>                     
+                    <button onclick="convertEpochTime()" title="Convert's Epochtime">Date</button>
                 </div>
                     <select id="timeFormat">
                         <option value="seconds">Sec</option>
