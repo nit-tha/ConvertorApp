@@ -419,7 +419,7 @@ function calculateNewEpochTime() {
     const minutesToSubtract = parseInt(minutesToSubtractInput.value);
 
     if (isNaN(epochTime) || isNaN(minutesToSubtract)) {
-        alert("Please enter valid numbers for both fields.");
+        alert("Please enter valid data for both textboxes.");
         return;
     }
     // Convert epoch time to JavaScript date
