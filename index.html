@@ -83,8 +83,8 @@
                 <span id="withoutSpaceCountDisplay"></span>
                 <span id="wordCountDisplay"></span>
             </div>
-            <div class="container">
-                <button onclick="convertToCommaSeparated()" title="Add's Comma to String">Add Comma</button>
+           <div class="container">
+                <button onclick="convertToCommaSeparated()" title="Comma to string">Add Comma</button>
                 <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)" placeholder="Shows comma-separated data." />
                 <div class="btn-container">
                     <button onclick="copyToClipboard('commaSeparated')" title="Copy">
@@ -93,7 +93,7 @@
                 </div>
             </div>
             <div class="container">
-                <button onclick="convertToSingleQuotes()" title="Add's Comma and Quotes to String">Add Quote</button>
+                <button onclick="convertToSingleQuotes()" title="Quotation with Comma">Add Quote</button>
                 <input type="text" id="singleQuotes" readonly oninput="resizeInput(this)" placeholder="Shows quotes and comma to data." />
                 <div class="btn-container">
                     <button onclick="copyToClipboard('singleQuotes')" title="Copy">
@@ -105,10 +105,14 @@
                 <div class="tooltip">
                     <button onclick="convertEpochTime()" title="Convert's Epochtime">Date</button>
                 </div>
-                    <select id="timeFormat">
-                        <option value="seconds">Sec</option>
-                        <option value="milliseconds">Msec</option>
-                    </select>
+                <select id="timeFormat">
+                     <div class="tooltip">
+                <option value="seconds">Sec</option>
+                <span class="tooltiptext">Seconds</span>   </div> 
+                <div class="tooltip">
+                <option value="milliseconds">Msec</option>
+                 <span class="tooltiptext">Milli Seconds</span>  </div>
+                </select>
                 <input type="text" id="epochTime" placeholder="Enter epoch time" />
                 <div class="dropdown-container">
                    <select id="timezoneSelect" onchange="convertEpochTime()" style="background-color: aliceblue;">
@@ -151,12 +155,13 @@
     <option value="+11:00">GMT+11:00 (39600)</option>
     <option value="+12:00">GMT+12:00 (43200)</option>    
 </select>
+                
                 </div>  
                 <div id="result"></div>
             </div>
             <div class="epo-container">
                     <input type="number" id="minutesToSubtract" placeholder="Minutes to Subtract" style="margin-left: 10px;" />
-                    <button onclick="calculateNewEpochTime()">Calculate</button>
+                    <button onclick="calculateNewEpochTime()" title="Shows new epoch after subtraction">Calculate</button>
                      <div class="results" id="results" style="display: block;">
                      <span>Result: </span>
                 <span>Old Epoch: <span id="oldEpochTime">1724755342</span>, </span>
@@ -164,16 +169,16 @@
                 <span>Time Difference (Minutes): <span id="timeDiff">100</span> </span>
                 </div> 
             </div>
-            
+
              <!-- Human date to Epoch time conversion section -->
-      <form id="hf">
+  <form id="hf">
     <div class="hf-container">
         <div class="input-group">
-            <label for="yyyy">Year</label>
+            <label for="yyyy">Yr</label>
             <input type="number" id="yyyy" name="yyyy" min="1970" max="2099" required>
         </div>
         <div class="input-group">
-            <label for="mm">Month</label>
+            <label for="mm">Mon</label>
             <input type="number" id="mm" name="mm" min="1" max="12" required>
         </div>
         <div class="input-group">
@@ -181,90 +186,89 @@
             <input type="number" id="dd" name="dd" min="1" max="31" required>
         </div>
         <div class="input-group">
-            <label for="hh">Hour</label>
+            <label for="hh">Hr</label>
             <input type="number" id="hh" name="hh" min="0" max="23" required>
         </div>
         <div class="input-group">
-            <label for="mn">Minutes</label>
+            <label for="mn">Min</label>
             <input type="number" id="mn" name="mn" min="0" max="59" required>
         </div>
         <div class="input-group">
-            <label for="ss">Second</label>
+            <label for="ss">Sec</label>
             <input type="number" id="ss" name="ss" min="0" max="59" required>
         </div>
         <div class="input-group">
             <label for="tz">Timezone</label>
             <select id="tz" name="tz">
-            <option value="0" selected>GMT/UTC</option>
-            <option value="330">Local Time (IST)</option> <!-- IST = GMT +5:30 -->
-        </select>
+    <option value="0" selected>GMT</option>
+    <option value="330">Local Time (IST)</option> <!-- IST = GMT +5:30 -->
+</select>
+
         </div>
-        <button type="button" onclick="HumanToEpochTZ()">Human Date</button>
+        <button type="button" onclick="HumanToEpochTZ()" title="In Epochtime">Human Date</button>
         <span id="hf-result" class="result-container"></span>
     </div>
-</form>
-            
+</form>  
+
             <div class="container">
-                <button onclick="clearData()" class="clear-button">Clear</button>
+                <button onclick="clearData()" class="clear-button" title="Clear All">Clear</button>
             </div>
         </div>
         <div id="hexConverter" class="hex-container" style="display: none;">
             <div class="container">
                 <label for="textInput">Text:</label>
                 <input type="text" id="textInput" placeholder="Enter data here" />
-                <button onclick="convertToHex()">Convert to Hex</button>
+                <button onclick="convertToHex()" title="Convert's string to hex">Convert to Hex</button>
             </div>
             <div class="container">
                 <label for="hexOutput">Hex:</label>
                 <input type="text" id="hexOutput" placeholder="Hex conversion here" />
-                <button onclick="convertToText()">Convert to Text</button>
-                <button onclick="copyToClipboard('hexOutput')">
+                <button onclick="convertToText()" title="Convert's hex to string">Convert to Text</button>
+                <button onclick="copyToClipboard('hexOutput')" title="Copy">
                     <i class="fas fa-copy"></i> </button>
             </div>
             <div class="container">
                 <label for="textOutput">Text:</label>
                 <input type="text" id="textOutput" placeholder="Hex to Text here" />
-                <button onclick="copyToClipboard('textOutput')">
+                <button onclick="copyToClipboard('textOutput')" title="Copy">
                     <i class="fas fa-copy"></i> </button>
             </div>
             <div class="container">
                 <label for="numberInput">Data:</label>
                 <input type="text" id="numberInput" placeholder="Enter data here" />
                 <div class="tooltip">
-                    <button onclick="convertToBinary()">Binary</button>
-                    <span class="tooltiptext">Convert to Binary</span>
+                    <button onclick="convertToBinary()" title="Convert to Binary">Binary</button>
                 </div>
                 <div class="tooltip">
-                    <button onclick="encodeToBase64()">Base64</button>
-                    <span class="tooltiptext">Base64 Encoding</span>
+                    <button onclick="encodeToBase64()" title="Base64 Encoding">Base64</button>
                 </div>
             </div>
             <div class="container">
                 <label for="binaryOutput">Binary:</label>
                 <input type="text" id="binaryOutput" placeholder="Converted to Binary" />
-                <button onclick="copyToClipboard('binaryOutput')">
+                <button onclick="copyToClipboard('binaryOutput')" title="Copy">
                     <i class="fas fa-copy"></i>
                 </button>
             </div>
             <div class="container">
                 <label for="base64Output">Base64:</label>
                 <input type="text" id="base64Output" placeholder="Converted to Base64" />
-                <button onclick="copyToClipboard('base64Output')">
+                <button onclick="copyToClipboard('base64Output')" title="Copy">
                     <i class="fas fa-copy"></i>
                 </button>
             </div>
             <div class="buttons">
-                <button onclick="clearFields()">Clear</button>
+                <button onclick="clearFields()" title="Clear All">Clear</button>
             </div>
         </div>
         <div id="xmlToBlockSection" class="converter-container" style="display: none;">
             <h2>XML to Block XML Converter</h2>
             <textarea id="fullXml" class="pasteable" placeholder="Paste your full XML here..." style="width: 449px; height: 160px;"></textarea>
-            <button onclick="convertToBlock()">Convert</button>
+            <button onclick="convertToBlock()" title="Convert's FullXml to Block">Convert</button>
             <button onclick="clearText('fullXml', 'blockXml', 'errorMsg')">Clear</button>
             <h2>Block XML Output</h2>
             <textarea id="blockXml" readonly style="width: 826px; height: 93px;"></textarea>
-            <button onclick="copyToClipboard('blockXml')">
+            <button onclick="copyToClipboard('blockXml')" title="Copy">
                 <i class="fas fa-copy"></i>
             </button>
             <p class="error" id="errorMsg"></p>
@@ -276,7 +280,7 @@
             <button onclick="clearText('queryString', 'jsonOutput', 'jsonErrorMsg')">Clear</button>
             <h2>JSON Output</h2>
             <textarea id="jsonOutput" readonly style="width: 826px; height: 93px;"></textarea>
-            <button onclick="copyToClipboard('jsonOutput')">
+            <button onclick="copyToClipboard('jsonOutput')" title="Copy">
                 <i class="fas fa-copy"></i>
             </button>
             <p class="error" id="jsonErrorMsg"></p>
