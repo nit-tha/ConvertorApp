@@ -362,7 +362,10 @@ function convertToBlock() {
         blockXmlTextarea.value = `<BlockNumber>${blockNumber}</BlockNumber>\n<BlockData>${blockXml}</BlockData>`;
         errorMsg.textContent = '';
     } catch (error) {
+        // Display the error message in red and bold
         errorMsg.textContent = error.message;
+        errorMsg.style.color = "red"; // Set text color to red
+        errorMsg.style.fontWeight = "bold"; // Set font to bold
         highlightErrorLine(fullXmlTextarea, error.message);
     }
 }
