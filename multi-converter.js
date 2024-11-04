@@ -13,7 +13,7 @@ function convertToSingleQuotes() {
 function copyToClipboard(elementId) {
     const element = document.getElementById(elementId);
     element.select();
-    element.setSelectionRange(0, 99999); // For mobile devices
+    element.setSelectionRange(0, 9999999); // For mobile devices
     document.execCommand('copy');
 }
 
