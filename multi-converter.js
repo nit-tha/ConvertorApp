@@ -577,10 +577,3 @@ function generateApiKey() {
     // Display the generated API key in the designated input field
     document.getElementById('apiKeyOutput').value = apiKey;
 }
-// Function to copy text from an input field to the clipboard
-function copyToClipboard(elementId) {
-    const copyText = document.getElementById(elementId);
-    copyText.select();
-    document.execCommand('copy');
-    alert("Copied to clipboard: " + copyText.value);
-}
