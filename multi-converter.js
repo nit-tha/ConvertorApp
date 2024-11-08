@@ -566,14 +566,19 @@ document.addEventListener('DOMContentLoaded', function () {
     updateTime(); // Initial call to display time immediately
 });
 
-// Function to generate a random API key
+// Function to generate a cryptographically secure random API key
 function generateApiKey() {
     const length = 32; // Length of the API key
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=<>?';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=<>?';    
+    // Create a secure random array of bytes
+    const randomValues = new Uint8Array(length);
+    window.crypto.getRandomValues(randomValues);
+    // Generate the API key by mapping the random byte values to the character set
     let apiKey = '';
     for (let i = 0; i < length; i++) {
-        apiKey += characters.charAt(Math.floor(Math.random() * characters.length));
+        apiKey += characters.charAt(randomValues[i] % characters.length); // Map to valid character
     }
     // Display the generated API key in the designated input field
     document.getElementById('apiKeyOutput').value = apiKey;
 }
+
