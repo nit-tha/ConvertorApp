@@ -111,7 +111,7 @@ function convertToText() {
 function clearFields() {
     const elementsToClear = [
         'textInput', 'hexOutput', 'numberInput',
-        'binaryOutput', 'textOutput', 'base64Output'
+        'binaryOutput', 'textOutput', 'base64Output', 'apiKeyOutput'
     ];
     elementsToClear.forEach(id => document.getElementById(id).value = '');
 }
@@ -565,3 +565,22 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(updateTime, 1000);
     updateTime(); // Initial call to display time immediately
 });
+
+// Function to generate a random API key
+function generateApiKey() {
+    const length = 32; // Length of the API key
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=<>?';
+    let apiKey = '';
+    for (let i = 0; i < length; i++) {
+        apiKey += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    // Display the generated API key in the designated input field
+    document.getElementById('apiKeyOutput').value = apiKey;
+}
+// Function to copy text from an input field to the clipboard
+function copyToClipboard(elementId) {
+    const copyText = document.getElementById(elementId);
+    copyText.select();
+    document.execCommand('copy');
+    alert("Copied to clipboard: " + copyText.value);
+}
