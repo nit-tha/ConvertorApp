@@ -254,8 +254,14 @@
                 <label for="base64Output">Base64:</label>
                 <input type="text" id="base64Output" placeholder="Converted to Base64" />
                 <button onclick="copyToClipboard('base64Output')" title="Copy">
-                    <i class="fas fa-copy"></i>
-                </button>
+                    <i class="fas fa-copy"></i>                </button>
+                <!-- Output section for generated API key -->
+            <div class="container">
+           <button onclick="generateApiKey()" title="Generate API Key">API Key</button>
+            <input type="text" id="apiKeyOutput" placeholder="Generated API Key" readonly>
+            <button onclick="copyToClipboard('apiKeyOutput')" title="Copy">
+                <i class="fas fa-copy"></i>            </button>
+        </div>
             </div>
             <div class="buttons">
                 <button onclick="clearFields()" title="Clear All">Clear</button>
@@ -286,7 +292,7 @@
             <p class="error" id="jsonErrorMsg"></p>
         </div>
         <footer>
-            <span>Version 2.0.22 (NT)</span>
+            <span>Version 2.0.23 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
