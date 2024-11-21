@@ -20,7 +20,7 @@ function copyToClipboard(elementId) {
 function clearData() {
     const elementsToClear = [
         'ids', 'commaSeparated', 'singleQuotes', 'countInput',
-        'commaRemoved', 'epochTime', 'result'
+        'commaRemoved', 'epochTime', 'result', 'hours', 'minutes'
     ];
     // Clear the value of each input element
     elementsToClear.forEach(id => {
@@ -45,6 +45,7 @@ function clearData() {
     document.getElementById('timeDiff').innerText = '';
     document.getElementById('results').style.display = 'none'; // Optionally hide the section
     document.getElementById('hf-result').innerText = ''; // Clear the Human Date result
+    document.getElementById('result2').innerText = ''; //Clear Minutes to Seconds data
 
     // Clear all input type number fields
     const numberInputs = document.querySelectorAll('input[type="number"]');
@@ -593,3 +594,13 @@ navLinks.forEach(function (link) {
         this.classList.add("active");
     });
 });
+
+// Minutes to Seconds 
+function calculateSeconds() {
+    const hours = parseInt(document.getElementById('hours').value);
+    const minutes = parseInt(document.getElementById('minutes').value);
+    // Convert time to total seconds
+    const totalSeconds = (hours * 3600) + (minutes * 60);
+    // Display the result
+    document.getElementById('result2').innerText = `Total time: ${totalSeconds} seconds`;
+  }
