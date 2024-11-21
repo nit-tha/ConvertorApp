@@ -582,3 +582,14 @@ function generateApiKey() {
     document.getElementById('apiKeyOutput').value = apiKey;
 }
 
+// Select all anchor tags within the <nav> element
+const navLinks = document.querySelectorAll("nav a");
+// Add a click event listener to each link
+navLinks.forEach(function (link) {
+    link.addEventListener("click", function () {
+        // Remove 'active' class from all links
+        navLinks.forEach(nav => nav.classList.remove("active"));
+        // Add 'active' class to the clicked link
+        this.classList.add("active");
+    });
+});
