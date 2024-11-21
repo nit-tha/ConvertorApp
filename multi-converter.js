@@ -20,24 +20,35 @@ function copyToClipboard(elementId) {
 function clearData() {
     const elementsToClear = [
         'ids', 'commaSeparated', 'singleQuotes', 'countInput',
-        'commaRemoved', 'epochTime', 'result', 'hours', 'minutes'
+        'commaRemoved', 'epochTime', 'result'
     ];
-    // Clear the value of each input element
+    // Clear the value of each input element except the dropdowns
     elementsToClear.forEach(id => {
         let element = document.getElementById(id);
         if (element) {
-            element.value = '';
+            if (element.tagName.toLowerCase() !== 'select') {
+                element.value = '';  // Clear the value for text/number inputs
+            }
             element.innerHTML = ''; // Clear the inner HTML for divs like 'result'
         }
     });
+    // Reset the hours and minutes dropdowns to '0' by setting selectedIndex
+    const hoursDropdown = document.getElementById('hours');
+    const minutesDropdown = document.getElementById('minutes');    
+    if (hoursDropdown) {
+        hoursDropdown.selectedIndex = 0;  // Reset to first option (0)
+    }    
+    if (minutesDropdown) {
+        minutesDropdown.selectedIndex = 0;  // Reset to first option (0)
+    }
     // Clear the inner text of specific display elements
     document.getElementById('countDisplay').innerText = '';
     document.getElementById('withoutSpaceCountDisplay').innerText = '';
-    document.getElementById('wordCountDisplay').innerText = '';
+    document.getElementById('wordCountDisplay').innerText = '';   
     // Hide the comma removed container
-    document.getElementById('commaRemovedContainer').style.display = 'none';
+    document.getElementById('commaRemovedContainer').style.display = 'none';    
     // Reset the select element to its default option
-    document.getElementById('timezoneSelect').selectedIndex = 0;
+    document.getElementById('timezoneSelect').selectedIndex = 0; 
     // Clear the 'results' section
     document.getElementById('minutesToSubtract').value = '';
     document.getElementById('oldEpochTime').innerText = '';
@@ -45,8 +56,7 @@ function clearData() {
     document.getElementById('timeDiff').innerText = '';
     document.getElementById('results').style.display = 'none'; // Optionally hide the section
     document.getElementById('hf-result').innerText = ''; // Clear the Human Date result
-    document.getElementById('result2').innerText = ''; //Clear Minutes to Seconds data
-
+    document.getElementById('result2').innerText = '';
     // Clear all input type number fields
     const numberInputs = document.querySelectorAll('input[type="number"]');
     numberInputs.forEach(input => input.value = ''); // Clear all number inputs
