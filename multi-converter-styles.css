@@ -141,9 +141,9 @@ nav a:hover {
 }
 
 .sql-container span {
-    margin-left: 10px;
+    margin-left: -7px;
     font-weight: normal;
-    margin-top: 7px;
+    margin-top: 13px;
 }
 
 /* Adjustments for Hex/Text Converter */
@@ -320,7 +320,7 @@ button:focus {
 
     .result-container {
         margin-left: 15px;         /* Space between button and result display */
-        margin-top: 15px;
+        margin-top: 14px;
     }
 
  /* General Styles */
