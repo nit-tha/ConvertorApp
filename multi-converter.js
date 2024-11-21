@@ -614,3 +614,23 @@ function calculateSeconds() {
     // Display the result
     document.getElementById('result2').innerText = `Total time: ${totalSeconds} seconds`;
   }
+
+//Generating values for Hours and Minutes
+const hoursSelect = document.getElementById('hours');
+// Generate options for hours (0 to 12)
+for (let i = 0; i <= 12; i++) {
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = i;
+    hoursSelect.appendChild(option);
+}
+
+const minutesSelect = document.getElementById('minutes');
+// Generate options for minutes (0 to 59)
+for (let i = 0; i <= 59; i++) {
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = i;
+    minutesSelect.appendChild(option);
+}
+
