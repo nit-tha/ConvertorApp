@@ -377,3 +377,8 @@ body {
     align-items: center; /* Center items vertically */
     justify-content: center;
 }
+
+/* Apply red color styling to the anchor tags that have the 'active' class */
+nav a.active {
+    color: red;
+}
