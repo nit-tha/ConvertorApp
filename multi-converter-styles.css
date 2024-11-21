@@ -319,7 +319,8 @@ button:focus {
     }
 
     .result-container {
-        margin-left: 15px; /* Space between button and result display */
+        margin-left: 15px;         /* Space between button and result display */
+        margin-top: 15px;
     }
 
  /* General Styles */
