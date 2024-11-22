@@ -618,7 +618,7 @@ function calculateSeconds() {
 //Generating values for Hours and Minutes
 const hoursSelect = document.getElementById('hours');
 // Generate options for hours (0 to 12)
-for (let i = 0; i <= 12; i++) {
+for (let i = 0; i <= 23; i++) {
     const option = document.createElement('option');
     option.value = i;
     option.textContent = i;
