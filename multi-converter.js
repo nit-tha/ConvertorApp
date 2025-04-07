@@ -219,56 +219,89 @@ function encodeToBase64() {
 
 // Function to convert the entered epoch time to GMT, local time, and calculate relative time
 function convertEpochTime() {
-            const epochInput = document.getElementById('epochTime').value;
-            const timeFormat = document.getElementById('timeFormat').value;
-            const epochTime = parseInt(epochInput, 10);
-            const timezoneSelect = document.getElementById('timezoneSelect').value;
+    const epochInput = document.getElementById('epochTime').value;
+    const timeFormat = document.getElementById('timeFormat').value;
+    const epochTime = parseInt(epochInput, 10);
+    const timezoneSelect = document.getElementById('timezoneSelect').value;
+    const dstOption = document.getElementById('dstSelect')?.value; // Optional DST dropdown
 
-            if (!isNaN(epochTime)) {
-                // Use epochTime directly if milliseconds, otherwise multiply by 1000
-                const date = new Date(timeFormat === 'milliseconds' ? epochTime : epochTime * 1000);
-                // Correct GMT formatting
-                const gmtFormattedDate = date.toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
-                // Calculate corrected relative time
-                const relativeTime = calculateRelativeTime(date);
+    if (!isNaN(epochTime)) {
+        const baseDate = new Date(timeFormat === 'milliseconds' ? epochTime : epochTime * 1000);
+        const gmtFormattedDate = baseDate.toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
+        const relativeTime = calculateRelativeTime(baseDate);
 
-                // Time for different time zones
-                const istTime = new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }))
-                    .toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
-                const estTime = new Date(date.toLocaleString('en-US', { timeZone: 'America/New_York' }))
-                    .toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
-                const utcTime = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }))
-                    .toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
-                const sastTime = new Date(date.toLocaleString('en-US', { timeZone: 'Africa/Johannesburg' }))
-                    .toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
-
-                let resultText = `GMT: ${gmtFormattedDate}<br>Relative: ${relativeTime}<br>`;
-                resultText += `IST: ${istTime} | EST/EDT: ${estTime} | UTC: ${utcTime} | SAST: ${sastTime}`;
-
-                // Display local time based on timezone selection
-                if (timezoneSelect) {
-                    const timezoneOffset = parseTimezoneOffset(timezoneSelect);
-                    const localDate = new Date(date.getTime() + timezoneOffset * 60000);
-                    const localFormattedDate = localDate.toISOString().replace('T', ' ').slice(0, 19);
-                    resultText += `<br>Local Time: ${localFormattedDate} ${timezoneSelect}`;
-                } else {
-                    resultText += `<br>Local Time: Please select a timezone.`;
-                }
-                document.getElementById('result').innerHTML = resultText;
-            } else {
-                document.getElementById('result').innerText = 'Invalid epoch time. Please enter a valid number.';
-            }
+        // Adjust time for DST
+        let dstMs = 0;
+        if (dstOption === 'spring') {
+            dstMs = -3600000; // Subtract 1 hour
+        } else if (dstOption === 'fall') {
+            dstMs = 3600000; // Add 1 hour
         }
 
-        function calculateRelativeTime(date) {
-            // Implement your logic to calculate relative time
-            return ""; // Placeholder
+        // IST, EST, SAST with DST adjustment
+        const istDate = new Date(baseDate.getTime() + dstMs);
+        const estDate = new Date(baseDate.getTime() + dstMs);
+        const sastDate = new Date(baseDate.getTime() + dstMs);
+
+        const istTime = new Date(istDate.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }))
+            .toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+
+        const estTime = new Date(estDate.toLocaleString('en-US', { timeZone: 'America/New_York' }))
+            .toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+
+        const utcTime = new Date(baseDate.toLocaleString('en-US', { timeZone: 'UTC' }))
+            .toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+
+        const sastTime = new Date(sastDate.toLocaleString('en-US', { timeZone: 'Africa/Johannesburg' }))
+            .toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+
+        let resultText = `GMT: ${gmtFormattedDate}<br>Relative: ${relativeTime}<br>`;
+        resultText += `IST: ${istTime} | EST/EDT: ${estTime} | UTC: ${utcTime} | SAST: ${sastTime}`;
+
+        if (timezoneSelect) {
+            const timezoneOffset = parseTimezoneOffset(timezoneSelect);
+            const localDate = new Date(baseDate.getTime() + timezoneOffset * 60000 + dstMs);
+            const localFormattedDate = localDate.toISOString().replace('T', ' ').slice(0, 19);
+            resultText += `<br>Local Time: ${localFormattedDate} ${timezoneSelect}`;
+        } else {
+            resultText += `<br>Local Time: Please select a timezone.`;
         }
 
-        function parseTimezoneOffset(timezone) {
-            // Implement logic to return the timezone offset in minutes
-            return 0; // Placeholder
-        }
+        document.getElementById('result').innerHTML = resultText;
+    } else {
+        document.getElementById('result').innerText = 'Invalid epoch time. Please enter a valid number.';
+    }
+}
+
+
+function calculateRelativeTime(date) {
+    const now = new Date();
+    const diffMs = now - date;
+    const diffSec = Math.floor(diffMs / 1000);
+    const diffMin = Math.floor(diffSec / 60);
+    const diffHr = Math.floor(diffMin / 60);
+    const diffDays = Math.floor(diffHr / 24);
+
+    if (diffMs > 0) {
+        return diffDays > 0 ? `${diffDays} day(s) ago` :
+               diffHr > 0 ? `${diffHr} hour(s) ago` :
+               diffMin > 0 ? `${diffMin} minute(s) ago` :
+               `${diffSec} second(s) ago`;
+    } else {
+        return 'In the future';
+    }
+}
+
+function parseTimezoneOffset(timezone) {
+    const match = timezone.match(/([+-])(\d{2}):(\d{2})/);
+    if (match) {
+        const sign = match[1] === '+' ? 1 : -1;
+        const hours = parseInt(match[2], 10);
+        const minutes = parseInt(match[3], 10);
+        return sign * (hours * 60 + minutes);
+    }
+    return 0;
+}
 
 // Updated Function to Calculate Relative Time with Days Converted to Years
 function calculateRelativeTime(date) {
