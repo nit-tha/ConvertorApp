@@ -10,6 +10,12 @@ function convertToSingleQuotes() {
     document.getElementById('singleQuotes').value = singleQuotedIds;
 }
 
+function convertToDoubleQuotes() {
+	const idsArray = document.getElementById('ids').value.trim().split(/\s+/);
+	const doubleQuotedIds = idsArray.map(id => `"${id}"`).join(',');
+	document.getElementById('doubleQuotes').value = doubleQuotedIds;
+}
+
 function copyToClipboard(elementId) {
     const element = document.getElementById(elementId);
     element.select();
@@ -19,7 +25,7 @@ function copyToClipboard(elementId) {
 
 function clearData() {
     const elementsToClear = [
-        'ids', 'commaSeparated', 'singleQuotes', 'countInput',
+        'ids', 'commaSeparated', 'singleQuotes', 'doubleQuotes','countInput',
         'commaRemoved', 'epochTime', 'result'
     ];
     // Clear the value of each input element except the dropdowns
@@ -371,47 +377,284 @@ function convertToBlock() {
     const fullXmlTextarea = document.getElementById('fullXml');
     const blockXmlTextarea = document.getElementById('blockXml');
     const errorMsg = document.getElementById('errorMsg');
-
+    
     try {
+        // Input validation
+        if (!fullXmlTextarea.value.trim()) {
+            throw new Error("Please enter XML content.");
+        }
+        
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(fullXmlTextarea.value, "text/xml");
-
-        if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
-            throw new Error("Error parsing XML. Please check your XML structure.");
+        
+        // Check for XML parsing errors
+        const parserErrors = xmlDoc.getElementsByTagName("parsererror");
+        if (parserErrors.length > 0) {
+            const errorText = parserErrors[0].textContent;
+            
+            // Clean up the error message by removing browser-specific text
+            let cleanErrorText = errorText
+                .replace(/This page contains the following errors:/gi, 'This page errors:')
+                .replace(/Below is a rendering of the page up to the first error\./gi, '')
+                .trim();
+            
+            // Try to extract line and column information from parser error
+            const lineMatch = cleanErrorText.match(/line (\d+)/i);
+            const columnMatch = cleanErrorText.match(/column (\d+)/i);
+            
+            let errorMsg = "Invalid XML format";
+            if (lineMatch && columnMatch) {
+                errorMsg += ` at line ${lineMatch[1]}, column ${columnMatch[1]}`;
+            }
+            errorMsg += ": " + cleanErrorText;
+            
+            throw new Error(errorMsg);
         }
+        
         // Extract the BlockNumber value separately
         const blockNumberElement = xmlDoc.querySelector('BlockNumber');
         const blockNumber = blockNumberElement ? blockNumberElement.textContent.trim() : '';
-
-        // Recursive function to extract all text content except <BlockNumber>
+        
+        // Improved recursive function to extract all text content except <BlockNumber>
         function extractTextContent(node) {
-            let textContent = '';
-
+            let textParts = [];
+            
             if (node.nodeType === Node.ELEMENT_NODE && node.nodeName !== 'BlockNumber') {
+                // Process all child nodes
                 for (let i = 0; i < node.childNodes.length; i++) {
-                    textContent += extractTextContent(node.childNodes[i]);
+                    const childText = extractTextContent(node.childNodes[i]);
+                    if (childText) {
+                        textParts.push(childText);
+                    }
                 }
             } else if (node.nodeType === Node.TEXT_NODE) {
                 const trimmedValue = node.nodeValue.trim();
                 if (trimmedValue) {
-                    textContent += trimmedValue + ',';
+                    return trimmedValue;
                 }
             }
-            return textContent;
+            
+            return textParts.length > 0 ? textParts.join(',') : '';
         }
-        // Extract text content and remove the trailing comma
-        let blockXml = extractTextContent(xmlDoc.documentElement).slice(0, -1);
-
+        
+        // Extract text content
+        let blockXml = extractTextContent(xmlDoc.documentElement);
+        
+        // Handle case where no text content is found
+        if (!blockXml) {
+            blockXml = '';
+        }
+        
         // Output BlockNumber and BlockData separately
-        blockXmlTextarea.value = `<BlockNumber>${blockNumber}</BlockNumber>\n<BlockData>${blockXml}</BlockData>`;
-        errorMsg.textContent = '';
+        const result = `<BlockNumber>${blockNumber}</BlockNumber>\n<BlockData>${blockXml}</BlockData>`;
+        blockXmlTextarea.value = result;
+        
+        // Clear any previous error messages and styling
+        errorMsg.innerHTML = '';
+        errorMsg.style.color = "";
+        errorMsg.style.fontWeight = "";
+        fullXmlTextarea.classList.remove('error-highlight');
+        
     } catch (error) {
+        // Enhanced error handling - preserve detailed error messages
+        let errorMessage = error.message;
+        
+        // Only provide generic messages for cases where we don't have specific details
+        if (error.message === 'Please enter XML content.') {
+            // Keep the input validation message as is
+            errorMessage = error.message;
+        } else if (error.message.includes('line') && error.message.includes('column')) {
+            // Keep detailed line/column error messages as they are
+            errorMessage = error.message;
+        } else if (error.message.includes('parsererror') && !error.message.includes('line')) {
+            // Only use generic message if we don't have line/column info
+            errorMessage = "Invalid XML format. Please check for unclosed tags, missing quotes, or special characters.";
+        } else if (error.message.includes('unexpected end of input')) {
+            errorMessage = "Incomplete XML structure. Please check if all tags are properly closed.";
+        } else if (error.message.includes('Invalid XML format:') && !error.message.includes('line')) {
+            // Generic fallback only if no specific location info
+            errorMessage = "Invalid XML format. Please check your XML structure.";
+        }
+        
         // Display the error message in red and bold
-        errorMsg.textContent = error.message;
-        errorMsg.style.color = "red"; // Set text color to red
-        errorMsg.style.fontWeight = "bold"; // Set font to bold
-        highlightErrorLine(fullXmlTextarea, error.message);
+        errorMsg.innerHTML = errorMessage;
+        errorMsg.style.color = "red";
+        errorMsg.style.fontWeight = "bold";
+        
+        // Add error styling to textarea
+        fullXmlTextarea.classList.add('error-highlight');
+        
+        // Clear the output textarea on error
+        blockXmlTextarea.value = '';
+        
+        // Highlight error position in textarea
+        highlightErrorLine(fullXmlTextarea, errorMessage);
     }
+}
+
+// Helper function for error highlighting with line/character position
+function highlightErrorLine(textarea, errorMessage) {
+    try {
+        const xmlContent = textarea.value;
+        let errorPosition = findXMLErrorPosition(xmlContent);
+        
+        if (errorPosition) {
+            // Set cursor to error position
+            textarea.focus();
+            textarea.setSelectionRange(errorPosition.start, errorPosition.end);
+            
+            // Scroll to the error position
+            const lines = xmlContent.substring(0, errorPosition.start).split('\n');
+            const lineNumber = lines.length;
+            const charPosition = lines[lines.length - 1].length + 1;
+            
+            console.log(`Error at line ${lineNumber}, character ${charPosition}`);
+            
+            // You could also display this in the UI
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.innerHTML += `<br><small>Error location: Line ${lineNumber}, Character ${charPosition}</small>`;
+        } else {
+            // Fallback: select all text
+            textarea.focus();
+            textarea.select();
+        }
+        
+    } catch (e) {
+        console.warn('Could not highlight error line:', e.message);
+        textarea.focus();
+        textarea.select();
+    }
+}
+
+// Function to find XML error position
+function findXMLErrorPosition(xmlString) {
+    // Try to parse character by character to find exact error location
+    let position = 0;
+    let inTag = false;
+    let inQuotes = false;
+    let quoteChar = '';
+    let tagStack = [];
+    
+    try {
+        for (let i = 0; i < xmlString.length; i++) {
+            const char = xmlString[i];
+            const nextChar = xmlString[i + 1];
+            
+            if (char === '<' && !inQuotes) {
+                inTag = true;
+                
+                // Check for closing tag
+                if (nextChar === '/') {
+                    // Find tag name
+                    let tagEnd = xmlString.indexOf('>', i);
+                    if (tagEnd === -1) {
+                        return { start: i, end: i + 1, type: 'unclosed_tag' };
+                    }
+                    
+                    let tagName = xmlString.substring(i + 2, tagEnd).trim();
+                    let expectedTag = tagStack.pop();
+                    
+                    if (tagName !== expectedTag) {
+                        return { 
+                            start: i, 
+                            end: tagEnd + 1, 
+                            type: 'mismatched_tag',
+                            expected: expectedTag,
+                            found: tagName
+                        };
+                    }
+                } else if (nextChar !== '!' && nextChar !== '?') {
+                    // Opening tag
+                    let tagEnd = xmlString.indexOf('>', i);
+                    if (tagEnd === -1) {
+                        return { start: i, end: i + 1, type: 'unclosed_tag' };
+                    }
+                    
+                    let tagContent = xmlString.substring(i + 1, tagEnd);
+                    let tagName = tagContent.split(/\s/)[0];
+                    
+                    // Check if self-closing
+                    if (!tagContent.endsWith('/')) {
+                        tagStack.push(tagName);
+                    }
+                }
+            } else if (char === '>' && inTag && !inQuotes) {
+                inTag = false;
+            } else if ((char === '"' || char === "'") && inTag) {
+                if (!inQuotes) {
+                    inQuotes = true;
+                    quoteChar = char;
+                } else if (char === quoteChar) {
+                    inQuotes = false;
+                    quoteChar = '';
+                }
+            }
+            
+            // Check for invalid characters
+            if (!inTag && !inQuotes && char === '<' && xmlString.substring(i).match(/^<[^a-zA-Z!/?]/)) {
+                return { start: i, end: i + 1, type: 'invalid_character' };
+            }
+        }
+        
+        // Check for unclosed tags
+        if (tagStack.length > 0) {
+            return { 
+                start: xmlString.length - 1, 
+                end: xmlString.length, 
+                type: 'unclosed_tags',
+                unclosedTags: tagStack
+            };
+        }
+        
+    } catch (e) {
+        // Fallback parsing method using DOMParser error
+        return parseErrorFromDOMParser(xmlString);
+    }
+    
+    return null;
+}
+
+// Alternative method using DOMParser error messages
+function parseErrorFromDOMParser(xmlString) {
+    try {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(xmlString, "text/xml");
+        const errorElement = doc.querySelector('parsererror');
+        
+        if (errorElement) {
+            const errorText = errorElement.textContent;
+            
+            // Try to extract line and column from error message
+            const lineMatch = errorText.match(/line (\d+)/i);
+            const columnMatch = errorText.match(/column (\d+)/i);
+            
+            if (lineMatch && columnMatch) {
+                const lineNumber = parseInt(lineMatch[1]);
+                const columnNumber = parseInt(columnMatch[1]);
+                
+                // Convert line/column to character position
+                const lines = xmlString.split('\n');
+                let position = 0;
+                
+                for (let i = 0; i < lineNumber - 1 && i < lines.length; i++) {
+                    position += lines[i].length + 1; // +1 for newline character
+                }
+                position += columnNumber - 1;
+                
+                return {
+                    start: Math.max(0, position - 1),
+                    end: Math.min(xmlString.length, position + 10),
+                    line: lineNumber,
+                    column: columnNumber,
+                    type: 'parser_error'
+                };
+            }
+        }
+    } catch (e) {
+        // If all else fails, return null
+    }
+    
+    return null;
 }
 
 //Function for Json conversion
