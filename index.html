@@ -101,6 +101,15 @@
                     </button>
                 </div>
             </div>
+            <div class="container">
+				<button onclick="convertToDoubleQuotes()" title="Double Quotation with Comma">Add "</button>
+				<input type="text" id="doubleQuotes" readonly="" oninput="resizeInput(this)" placeholder="Shows double quotes and comma to data.">
+				<div class="btn-container">
+					<button onclick="copyToClipboard('doubleQuotes')" title="Copy">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
             <div class="epochs-container">
                 <div class="tooltip">
                     <button onclick="convertEpochTime()" title="Convert's Epochtime">Date</button>
@@ -287,7 +296,7 @@
             <p class="error" id="jsonErrorMsg"></p>
         </div>
         <footer>
-            <span>Version 2.1.29 (NT)</span>
+            <span>Version 2.1.30 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
