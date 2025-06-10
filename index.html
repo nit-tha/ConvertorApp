@@ -92,24 +92,18 @@
                     </button>
                 </div>
             </div>
-            <div class="container">
-                <button onclick="convertToSingleQuotes()" title="Quotation with Comma">Add '</button>
-                <input type="text" id="singleQuotes" readonly oninput="resizeInput(this)" placeholder="Shows quotes and comma to data." />
-                <div class="btn-container">
-                    <button onclick="copyToClipboard('singleQuotes')" title="Copy">
-                        <i class="fas fa-copy"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="container">
+            <!-- Combined Quote Buttons with Shared Output -->
+	    <div class="container">
+		<button onclick="convertToSingleQuotes()" title="Single Quotation with Comma">Add '</button>
 		<button onclick="convertToDoubleQuotes()" title="Double Quotation with Comma">Add "</button>
-		<input type="text" id="doubleQuotes" readonly="" oninput="resizeInput(this)" placeholder="Shows double quotes and comma to data.">
+		<input type="text" id="quotesOutput" readonly oninput="resizeInput(this)" placeholder="Shows quotes and comma to data." />
 		<div class="btn-container">
-			<button onclick="copyToClipboard('doubleQuotes')" title="Copy">
+			<button onclick="copyToClipboard('quotesOutput')" title="Copy">
 				<i class="fas fa-copy"></i>
 			</button>
 		</div>
 	    </div>
+		
             <div class="epochs-container">
                 <div class="tooltip">
                     <button onclick="convertEpochTime()" title="Convert's Epochtime">Date</button>
