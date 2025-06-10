@@ -4,16 +4,18 @@ function convertToCommaSeparated() {
     document.getElementById('commaSeparated').value = ids;
 }
 
-function convertToSingleQuotes() {
+ // Updated single quotes function - outputs to shared field
+ function convertToSingleQuotes() {
     const idsArray = document.getElementById('ids').value.trim().split(/\s+/);
     const singleQuotedIds = idsArray.map(id => `'${id}'`).join(',');
-    document.getElementById('singleQuotes').value = singleQuotedIds;
+    document.getElementById('quotesOutput').value = singleQuotedIds;
 }
 
+// Updated double quotes function - outputs to shared field
 function convertToDoubleQuotes() {
-	const idsArray = document.getElementById('ids').value.trim().split(/\s+/);
-	const doubleQuotedIds = idsArray.map(id => `"${id}"`).join(',');
-	document.getElementById('doubleQuotes').value = doubleQuotedIds;
+    const idsArray = document.getElementById('ids').value.trim().split(/\s+/);
+    const doubleQuotedIds = idsArray.map(id => `"${id}"`).join(',');
+    document.getElementById('quotesOutput').value = doubleQuotedIds;
 }
 
 function copyToClipboard(elementId) {
@@ -25,7 +27,7 @@ function copyToClipboard(elementId) {
 
 function clearData() {
     const elementsToClear = [
-        'ids', 'commaSeparated', 'singleQuotes', 'doubleQuotes','countInput',
+        'ids', 'commaSeparated', 'quotesOutput','countInput',
         'commaRemoved', 'epochTime', 'result'
     ];
     // Clear the value of each input element except the dropdowns
