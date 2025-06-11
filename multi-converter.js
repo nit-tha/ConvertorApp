@@ -680,6 +680,83 @@ function convertToJson() {
     }
 }
 
+// Function for URL Encode/Decode
+function urlEncodeDecode() {
+    const queryStringTextarea = document.getElementById('queryString');
+    const jsonOutputTextarea = document.getElementById('jsonOutput');
+    const errorMsg = document.getElementById('jsonErrorMsg');
+    const inputText = queryStringTextarea.value.trim();
+    
+    if (!inputText) {
+        errorMsg.textContent = "Please enter text to encode/decode.";
+        return;
+    }
+    
+    try {
+        // Try to decode first - if it's already encoded
+        const decoded = decodeURIComponent(inputText);
+        
+        // If decoding changed the string, it was encoded
+        if (decoded !== inputText) {
+            jsonOutputTextarea.value = decoded;
+            errorMsg.textContent = "Text has been URL decoded.";
+        } else {
+            // If no change, encode it
+            const encoded = encodeURIComponent(inputText);
+            jsonOutputTextarea.value = encoded;
+            errorMsg.textContent = "Text has been URL encoded.";
+        }
+    } catch (error) {
+        // If decoding fails, try encoding
+        try {
+            const encoded = encodeURIComponent(inputText);
+            jsonOutputTextarea.value = encoded;
+            errorMsg.textContent = "Text has been URL encoded.";
+        } catch (encodeError) {
+            errorMsg.textContent = "Error processing text for URL encoding/decoding.";
+        }
+    }
+}
+
+// Function for JSON validation
+function validateJson() {
+    const queryStringTextarea = document.getElementById('queryString');
+    const jsonOutputTextarea = document.getElementById('jsonOutput');
+    const errorMsg = document.getElementById('jsonErrorMsg');
+    const inputText = queryStringTextarea.value.trim();
+    
+    if (!inputText) {
+        errorMsg.textContent = "Please enter JSON text to validate.";
+        return;
+    }
+    
+    try {
+        // Parse the JSON to validate it
+        const parsedJson = JSON.parse(inputText);
+        
+        // If parsing succeeds, format and display the JSON
+        const formattedJson = JSON.stringify(parsedJson, null, 2);
+        jsonOutputTextarea.value = formattedJson;
+        errorMsg.textContent = "✓ Valid JSON! Formatted output displayed below.";
+        errorMsg.style.color = "green";
+        
+        // Reset error color after a few seconds
+        setTimeout(() => {
+            errorMsg.style.color = "";
+        }, 3000);
+        
+    } catch (error) {
+        errorMsg.textContent = `✗ Invalid JSON: ${error.message}`;
+        errorMsg.style.color = "red";
+        jsonOutputTextarea.value = "";
+        
+        // Reset error color after a few seconds
+        setTimeout(() => {
+            errorMsg.style.color = "";
+        }, 5000);
+    }
+}
+
 function clearText(inputId, outputId, errorId) {
     document.getElementById(inputId).value = '';
     document.getElementById(outputId).value = '';
