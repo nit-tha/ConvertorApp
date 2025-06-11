@@ -280,7 +280,9 @@
         <div id="queryToJsonSection" class="converter-container" style="display: none;">
             <h2>Query String to JSON Converter</h2>
             <textarea id="queryString" placeholder="Paste your query string here..." style="width: 449px; height: 160px;"></textarea>
-            <button onclick="convertToJson()">Convert</button>
+            <button onclick="convertToJson()">Convert</button>		
+            <button onclick="urlEncodeDecode()">Url Coder</button>            
+            <button onclick="validateJson()">Validate</button>
             <button onclick="clearText('queryString', 'jsonOutput', 'jsonErrorMsg')">Clear</button>
             <h2>JSON Output</h2>
             <textarea id="jsonOutput" readonly style="width: 826px; height: 93px;"></textarea>
@@ -290,7 +292,7 @@
             <p class="error" id="jsonErrorMsg"></p>
         </div>
         <footer>
-            <span>Version 2.1.30 (NT)</span>
+            <span>Version 1.100.31 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
