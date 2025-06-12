@@ -815,35 +815,52 @@ function clearResultsOnPageLoad() {
 // Call this function when the page loads
 window.onload = clearResultsOnPageLoad;
 
-   // Function to convert Human date to Epoch time
-function HumanToEpochTZ() {
-    // Prevent the form from clearing inputs by stopping default behavior
-    event.preventDefault();
+// Function to fill form with current date and time
+        function fillCurrentDateTime() {
+            const now = new Date();
+            
+            // Fill the form fields with current date and time
+            document.getElementById('yyyy').value = now.getFullYear();
+            document.getElementById('mm').value = String(now.getMonth() + 1).padStart(2, '0');
+            document.getElementById('dd').value = String(now.getDate()).padStart(2, '0');
+            document.getElementById('hh').value = String(now.getHours()).padStart(2, '0');
+            document.getElementById('mn').value = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('ss').value = String(now.getSeconds()).padStart(2, '0');
+        }
 
-    const form = document.getElementById('hf');
-    const year = parseInt(form.yyyy.value, 10);
-    const month = parseInt(form.mm.value, 10) - 1; // JavaScript months are 0-based
-    const day = parseInt(form.dd.value, 10);
-    const hour = parseInt(form.hh.value, 10);
-    const minute = parseInt(form.mn.value, 10);
-    const second = parseInt(form.ss.value, 10);
-    const timezone = parseInt(form.tz.value, 10);  // This now can be 0 (GMT) or 330 (IST)
+    // Function to convert Human date to Epoch time
+    function HumanToEpochTZ() {
+        // Prevent the form from clearing inputs by stopping default behavior
+        if (event) event.preventDefault();
 
-     // Check if any input is invalid (NaN or out of valid ranges)
-    if (isNaN(year) || isNaN(month) || isNaN(day) || isNaN(hour) || isNaN(minute) || isNaN(second) || isNaN(timezone)) {
-        document.getElementById('hf-result').textContent = 'Enter valid data to the textboxes.';
-        return;
+        const form = document.getElementById('hf');
+        const year = parseInt(form.yyyy.value, 10);
+        const month = parseInt(form.mm.value, 10) - 1; // JavaScript months are 0-based
+        const day = parseInt(form.dd.value, 10);
+        const hour = parseInt(form.hh.value, 10);
+        const minute = parseInt(form.mn.value, 10);
+        const second = parseInt(form.ss.value, 10);
+        const timezone = parseInt(form.tz.value, 10);  // This now can be 0 (GMT) or 330 (IST)
+
+        // Check if any input is invalid (NaN or out of valid ranges)
+        if (isNaN(year) || isNaN(month) || isNaN(day) || isNaN(hour) || isNaN(minute) || isNaN(second) || isNaN(timezone)) {
+            document.getElementById('hf-result').textContent = 'Enter valid data to the textboxes.';
+            return;
+        }
+
+        // Create a date object using the provided values
+        const date = new Date(Date.UTC(year, month, day, hour, minute, second));
+
+        // Adjust for the selected timezone offset (in minutes)
+        const epochTime = Math.floor(date.getTime() / 1000) - (timezone * 60);
+
+        // Display the calculated epoch time
+        document.getElementById('hf-result').textContent = `Epoch Time: ${epochTime}`;
     }
 
-    // Create a date object using the provided values
-    const date = new Date(Date.UTC(year, month, day, hour, minute, second));
+    // Fill the form with current date and time when the page loads
+    window.addEventListener('load', fillCurrentDateTime);
 
-    // Adjust for the selected timezone offset (in minutes)
-    const epochTime = Math.floor(date.getTime() / 1000) - (timezone * 60);
-
-    // Display the calculated epoch time
-    document.getElementById('hf-result').textContent = `Epoch Time: ${epochTime}`;
-}
 
  // Function to convert Epoch time to Human-readable date
 function EpochToHumanTZ() {
