@@ -26,7 +26,7 @@ Access the app here: [Multi Converter Tool](https://nit-tha.github.io/ConvertorA
 - GitHub Pages (for hosting)
 
 ## 📄 License
-This project is open-source and available under the [MIT License](LICENSE).
+This project is open-source.
 
 ## ✍️ Author
 [Nitin Thakur](https://github.com/nit-tha)
