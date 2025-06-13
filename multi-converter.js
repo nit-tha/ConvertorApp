@@ -141,6 +141,7 @@ document.getElementById('sqlConverterLink').addEventListener('click', function()
     document.getElementById('hexConverter').style.display = 'none';
     document.getElementById('xmlToBlockSection').style.display = 'none';
     document.getElementById('queryToJsonSection').style.display = 'none';
+    document.getElementById('diffcomparerSection').style.display = 'none';
 });
 
 document.getElementById('hexConverterLink').addEventListener('click', function() {
@@ -148,6 +149,7 @@ document.getElementById('hexConverterLink').addEventListener('click', function()
     document.getElementById('hexConverter').style.display = 'block';
     document.getElementById('xmlToBlockSection').style.display = 'none';
     document.getElementById('queryToJsonSection').style.display = 'none';
+    document.getElementById('diffcomparerSection').style.display = 'none';
 });
 
 // New Tools
@@ -156,6 +158,7 @@ document.getElementById('xmlToBlockLink').addEventListener('click', function() {
     document.getElementById('hexConverter').style.display = 'none';
     document.getElementById('xmlToBlockSection').style.display = 'block';
     document.getElementById('queryToJsonSection').style.display = 'none';
+    document.getElementById('diffcomparerSection').style.display = 'none';
 });
 
 document.getElementById('queryToJsonLink').addEventListener('click', function() {
@@ -163,6 +166,7 @@ document.getElementById('queryToJsonLink').addEventListener('click', function() 
     document.getElementById('hexConverter').style.display = 'none';
     document.getElementById('xmlToBlockSection').style.display = 'none';
     document.getElementById('queryToJsonSection').style.display = 'block';
+    document.getElementById('diffcomparerSection').style.display = 'none';
 });
 
 document.getElementById('diffcomparerLink').addEventListener('click', function(e) {
