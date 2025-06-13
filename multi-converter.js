@@ -165,6 +165,18 @@ document.getElementById('queryToJsonLink').addEventListener('click', function() 
     document.getElementById('queryToJsonSection').style.display = 'block';
 });
 
+document.getElementById('diffcomparerLink').addEventListener('click', function(e) {
+    e.preventDefault();    
+    // Hide all sections
+    document.getElementById('sqlConverter').style.display = 'none';
+    document.getElementById('hexConverter').style.display = 'none';
+    document.getElementById('xmlToBlockSection').style.display = 'none';
+    document.getElementById('queryToJsonSection').style.display = 'none';
+    document.getElementById('diffcomparerSection').style.display = 'none';    
+    // Show the diff comparer section
+    document.getElementById('diffcomparerSection').style.display = 'block';
+});
+
 // Function to convert number to binary
 function convertToBinary() {
     const numberInput = document.getElementById('numberInput').value.trim();
@@ -1052,3 +1064,199 @@ timezones.forEach(([value, label, offset]) => {
     timezoneSelect.appendChild(option);
 });
 
+//Data Comparer functions and helper
+function compareTexts() {
+    const originalText = document.getElementById('originalText').value;
+    const modifiedText = document.getElementById('modifiedText').value;
+    
+    if (!originalText && !modifiedText) {
+        alert('Please enter text in both fields to compare.');
+        return;
+    }
+    
+    // Split texts into lines for comparison
+    const originalLines = originalText.split('\n');
+    const modifiedLines = modifiedText.split('\n');
+    
+    // Perform diff comparison
+    const diff = performDiff(originalLines, modifiedLines);
+    
+    // Display results
+    displayComparisonResult(diff, originalText, modifiedText);
+    
+    // Calculate and display statistics
+    calculateStats(diff);
+    
+    // Show result sections
+    document.getElementById('comparisonResult').style.display = 'block';
+    document.getElementById('comparisonStats').style.display = 'flex';
+}
+
+function performDiff(original, modified) {
+    const diff = [];
+    let i = 0, j = 0;
+    
+    while (i < original.length || j < modified.length) {
+        if (i >= original.length) {
+            // All remaining lines in modified are additions
+            diff.push({
+                type: 'added',
+                originalLine: null,
+                modifiedLine: modified[j],
+                originalIndex: -1,
+                modifiedIndex: j
+            });
+            j++;
+        } else if (j >= modified.length) {
+            // All remaining lines in original are deletions
+            diff.push({
+                type: 'removed',
+                originalLine: original[i],
+                modifiedLine: null,
+                originalIndex: i,
+                modifiedIndex: -1
+            });
+            i++;
+        } else if (original[i] === modified[j]) {
+            // Lines are identical
+            diff.push({
+                type: 'unchanged',
+                originalLine: original[i],
+                modifiedLine: modified[j],
+                originalIndex: i,
+                modifiedIndex: j
+            });
+            i++;
+            j++;
+        } else {
+            // Lines are different - try to find the best match
+            let foundMatch = false;
+            
+            // Look ahead to see if we can find a match
+            for (let k = 1; k <= Math.min(5, Math.max(original.length - i, modified.length - j)); k++) {
+                if (i + k < original.length && original[i + k] === modified[j]) {
+                    // Found match in original, current lines in original are deletions
+                    for (let l = 0; l < k; l++) {
+                        diff.push({
+                            type: 'removed',
+                            originalLine: original[i + l],
+                            modifiedLine: null,
+                            originalIndex: i + l,
+                            modifiedIndex: -1
+                        });
+                    }
+                    i += k;
+                    foundMatch = true;
+                    break;
+                } else if (j + k < modified.length && original[i] === modified[j + k]) {
+                    // Found match in modified, current lines in modified are additions
+                    for (let l = 0; l < k; l++) {
+                        diff.push({
+                            type: 'added',
+                            originalLine: null,
+                            modifiedLine: modified[j + l],
+                            originalIndex: -1,
+                            modifiedIndex: j + l
+                        });
+                    }
+                    j += k;
+                    foundMatch = true;
+                    break;
+                }
+            }
+            
+            if (!foundMatch) {
+                // No match found, treat as modification
+                diff.push({
+                    type: 'modified',
+                    originalLine: original[i],
+                    modifiedLine: modified[j],
+                    originalIndex: i,
+                    modifiedIndex: j
+                });
+                i++;
+                j++;
+            }
+        }
+    }
+    
+    return diff;
+}
+
+function displayComparisonResult(diff, originalText, modifiedText) {
+    const originalResult = document.getElementById('originalResult');
+    const modifiedResult = document.getElementById('modifiedResult');
+    const unifiedDiff = document.getElementById('unifiedDiff');
+    
+    let originalHtml = '';
+    let modifiedHtml = '';
+    let unifiedHtml = '';
+    
+    diff.forEach((item, index) => {
+        switch (item.type) {
+            case 'unchanged':
+                originalHtml += escapeHtml(item.originalLine) + '\n';
+                modifiedHtml += escapeHtml(item.modifiedLine) + '\n';
+                unifiedHtml += ' ' + escapeHtml(item.originalLine) + '\n';
+                break;
+            case 'removed':
+                originalHtml += `<span class="diff-removed">${escapeHtml(item.originalLine)}</span>\n`;
+                unifiedHtml += `<span class="diff-line-removed">-${escapeHtml(item.originalLine)}</span>\n`;
+                break;
+            case 'added':
+                modifiedHtml += `<span class="diff-added">${escapeHtml(item.modifiedLine)}</span>\n`;
+                unifiedHtml += `<span class="diff-line-added">+${escapeHtml(item.modifiedLine)}</span>\n`;
+                break;
+            case 'modified':
+                originalHtml += `<span class="diff-removed">${escapeHtml(item.originalLine)}</span>\n`;
+                modifiedHtml += `<span class="diff-added">${escapeHtml(item.modifiedLine)}</span>\n`;
+                unifiedHtml += `<span class="diff-line-removed">-${escapeHtml(item.originalLine)}</span>\n`;
+                unifiedHtml += `<span class="diff-line-added">+${escapeHtml(item.modifiedLine)}</span>\n`;
+                break;
+        }
+    });
+    
+    originalResult.innerHTML = originalHtml;
+    modifiedResult.innerHTML = modifiedHtml;
+    unifiedDiff.innerHTML = unifiedHtml;
+}
+
+function calculateStats(diff) {
+    let additions = 0;
+    let deletions = 0;
+    let modifications = 0;
+    
+    diff.forEach(item => {
+        switch (item.type) {
+            case 'added':
+                additions++;
+                break;
+            case 'removed':
+                deletions++;
+                break;
+            case 'modified':
+                modifications++;
+                break;
+        }
+    });
+    
+    document.getElementById('additionsCount').textContent = additions;
+    document.getElementById('deletionsCount').textContent = deletions;
+    document.getElementById('modificationsCount').textContent = modifications;
+}
+
+function clearComparison() {
+    document.getElementById('originalText').value = '';
+    document.getElementById('modifiedText').value = '';
+    document.getElementById('originalResult').innerHTML = '';
+    document.getElementById('modifiedResult').innerHTML = '';
+    document.getElementById('unifiedDiff').innerHTML = '';
+    document.getElementById('comparisonResult').style.display = 'none';
+    document.getElementById('comparisonStats').style.display = 'none';
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
