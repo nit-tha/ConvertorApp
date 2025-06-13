@@ -49,6 +49,7 @@
             <a id="hexConverterLink" href="#">Conversion Suite</a>
             <a id="xmlToBlockLink" href="#">Block Conversion</a>
             <a id="queryToJsonLink" href="#">JSON Conversion</a>
+	    <a id="diffcomparerLink" href="#">Content Comparer</a>
         </nav>
         <div id="sqlConverter" class="sql-container">
             <div class="container">
@@ -295,8 +296,57 @@
             </button>
             <p class="error" id="jsonErrorMsg"></p>             
         </div>
+	   <!-- Content Comparer: Implies checking two items -->
+        <div id="diffcomparerSection" class="converter-container" style="display: none;">
+    <h2>Compare & Highlight Differences</h2>
+    <div class="diff-container">
+        <div class="diff-panel">
+            <h3>Original Text</h3>
+            <textarea id="originalText" placeholder="Paste your original text here..." style="width: 400px; height: 200px;"></textarea>
+        </div>
+        <div class="diff-panel">
+            <h3>Modified Text</h3>
+            <textarea id="modifiedText" placeholder="Paste your modified text here..." style="width: 400px; height: 200px;"></textarea>
+        </div>
+    </div>
+    
+        <div style="display: flex; gap: 10px; margin: 20px 0; justify-content: center;">
+            <button onclick="compareTexts()" title="Compare the two texts">Compare</button>
+            <button onclick="clearComparison()" title="Clear all content">Clear</button>            
+        </div>
+        
+        <div id="comparisonStats" class="stats-container" style="display: none;">
+            <div class="stat-item">
+                <strong>Additions:</strong> <span id="additionsCount">0</span>
+            </div>
+            <div class="stat-item">
+                <strong>Deletions:</strong> <span id="deletionsCount">0</span>
+            </div>
+            <div class="stat-item">
+                <strong>Modifications:</strong> <span id="modificationsCount">0</span>
+            </div>
+        </div>
+        
+        <div id="comparisonResult" style="display: none;">
+            <h3>Comparison Result</h3>
+            <div class="result-panels">
+                <div class="result-panel">
+                    <h4>Original (with deletions highlighted)</h4>
+                    <div id="originalResult" class="diff-result"></div>
+                </div>
+                <div class="result-panel">
+                    <h4>Modified (with additions highlighted)</h4>
+                    <div id="modifiedResult" class="diff-result"></div>
+                </div>
+            </div>
+            <div class="unified-diff">
+                <h4>Unified Diff View</h4>
+                <pre id="unifiedDiff" class="diff-unified"></pre>
+            </div>
+        </div>
+    </div>
         <footer>
-            <span>Version 2.1.32 (NT)</span>
+            <span>Version 2.1.40 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
