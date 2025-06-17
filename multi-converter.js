@@ -135,51 +135,42 @@ function clearFields() {
     elementsToClear.forEach(id => document.getElementById(id).value = '');
 }
 
-// Navigation
-document.getElementById('sqlConverterLink').addEventListener('click', function() {
-    document.getElementById('sqlConverter').style.display = 'block';
-    document.getElementById('hexConverter').style.display = 'none';
-    document.getElementById('xmlToBlockSection').style.display = 'none';
-    document.getElementById('queryToJsonSection').style.display = 'none';
-    document.getElementById('diffcomparerSection').style.display = 'none';
-});
+ // Improved Navigation JavaScript
+        function showSection(targetSection) {
+            // Hide all sections
+            const sections = ['sqlConverter', 'hexConverter', 'xmlToBlockSection', 'queryToJsonSection', 'diffcomparerSection', 'codeFormatterSection'];
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    element.style.display = 'none';
+                }
+            });
+            
+            // Show target section
+            const target = document.getElementById(targetSection);
+            if (target) {
+                target.style.display = 'block';
+            }
+            
+            // Update active nav link
+            document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+            document.querySelector(`[data-section="${targetSection}"]`).classList.add('active');
+        }
 
-document.getElementById('hexConverterLink').addEventListener('click', function() {
-    document.getElementById('sqlConverter').style.display = 'none';
-    document.getElementById('hexConverter').style.display = 'block';
-    document.getElementById('xmlToBlockSection').style.display = 'none';
-    document.getElementById('queryToJsonSection').style.display = 'none';
-    document.getElementById('diffcomparerSection').style.display = 'none';
-});
-
-// New Tools
-document.getElementById('xmlToBlockLink').addEventListener('click', function() {
-    document.getElementById('sqlConverter').style.display = 'none';
-    document.getElementById('hexConverter').style.display = 'none';
-    document.getElementById('xmlToBlockSection').style.display = 'block';
-    document.getElementById('queryToJsonSection').style.display = 'none';
-    document.getElementById('diffcomparerSection').style.display = 'none';
-});
-
-document.getElementById('queryToJsonLink').addEventListener('click', function() {
-    document.getElementById('sqlConverter').style.display = 'none';
-    document.getElementById('hexConverter').style.display = 'none';
-    document.getElementById('xmlToBlockSection').style.display = 'none';
-    document.getElementById('queryToJsonSection').style.display = 'block';
-    document.getElementById('diffcomparerSection').style.display = 'none';
-});
-
-document.getElementById('diffcomparerLink').addEventListener('click', function(e) {
-    e.preventDefault();    
-    // Hide all sections
-    document.getElementById('sqlConverter').style.display = 'none';
-    document.getElementById('hexConverter').style.display = 'none';
-    document.getElementById('xmlToBlockSection').style.display = 'none';
-    document.getElementById('queryToJsonSection').style.display = 'none';
-    document.getElementById('diffcomparerSection').style.display = 'none';    
-    // Show the diff comparer section
-    document.getElementById('diffcomparerSection').style.display = 'block';
-});
+        // Add event listeners to all navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav a[data-section]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetSection = this.getAttribute('data-section');
+                    showSection(targetSection);
+                });
+            });
+            
+            // Show first section by default
+            showSection('sqlConverter');
+        });
 
 // Function to convert number to binary
 function convertToBinary() {
@@ -1264,3 +1255,407 @@ function escapeHtml(text) {
     div.textContent = text;
     return div.innerHTML;
 }
+
+// Auto-detect language based on code content
+// Universal indentation helper
+function applyUniversalIndentation(code, language) {
+    const lines = code.split('\n');
+    let indentLevel = 0;
+    const indentSize = 4; // 4 spaces for all languages
+    const result = [];
+    
+    for (let i = 0; i < lines.length; i++) {
+        let line = lines[i].trim();
+        if (!line) {
+            result.push(''); // Preserve empty lines
+            continue;
+        }
+        
+        // Language-specific indent decrease logic
+        const shouldDecreaseIndent = shouldDecreaseIndentBefore(line, language);
+        if (shouldDecreaseIndent) {
+            indentLevel = Math.max(0, indentLevel - 1);
+        }
+        
+        // Apply indentation
+        const indent = ' '.repeat(indentLevel * indentSize);
+        result.push(indent + line);
+        
+        // Language-specific indent increase logic
+        const shouldIncreaseIndent = shouldIncreaseIndentAfter(line, language);
+        if (shouldIncreaseIndent) {
+            indentLevel++;
+        }
+    }
+    
+    return result.join('\n');
+}
+
+// Check if indent should decrease before this line
+function shouldDecreaseIndentBefore(line, language) {
+    switch (language) {
+        case 'sql':
+            return /^\s*(END|ELSE|ELSIF|WHEN)\b/i.test(line);
+        case 'javascript':
+        case 'css':
+        case 'java':
+        case 'c':
+        case 'php':
+            return line.startsWith('}') || line.includes('} else') || line.includes('} catch') || line.includes('} finally');
+        case 'python':
+            // Python uses consistent indentation, handled differently
+            return false;
+        case 'xml':
+        case 'html':
+            return /^\s*<\//.test(line);
+        default:
+            return line.startsWith('}') || line.startsWith('END') || line.startsWith('</');
+    }
+}
+
+// Check if indent should increase after this line
+function shouldIncreaseIndentAfter(line, language) {
+    switch (language) {
+        case 'sql':
+            return /\b(BEGIN|IF|WHILE|FOR|CASE|WHEN|ELSE|ELSIF|CREATE|ALTER|WITH)\b/i.test(line) ||
+                   line.includes('(') && !line.includes(')');
+        case 'javascript':
+        case 'java':
+        case 'c':
+        case 'php':
+            return (line.includes('{') && !line.includes('}')) ||
+                   /\b(if|else|for|while|do|try|catch|finally|function|class)\b.*(?!.*{)$/.test(line);
+        case 'css':
+            return line.includes('{') && !line.includes('}');
+        case 'python':
+            return line.endsWith(':');
+        case 'xml':
+        case 'html':
+            return /^\s*<[^\/][^>]*[^\/]>/.test(line) && !/^\s*<[^>]*\/>/.test(line);
+        default:
+            return line.includes('{') || line.endsWith(':') || /\bBEGIN\b/i.test(line);
+    }
+}
+
+// Auto-detect language based on code content
+function detectLanguage(code) {
+    const trimmedCode = code.trim();
+    
+    // JSON detection
+    if ((trimmedCode.startsWith('{') && trimmedCode.endsWith('}')) || 
+        (trimmedCode.startsWith('[') && trimmedCode.endsWith(']'))) {
+        try {
+            JSON.parse(trimmedCode);
+            return 'json';
+        } catch (e) {
+            // Not valid JSON, continue checking
+        }
+    }
+    
+    // XML/HTML detection
+    if (trimmedCode.startsWith('<') && trimmedCode.includes('>')) {
+        if (trimmedCode.toLowerCase().includes('<!doctype html') || 
+            trimmedCode.toLowerCase().includes('<html')) {
+            return 'html';
+        }
+        return 'xml';
+    }
+    
+    // SQL detection
+    const sqlKeywords = /^\s*(select|insert|update|delete|create|drop|alter|with|begin|declare)\s+/i;
+    if (sqlKeywords.test(trimmedCode)) {
+        return 'sql';
+    }
+    
+    // CSS detection
+    if (trimmedCode.includes('{') && trimmedCode.includes('}') && 
+        (trimmedCode.includes(':') || trimmedCode.includes(';'))) {
+        const cssPattern = /[a-zA-Z-]+\s*:\s*[^;]+;/;
+        if (cssPattern.test(trimmedCode)) {
+            return 'css';
+        }
+    }
+    
+    // JavaScript detection
+    const jsKeywords = /\b(function|var|let|const|if|else|for|while|return|class|import|export)\b/;
+    if (jsKeywords.test(trimmedCode)) {
+        return 'javascript';
+    }
+    
+    // Python detection
+    const pythonKeywords = /\b(def|import|from|class|if|elif|else|for|while|try|except|with)\b/;
+    if (pythonKeywords.test(trimmedCode)) {
+        return 'python';
+    }
+    
+    return 'text';
+}
+
+// Format SQL queries with universal indentation
+function formatSQL(sql) {
+    let formatted = sql
+        .replace(/\s+/g, ' ')
+        .trim()
+        // Add newlines before major keywords
+        .replace(/\b(SELECT|FROM|WHERE|JOIN|INNER JOIN|LEFT JOIN|RIGHT JOIN|FULL JOIN|ON|GROUP BY|ORDER BY|HAVING|UNION|INSERT INTO|VALUES|UPDATE|SET|DELETE FROM|CREATE TABLE|ALTER TABLE|DROP TABLE|BEGIN|END|IF|ELSE|WHILE|FOR|CASE|WHEN|THEN)\b/gi, '\n$1')
+        // Add newlines after certain keywords
+        .replace(/\b(AND|OR)\b/gi, '\n$1')
+        // Handle commas in SELECT statements
+        .replace(/,(?=\s*\w)/g, ',\n')
+        // Clean up multiple newlines
+        .replace(/\n\s*\n/g, '\n')
+        .split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .join('\n');
+    
+    return applyUniversalIndentation(formatted, 'sql');
+}
+
+// Format JSON with universal indentation
+function formatJSON(json) {
+    try {
+        const parsed = JSON.parse(json);
+        return JSON.stringify(parsed, null, 4); // Use 4 spaces consistently
+    } catch (e) {
+        throw new Error('Invalid JSON format');
+    }
+}
+
+// Format XML/HTML with universal indentation
+function formatXML(xml) {
+    const reg = /(>)(<)(\/*)/g;
+    let formatted = xml.replace(reg, '$1\n$2$3');
+    
+    // Clean up and prepare for universal indentation
+    const lines = formatted.split('\n').map(line => line.trim()).filter(line => line);
+    const cleanedXml = lines.join('\n');
+    
+    return applyUniversalIndentation(cleanedXml, 'xml');
+}
+
+// Format CSS with universal indentation
+function formatCSS(css) {
+    let formatted = css
+        // Add newlines around braces
+        .replace(/\s*{\s*/g, ' {\n')
+        .replace(/;\s*/g, ';\n')
+        .replace(/\s*}\s*/g, '\n}\n')
+        // Handle selectors
+        .replace(/,\s*/g, ',\n')
+        // Clean up
+        .replace(/\n\s*\n/g, '\n')
+        .split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .join('\n');
+    
+    return applyUniversalIndentation(formatted, 'css');
+}
+
+// Format JavaScript with universal indentation
+function formatJavaScript(js) {
+    let formatted = js
+        // Handle braces
+        .replace(/\s*{\s*/g, ' {\n')
+        .replace(/\s*}\s*/g, '\n}\n')
+        // Handle semicolons
+        .replace(/;\s*(?!$)/g, ';\n')
+        // Handle else statements
+        .replace(/}\s*else\s*{/g, '} else {')
+        .replace(/}\s*else\s+/g, '} else ')
+        // Clean up
+        .replace(/\n\s*\n/g, '\n')
+        .split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .join('\n');
+    
+    return applyUniversalIndentation(formatted, 'javascript');
+}
+
+// Format Python with universal indentation
+function formatPython(python) {
+    const lines = python.split('\n').map(line => line.trim()).filter(line => line);
+    return applyUniversalIndentation(lines.join('\n'), 'python');
+}
+
+// Format other languages with basic universal indentation
+function formatGeneric(code, language) {
+    const lines = code.split('\n').map(line => line.trim()).filter(line => line);
+    return applyUniversalIndentation(lines.join('\n'), language);
+}
+
+// Main format function 
+function formatCode() {
+    const codeInput = document.getElementById('codeInput');
+    const formattedOutput = document.getElementById('formattedOutput');
+    const languageSelector = document.getElementById('languageSelector');
+    const messageDiv = document.getElementById('formatterMessage');
+    
+    const code = codeInput.value.trim();
+    if (!code) {
+        showMessage('Please enter some code to format.', 'error');
+        return;
+    }
+
+    let selectedLanguage = languageSelector.value;
+    if (selectedLanguage === 'auto') {
+        selectedLanguage = detectLanguage(code);
+    }
+
+    try {
+        let formatted = '';
+        
+        switch (selectedLanguage) {
+            case 'sql':
+                formatted = formatSQL(code);
+                break;
+            case 'json':
+                formatted = formatJSON(code);
+                break;
+            case 'xml':
+            case 'html':
+                formatted = formatXML(code);
+                break;
+            case 'css':
+                formatted = formatCSS(code);
+                break;
+            case 'javascript':
+                formatted = formatJavaScript(code);
+                break;
+            case 'python':
+                formatted = formatPython(code);
+                break;
+            case 'java':
+            case 'c':
+            case 'php':
+                formatted = formatGeneric(code, selectedLanguage);
+                break;
+            default:
+                // For other languages, apply basic universal formatting
+                formatted = formatGeneric(code, selectedLanguage);
+        }
+        
+        formattedOutput.value = formatted;
+        showMessage(`Code formatted successfully as ${selectedLanguage.toUpperCase()}!`, 'success');
+        
+    } catch (error) {
+        showMessage(`Error formatting code: ${error.message}`, 'error');
+    }
+}
+
+// Enhanced minify function
+function minifyCode() {
+    const codeInput = document.getElementById('codeInput');
+    const formattedOutput = document.getElementById('formattedOutput');
+    const languageSelector = document.getElementById('languageSelector');
+    
+    const code = codeInput.value.trim();
+    if (!code) {
+        showMessage('Please enter some code to minify.', 'error');
+        return;
+    }
+
+    let selectedLanguage = languageSelector.value;
+    if (selectedLanguage === 'auto') {
+        selectedLanguage = detectLanguage(code);
+    }
+
+    try {
+        let minified = '';
+        
+        switch (selectedLanguage) {
+            case 'json':
+                const parsed = JSON.parse(code);
+                minified = JSON.stringify(parsed);
+                break;
+            case 'css':
+                minified = code
+                    .replace(/\/\*[\s\S]*?\*\//g, '')
+                    .replace(/\s+/g, ' ')
+                    .replace(/;\s*}/g, '}')
+                    .replace(/\s*{\s*/g, '{')
+                    .replace(/;\s*/g, ';')
+                    .trim();
+                break;
+            case 'javascript':
+                minified = code
+                    .replace(/\/\*[\s\S]*?\*\//g, '')
+                    .replace(/\/\/.*$/gm, '')
+                    .replace(/\s+/g, ' ')
+                    .replace(/\s*([{}();,])\s*/g, '$1')
+                    .trim();
+                break;
+            case 'sql':
+                minified = code
+                    .replace(/--.*$/gm, '')
+                    .replace(/\/\*[\s\S]*?\*\//g, '')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+                break;
+            default:
+                minified = code.replace(/\s+/g, ' ').trim();
+        }
+        
+        formattedOutput.value = minified;
+        showMessage('Code minified successfully!', 'success');
+        
+    } catch (error) {
+        showMessage(`Error minifying code: ${error.message}`, 'error');
+    }
+}
+
+// Copy formatted code to clipboard
+function copyFormattedCode() {
+    const formattedOutput = document.getElementById('formattedOutput');
+    if (!formattedOutput.value.trim()) {
+        showMessage('No formatted code to copy.', 'error');
+        return;
+    }
+    
+    formattedOutput.select();
+    document.execCommand('copy');
+    showMessage('Formatted code copied to clipboard!', 'success');
+}
+
+// Clear all content
+function clearFormatter() {
+    document.getElementById('codeInput').value = '';
+    document.getElementById('formattedOutput').value = '';
+    document.getElementById('languageSelector').value = 'auto';
+    hideMessage();
+}
+
+// Show message function
+function showMessage(message, type) {
+    const messageDiv = document.getElementById('formatterMessage');
+    messageDiv.textContent = message;
+    messageDiv.className = type === 'error' ? 'error-message' : 'success-message';
+    messageDiv.style.display = 'block';
+    
+    // Auto-hide message
+    setTimeout(() => { hideMessage();}, 7500);
+}
+
+// Hide message function
+function hideMessage() {
+    const messageDiv = document.getElementById('formatterMessage');
+    messageDiv.style.display = 'none';
+}
+
+// Auto-resize textareas
+function autoResize(textarea) {
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
+}
+
+// Add event listeners for auto-resize
+document.addEventListener('DOMContentLoaded', function() {
+    const textareas = document.querySelectorAll('.formatter-textarea');
+    textareas.forEach(textarea => {
+        textarea.addEventListener('input', function() {
+            autoResize(this);
+        });
+    });
+});
