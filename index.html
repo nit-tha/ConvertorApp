@@ -22,7 +22,7 @@
       <meta property="og:type" content="website">
 
       <!-- Twitter Meta Tag -->
-      <meta name="twitter:card" content="summary_large_image">	
+      <meta name="twitter:card" content="summary_large_image">  
 
       <script type="application/ld+json">
     {
@@ -43,7 +43,7 @@
       <link rel="canonical" href="https://nit-tha.github.io/ConvertorApp/" />
       <link rel="stylesheet" href="multi-converter-styles.css" />
       <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />	    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />      
 
     </head>
    <body>
@@ -82,13 +82,15 @@
     </div>
 </div>
         </div>
-        <nav>
-            <a id="sqlConverterLink" href="#">Query Formatter</a>
-            <a id="hexConverterLink" href="#">Conversion Suite</a>
-            <a id="xmlToBlockLink" href="#">Block Conversion</a>
-            <a id="queryToJsonLink" href="#">JSON Conversion</a>
-	    <a id="diffcomparerLink" href="#">Content Comparer</a>
-        </nav>
+        <!-- Fixed Navigation -->
+    <nav>
+        <a id="sqlConverterLink" href="#" data-section="sqlConverter">Query Formatter</a>
+        <a id="hexConverterLink" href="#" data-section="hexConverter">Conversion Suite</a>
+        <a id="xmlToBlockLink" href="#" data-section="xmlToBlockSection">Block Conversion</a>
+        <a id="queryToJsonLink" href="#" data-section="queryToJsonSection">JSON Conversion</a>
+        <a id="diffcomparerLink" href="#" data-section="diffcomparerSection">Content Comparer</a>
+        <a id="codeBeautifierLink" href="#" data-section="codeFormatterSection">Code Refiner</a>
+    </nav>
         <div id="sqlConverter" class="sql-container">
             <div class="container">
                 <label for="ids">Enter Data:</label>
@@ -132,17 +134,17 @@
                 </div>
             </div>
             <!-- Combined Quote Buttons with Shared Output -->
-	    <div class="container">
-		<button onclick="convertToSingleQuotes()" title="Single Quotation with Comma">Add '</button>
-		<button onclick="convertToDoubleQuotes()" title="Double Quotation with Comma">Add "</button>
-		<input type="text" id="quotesOutput" readonly oninput="resizeInput(this)" placeholder="Shows quotes and comma to data." />
-		<div class="btn-container">
-			<button onclick="copyToClipboard('quotesOutput')" title="Copy">
-				<i class="fas fa-copy"></i>
-			</button>
-		</div>
-	    </div>
-		
+        <div class="container">
+        <button onclick="convertToSingleQuotes()" title="Single Quotation with Comma">Add '</button>
+        <button onclick="convertToDoubleQuotes()" title="Double Quotation with Comma">Add "</button>
+        <input type="text" id="quotesOutput" readonly oninput="resizeInput(this)" placeholder="Shows quotes and comma to data." />
+        <div class="btn-container">
+            <button onclick="copyToClipboard('quotesOutput')" title="Copy">
+                <i class="fas fa-copy"></i>
+            </button>
+        </div>
+        </div>
+        
             <div class="epochs-container">
                 <div class="tooltip">
                     <button onclick="convertEpochTime()" title="Convert's Epochtime">Date</button>
@@ -334,7 +336,7 @@
             </button>
             <p class="error" id="jsonErrorMsg"></p>             
         </div>
-	   <!-- Content Comparer: Implies checking two items -->
+       <!-- Content Comparer: Implies checking two items -->
         <div id="diffcomparerSection" class="converter-container" style="display: none;">
     <h2>Compare & Highlight Differences</h2>
     <div class="diff-container">
@@ -383,8 +385,50 @@
             </div>
         </div>
     </div>
+
+    <!-- Code Formatter Section -->
+    <div id="codeFormatterSection" class="converter-container">
+        <h2>Formatter & Beautifier</h2>
+        
+        <div class="formatter-input-container">
+            <label for="codeInput">Enter Code:</label>
+            <textarea id="codeInput" class="formatter-textarea" placeholder="Paste your code here (SQL, JSON, XML, JavaScript, CSS, HTML, etc.)..."></textarea>
+        </div>
+        
+        <div class="formatter-controls">
+            <select id="languageSelector" class="language-selector">
+                <option value="auto">Auto-detect</option>
+                <option value="sql">SQL</option>
+                <option value="json">JSON</option>
+                <option value="xml">XML</option>
+                <option value="javascript">JavaScript</option>
+                <option value="css">CSS</option>
+                <option value="html">HTML</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="c">C/C++</option>
+                <option value="php">PHP</option>
+            </select>
+            <button onclick="formatCode()" title="Format and beautify the code">Format Code</button>
+            <button onclick="minifyCode()" title="Minify/compress the code">Minify Code</button>
+            <button onclick="clearFormatter()" title="Clear all content">Clear</button>
+        </div>
+        
+        <div class="formatter-output-container">
+            <label for="formattedOutput">Formatted Output:</label>
+            <textarea id="formattedOutput" class="formatter-output" readonly></textarea>
+            <div class="copy-button-container">
+                <button class="copy-button" onclick="copyFormattedCode()" title="Copy formatted code">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="formatterMessage" style="display: none;"></div>
+    </div>
+
         <footer>
-            <span>Version 2.1.44 (NT)</span>
+            <span>Version 2.1.45 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
