@@ -516,51 +516,6 @@ nav a.active {
     color: #2c3e50;
 }
 
-/* Diff result display areas */
-.diff-result {
-    border: 1px solid #ccc;
-    padding: 15px;
-    background: #fff;
-    min-height: 200px;
-    white-space: pre-wrap;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    line-height: 1.4;
-    overflow-y: auto;
-    max-height: 400px;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.diff-result:focus {
-    border-color: #af65d9;
-}
-
-/* Unified diff container */
-.unified-diff {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.unified-diff h4 {
-    color: #2c3e50;
-    margin-bottom: 10px;
-}
-
-.diff-unified {
-    border: 1px solid #ccc;
-    padding: 15px;
-    background: #f0f0f0;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    line-height: 1.4;
-    overflow-x: auto;
-    max-height: 300px;
-    overflow-y: auto;
-    border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box;
-}
 
 /* Line-level diff highlighting styles (lighter background) */
 /* Content Comparer */
@@ -577,6 +532,10 @@ nav a.active {
     max-height: 400px;
     border-radius: 4px;
     box-sizing: border-box;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    word-wrap: break-word; /* For older browser support */
+    overflow-x: hidden; /* Change from auto to hidden to prevent horizontal scroll */
 }
 
 .diff-result:focus {
@@ -607,6 +566,11 @@ nav a.active {
     border-radius: 4px;
     width: 100%;
     box-sizing: border-box;
+    /* Properties for better text wrapping */
+    word-break: break-all;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 /* Line-level diff highlighting styles (lighter background) */
@@ -615,6 +579,9 @@ nav a.active {
     color: #155724;
     padding: 2px 4px;
     border-radius: 3px;
+    display: inline-block; /* Ensure proper wrapping */
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 .diff-removed {
@@ -622,7 +589,9 @@ nav a.active {
     color: #721c24;
     padding: 2px 4px;
     border-radius: 3px;
-    /* Removed text-decoration: line-through; */
+    display: inline-block;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 .diff-modified {
@@ -630,6 +599,9 @@ nav a.active {
     color: #856404;
     padding: 2px 4px;
     border-radius: 3px;
+    display: inline-block;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 /* Word-level diff highlighting styles (darker background for precise changes) */
@@ -641,6 +613,9 @@ nav a.active {
     font-weight: bold;
     box-shadow: 0 1px 2px rgba(0,0,0,0.2);
     position: relative;
+    display: inline-block;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 .diff-word-highlight {
@@ -651,7 +626,9 @@ nav a.active {
     font-weight: bold;
     box-shadow: 0 1px 2px rgba(0,0,0,0.2);
     position: relative;
-    /* Removed text-decoration: line-through; */
+    display: inline-block;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 /* Enhanced word-level highlighting for better visibility */
@@ -675,6 +652,10 @@ nav a.active {
     border: 1px solid #dee2e6;
     border-radius: 4px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Add overflow handling */
+    overflow-x: hidden;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .change-instructions h4 {
@@ -698,6 +679,10 @@ nav a.active {
     border-radius: 3px;
     font-size: 14px;
     line-height: 1.4;
+    /* Add word breaking for long instruction text */
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 .instruction-item:hover {
@@ -899,7 +884,6 @@ nav a.active {
     }
 }
 
- /* Code Refiner */
  .converter-container {
             display: flex;
             flex-direction: column;
