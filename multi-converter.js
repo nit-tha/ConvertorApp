@@ -1059,7 +1059,7 @@ timezones.forEach(([value, label, offset]) => {
     timezoneSelect.appendChild(option);
 });
 
-//Data Comparer functions and helper
+//Enhanced Data Comparer functions with word-level highlighting
 function compareTexts() {
     const originalText = document.getElementById('originalText').value;
     const modifiedText = document.getElementById('modifiedText').value;
@@ -1076,7 +1076,7 @@ function compareTexts() {
     // Perform diff comparison
     const diff = performDiff(originalLines, modifiedLines);
     
-    // Display results
+    // Display results with word-level highlighting
     displayComparisonResult(diff, originalText, modifiedText);
     
     // Calculate and display statistics
@@ -1178,6 +1178,92 @@ function performDiff(original, modified) {
     return diff;
 }
 
+// New function to perform word-level diff on two strings
+function getWordLevelDiff(str1, str2) {
+    if (!str1 && !str2) return { original: '', modified: '', changes: [] };
+    if (!str1) return { 
+        original: '', 
+        modified: `<span class="diff-word-added" title="ADD: '${escapeHtml(str2)}'">${escapeHtml(str2)}</span>`,
+        changes: [{ type: 'add', text: str2, position: 0 }]
+    };
+    if (!str2) return { 
+        original: `<span class="diff-word-highlight" title="REMOVE: '${escapeHtml(str1)}'">${escapeHtml(str1)}</span>`, 
+        modified: '',
+        changes: [{ type: 'remove', text: str1, position: 0 }]
+    };
+    
+    // Split into tokens (words, spaces, punctuation)
+    const tokens1 = tokenize(str1);
+    const tokens2 = tokenize(str2);
+    
+    // Perform word-level LCS (Longest Common Subsequence) diff
+    const diffResult = computeWordDiff(tokens1, tokens2);
+    
+    return diffResult;
+}
+
+// Tokenize text into words, spaces, and punctuation
+function tokenize(text) {
+    // Split by word boundaries but keep delimiters
+    return text.split(/(\s+|[^\w\s])/g).filter(token => token.length > 0);
+}
+
+// Compute word-level diff using dynamic programming approach
+function computeWordDiff(tokens1, tokens2) {
+    const m = tokens1.length;
+    const n = tokens2.length;
+    
+    // Create LCS table
+    const lcs = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
+    
+    // Fill LCS table
+    for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+            if (tokens1[i - 1] === tokens2[j - 1]) {
+                lcs[i][j] = lcs[i - 1][j - 1] + 1;
+            } else {
+                lcs[i][j] = Math.max(lcs[i - 1][j], lcs[i][j - 1]);
+            }
+        }
+    }
+    
+    // Backtrack to find the diff
+    let i = m, j = n;
+    const originalResult = [];
+    const modifiedResult = [];
+    const changes = [];
+    let position = 0;
+    
+    while (i > 0 || j > 0) {
+        if (i > 0 && j > 0 && tokens1[i - 1] === tokens2[j - 1]) {
+            // Common token
+            originalResult.unshift(escapeHtml(tokens1[i - 1]));
+            modifiedResult.unshift(escapeHtml(tokens2[j - 1]));
+            i--;
+            j--;
+        } else if (i > 0 && (j === 0 || lcs[i - 1][j] >= lcs[i][j - 1])) {
+            // Token to be removed from original (highlight in original, show instruction)
+            const token = tokens1[i - 1];
+            originalResult.unshift(`<span class="diff-word-highlight" title="REMOVE: '${escapeHtml(token)}'">${escapeHtml(token)}</span>`);
+            changes.unshift({ type: 'remove', text: token, position: position });
+            i--;
+        } else {
+            // Token to be added in modified (show in modified, show instruction)
+            const token = tokens2[j - 1];
+            modifiedResult.unshift(`<span class="diff-word-added" title="ADD: '${escapeHtml(token)}'">${escapeHtml(token)}</span>`);
+            changes.unshift({ type: 'add', text: token, position: position });
+            j--;
+        }
+        position++;
+    }
+    
+    return {
+        original: originalResult.join(''),
+        modified: modifiedResult.join(''),
+        changes: changes
+    };
+}
+
 function displayComparisonResult(diff, originalText, modifiedText) {
     const originalResult = document.getElementById('originalResult');
     const modifiedResult = document.getElementById('modifiedResult');
@@ -1186,27 +1272,50 @@ function displayComparisonResult(diff, originalText, modifiedText) {
     let originalHtml = '';
     let modifiedHtml = '';
     let unifiedHtml = '';
+    let changeInstructions = [];
+    let lineNumber = 1;
     
     diff.forEach((item, index) => {
         switch (item.type) {
             case 'unchanged':
                 originalHtml += escapeHtml(item.originalLine) + '\n';
                 modifiedHtml += escapeHtml(item.modifiedLine) + '\n';
-                unifiedHtml += ' ' + escapeHtml(item.originalLine) + '\n';
+                unifiedHtml += ` ${escapeHtml(item.originalLine)}\n`;
+                lineNumber++;
                 break;
             case 'removed':
                 originalHtml += `<span class="diff-removed">${escapeHtml(item.originalLine)}</span>\n`;
                 unifiedHtml += `<span class="diff-line-removed">-${escapeHtml(item.originalLine)}</span>\n`;
+                changeInstructions.push(`Line ${lineNumber}: DELETE entire line "${item.originalLine}"`);
                 break;
             case 'added':
                 modifiedHtml += `<span class="diff-added">${escapeHtml(item.modifiedLine)}</span>\n`;
                 unifiedHtml += `<span class="diff-line-added">+${escapeHtml(item.modifiedLine)}</span>\n`;
+                changeInstructions.push(`Line ${lineNumber}: ADD new line "${item.modifiedLine}"`);
+                lineNumber++;
                 break;
             case 'modified':
-                originalHtml += `<span class="diff-removed">${escapeHtml(item.originalLine)}</span>\n`;
-                modifiedHtml += `<span class="diff-added">${escapeHtml(item.modifiedLine)}</span>\n`;
-                unifiedHtml += `<span class="diff-line-removed">-${escapeHtml(item.originalLine)}</span>\n`;
-                unifiedHtml += `<span class="diff-line-added">+${escapeHtml(item.modifiedLine)}</span>\n`;
+                // Apply word-level highlighting for modified lines
+                const wordDiff = getWordLevelDiff(item.originalLine, item.modifiedLine);
+                
+                // Use line-level highlighting as base, then add word-level highlighting
+                originalHtml += `<span class="diff-removed">${wordDiff.original}</span>\n`;
+                modifiedHtml += `<span class="diff-added">${wordDiff.modified}</span>\n`;
+                
+                unifiedHtml += `<span class="diff-line-removed">-${wordDiff.original}</span>\n`;
+                unifiedHtml += `<span class="diff-line-added">+${wordDiff.modified}</span>\n`;
+                
+                // Generate change instructions for this line
+                if (wordDiff.changes && wordDiff.changes.length > 0) {
+                    wordDiff.changes.forEach(change => {
+                        if (change.type === 'remove') {
+                            changeInstructions.push(`Line ${lineNumber}: REMOVE "${change.text}"`);
+                        } else if (change.type === 'add') {
+                            changeInstructions.push(`Line ${lineNumber}: ADD "${change.text}"`);
+                        }
+                    });
+                }
+                lineNumber++;
                 break;
         }
     });
@@ -1214,6 +1323,47 @@ function displayComparisonResult(diff, originalText, modifiedText) {
     originalResult.innerHTML = originalHtml;
     modifiedResult.innerHTML = modifiedHtml;
     unifiedDiff.innerHTML = unifiedHtml;
+    
+    // Display change instructions
+    displayChangeInstructions(changeInstructions);
+}
+
+function displayChangeInstructions(instructions) {
+    // Create or update the change instructions section
+    let instructionsDiv = document.getElementById('changeInstructions');
+    if (!instructionsDiv) {
+        instructionsDiv = document.createElement('div');
+        instructionsDiv.id = 'changeInstructions';
+        instructionsDiv.className = 'change-instructions';
+        
+        const instructionsTitle = document.createElement('h4');
+        instructionsTitle.textContent = 'Change Instructions';
+        instructionsDiv.appendChild(instructionsTitle);
+        
+        const instructionsList = document.createElement('ol');
+        instructionsList.id = 'instructionsList';
+        instructionsDiv.appendChild(instructionsList);
+        
+        // Insert after the unified diff
+        const unifiedDiffDiv = document.querySelector('.unified-diff');
+        unifiedDiffDiv.parentNode.insertBefore(instructionsDiv, unifiedDiffDiv.nextSibling);
+    }
+    
+    const instructionsList = document.getElementById('instructionsList');
+    instructionsList.innerHTML = '';
+    
+    if (instructions.length === 0) {
+        instructionsList.innerHTML = '<li class="no-changes">No changes required - texts are identical</li>';
+    } else {
+        instructions.forEach(instruction => {
+            const li = document.createElement('li');
+            li.className = 'instruction-item';
+            li.innerHTML = instruction;
+            instructionsList.appendChild(li);
+        });
+    }
+    
+    instructionsDiv.style.display = 'block';
 }
 
 function calculateStats(diff) {
@@ -1248,6 +1398,12 @@ function clearComparison() {
     document.getElementById('unifiedDiff').innerHTML = '';
     document.getElementById('comparisonResult').style.display = 'none';
     document.getElementById('comparisonStats').style.display = 'none';
+    
+    // Clear change instructions
+    const instructionsDiv = document.getElementById('changeInstructions');
+    if (instructionsDiv) {
+        instructionsDiv.style.display = 'none';
+    }
 }
 
 function escapeHtml(text) {
