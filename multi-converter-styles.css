@@ -429,7 +429,7 @@ nav a.active {
     border: 1px solid #ccc;
     border-radius: 4px;
     transition: border-color 0.3s;
-    font-family: Arial, sans-serif;
+    font-family: 'Courier New', Monaco, monospace;
     resize: vertical;
 }
 
