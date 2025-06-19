@@ -254,58 +254,45 @@
             </div>
         </div>
         <div id="hexConverter" class="hex-container" style="display: none;">
-            <div class="container">
-                <label for="textInput">Text:</label>
-                <input type="text" id="textInput" placeholder="Enter data here" />
-                <button onclick="convertToHex()" title="Convert's string to hex">Convert to Hex</button>
-            </div>
-            <div class="container">
-                <label for="hexOutput">Hex:</label>
-                <input type="text" id="hexOutput" placeholder="Hex conversion here" />
-                <button onclick="convertToText()" title="Convert's hex to string">Convert to Text</button>
-                <button onclick="copyToClipboard('hexOutput')" title="Copy">
-                    <i class="fas fa-copy"></i> </button>
-            </div>
-            <div class="container">
-                <label for="textOutput">Text:</label>
-                <input type="text" id="textOutput" placeholder="Hex to Text here" />
-                <button onclick="copyToClipboard('textOutput')" title="Copy">
-                    <i class="fas fa-copy"></i> </button>
-            </div>
-            <div class="container">
-                <label for="numberInput">Data:</label>
-                <input type="text" id="numberInput" placeholder="Enter data here" />
-                <div class="tooltip">
-                    <button onclick="convertToBinary()" title="Convert to Binary">Binary</button>
-                </div>
-                <div class="tooltip">
-                    <button onclick="encodeToBase64()" title="Base64 Encoding">Base64</button>
-                </div>
-            </div>
-            <div class="container">
-                <label for="binaryOutput">Binary:</label>
-                <input type="text" id="binaryOutput" placeholder="Converted to Binary" />
-                <button onclick="copyToClipboard('binaryOutput')" title="Copy">
-                    <i class="fas fa-copy"></i>
-                </button>
-            </div>
-            <div class="container">
-                <label for="base64Output">Base64:</label>
-                <input type="text" id="base64Output" placeholder="Converted to Base64" />
-                <button onclick="copyToClipboard('base64Output')" title="Copy">
-                    <i class="fas fa-copy"></i>                </button>
-                <!-- Output section for generated API key -->
-            <div class="container">
-           <button onclick="generateApiKey()" title="Generate API Key">API Key</button>
-            <input type="text" id="apiKeyOutput" placeholder="Generated API Key" readonly>
-            <button onclick="copyToClipboard('apiKeyOutput')" title="Copy">
-                <i class="fas fa-copy"></i>            </button>
+            <!-- Input Section -->
+    <div class="container">
+        <label for="textInput">Data:</label>
+        <input type="text" id="textInput" placeholder="Enter data here" />
+        <div class="tooltip">
+            <button onclick="convertHexText()" title="Hex/Text Convert">Hex/Text</button>
         </div>
-            </div>
-            <div class="buttons">
-                <button onclick="clearFields()" title="Clear All">Clear</button>
-            </div>
+        <div class="tooltip">
+            <button onclick="convertToBinary()" title="Binary Convert/Decode">Binary</button>
         </div>
+        <div class="tooltip">
+            <button onclick="encodeToBase64()" title="Base64 Encode/Decode">Base64</button>
+        </div>
+    </div>
+
+    <!-- Single Output Section -->
+    <div class="container">
+        <label for="output">Output:</label>
+        <input type="text" id="output" placeholder="Converted output here" />
+        <button onclick="copyToClipboard('output')" title="Copy">
+            <i class="fas fa-copy"></i>
+        </button>
+    </div>
+
+    <!-- API Key Section -->
+    <div class="container">
+        <button onclick="generateApiKey()" title="Generate API Key">API Key</button>
+        <input type="text" id="apiKeyOutput" placeholder="Generated API Key" readonly>
+        <button onclick="copyToClipboard('apiKeyOutput')" title="Copy">
+            <i class="fas fa-copy"></i>
+        </button>
+    </div>
+
+    <!-- Clear Button -->
+    <div class="buttons">
+        <button onclick="clearFields()" title="Clear All">Clear</button>
+    </div>
+</div>
+       <!-- XML Section -->
         <div id="xmlToBlockSection" class="converter-container" style="display: none;">
             <h2>XML to Block XML Converter</h2>
             <textarea id="fullXml" class="pasteable" placeholder="Paste your full XML here..." style="width: 449px; height: 160px;"></textarea>
@@ -428,7 +415,7 @@
     </div>
 
         <footer>
-            <span>Version 2.1.46 (NT)</span>
+            <span>Version 2.1.47 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
