@@ -114,23 +114,108 @@ function refreshPage() {
     location.reload();
 }
 
-// Hex/Text Converter functions
-function convertToHex() {
-    const text = document.getElementById('textInput').value;
-    const hex = Array.from(text).map(c => c.charCodeAt(0).toString(16).padStart(2, '0')).join('').toUpperCase();
-    document.getElementById('hexOutput').value = hex;
+// Updated Hex/Text Converter
+function convertHexText() {
+    const input = document.getElementById('textInput').value.trim();
+    const output = document.getElementById('output');
+    
+    if (!input) {
+        output.value = '';
+        return;
+    }
+    
+    // Check if input is hex (only contains 0-9, A-F, a-f and has even length)
+    if (/^[0-9A-Fa-f]+$/.test(input) && input.length % 2 === 0) {
+        // Convert from hex to text
+        try {
+            const text = input.match(/.{1,2}/g)
+                .map(byte => String.fromCharCode(parseInt(byte, 16)))
+                .join('');
+            output.value = text;
+        } catch (e) {
+            output.value = 'Invalid hex format';
+        }
+    } else {
+        // Convert from text to hex
+        const hex = Array.from(input)
+            .map(c => c.charCodeAt(0).toString(16).padStart(2, '0'))
+            .join('')
+            .toUpperCase();
+        output.value = hex;
+    }
 }
 
-function convertToText() {
-    const hex = document.getElementById('hexOutput').value;
-    const text = hex.match(/.{1,2}/g).map(byte => String.fromCharCode(parseInt(byte, 16))).join('');
-    document.getElementById('textOutput').value = text;
+// Updated Binary Converter
+function convertToBinary() {
+    const input = document.getElementById('textInput').value.trim();
+    const output = document.getElementById('output');
+    
+    if (!input) {
+        output.value = '';
+        return;
+    }
+    
+    // Check if input is binary (only contains 0s and 1s)
+    if (/^[01]+$/.test(input)) {
+        // Convert from binary to decimal
+        const decimal = parseInt(input, 2);
+        output.value = decimal.toString();
+    } else if (!isNaN(input) && input !== '') {
+        // Convert decimal number to binary
+        output.value = Number(input).toString(2);
+    } else if (/^[0-9a-fA-F]+$/.test(input)) {
+        // Convert hexadecimal to binary
+        output.value = parseInt(input, 16).toString(2);
+    } else {
+        output.value = 'Invalid input';
+    }
 }
 
+// Updated Base64 Converter
+function encodeToBase64() {
+    const input = document.getElementById('textInput').value;
+    const output = document.getElementById('output');
+    
+    if (!input) {
+        output.value = '';
+        return;
+    }
+    
+    // Check if input appears to be base64 encoded
+    if (input.startsWith('Basic ')) {
+        // Decode from base64
+        try {
+            const base64Part = input.substring(6); // Remove "Basic " prefix
+            const decoded = atob(base64Part);
+            output.value = decoded;
+        } catch (e) {
+            output.value = "Invalid Base64 format";
+        }
+    } else if (isBase64(input)) {
+        // Decode if it looks like base64 without "Basic " prefix
+        try {
+            const decoded = atob(input);
+            output.value = decoded;
+        } catch (e) {
+            output.value = "Invalid Base64 format";
+        }
+    } else {
+        // Encode to base64
+        const encoded = btoa(input);
+        output.value = "Basic " + encoded;
+    }
+}
+
+// Helper function for Base64 validation
+function isBase64(str) {
+    const base64Pattern = /^[A-Za-z0-9+/]*={0,2}$/;
+    return base64Pattern.test(str) && str.length % 4 === 0 && str.length > 0;
+}
+
+// Clear fields for Conversion Suite
 function clearFields() {
     const elementsToClear = [
-        'textInput', 'hexOutput', 'numberInput',
-        'binaryOutput', 'textOutput', 'base64Output', 'apiKeyOutput'
+        'textInput', 'output', 'apiKeyOutput'
     ];
     elementsToClear.forEach(id => document.getElementById(id).value = '');
 }
@@ -172,19 +257,7 @@ function clearFields() {
             showSection('sqlConverter');
         });
 
-// Function to convert number to binary
-function convertToBinary() {
-    const numberInput = document.getElementById('numberInput').value.trim();
-    const binaryOutput = document.getElementById('binaryOutput');
 
-    if (!isNaN(numberInput) && numberInput !== '') {
-        binaryOutput.value = Number(numberInput).toString(2);
-    } else if (/^[0-9a-fA-F]+$/.test(numberInput)) {
-        binaryOutput.value = parseInt(numberInput, 16).toString(2);
-    } else {
-        binaryOutput.value = 'Invalid input';
-    }
-}
 
 // Function to update the current epoch time
 function updateCurrentEpoch() {
@@ -225,12 +298,7 @@ function updateVisitCounter() {
 // Call the function to update and display the visit counter
 updateVisitCounter();
 
-// Base64 Converter functions
-function encodeToBase64() {
-    const data = document.getElementById('numberInput').value;
-    const encoded = btoa(data);
-    document.getElementById('base64Output').value = "Basic " + encoded;
-}
+
 
 // Function to convert the entered epoch time to GMT, local time, and calculate relative time
 function convertEpochTime() {
