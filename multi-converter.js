@@ -212,6 +212,170 @@ function isBase64(str) {
     return base64Pattern.test(str) && str.length % 4 === 0 && str.length > 0;
 }
 
+// JWT Decoder
+function decodeJWT() {
+    const input = document.getElementById('textInput').value.trim();
+    const output = document.getElementById('output');
+    
+    if (!input) {
+        output.value = '';
+        return;
+    }
+    
+    try {
+        // JWT has 3 parts separated by dots
+        const parts = input.split('.');
+        if (parts.length !== 3) {
+            output.value = 'Invalid JWT format';
+            return;
+        }
+        
+        // Decode the payload (second part)
+        const payload = parts[1];
+        // Add padding if needed
+        const paddedPayload = payload + '='.repeat((4 - payload.length % 4) % 4);
+        const decoded = atob(paddedPayload.replace(/-/g, '+').replace(/_/g, '/'));
+        
+        // Format JSON
+        const jsonObj = JSON.parse(decoded);
+        output.value = JSON.stringify(jsonObj, null, 2);
+    } catch (e) {
+        output.value = 'Invalid JWT token';
+    }
+}
+
+// Case Converter - cycles through different cases
+let caseIndex = 0;
+function convertCase() {
+    const input = document.getElementById('textInput').value;
+    const output = document.getElementById('output');
+    
+    if (!input) {
+        output.value = '';
+        return;
+    }
+    
+    const cases = [
+        input.toUpperCase(),                    // UPPERCASE
+        input.toLowerCase(),                    // lowercase
+        input.split(' ').map(word =>           // Title Case
+            word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        ).join(' '),
+        input.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => // camelCase
+            index === 0 ? word.toLowerCase() : word.toUpperCase()
+        ).replace(/\s+/g, ''),
+        input.toLowerCase().replace(/\s+/g, '_') // snake_case
+    ];
+    
+    output.value = cases[caseIndex % cases.length];
+    caseIndex++;
+}
+
+// Reverse Text
+function reverseText() {
+    const input = document.getElementById('textInput').value;
+    const output = document.getElementById('output');
+    
+    if (!input) {
+        output.value = '';
+        return;
+    }
+    
+    output.value = input.split('').reverse().join('');
+}
+
+// Regex Escape
+function escapeRegex() {
+    const input = document.getElementById('textInput').value;
+    const output = document.getElementById('output');
+    
+    if (!input) {
+        output.value = '';
+        return;
+    }
+    
+    // Check if input is already escaped (contains many backslashes)
+    if (input.includes('\\') && input.match(/\\/g).length > input.length * 0.2) {
+        // Unescape - remove backslashes before special characters
+        output.value = input.replace(/\\(.)/g, '$1');
+    } else {
+        // Escape special regex characters
+        output.value = input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+}
+
+// Color Converter
+function convertColor() {
+    const input = document.getElementById('textInput').value.trim();
+    const output = document.getElementById('output');
+    
+    if (!input) {
+        output.value = '';
+        return;
+    }
+    
+    try {
+        // HEX to RGB
+        if (/^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(input)) {
+            const hex = input.replace('#', '');
+            const r = parseInt(hex.length === 3 ? hex[0] + hex[0] : hex.substr(0, 2), 16);
+            const g = parseInt(hex.length === 3 ? hex[1] + hex[1] : hex.substr(2, 2), 16);
+            const b = parseInt(hex.length === 3 ? hex[2] + hex[2] : hex.substr(4, 2), 16);
+            output.value = `rgb(${r}, ${g}, ${b})`;
+            return;
+        }
+        
+        // RGB to HEX
+        const rgbMatch = input.match(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/);
+        if (rgbMatch) {
+            const r = parseInt(rgbMatch[1]);
+            const g = parseInt(rgbMatch[2]);
+            const b = parseInt(rgbMatch[3]);
+            const hex = ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+            output.value = `#${hex}`;
+            return;
+        }
+        
+        // HSL to RGB (basic conversion)
+        const hslMatch = input.match(/hsl\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/);
+        if (hslMatch) {
+            const h = parseInt(hslMatch[1]) / 360;
+            const s = parseInt(hslMatch[2]) / 100;
+            const l = parseInt(hslMatch[3]) / 100;
+            
+            const hslToRgb = (h, s, l) => {
+                let r, g, b;
+                if (s === 0) {
+                    r = g = b = l;
+                } else {
+                    const hue2rgb = (p, q, t) => {
+                        if (t < 0) t += 1;
+                        if (t > 1) t -= 1;
+                        if (t < 1/6) return p + (q - p) * 6 * t;
+                        if (t < 1/2) return q;
+                        if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                        return p;
+                    };
+                    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                    const p = 2 * l - q;
+                    r = hue2rgb(p, q, h + 1/3);
+                    g = hue2rgb(p, q, h);
+                    b = hue2rgb(p, q, h - 1/3);
+                }
+                return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+            };
+            
+            const [r, g, b] = hslToRgb(h, s, l);
+            output.value = `rgb(${r}, ${g}, ${b})`;
+            return;
+        }
+        
+        output.value = 'Invalid color format';
+    } catch (e) {
+        output.value = 'Invalid color format';
+    }
+}
+
 // Clear fields for Conversion Suite
 function clearFields() {
     const elementsToClear = [
