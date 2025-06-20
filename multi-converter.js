@@ -304,84 +304,217 @@ function escapeRegex() {
     }
 }
 
-// Color Converter
-function convertColor() {
-    const input = document.getElementById('textInput').value.trim();
-    const output = document.getElementById('output');
-    
-    if (!input) {
-        output.value = '';
-        return;
-    }
-    
-    try {
-        // HEX to RGB
-        if (/^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(input)) {
-            const hex = input.replace('#', '');
-            const r = parseInt(hex.length === 3 ? hex[0] + hex[0] : hex.substr(0, 2), 16);
-            const g = parseInt(hex.length === 3 ? hex[1] + hex[1] : hex.substr(2, 2), 16);
-            const b = parseInt(hex.length === 3 ? hex[2] + hex[2] : hex.substr(4, 2), 16);
-            output.value = `rgb(${r}, ${g}, ${b})`;
-            return;
-        }
-        
-        // RGB to HEX
-        const rgbMatch = input.match(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/);
-        if (rgbMatch) {
-            const r = parseInt(rgbMatch[1]);
-            const g = parseInt(rgbMatch[2]);
-            const b = parseInt(rgbMatch[3]);
-            const hex = ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
-            output.value = `#${hex}`;
-            return;
-        }
-        
-        // HSL to RGB (basic conversion)
-        const hslMatch = input.match(/hsl\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/);
-        if (hslMatch) {
-            const h = parseInt(hslMatch[1]) / 360;
-            const s = parseInt(hslMatch[2]) / 100;
-            const l = parseInt(hslMatch[3]) / 100;
+// Color Converter with Visual Preview
+        function convertColor() {
+            const input = document.getElementById('textInput').value.trim();
+            const output = document.getElementById('output');
+            const preview = document.getElementById('colorPreview');
+            const swatch = document.getElementById('colorSwatch');
+            const info = document.getElementById('colorInfo');
             
-            const hslToRgb = (h, s, l) => {
-                let r, g, b;
-                if (s === 0) {
-                    r = g = b = l;
-                } else {
-                    const hue2rgb = (p, q, t) => {
-                        if (t < 0) t += 1;
-                        if (t > 1) t -= 1;
-                        if (t < 1/6) return p + (q - p) * 6 * t;
-                        if (t < 1/2) return q;
-                        if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-                        return p;
-                    };
-                    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-                    const p = 2 * l - q;
-                    r = hue2rgb(p, q, h + 1/3);
-                    g = hue2rgb(p, q, h);
-                    b = hue2rgb(p, q, h - 1/3);
+            if (!input) {
+                output.value = '';
+                preview.style.display = 'none';
+                return;
+            }
+            
+            try {
+                let color = null;
+                let convertedValue = '';
+                
+                // HEX to RGB
+                if (/^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(input)) {
+                    const hex = input.replace('#', '');
+                    const r = parseInt(hex.length === 3 ? hex[0] + hex[0] : hex.substr(0, 2), 16);
+                    const g = parseInt(hex.length === 3 ? hex[1] + hex[1] : hex.substr(2, 2), 16);
+                    const b = parseInt(hex.length === 3 ? hex[2] + hex[2] : hex.substr(4, 2), 16);
+                    color = { r, g, b };
+                    convertedValue = `rgb(${r}, ${g}, ${b})`;
                 }
-                return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
-            };
-            
-            const [r, g, b] = hslToRgb(h, s, l);
-            output.value = `rgb(${r}, ${g}, ${b})`;
-            return;
+                
+                // RGB to HEX
+                const rgbMatch = input.match(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/);
+                if (rgbMatch) {
+                    const r = parseInt(rgbMatch[1]);
+                    const g = parseInt(rgbMatch[2]);
+                    const b = parseInt(rgbMatch[3]);
+                    color = { r, g, b };
+                    const hex = ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+                    convertedValue = `#${hex}`;
+                }
+                
+                // HSL to RGB
+                const hslMatch = input.match(/hsl\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/);
+                if (hslMatch) {
+                    const h = parseInt(hslMatch[1]) / 360;
+                    const s = parseInt(hslMatch[2]) / 100;
+                    const l = parseInt(hslMatch[3]) / 100;
+                    
+                    const [r, g, b] = hslToRgb(h, s, l);
+                    color = { r, g, b };
+                    convertedValue = `rgb(${r}, ${g}, ${b})`;
+                }
+                
+                if (color) {
+                    output.value = convertedValue;
+                    showColorPreview(color);
+                } else {
+                    output.value = 'Invalid color format';
+                    preview.style.display = 'none';
+                }
+            } catch (e) {
+                output.value = 'Invalid color format';
+                preview.style.display = 'none';
+            }
         }
-        
-        output.value = 'Invalid color format';
-    } catch (e) {
-        output.value = 'Invalid color format';
-    }
-}
+
+        function showColorPreview(color) {
+            const preview = document.getElementById('colorPreview');
+            const swatch = document.getElementById('colorSwatch');
+            const info = document.getElementById('colorInfo');
+            
+            const { r, g, b } = color;
+            const rgbColor = `rgb(${r}, ${g}, ${b})`;
+            const hexColor = `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
+            const hsl = rgbToHsl(r, g, b);
+            const hslColor = `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`;
+            
+            // Set swatch color
+            swatch.style.backgroundColor = rgbColor;
+            
+            // Create color info
+            info.innerHTML = `
+                <div class="color-value">
+                    <strong>HEX</strong>
+                    ${hexColor}
+                    <button class="copy-button" onclick="copyColorValue('${hexColor}')">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+                <div class="color-value">
+                    <strong>RGB</strong>
+                    ${rgbColor}
+                    <button class="copy-button" onclick="copyColorValue('${rgbColor}')">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+                <div class="color-value">
+                    <strong>HSL</strong>
+                    ${hslColor}
+                    <button class="copy-button" onclick="copyColorValue('${hslColor}')">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+                <div class="color-value">
+                    <strong>RGB Values</strong>
+                    R:${r} G:${g} B:${b}
+                    <button class="copy-button" onclick="copyColorValue('${r}, ${g}, ${b}')">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+            `;
+            
+            preview.style.display = 'block';
+        }
+
+
+        function copyColorValue(value) {
+            navigator.clipboard.writeText(value).then(() => {
+                // Visual feedback
+                const button = event.target.closest('.copy-button');
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                }, 1000);
+            });
+        }
+
+        // function handleColorInput() {
+        //     const input = document.getElementById('textInput').value.trim();
+        //     // Auto-detect if input looks like a color and show preview
+        //     if (isColorFormat(input)) {
+        //         convertColor();
+        //     } else {
+        //         document.getElementById('colorPreview').style.display = 'none';
+        //     }
+        // }
+
+        // function isColorFormat(input) {
+        //     return /^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(input) ||
+        //            /rgb\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)/.test(input) ||
+        //            /hsl\(\s*\d+\s*,\s*\d+%\s*,\s*\d+%\s*\)/.test(input);
+        // }
+
+        function hslToRgb(h, s, l) {
+            let r, g, b;
+            if (s === 0) {
+                r = g = b = l;
+            } else {
+                const hue2rgb = (p, q, t) => {
+                    if (t < 0) t += 1;
+                    if (t > 1) t -= 1;
+                    if (t < 1/6) return p + (q - p) * 6 * t;
+                    if (t < 1/2) return q;
+                    if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                    return p;
+                };
+                const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                const p = 2 * l - q;
+                r = hue2rgb(p, q, h + 1/3);
+                g = hue2rgb(p, q, h);
+                b = hue2rgb(p, q, h - 1/3);
+            }
+            return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+        }
+
+        function rgbToHsl(r, g, b) {
+            r /= 255;
+            g /= 255;
+            b /= 255;
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+
+            if (max === min) {
+                h = s = 0;
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h /= 6;
+            }
+
+            return {
+                h: h * 360,
+                s: s * 100,
+                l: l * 100
+            };
+        }
+
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            element.select();
+            document.execCommand('copy');
+        }
 
 // Clear fields for Conversion Suite
 function clearFields() {
     const elementsToClear = [
         'textInput', 'output', 'apiKeyOutput'
     ];
-    elementsToClear.forEach(id => document.getElementById(id).value = '');
+    elementsToClear.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) element.value = '';
+    });
+    
+    // Hide color preview
+    const colorPreview = document.getElementById('colorPreview');
+    if (colorPreview) colorPreview.style.display = 'none';
 }
 
  // Improved Navigation JavaScript
