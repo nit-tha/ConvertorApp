@@ -253,26 +253,34 @@
                 <button onclick="clearData()" class="clear-button" title="Clear All">Clear</button>
             </div>
         </div>
-        <div id="hexConverter" class="hex-container" style="display: none;">
-            <!-- Input Section -->
+
+     <div id="hexConverter" class="hex-container" style="display: none;">
+    <!-- Encoding/Decoding Section -->
     <div class="container">
         <label for="textInput">Data:</label>
         <input type="text" id="textInput" placeholder="Enter data here" />
-        <div class="tooltip">
-            <button onclick="convertHexText()" title="Hex/Text Convert">Hex/Text</button>
-        </div>
-        <div class="tooltip">
-            <button onclick="convertToBinary()" title="Binary Convert/Decode">Binary</button>
-        </div>
-        <div class="tooltip">
-            <button onclick="encodeToBase64()" title="Base64 Encode/Decode">Base64</button>
+        <div class="converter-buttons">            
         </div>
     </div>
+
+    <!-- Text Transformation, JWT & Regex  Section -->
+    <div class="container" style="display: flex; justify-content: center;">
+        <div class="converter-buttons">
+            <button onclick="convertHexText()" title="Hex/Text Convert">Hex/Text</button>
+            <button onclick="convertToBinary()" title="Binary Convert/Decode">Binary</button>
+            <button onclick="encodeToBase64()" title="Base64 Encode/Decode">Base64</button>
+            <button onclick="convertCase()" title="Case Converter">Case</button>
+            <button onclick="reverseText()" title="Reverse Text">Reverse</button>
+            <button onclick="convertColor()" title="Color Converter">Color</button>
+            <button onclick="decodeJWT()" title="JWT Decode">JWT</button>
+            <button onclick="escapeRegex()" title="Regex Escape">Regex</button>
+        </div>
+    </div>      
 
     <!-- Single Output Section -->
     <div class="container">
         <label for="output">Output:</label>
-        <input type="text" id="output" placeholder="Converted output here" />
+        <input type="text" id="output" placeholder="Converted output here" readonly />
         <button onclick="copyToClipboard('output')" title="Copy">
             <i class="fas fa-copy"></i>
         </button>
@@ -292,20 +300,21 @@
         <button onclick="clearFields()" title="Clear All">Clear</button>
     </div>
 </div>
-       <!-- XML Section -->
-        <div id="xmlToBlockSection" class="converter-container" style="display: none;">
-            <h2>XML to Block XML Converter</h2>
-            <textarea id="fullXml" class="pasteable" placeholder="Paste your full XML here..." style="width: 449px; height: 160px;"></textarea>
-            <div style="display: flex; gap: 10px; margin-bottom: 20px;">      
-            <button onclick="convertToBlock()" title="Convert's FullXml to Block">Convert</button>
-            <button onclick="clearText('fullXml', 'blockXml', 'errorMsg')">Clear</button>
-            </div>  
-            <h3>Block XML Output</h3>
-            <textarea id="blockXml" readonly style="width: 826px; height: 93px;"></textarea>
-            <button onclick="copyToClipboard('blockXml')" title="Copy">
-                <i class="fas fa-copy"></i>
-            </button>
-            <p class="error" id="errorMsg"></p>
+       
+ <!-- XML Section -->
+ <div id="xmlToBlockSection" class="converter-container" style="display: none;">
+        <h2>XML to Block XML Converter</h2>
+        <textarea id="fullXml" class="pasteable" placeholder="Paste your full XML here..." style="width: 449px; height: 160px;"></textarea>
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">      
+        <button onclick="convertToBlock()" title="Convert's FullXml to Block">Convert</button>
+        <button onclick="clearText('fullXml', 'blockXml', 'errorMsg')">Clear</button>
+        </div>  
+        <h3>Block XML Output</h3>
+        <textarea id="blockXml" readonly style="width: 826px; height: 93px;"></textarea>
+        <button onclick="copyToClipboard('blockXml')" title="Copy">
+            <i class="fas fa-copy"></i>
+        </button>
+        <p class="error" id="errorMsg"></p>
         </div>
         <div id="queryToJsonSection" class="converter-container" style="display: none;">
             <h2>Web Query to JSON Utility</h2>
@@ -415,7 +424,7 @@
     </div>
 
         <footer>
-            <span>Version 2.1.47 (NT)</span>
+            <span>Version 2.1.48 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
