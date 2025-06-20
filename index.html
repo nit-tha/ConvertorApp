@@ -254,16 +254,12 @@
             </div>
         </div>
 
-     <div id="hexConverter" class="hex-container" style="display: none;">
-    <!-- Encoding/Decoding Section -->
+    <div id="hexConverter" class="hex-container" style="display: none;">
     <div class="container">
         <label for="textInput">Data:</label>
-        <input type="text" id="textInput" placeholder="Enter data here" />
-        <div class="converter-buttons">            
-        </div>
+        <input type="text" id="textInput" placeholder="Enter data here" oninput="handleColorInput()" />
     </div>
 
-    <!-- Text Transformation, JWT & Regex  Section -->
     <div class="container" style="display: flex; justify-content: center;">
         <div class="converter-buttons">
             <button onclick="convertHexText()" title="Hex/Text Convert">Hex/Text</button>
@@ -275,9 +271,8 @@
             <button onclick="decodeJWT()" title="JWT Decode">JWT</button>
             <button onclick="escapeRegex()" title="Regex Escape">Regex</button>
         </div>
-    </div>      
+    </div>
 
-    <!-- Single Output Section -->
     <div class="container">
         <label for="output">Output:</label>
         <input type="text" id="output" placeholder="Converted output here" readonly />
@@ -286,7 +281,12 @@
         </button>
     </div>
 
-    <!-- API Key Section -->
+    <div class="color-preview" id="colorPreview" style="display: none;">
+        <label>Color Preview:</label>
+        <div class="color-swatch" id="colorSwatch"></div>
+        <div class="color-info" id="colorInfo"></div>
+    </div>
+
     <div class="container">
         <button onclick="generateApiKey()" title="Generate API Key">API Key</button>
         <input type="text" id="apiKeyOutput" placeholder="Generated API Key" readonly>
@@ -295,7 +295,6 @@
         </button>
     </div>
 
-    <!-- Clear Button -->
     <div class="buttons">
         <button onclick="clearFields()" title="Clear All">Clear</button>
     </div>
@@ -424,7 +423,7 @@
     </div>
 
         <footer>
-            <span>Version 2.1.48 (NT)</span>
+            <span>Version 2.1.49 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
