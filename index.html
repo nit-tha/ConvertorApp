@@ -270,6 +270,7 @@
             <button onclick="convertColor()" title="Color Converter">Color</button>
             <button onclick="decodeJWT()" title="JWT Decode">JWT</button>
             <button onclick="escapeRegex()" title="Regex Escape">Regex</button>
+            <button onclick="convertMarkdown()" title="Markdown/HTML Converter">MD⇄HTML</button>
         </div>
     </div>
 
@@ -280,6 +281,24 @@
             <i class="fas fa-copy"></i>
         </button>
     </div>
+
+      <!-- Markdown/HTML Converter Section -->
+      <div class="markdown-converter" id="markdownConverter" style="display: none;">
+        <div class="container">
+          <label for="markdownInput">Input:</label>
+          <textarea id="markdownInput" placeholder="Enter Markdown or HTML" rows="6" style="width: 100%; resize: vertical;" oninput="convertMarkdownLive()"></textarea>
+        </div>
+        <div class="container" style="text-align: center;">
+          <button onclick="toggleConversionMode()" id="conversionModeBtn">Mode: MD → HTML</button>
+        </div>
+        <div class="container">
+          <label for="markdownOutput">Output:</label>
+          <textarea id="markdownOutput" readonly rows="6" style="width: 100%; resize: vertical;"></textarea>
+          <button onclick="copyToClipboard('markdownOutput')" title="Copy"> 
+            <i class="fas fa-copy"></i> 
+          </button>
+        </div>
+      </div>
 
     <div class="color-preview" id="colorPreview" style="display: none;">
         <label>Color Preview:</label>
@@ -423,7 +442,7 @@
     </div>
 
         <footer>
-            <span>Version 2.1.50 (NT)</span>
+            <span>Version 2.1.51 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
