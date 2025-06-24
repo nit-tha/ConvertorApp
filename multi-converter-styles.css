@@ -378,12 +378,11 @@ body {
 /* Flex layout for time zones */
 .timezone-grid {
     display: flex;
-    justify-content: center; /* Use space-around for equal spacing */
-    align-items: center; /* Center items vertically */
-    max-height: 40px; /* Set a max height to restrict space taken */
-    overflow: hidden; /* Hide overflow if content exceeds */
-    margin-top: 10px; /* Add space above to separate from epoch time */
-    gap:20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px 20px;
 }
 
 /* Each timezone item */
