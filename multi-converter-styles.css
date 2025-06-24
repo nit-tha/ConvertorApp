@@ -1114,3 +1114,23 @@ nav a.active {
                 max-height: 300px;
             }
         }
+
+        .markdown-converter {
+          margin: 10px 0;
+          padding: 10px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          background: #f9f9f9;
+        }
+
+        .markdown-converter textarea {
+          border: 1px solid #ccc;
+          border-radius: 3px;
+          padding: 8px;
+          font-family: monospace;
+        }     
+
+        #conversionModeBtn:hover {
+        background-color: #2c3e50;
+        color: white;
+        }
