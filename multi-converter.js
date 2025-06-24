@@ -618,21 +618,150 @@ function escapeRegex() {
             element.select();
             document.execCommand('copy');
         }
+ let isMarkdownToHtml = true;
 
-// Clear fields for Conversion Suite
-function clearFields() {
-    const elementsToClear = [
-        'textInput', 'output', 'apiKeyOutput'
-    ];
-    elementsToClear.forEach(id => {
-        const element = document.getElementById(id);
-        if (element) element.value = '';
-    });
-    
-    // Hide color preview
-    const colorPreview = document.getElementById('colorPreview');
-    if (colorPreview) colorPreview.style.display = 'none';
-}
+        function convertMarkdown() {
+          const markdownConverter = document.getElementById('markdownConverter');
+          const colorPreview = document.getElementById('colorPreview');
+          
+          // Hide color preview and show markdown converter
+          colorPreview.style.display = 'none';
+          markdownConverter.style.display = markdownConverter.style.display === 'none' ? 'block' : 'none';
+          
+          // Clear output field
+          document.getElementById('output').value = '';
+          
+          // Convert current input if any
+          convertMarkdownLive();
+        }
+
+        function toggleConversionMode() {
+          isMarkdownToHtml = !isMarkdownToHtml;
+          const btn = document.getElementById('conversionModeBtn');
+          btn.textContent = isMarkdownToHtml ? 'Mode: MD → HTML' : 'Mode: HTML → MD';
+          
+          // Swap input and output
+          const input = document.getElementById('markdownInput');
+          const output = document.getElementById('markdownOutput');
+          const temp = input.value;
+          input.value = output.value;
+          output.value = temp;
+          
+          convertMarkdownLive();
+        }
+
+        function convertMarkdownLive() {
+          const input = document.getElementById('markdownInput').value;
+          const output = document.getElementById('markdownOutput');
+          
+          if (!input.trim()) {
+            output.value = '';
+            return;
+          }
+          
+          try {
+            if (isMarkdownToHtml) {
+              output.value = markdownToHtml(input);
+            } else {
+              output.value = htmlToMarkdown(input);
+            }
+          } catch (error) {
+            output.value = 'Error: Invalid input format';
+          }
+        }
+
+        function markdownToHtml(markdown) {
+          let html = markdown
+            // Headers
+            .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+            .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+            .replace(/^# (.*$)/gm, '<h1>$1</h1>')
+            
+            // Bold and Italic
+            .replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            
+            // Code
+            .replace(/`(.*?)`/g, '<code>$1</code>')
+            
+            // Links
+            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+            
+            // Lists
+            .replace(/^\* (.*$)/gm, '<li>$1</li>')
+            .replace(/^- (.*$)/gm, '<li>$1</li>')
+            
+            // Line breaks
+            .replace(/\n\n/g, '</p><p>')
+            .replace(/\n/g, '<br>');
+            
+          // Wrap in paragraphs
+          if (html && !html.includes('<h') && !html.includes('<li>')) {
+            html = '<p>' + html + '</p>';
+          }
+          
+          // Wrap lists in ul tags
+          html = html.replace(/(<li>.*?<\/li>)/gs, '<ul>$1</ul>');
+          
+          return html;
+        }
+
+        function htmlToMarkdown(html) {
+          let markdown = html
+            // Headers
+            .replace(/<h1>(.*?)<\/h1>/g, '# $1')
+            .replace(/<h2>(.*?)<\/h2>/g, '## $1')
+            .replace(/<h3>(.*?)<\/h3>/g, '### $1')
+            
+            // Bold and Italic
+            .replace(/<strong><em>(.*?)<\/em><\/strong>/g, '***$1***')
+            .replace(/<em><strong>(.*?)<\/strong><\/em>/g, '***$1***')
+            .replace(/<strong>(.*?)<\/strong>/g, '**$1**')
+            .replace(/<b>(.*?)<\/b>/g, '**$1**')
+            .replace(/<em>(.*?)<\/em>/g, '*$1*')
+            .replace(/<i>(.*?)<\/i>/g, '*$1*')
+            
+            // Code
+            .replace(/<code>(.*?)<\/code>/g, '`$1`')
+            
+            // Links
+            .replace(/<a href="([^"]+)">(.*?)<\/a>/g, '[$2]($1)')
+            
+            // Lists
+            .replace(/<li>(.*?)<\/li>/g, '* $1')
+            .replace(/<ul>/g, '').replace(/<\/ul>/g, '')
+            .replace(/<ol>/g, '').replace(/<\/ol>/g, '')
+            
+            // Paragraphs and line breaks
+            .replace(/<p>/g, '').replace(/<\/p>/g, '\n\n')
+            .replace(/<br>/g, '\n')
+            .replace(/<br\/>/g, '\n')
+            
+            // Clean up extra whitespace
+            .replace(/\n\n\n+/g, '\n\n')
+            .trim();
+            
+          return markdown;
+        }
+
+        // Clear fields for Conversion Suite
+        function clearFields() {
+            const elementsToClear = [
+                'textInput', 'output', 'apiKeyOutput', 'markdownInput', 'markdownOutput'
+            ];
+            elementsToClear.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.value = '';
+            });
+            
+            // Hide color preview and markdown converter
+            const colorPreview = document.getElementById('colorPreview');
+            if (colorPreview) colorPreview.style.display = 'none';
+            
+            const markdownConverter = document.getElementById('markdownConverter');
+            if (markdownConverter) markdownConverter.style.display = 'none';
+        }
 
  // Improved Navigation JavaScript
         function showSection(targetSection) {
