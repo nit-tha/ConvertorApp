@@ -1219,3 +1219,16 @@ nav a.active {
             margin-top: 10px;
         }
     }
+
+ /* Make button group wrap on small screens */
+    @media (max-width: 600px) {
+        #queryToJsonSection div[style*="display: flex"] {
+            flex-wrap: wrap !important;
+            justify-content: flex-start;
+        }
+
+        #queryToJsonSection button {
+            flex: 1 1 45%;
+            margin-bottom: 10px;
+        }
+    }
