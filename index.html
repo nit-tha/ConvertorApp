@@ -49,7 +49,7 @@
    <body>
         <div class="epoch-container">
     <div class="inline" id="clocktext">
-        The current epoch time is&nbsp;
+        Epoch Now&nbsp;
         <div id="ecclock" class="ecclock">Loading...</div>
         <button class="copy-button" onclick="copyEpoch()" title="Copy">
             <i class="fas fa-copy"></i>
@@ -336,7 +336,7 @@
         </div>
         <div id="queryToJsonSection" class="converter-container" style="display: none;">
             <h2>Web Query to JSON Utility</h2>
-            <textarea id="queryString" placeholder="Paste your query string here..." style="width: 449px; height: 160px;"></textarea>
+            <textarea id="queryString" placeholder="Paste your query string here..." style="width: 100%; height: 160px; box-sizing: border-box;"></textarea>
             <div style="display: flex; gap: 10px; margin-bottom: 20px;">      
                 <button onclick="convertToJson()">Convert</button>
                 <button onclick="urlEncodeDecode()">Url Encode-Decode</button>            
@@ -344,7 +344,7 @@
                 <button onclick="clearText('queryString', 'jsonOutput', 'jsonErrorMsg')">Clear</button>  
             </div>         
             <h3>Processed Output</h3>
-            <textarea id="jsonOutput" readonly style="width: 826px; height: 93px;"></textarea>
+            <textarea id="jsonOutput" readonly style="width: 100%; height: 93px; box-sizing: border-box;"></textarea>
             <button onclick="copyToClipboard('jsonOutput')" title="Copy">
                 <i class="fas fa-copy"></i>
             </button>
@@ -442,7 +442,7 @@
     </div>
 
         <footer>
-            <span>Version 2.1.55 (NT)</span>
+            <span>Version 2.1.56 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
