@@ -93,6 +93,7 @@
         <a id="queryToJsonLink" href="#" data-section="queryToJsonSection">JSON Conversion</a>
         <a id="diffcomparerLink" href="#" data-section="diffcomparerSection">Content Comparer</a>
         <a id="codeBeautifierLink" href="#" data-section="codeFormatterSection">Code Refiner</a>
+        <a id="testCaseBuilderLink" href="#" data-section="testCaseBuilderSection">Case Master</a>      
     </nav>
 
     <!-- === SQL & Epoch Conversion Tools === -->
@@ -257,7 +258,7 @@
 </div>
 
             <div class="container">
-                <button onclick="clearData()" class="clear-button" title="Clear All">Clear</button>
+                <button onclick="clearData()" class="clear-button" title="Clear All">🗑️ Clear</button>
             </div>
         </div>
 
@@ -323,7 +324,7 @@
     </div>
 
     <div class="buttons">
-        <button onclick="clearFields()" title="Clear All">Clear</button>
+        <button onclick="clearFields()" title="Clear All">🗑️ Clear</button>
     </div>
 </div>
        
@@ -333,7 +334,7 @@
         <textarea id="fullXml" class="pasteable" placeholder="Paste your full XML here..." style="width: 449px; height: 160px;"></textarea>
         <div style="display: flex; gap: 10px; margin-bottom: 20px;">      
         <button onclick="convertToBlock()" title="Convert's FullXml to Block">Convert</button>
-        <button onclick="clearText('fullXml', 'blockXml', 'errorMsg')">Clear</button>
+        <button onclick="clearText('fullXml', 'blockXml', 'errorMsg')">🗑️ Clear</button>
         </div>  
         <h3>Block XML Output</h3>
         <textarea id="blockXml" readonly style="width: 826px; height: 93px;"></textarea>
@@ -351,7 +352,7 @@
                 <button onclick="convertToJson()">Convert</button>
                 <button onclick="urlEncodeDecode()">Url Encode-Decode</button>            
                 <button onclick="validateJson()">Validate</button>
-                <button onclick="clearText('queryString', 'jsonOutput', 'jsonErrorMsg')">Clear</button>  
+                <button onclick="clearText('queryString', 'jsonOutput', 'jsonErrorMsg')">🗑️ Clear</button>  
             </div>         
             <h3>Processed Output</h3>
             <textarea id="jsonOutput" readonly style="width: 100%; height: 93px; box-sizing: border-box;"></textarea>
@@ -377,7 +378,7 @@
     
         <div style="display: flex; gap: 10px; margin: 20px 0; justify-content: center;">
             <button onclick="compareTexts()" title="Compare the two texts">Compare</button>
-            <button onclick="clearComparison()" title="Clear all content">Clear</button>            
+            <button onclick="clearComparison()" title="Clear all content">🗑️ Clear</button>            
         </div>
         
         <div id="comparisonStats" class="stats-container" style="display: none;">
@@ -436,7 +437,7 @@
             </select>
             <button onclick="formatCode()" title="Format and beautify the code">Format Code</button>
             <button onclick="minifyCode()" title="Minify/compress the code">Minify Code</button>
-            <button onclick="clearFormatter()" title="Clear all content">Clear</button>
+            <button onclick="clearFormatter()" title="Clear all content">🗑️ Clear</button>
         </div>
         
         <div class="formatter-output-container">
@@ -452,9 +453,135 @@
         <div id="formatterMessage" style="display: none;"></div>
     </div>
 
+  <!-- Test-Case Text ➜ HTML Table / Excel Export -->
+  <!-- Format Converter Section -->
+  <div id="testCaseBuilderSection" class="converter-container" style="display:none;">
+    <div id="formatConverterSection">
+        <h2>Format Converter (Descriptive → Pipe-Separated)</h2>
+        
+        <!-- Sample Data Button -->
+        <div class="button-group">
+            <button onclick="loadConverterSampleData()" class="secondary-btn">Load Sample Format</button>
+            <button onclick="showConverterInstructions()" class="secondary-btn">Show Instructions</button>
+        </div>
+        
+        <!-- Instructions -->
+        <div id="converterInstructions" style="display: none;" class="status-info">
+            <strong>Instructions:</strong><br>
+            1. Paste your descriptive test case format in the input area<br>
+            2. Format should include: Test ID, Objective, Method, Headers, Expected Result, Status Code<br>
+            3. Click "Convert to Pipe Format" to transform the data<br>
+            4. Copy the converted output and use it in the Test Case Builder below<br>
+            5. You can customize default values for Category, Priority, etc.
+        </div>
+        
+        <!-- Input -->
+        <textarea id="formatInput"
+                  placeholder="Paste your descriptive test case format here...&#10;&#10;Example:&#10;TC-AUTH-001: Valid Basic Authentication&#10;Objective: Verify successful authentication with valid credentials&#10;Method: POST/GET to both endpoints&#10;Headers: Valid API_KEY and Basic Authorization&#10;Expected Result: Authentication successful, proceed to endpoint logic&#10;Status Code: 200 (if request is otherwise valid)"
+                  style="width:100%;height:200px;box-sizing:border-box;"></textarea>
+        
+        <!-- Default Values -->
+        <div style="margin: 10px 0;">
+            <label style="display: inline-block; width: 100px;">Default Category:</label>
+            <input type="text" id="defaultCategory" value="Functional" style="margin-right: 20px;">
+            <label style="display: inline-block; width: 100px;">Default Priority:</label>
+            <input type="text" id="defaultPriority" value="High" style="margin-right: 20px;">
+            <label style="display: inline-block; width: 100px;">Default Endpoint:</label>
+            <input type="text" id="defaultEndpoint" value="Both endpoints">
+        </div>
+        
+        <!-- Buttons -->
+        <div class="button-group">
+            <button onclick="convertFormat()" class="convert-btn">🔄 Convert to Pipe Format</button>
+            <button onclick="clearConverter()" class="clear-btn">🗑️ Clear</button>
+            <button onclick="copyConvertedData()" class="secondary-btn">📋 Copy Converted Data</button>
+        </div>
+        
+        <!-- Status Messages -->
+        <div id="converterStatusMessage"></div>
+        
+        <!-- Output -->
+        <h3 style="margin-top:20px;">📊 Converted Output</h3>
+        <textarea id="convertedOutput" 
+                  readonly
+                  style="width:100%;height:150px;box-sizing:border-box;background-color:#f8f9fa;"
+                  placeholder="Converted pipe-separated format will appear here..."></textarea>
+        
+        <!-- Sample Data Template for Converter -->
+        <div class="sample-data" style="display:none;" id="converterSampleDataTemplate">
+            TC-AUTH-001: Valid Basic Authentication
+            Objective: Verify successful authentication with valid credentials
+            Method: POST/GET to both endpoints
+            Headers: Valid API_KEY and Basic Authorization
+            Expected Result: Authentication successful, proceed to endpoint logic
+            Status Code: 200 (if request is valid)
+
+            TC-AUTH-002: Invalid Username/Password
+            Objective: Verify proper handling of invalid credentials
+            Method: POST/GET to both endpoints
+            Headers: Invalid API_KEY or Basic Authorization
+            Expected Result: Authentication failure with 2-second timeout
+            Status Code: 401 Unauthorized
+        </div>
+    </div>
+
+    <!-- Test-Case Text ➜ HTML Table / Excel Export -->
+    <div id="textToExcelSection">
+        <h2>🧪 Text → HTML / Excel (Test-Case Builder)</h2>
+        
+        <!-- Sample Data Button -->
+        <div class="button-group">
+            <button onclick="loadSampleData()" class="secondary-btn">Load Sample Data</button>
+            <button onclick="showInstructions()" class="secondary-btn">Show Instructions</button>
+        </div>
+        
+        <!-- Instructions -->
+        <div id="instructions" style="display: none;" class="status-info">
+            <strong>Instructions:</strong><br>
+            1. Enter test case data in the format: TestID|TestName|Category|Priority|Objective|Endpoint|Method|Prerequisites|TestData|ExpectedResult|ExpectedStatus<br>
+            2. Use pipe (|) to separate columns<br>
+            3. Each line represents one test case<br>
+            4. You can also paste tab-separated data from Excel<br>
+            5. Click "Preview Table" to see the HTML table<br>
+            6. Click "Download Excel" to export as Excel file
+        </div>
+        
+        <!-- Input -->
+        <textarea id="tcInput"
+                  placeholder="Paste test case data here...&#10;Format: TestID|TestName|Category|Priority|Objective|Endpoint|Method|Prerequisites|TestData|ExpectedResult|ExpectedStatus&#10;&#10;Example:&#10;TC-001|Valid Authentication|Auth|High|Test valid login|/login|POST|Valid credentials|user:pass|Success|200&#10;TC-002|Invalid Password|Auth|High|Test invalid login|/login|POST|Invalid credentials|user:wrong|Failure|401"
+                  style="width:100%;height:160px;box-sizing:border-box;"></textarea>
+        
+        <!-- Buttons -->
+        <div class="button-group">
+            <button onclick="previewTestCases()">📋 Preview Table</button>
+            <button onclick="exportTestCases()">📊 Download Excel</button>
+            <button onclick="clearData()" class="clear-btn">🗑️ Clear</button>
+            <button onclick="copyTableToClipboard()" class="secondary-btn">📋 Copy Table</button>
+        </div>
+        
+        <!-- Status Messages -->
+        <div id="statusMessage"></div>
+        
+        <!-- Preview -->
+        <h3 style="margin-top:20px;">📊 Preview</h3>
+        <div id="tcPreview" style="overflow:auto;border:1px solid #ccc;padding:6px;min-height:100px;">
+            <p style="color:#666;text-align:center;margin:20px;">Table preview will appear here...</p>
+        </div>
+        
+        <!-- Sample Data Template -->
+        <div class="sample-data" style="display:none;" id="sampleDataTemplate">
+            TC-AUTH-001|Valid Basic Authentication|Authentication|High|Verify successful authentication with valid credentials|Both endpoints|POST|Valid API key and credentials available|Headers: Valid API_KEY and Basic Authorization|Authentication successful, proceed to endpoint logic|200
+            TC-AUTH-002|Invalid Username/Password|Authentication|High|Verify proper handling of invalid credentials|Both endpoints|POST|Invalid credentials prepared|Headers: Invalid API_KEY or Basic Authorization|Authentication failure with 2-second timeout|401
+            TC-SET-001|Valid WWD Confirmation|Functional|High|Verify successful WWD event confirmation|setVerificationMsg|POST|Valid auth, active WWD device available|{"DeviceID": 20106, "MsgVerified": 1}|TCPBC command $20106,20,msgVerified=1 sent|200
+            TC-SET-002|Valid WWD Cancellation|Functional|High|Verify successful WWD event cancellation|setVerificationMsg|POST|Valid auth, active WWD device available|{"DeviceID": 20106, "MsgVerified": 0}|TCPBC command $20106,20,msgVerified=0 sent|200
+            TC-GET-001|Get All Active Devices|Functional|High|Verify retrieval of all active WWD devices|getActiveDevices|POST|Valid auth, active WWD devices exist|{"DeviceID": null} or {}|List of devices with alarm status = 6 (Active)|200
+        </div>
+    </div>
+</div>
+
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.57 (NT)</span>
+            <span>Version 2.1.60 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
