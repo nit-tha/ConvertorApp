@@ -766,7 +766,7 @@ function escapeRegex() {
  // Improved Navigation JavaScript
         function showSection(targetSection) {
             // Hide all sections
-            const sections = ['sqlConverter', 'hexConverter', 'xmlToBlockSection', 'queryToJsonSection', 'diffcomparerSection', 'codeFormatterSection'];
+            const sections = ['sqlConverter', 'hexConverter', 'xmlToBlockSection', 'queryToJsonSection', 'diffcomparerSection', 'codeFormatterSection','testCaseBuilderSection'];
             sections.forEach(section => {
                 const element = document.getElementById(section);
                 if (element) {
@@ -2426,3 +2426,371 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Case Master secion
+// Global variables
+        let currentTableData = [];        
+        // Show status message
+        function showStatus(message, type = 'info', elementId = 'statusMessage') {
+            const statusDiv = document.getElementById(elementId);
+            statusDiv.innerHTML = `<div class="status-${type}">${message}</div>`;
+            setTimeout(() => {
+                statusDiv.innerHTML = '';
+            }, 5000);
+        }
+        
+        // Clear all data 
+        function clearData() {
+            document.getElementById('tcInput').value = '';
+            document.getElementById('tcPreview').innerHTML = '<p style="color:#666;text-align:center;margin:20px;">Table preview will appear here...</p>';
+            currentTableData = [];
+            showStatus('All data cleared successfully!', 'success');
+        }
+        
+        // Clear converter data
+        function clearConverter() {
+            document.getElementById('formatInput').value = '';
+            document.getElementById('convertedOutput').value = '';
+            showStatus('Converter cleared successfully!', 'success', 'converterStatusMessage');
+        }
+        
+        // Load sample data for converter
+        function loadConverterSampleData() {
+            const sampleData = document.getElementById('converterSampleDataTemplate').textContent.trim();
+            document.getElementById('formatInput').value = sampleData;
+            showStatus('Sample descriptive format loaded! Click "Convert to Pipe Format" to convert.', 'info', 'converterStatusMessage');
+        }
+        
+        // Show/hide converter instructions
+        function showConverterInstructions() {
+            const instructions = document.getElementById('converterInstructions');
+            if (instructions.style.display === 'none') {
+                instructions.style.display = 'block';
+            } else {
+                instructions.style.display = 'none';
+            }
+        }
+
+        /*
+        function showConverterInstructions() {
+        // Selects all elements with mutltple IDs
+        const instructions = document.querySelectorAll('#converterInstructions, #formatterInstructions');
+
+        instructions.forEach(instruction => {
+            if (instruction.style.display === 'none') {
+                instruction.style.display = 'block';
+            } else {
+                instruction.style.display = 'none';
+            }
+        });
+        */
+
+        // Convert descriptive format to pipe-separated format
+        function convertFormat() {
+            const inputText = document.getElementById('formatInput').value.trim();
+            if (!inputText) {
+                showStatus('Please enter some test case data to convert.', 'error', 'converterStatusMessage');
+                return;
+            }
+            
+            const defaultCategory = document.getElementById('defaultCategory').value || 'Functional';
+            const defaultPriority = document.getElementById('defaultPriority').value || 'High';
+            const defaultEndpoint = document.getElementById('defaultEndpoint').value || 'Both endpoints';
+            
+            // Split by double newlines to separate test cases
+            const testCaseBlocks = inputText.split(/\n\s*\n/).filter(block => block.trim());
+            const convertedLines = [];
+            
+            testCaseBlocks.forEach(block => {
+                const lines = block.split('\n').map(line => line.trim()).filter(line => line);
+                
+                let testId = '';
+                let testName = '';
+                let objective = '';
+                let method = '';
+                let headers = '';
+                let expectedResult = '';
+                let statusCode = '';
+                
+                lines.forEach(line => {
+                    if (line.match(/^TC-[A-Z0-9-]+:/)) {
+                        const match = line.match(/^(TC-[A-Z0-9-]+):\s*(.+)/);
+                        if (match) {
+                            testId = match[1];
+                            testName = match[2];
+                        }
+                    } else if (line.toLowerCase().startsWith('objective:')) {
+                        objective = line.replace(/^objective:\s*/i, '');
+                    } else if (line.toLowerCase().startsWith('method:')) {
+                        method = line.replace(/^method:\s*/i, '');
+                    } else if (line.toLowerCase().startsWith('headers:')) {
+                        headers = line.replace(/^headers:\s*/i, '');
+                    } else if (line.toLowerCase().startsWith('expected result:')) {
+                        expectedResult = line.replace(/^expected result:\s*/i, '');
+                    } else if (line.toLowerCase().startsWith('status code:')) {
+                        statusCode = line.replace(/^status code:\s*/i, '').replace(/\s*\(.*\)/, ''); // Remove parenthetical content
+                    }
+                });
+                
+                // Extract method type (POST, GET, etc.)
+                let methodType = 'POST';
+                if (method.toLowerCase().includes('get')) methodType = 'GET';
+                else if (method.toLowerCase().includes('put')) methodType = 'PUT';
+                else if (method.toLowerCase().includes('delete')) methodType = 'DELETE';
+                
+                // Create pipe-separated line
+                const pipeData = [
+                    testId,                    // Test ID
+                    testName,                  // Test Name
+                    defaultCategory,           // Category
+                    defaultPriority,           // Priority
+                    objective,                 // Objective
+                    defaultEndpoint,           // Endpoint
+                    methodType,                // Method
+                    headers,                   // Prerequisites (using headers)
+                    headers,                   // Test Data (using headers)
+                    expectedResult,            // Expected Result
+                    statusCode                 // Expected Status
+                ];
+                
+                convertedLines.push(pipeData.join('|'));
+            });
+            
+            const convertedOutput = convertedLines.join('\n');
+            document.getElementById('convertedOutput').value = convertedOutput;
+            
+            showStatus(`Successfully converted ${testCaseBlocks.length} test cases to pipe format!`, 'success', 'converterStatusMessage');
+        }
+        
+        // Copy converted data to clipboard
+        function copyConvertedData() {
+            const convertedData = document.getElementById('convertedOutput').value;
+            if (!convertedData.trim()) {
+                showStatus('No converted data to copy. Please convert some data first.', 'error', 'converterStatusMessage');
+                return;
+            }
+            
+            navigator.clipboard.writeText(convertedData).then(() => {
+                showStatus('Converted data copied to clipboard!', 'success', 'converterStatusMessage');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = convertedData;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showStatus('Converted data copied to clipboard!', 'success', 'converterStatusMessage');
+            });
+        }
+        
+        // Load sample data
+        function loadSampleData() {
+            const sampleData = document.getElementById('sampleDataTemplate').textContent.trim();
+            document.getElementById('tcInput').value = sampleData;
+            showStatus('Sample data loaded! Click "Preview Table" to see the result.', 'info');
+        }
+        
+        // Show/hide instructions
+        function showInstructions() {
+            const instructions = document.getElementById('instructions');
+            if (instructions.style.display === 'none') {
+                instructions.style.display = 'block';
+            } else {
+                instructions.style.display = 'none';
+            }
+        }
+        
+        // Parse input text to table data
+        function parseTestCaseData(text) {
+            if (!text.trim()) {
+                showStatus('Please enter some test case data first.', 'error');
+                return [];
+            }
+            
+            const lines = text.trim().split('\n');
+            const data = [];
+            
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (line) {
+                    // Support both pipe-separated and tab-separated data
+                    let columns;
+                    if (line.includes('\t')) {
+                        columns = line.split('\t');
+                    } else {
+                        columns = line.split('|');
+                    }
+                    
+                    // Ensure we have at least the minimum required columns
+                    while (columns.length < 16) {
+                        columns.push('');
+                    }
+                    
+                    data.push(columns);
+                }
+            }
+            
+            return data;
+        }
+        
+        // Get priority class for styling
+        function getPriorityClass(priority) {
+            switch (priority.toLowerCase()) {
+                case 'high': return 'priority-high';
+                case 'medium': return 'priority-medium';
+                case 'low': return 'priority-low';
+                default: return '';
+            }
+        }
+        
+        // Preview test cases as HTML table
+        function previewTestCases() {
+            const inputText = document.getElementById('tcInput').value;
+            const data = parseTestCaseData(inputText);
+            
+            if (data.length === 0) {
+                return;
+            }
+            
+            currentTableData = data;
+            
+            const headers = [
+                'Test ID', 'Test Case Name', 'Category', 'Priority', 'Test Objective',
+                'Endpoint', 'Method', 'Prerequisites', 'Test Data/Input', 'Expected Result',
+                'Expected Status', 'Status', 'Actual Result', 'Tested By', 'Test Date', 'Comments'
+            ];
+            
+            let html = '<table>';
+            
+            // Add headers
+            html += '<thead><tr>';
+            headers.forEach(header => {
+                html += `<th>${header}</th>`;
+            });
+            html += '</tr></thead>';
+            
+            // Add data rows
+            html += '<tbody>';
+            data.forEach((row, index) => {
+                html += '<tr>';
+                row.forEach((cell, cellIndex) => {
+                    let cellClass = '';
+                    if (cellIndex === 0) cellClass = 'test-id'; // Test ID column
+                    if (cellIndex === 3) cellClass = getPriorityClass(cell); // Priority column
+                    
+                    html += `<td class="${cellClass}">${cell || ''}</td>`;
+                });
+                html += '</tr>';
+            });
+            html += '</tbody></table>';
+            
+            document.getElementById('tcPreview').innerHTML = html;
+            showStatus(`Table generated successfully with ${data.length} test cases!`, 'success');
+        }
+        
+        // Copy table to clipboard
+        function copyTableToClipboard() {
+            const table = document.querySelector('#tcPreview table');
+            if (!table) {
+                showStatus('Please generate a table preview first.', 'error');
+                return;
+            }
+            
+            // Create a temporary textarea with the table HTML
+            const textarea = document.createElement('textarea');
+            textarea.value = table.outerHTML;
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                showStatus('Table HTML copied to clipboard!', 'success');
+            } catch (err) {
+                showStatus('Failed to copy table. Please try again.', 'error');
+            }
+            
+            document.body.removeChild(textarea);
+        }
+        
+        // Export test cases as Excel
+        function exportTestCases() {
+            if (currentTableData.length === 0) {
+                showStatus('Please preview the table first before exporting.', 'error');
+                return;
+            }
+            
+            try {
+                // Create CSV content
+                const headers = [
+                    'Test ID', 'Test Case Name', 'Category', 'Priority', 'Test Objective',
+                    'Endpoint', 'Method', 'Prerequisites', 'Test Data/Input', 'Expected Result',
+                    'Expected Status', 'Status', 'Actual Result', 'Tested By', 'Test Date', 'Comments'
+                ];
+                
+                let csvContent = headers.join(',') + '\n';
+                
+                currentTableData.forEach(row => {
+                    const escapedRow = row.map(cell => {
+                        // Escape quotes and wrap in quotes if contains comma, quote, or newline
+                        const cellStr = String(cell || '');
+                        if (cellStr.includes(',') || cellStr.includes('"') || cellStr.includes('\n')) {
+                            return '"' + cellStr.replace(/"/g, '""') + '"';
+                        }
+                        return cellStr;
+                    });
+                    csvContent += escapedRow.join(',') + '\n';
+                });
+                
+                // Create and download file
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                
+                link.setAttribute('href', url);
+                link.setAttribute('download', `test-cases-${new Date().toISOString().split('T')[0]}.csv`);
+                link.style.visibility = 'hidden';
+                
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                showStatus('Excel file downloaded successfully!', 'success');
+                
+            } catch (error) {
+                console.error('Export error:', error);
+                showStatus('Failed to export file. Please try again.', 'error');
+            }
+        }
+        
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+Enter to preview
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                previewTestCases();
+            }
+            
+            // Ctrl+Shift+C to clear
+            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+                e.preventDefault();
+                clearData();
+            }
+            
+            // Ctrl+E to export
+            if (e.ctrlKey && e.key === 'e') {
+                e.preventDefault();
+                exportTestCases();
+            }
+            
+            // Ctrl+R to convert format
+            if (e.ctrlKey && e.key === 'r') {
+                e.preventDefault();
+                convertFormat();
+            }
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showStatus('Test Case Builder loaded! New: Format Converter added. Keyboard shortcuts: Ctrl+R (Convert), Ctrl+Enter (Preview), Ctrl+E (Export), Ctrl+Shift+C (Clear)', 'info');
+        });
