@@ -1,24 +1,51 @@
 # Multi Converter Tool 🔧
 
-A lightweight and user-friendly web-based utility hosted via GitHub Pages that supports:
-
-- Epoch time conversions (to/from human-readable)
-- Text formatting utilities (remove commas, trim, word count)
-- Conversions to Hex, Binary, Base64
-- Query String to JSON
-- XML to Block XML
-- Content difference comparer
+A lightweight and user-friendly web-based utility hosted via GitHub Pages that supports a wide range of developer-focused conversions and formatting tools.
 
 ## 🌐 Live Demo
 Access the app here: [Multi Converter Tool](https://nit-tha.github.io/ConvertorApp/)
 
 ## 📂 Features
-- **Epoch Time Tools**: Convert to/from human-readable timezones, DST support.
-- **Text Format Tools**: Add/remove commas, quotes, word/character count.
-- **Encoding Tools**: Convert text to Hex, Binary, Base64, and vice versa.
-- **Query Tools**: Format web query strings into structured JSON.
-- **XML Tools**: Convert raw XML to block format.
-- **Comparer**: Compare original vs modified text and view diffs.
+
+### 🕒 Epoch Tools
+- Convert epoch ↔ human-readable time (supporting seconds/milliseconds)
+- Timezone conversion with DST adjustment
+- Epoch subtraction calculator
+- Relative time output (e.g., "5 days ago")
+
+### ✍️ Text Format Tools
+- Add/Remove commas
+- Convert IDs to single/double quotes
+- Convert to comma-separated strings
+- Word/character/space counters
+- Case changers (upper, lower, title, camel, snake)
+- Reverse text, escape regex
+
+### 🎨 Color Utilities
+- HEX ↔ RGB ↔ HSL
+- Visual color preview with copy options
+- Nearest color name lookup
+
+### 🔐 Encoding & Decoding
+- Base64 Encode/Decode
+- Binary and Decimal conversion
+- Hex ↔ Text converter
+- JWT Token Decoder
+
+### 🌐 Web & API Utilities
+- Query String ↔ JSON Converter
+- JSON Validator and Formatter
+- URL Encode/Decode
+
+### 🧩 XML Tool
+- Convert XML to Block XML format with error highlighting
+
+### 🧪 Comparer
+- Compare content differences (Diff Viewer)
+
+### 🛠️ Other Tools
+- Markdown ↔ HTML Converter
+- Copy-on-right-click utility (paste from clipboard using context menu)
 
 ## 🛠️ Technologies Used
 - HTML, CSS, JavaScript
@@ -30,4 +57,3 @@ This project is open-source.
 
 ## ✍️ Author
 [Nitin Thakur](https://github.com/nit-tha)
-
