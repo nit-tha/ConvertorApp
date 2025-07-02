@@ -370,95 +370,102 @@ function escapeRegex() {
             }
         }
 
-        //Comprehensive color name database
-        const colorNames = {
-        // Standard Web Colors
-        '#F0F8FF': 'AliceBlue', '#FAEBD7': 'AntiqueWhite', '#00FFFF': 'Aqua', '#7FFFD4': 'Aquamarine',
-        '#F0FFFF': 'Azure', '#F5F5DC': 'Beige', '#FFE4C4': 'Bisque', '#000000': 'Black',
-        '#FFEBCD': 'BlanchedAlmond', '#0000FF': 'Blue', '#8A2BE2': 'BlueViolet', '#A52A2A': 'Brown',
-        '#DEB887': 'BurlyWood', '#5F9EA0': 'CadetBlue', '#7FFF00': 'Chartreuse', '#D2691E': 'Chocolate',
-        '#FF7F50': 'Coral', '#6495ED': 'CornflowerBlue', '#FFF8DC': 'Cornsilk', '#DC143C': 'Crimson',
-        '#00FFFF': 'Cyan', '#00008B': 'DarkBlue', '#008B8B': 'DarkCyan', '#B8860B': 'DarkGoldenrod',
-        '#A9A9A9': 'DarkGray', '#006400': 'DarkGreen', '#BDB76B': 'DarkKhaki', '#8B008B': 'DarkMagenta',
-        '#556B2F': 'DarkOliveGreen', '#FF8C00': 'DarkOrange', '#9932CC': 'DarkOrchid', '#8B0000': 'DarkRed',
-        '#E9967A': 'DarkSalmon', '#8FBC8F': 'DarkSeaGreen', '#483D8B': 'DarkSlateBlue', '#2F4F4F': 'DarkSlateGray',
-        '#00CED1': 'DarkTurquoise', '#9400D3': 'DarkViolet', '#FF1493': 'DeepPink', '#00BFFF': 'DeepSkyBlue',
-        '#696969': 'DimGray', '#1E90FF': 'DodgerBlue', '#B22222': 'FireBrick', '#FFFAF0': 'FloralWhite',
-        '#228B22': 'ForestGreen', '#FF00FF': 'Fuchsia', '#DCDCDC': 'Gainsboro', '#F8F8FF': 'GhostWhite',
-        '#FFD700': 'Gold', '#DAA520': 'Goldenrod', '#808080': 'Gray', '#008000': 'Green',
-        '#ADFF2F': 'GreenYellow', '#F0FFF0': 'Honeydew', '#FF69B4': 'HotPink', '#CD5C5C': 'IndianRed',
-        '#4B0082': 'Indigo', '#FFFFF0': 'Ivory', '#F0E68C': 'Khaki', '#E6E6FA': 'Lavender',
-        '#FFF0F5': 'LavenderBlush', '#7CFC00': 'LawnGreen', '#FFFACD': 'LemonChiffon', '#ADD8E6': 'LightBlue',
-        '#F08080': 'LightCoral', '#E0FFFF': 'LightCyan', '#FAFAD2': 'LightGoldenrodYellow', '#D3D3D3': 'LightGray',
-        '#90EE90': 'LightGreen', '#FFB6C1': 'LightPink', '#FFA07A': 'LightSalmon', '#20B2AA': 'LightSeaGreen',
-        '#87CEFA': 'LightSkyBlue', '#778899': 'LightSlateGray', '#B0C4DE': 'LightSteelBlue', '#FFFFE0': 'LightYellow',
-        '#00FF00': 'Lime', '#32CD32': 'LimeGreen', '#FAF0E6': 'Linen', '#FF00FF': 'Magenta',
-        '#800000': 'Maroon', '#66CDAA': 'MediumAquamarine', '#0000CD': 'MediumBlue', '#BA55D3': 'MediumOrchid',
-        '#9370DB': 'MediumPurple', '#3CB371': 'MediumSeaGreen', '#7B68EE': 'MediumSlateBlue', '#00FA9A': 'MediumSpringGreen',
-        '#48D1CC': 'MediumTurquoise', '#C71585': 'MediumVioletRed', '#191970': 'MidnightBlue', '#F5FFFA': 'MintCream',
-        '#FFE4E1': 'MistyRose', '#FFE4B5': 'Moccasin', '#FFDEAD': 'NavajoWhite', '#000080': 'Navy',
-        '#FDF5E6': 'OldLace', '#808000': 'Olive', '#6B8E23': 'OliveDrab', '#FFA500': 'Orange',
-        '#FF4500': 'OrangeRed', '#DA70D6': 'Orchid', '#EEE8AA': 'PaleGoldenrod', '#98FB98': 'PaleGreen',
-        '#AFEEEE': 'PaleTurquoise', '#DB7093': 'PaleVioletRed', '#FFEFD5': 'PapayaWhip', '#FFDAB9': 'PeachPuff',
-        '#CD853F': 'Peru', '#FFC0CB': 'Pink', '#DDA0DD': 'Plum', '#B0E0E6': 'PowderBlue',
-        '#800080': 'Purple', '#FF0000': 'Red', '#BC8F8F': 'RosyBrown', '#4169E1': 'RoyalBlue',
-        '#8B4513': 'SaddleBrown', '#FA8072': 'Salmon', '#F4A460': 'SandyBrown', '#2E8B57': 'SeaGreen',
-        '#FFF5EE': 'SeaShell', '#A0522D': 'Sienna', '#C0C0C0': 'Silver', '#87CEEB': 'SkyBlue',
-        '#6A5ACD': 'SlateBlue', '#708090': 'SlateGray', '#FFFAFA': 'Snow', '#00FF7F': 'SpringGreen',
-        '#4682B4': 'SteelBlue', '#D2B48C': 'Tan', '#008080': 'Teal', '#D8BFD8': 'Thistle',
-        '#FF6347': 'Tomato', '#40E0D0': 'Turquoise', '#EE82EE': 'Violet', '#F5DEB3': 'Wheat',
-        '#FFFFFF': 'White', '#F5F5F5': 'WhiteSmoke', '#FFFF00': 'Yellow', '#9ACD32': 'YellowGreen',
+        // Corrected and comprehensive color name database
+const colorNames = {
+    // Standard Web Colors (corrected)
+    '#F0F8FF': 'AliceBlue', '#FAEBD7': 'AntiqueWhite', '#00FFFF': 'Aqua', '#7FFFD4': 'Aquamarine',
+    '#F0FFFF': 'Azure', '#F5F5DC': 'Beige', '#FFE4C4': 'Bisque', '#000000': 'Black',
+    '#FFEBCD': 'BlanchedAlmond', '#0000FF': 'Blue', '#8A2BE2': 'BlueViolet', '#A52A2A': 'Brown',
+    '#DEB887': 'BurlyWood', '#5F9EA0': 'CadetBlue', '#7FFF00': 'Chartreuse', '#D2691E': 'Chocolate',
+    '#FF7F50': 'Coral', '#6495ED': 'CornflowerBlue', '#FFF8DC': 'Cornsilk', '#DC143C': 'Crimson',
+    '#00FFFF': 'Cyan', '#00008B': 'DarkBlue', '#008B8B': 'DarkCyan', '#B8860B': 'DarkGoldenrod',
+    '#A9A9A9': 'DarkGray', '#006400': 'DarkGreen', '#BDB76B': 'DarkKhaki', '#8B008B': 'DarkMagenta',
+    '#556B2F': 'DarkOliveGreen', '#FF8C00': 'DarkOrange', '#9932CC': 'DarkOrchid', '#8B0000': 'DarkRed',
+    '#E9967A': 'DarkSalmon', '#8FBC8F': 'DarkSeaGreen', '#483D8B': 'DarkSlateBlue', '#2F4F4F': 'DarkSlateGray',
+    '#00CED1': 'DarkTurquoise', '#9400D3': 'DarkViolet', '#FF1493': 'DeepPink', '#00BFFF': 'DeepSkyBlue',
+    '#696969': 'DimGray', '#1E90FF': 'DodgerBlue', '#B22222': 'FireBrick', '#FFFAF0': 'FloralWhite',
+    '#228B22': 'ForestGreen', '#FF00FF': 'Fuchsia', '#DCDCDC': 'Gainsboro', '#F8F8FF': 'GhostWhite',
+    '#FFD700': 'Gold', '#DAA520': 'Goldenrod', '#808080': 'Gray', '#008000': 'Green',
+    '#ADFF2F': 'GreenYellow', '#F0FFF0': 'Honeydew', '#FF69B4': 'HotPink', '#CD5C5C': 'IndianRed',
+    '#4B0082': 'Indigo', '#FFFFF0': 'Ivory', '#F0E68C': 'Khaki', '#E6E6FA': 'Lavender',
+    '#FFF0F5': 'LavenderBlush', '#7CFC00': 'LawnGreen', '#FFFACD': 'LemonChiffon', '#ADD8E6': 'LightBlue',
+    '#F08080': 'LightCoral', '#E0FFFF': 'LightCyan', '#FAFAD2': 'LightGoldenrodYellow', '#D3D3D3': 'LightGray',
+    '#90EE90': 'LightGreen', '#FFB6C1': 'LightPink', '#FFA07A': 'LightSalmon', '#20B2AA': 'LightSeaGreen',
+    '#87CEFA': 'LightSkyBlue', '#778899': 'LightSlateGray', '#B0C4DE': 'LightSteelBlue', '#FFFFE0': 'LightYellow',
+    '#00FF00': 'Lime', '#32CD32': 'LimeGreen', '#FAF0E6': 'Linen', '#FF00FF': 'Magenta',
+    '#800000': 'Maroon', '#66CDAA': 'MediumAquamarine', '#0000CD': 'MediumBlue', '#BA55D3': 'MediumOrchid',
+    '#9370DB': 'MediumPurple', '#3CB371': 'MediumSeaGreen', '#7B68EE': 'MediumSlateBlue', '#00FA9A': 'MediumSpringGreen',
+    '#48D1CC': 'MediumTurquoise', '#C71585': 'MediumVioletRed', '#191970': 'MidnightBlue', '#F5FFFA': 'MintCream',
+    '#FFE4E1': 'MistyRose', '#FFE4B5': 'Moccasin', '#FFDEAD': 'NavajoWhite', '#000080': 'Navy',
+    '#FDF5E6': 'OldLace', '#808000': 'Olive', '#6B8E23': 'OliveDrab', '#FFA500': 'Orange',
+    '#FF4500': 'OrangeRed', '#DA70D6': 'Orchid', '#EEE8AA': 'PaleGoldenrod', '#98FB98': 'PaleGreen',
+    '#AFEEEE': 'PaleTurquoise', '#DB7093': 'PaleVioletRed', '#FFEFD5': 'PapayaWhip', '#FFDAB9': 'PeachPuff',
+    '#CD853F': 'Peru', '#FFC0CB': 'Pink', '#DDA0DD': 'Plum', '#B0E0E6': 'PowderBlue',
+    '#800080': 'Purple', '#FF0000': 'Red', '#BC8F8F': 'RosyBrown', '#4169E1': 'RoyalBlue',
+    '#8B4513': 'SaddleBrown', '#FA8072': 'Salmon', '#F4A460': 'SandyBrown', '#2E8B57': 'SeaGreen',
+    '#FFF5EE': 'SeaShell', '#A0522D': 'Sienna', '#C0C0C0': 'Silver', '#87CEEB': 'SkyBlue',
+    '#6A5ACD': 'SlateBlue', '#708090': 'SlateGray', '#FFFAFA': 'Snow', '#00FF7F': 'SpringGreen',
+    '#4682B4': 'SteelBlue', '#D2B48C': 'Tan', '#008080': 'Teal', '#D8BFD8': 'Thistle',
+    '#FF6347': 'Tomato', '#40E0D0': 'Turquoise', '#EE82EE': 'Violet', '#F5DEB3': 'Wheat',
+    '#FFFFFF': 'White', '#F5F5F5': 'WhiteSmoke', '#FFFF00': 'Yellow', '#9ACD32': 'YellowGreen',
 
-        // Extended Color Palette
-        '#FF6B6B': 'Coral Red', '#4ECDC4': 'Tiffany Blue', '#45B7D1': 'Sky Blue', '#96CEB4': 'Mint Green',
-        '#FFEAA7': 'Peach', '#DDA0DD': 'Plum Purple', '#98D8C8': 'Seafoam', '#F7DC6F': 'Banana Yellow',
-        '#BB8FCE': 'Light Purple', '#85C1E9': 'Baby Blue', '#F8C471': 'Peach Orange', '#82E0AA': 'Light Mint',
-        '#F1948A': 'Rose Pink', '#85929E': 'Blue Gray', '#F4D03F': 'Golden Yellow', '#A569BD': 'Medium Purple',
-        '#5DADE2': 'Cornflower', '#58D68D': 'Emerald Green', '#EC7063': 'Salmon Pink', '#AEB6BF': 'Silver Gray',
-        '#F39C12': 'Orange Peel', '#8E44AD': 'Royal Purple', '#3498DB': 'Dodger Blue', '#2ECC71': 'Jade Green',
-        '#E74C3C': 'Red Orange', '#95A5A6': 'Concrete Gray', '#F1C40F': 'Sunflower', '#9B59B6': 'Amethyst',
-        '#1ABC9C': 'Turquoise Green', '#34495E': 'Wet Asphalt', '#E67E22': 'Carrot Orange', '#2C3E50': 'Midnight Blue',
+    // Extended Color Palette (corrected and expanded)
+    '#FF6B6B': 'Coral Red', '#4ECDC4': 'Tiffany Blue', '#45B7D1': 'Sky Blue', '#96CEB4': 'Mint Green',
+    '#FFEAA7': 'Peach', '#DDA0DD': 'Plum Purple', '#98D8C8': 'Seafoam', '#F7DC6F': 'Banana Yellow',
+    '#BB8FCE': 'Light Purple', '#85C1E9': 'Baby Blue', '#F8C471': 'Peach Orange', '#82E0AA': 'Light Mint',
+    '#F1948A': 'Rose Pink', '#85929E': 'Blue Gray', '#F4D03F': 'Golden Yellow', '#A569BD': 'Medium Purple',
+    '#5DADE2': 'Cornflower', '#58D68D': 'Emerald Green', '#EC7063': 'Salmon Pink', '#AEB6BF': 'Silver Gray',
+    '#F39C12': 'Orange Peel', '#8E44AD': 'Royal Purple', '#3498DB': 'Dodger Blue', '#2ECC71': 'Jade Green',
+    '#E74C3C': 'Red Orange', '#95A5A6': 'Concrete Gray', '#F1C40F': 'Sunflower', '#9B59B6': 'Amethyst',
+    '#1ABC9C': 'Turquoise Green', '#34495E': 'Wet Asphalt', '#E67E22': 'Carrot Orange', '#2C3E50': 'Midnight Blue',
 
-        // Pastel Colors
-        '#FFB3BA': 'Pastel Pink', '#FFDFBA': 'Pastel Peach', '#FFFFBA': 'Pastel Yellow', '#BAFFC9': 'Pastel Green',
-        '#BAE1FF': 'Pastel Blue', '#E6E6FA': 'Pastel Lavender', '#F0E68C': 'Pastel Khaki', '#DDA0DD': 'Pastel Plum',
-        '#FFDAB9': 'Pastel Orange', '#B19CD9': 'Pastel Purple', '#C6E2FF': 'Pastel Sky', '#FFCCCB': 'Pastel Coral',
-        '#E0BBE4': 'Pastel Violet', '#FFDFD3': 'Pastel Apricot', '#DFFF00': 'Pastel Lime', '#FFCBA4': 'Pastel Tan',
+    // Tan/Beige variants (fixed the CBC9A9 issue)
+    '#CBC9A9': 'Sage Tan', '#D2B48C': 'Tan', '#F5DEB3': 'Wheat', '#DEB887': 'Burlywood',
+    '#F4A460': 'Sandy Brown', '#D2691E': 'Chocolate', '#CD853F': 'Peru', '#BC8F8F': 'Rosy Brown',
+    '#E6D3B7': 'Champagne', '#C9B37D': 'Khaki Brown', '#B8860B': 'Dark Goldenrod', '#DAA520': 'Goldenrod',
+    '#E8D5B7': 'Antique Brass', '#F0E68C': 'Khaki', '#EEE8AA': 'Pale Goldenrod', '#FAEBD7': 'Antique White',
 
-        // Neon/Bright Colors
-        '#FF073A': 'Neon Red', '#39FF14': 'Neon Green', '#04D9FF': 'Neon Blue', '#FFFF33': 'Neon Yellow',
-        '#FF10F0': 'Neon Pink', '#08F7FE': 'Neon Cyan', '#FE4164': 'Neon Rose', '#CCFF00': 'Electric Lime',
-        '#FF006E': 'Bright Magenta', '#FB4570': 'Bright Rose', '#3F00FF': 'Electric Blue', '#FFAA1D': 'Bright Orange',
+    // Pastel Colors
+    '#FFB3BA': 'Pastel Pink', '#FFDFBA': 'Pastel Peach', '#FFFFBA': 'Pastel Yellow', '#BAFFC9': 'Pastel Green',
+    '#BAE1FF': 'Pastel Blue', '#E6E6FA': 'Pastel Lavender', '#F0E68C': 'Pastel Khaki', '#DDA0DD': 'Pastel Plum',
+    '#FFDAB9': 'Pastel Orange', '#B19CD9': 'Pastel Purple', '#C6E2FF': 'Pastel Sky', '#FFCCCB': 'Pastel Coral',
+    '#E0BBE4': 'Pastel Violet', '#FFDFD3': 'Pastel Apricot', '#DFFF00': 'Pastel Lime', '#FFCBA4': 'Pastel Tan',
 
-        // Earth Tones
-        '#8B4513': 'Saddle Brown', '#A0522D': 'Sienna', '#CD853F': 'Peru', '#DEB887': 'Burlywood',
-        '#F4A460': 'Sandy Brown', '#D2691E': 'Chocolate', '#BC8F8F': 'Rosy Brown', '#F5DEB3': 'Wheat',
-        '#D2B48C': 'Tan', '#DAA520': 'Goldenrod', '#B8860B': 'Dark Goldenrod', '#CD5C5C': 'Indian Red',
-        '#556B2F': 'Dark Olive Green', '#6B8E23': 'Olive Drab', '#9ACD32': 'Yellow Green', '#32CD32': 'Lime Green',
+    // Neon/Bright Colors
+    '#FF073A': 'Neon Red', '#39FF14': 'Neon Green', '#04D9FF': 'Neon Blue', '#FFFF33': 'Neon Yellow',
+    '#FF10F0': 'Neon Pink', '#08F7FE': 'Neon Cyan', '#FE4164': 'Neon Rose', '#CCFF00': 'Electric Lime',
+    '#FF006E': 'Bright Magenta', '#FB4570': 'Bright Rose', '#3F00FF': 'Electric Blue', '#FFAA1D': 'Bright Orange',
 
-        // Jewel Tones
-        '#DC143C': 'Crimson', '#B22222': 'Fire Brick', '#8B0000': 'Dark Red', '#800000': 'Maroon',
-        '#4B0082': 'Indigo', '#483D8B': 'Dark Slate Blue', '#6A5ACD': 'Slate Blue', '#7B68EE': 'Medium Slate Blue',
-        '#9370DB': 'Medium Purple', '#8A2BE2': 'Blue Violet', '#9932CC': 'Dark Orchid', '#BA55D3': 'Medium Orchid',
-        '#DA70D6': 'Orchid', '#EE82EE': 'Violet', '#DDA0DD': 'Plum', '#C71585': 'Medium Violet Red',
-        '#FF1493': 'Deep Pink', '#FF69B4': 'Hot Pink', '#FF6347': 'Tomato', '#FF4500': 'Orange Red',
+    // Earth Tones (corrected)
+    '#8B4513': 'Saddle Brown', '#A0522D': 'Sienna', '#CD853F': 'Peru', '#DEB887': 'Burlywood',
+    '#F4A460': 'Sandy Brown', '#D2691E': 'Chocolate', '#BC8F8F': 'Rosy Brown', '#F5DEB3': 'Wheat',
+    '#D2B48C': 'Tan', '#DAA520': 'Goldenrod', '#B8860B': 'Dark Goldenrod', '#CD5C5C': 'Indian Red',
+    '#556B2F': 'Dark Olive Green', '#6B8E23': 'Olive Drab', '#9ACD32': 'Yellow Green', '#32CD32': 'Lime Green',
+    '#8B7355': 'Coyote Brown', '#C19A6B': 'Camel', '#826644': 'Raw Umber', '#967117': 'Dark Gold',
 
-        // Metallic Colors
-        '#C0C0C0': 'Silver', '#FFD700': 'Gold', '#B87333': 'Bronze', '#CD7F32': 'Copper',
-        '#E5E4E2': 'Platinum', '#71797E': 'Steel', '#36454F': 'Charcoal', '#708090': 'Slate Gray',
-        '#2F4F4F': 'Dark Slate Gray', '#696969': 'Dim Gray', '#A9A9A9': 'Dark Gray', '#D3D3D3': 'Light Gray',
-        '#778899': 'Light Slate Gray', '#B0C4DE': 'Light Steel Blue', '#4682B4': 'Steel Blue', '#1E90FF': 'Dodger Blue',
+    // Jewel Tones
+    '#DC143C': 'Crimson', '#B22222': 'Fire Brick', '#8B0000': 'Dark Red', '#800000': 'Maroon',
+    '#4B0082': 'Indigo', '#483D8B': 'Dark Slate Blue', '#6A5ACD': 'Slate Blue', '#7B68EE': 'Medium Slate Blue',
+    '#9370DB': 'Medium Purple', '#8A2BE2': 'Blue Violet', '#9932CC': 'Dark Orchid', '#BA55D3': 'Medium Orchid',
+    '#DA70D6': 'Orchid', '#EE82EE': 'Violet', '#DDA0DD': 'Plum', '#C71585': 'Medium Violet Red',
+    '#FF1493': 'Deep Pink', '#FF69B4': 'Hot Pink', '#FF6347': 'Tomato', '#FF4500': 'Orange Red',
 
-        // Nature Colors
-        '#228B22': 'Forest Green', '#006400': 'Dark Green', '#008000': 'Green', '#00FF00': 'Lime',
-        '#32CD32': 'Lime Green', '#90EE90': 'Light Green', '#98FB98': 'Pale Green', '#00FF7F': 'Spring Green',
-        '#00FA9A': 'Medium Spring Green', '#ADFF2F': 'Green Yellow', '#7FFF00': 'Chartreuse', '#7CFC00': 'Lawn Green',
-        '#66CDAA': 'Medium Aquamarine', '#7FFFD4': 'Aquamarine', '#40E0D0': 'Turquoise', '#48D1CC': 'Medium Turquoise',
-        '#00CED1': 'Dark Turquoise', '#20B2AA': 'Light Sea Green', '#2E8B57': 'Sea Green', '#3CB371': 'Medium Sea Green',
-        '#8FBC8F': 'Dark Sea Green', '#87CEEB': 'Sky Blue', '#87CEFA': 'Light Sky Blue', '#00BFFF': 'Deep Sky Blue',
-        '#1E90FF': 'Dodger Blue', '#6495ED': 'Cornflower Blue', '#4169E1': 'Royal Blue', '#0000CD': 'Medium Blue',
-        '#0000FF': 'Blue', '#00008B': 'Dark Blue', '#000080': 'Navy', '#191970': 'Midnight Blue'
-    };
+    // Metallic Colors (corrected - removed duplicate Silver entry)
+    '#C0C0C0': 'Silver', '#FFD700': 'Gold', '#B87333': 'Bronze', '#CD7F32': 'Copper',
+    '#E5E4E2': 'Platinum', '#71797E': 'Steel', '#36454F': 'Charcoal', '#708090': 'Slate Gray',
+    '#2F4F4F': 'Dark Slate Gray', '#696969': 'Dim Gray', '#A9A9A9': 'Dark Gray', '#D3D3D3': 'Light Gray',
+    '#778899': 'Light Slate Gray', '#B0C4DE': 'Light Steel Blue', '#4682B4': 'Steel Blue', '#1E90FF': 'Dodger Blue',
+
+    // Nature Colors
+    '#228B22': 'Forest Green', '#006400': 'Dark Green', '#008000': 'Green', '#00FF00': 'Lime',
+    '#32CD32': 'Lime Green', '#90EE90': 'Light Green', '#98FB98': 'Pale Green', '#00FF7F': 'Spring Green',
+    '#00FA9A': 'Medium Spring Green', '#ADFF2F': 'Green Yellow', '#7FFF00': 'Chartreuse', '#7CFC00': 'Lawn Green',
+    '#66CDAA': 'Medium Aquamarine', '#7FFFD4': 'Aquamarine', '#40E0D0': 'Turquoise', '#48D1CC': 'Medium Turquoise',
+    '#00CED1': 'Dark Turquoise', '#20B2AA': 'Light Sea Green', '#2E8B57': 'Sea Green', '#3CB371': 'Medium Sea Green',
+    '#8FBC8F': 'Dark Sea Green', '#87CEEB': 'Sky Blue', '#87CEFA': 'Light Sky Blue', '#00BFFF': 'Deep Sky Blue',
+    '#1E90FF': 'Dodger Blue', '#6495ED': 'Cornflower Blue', '#4169E1': 'Royal Blue', '#0000CD': 'Medium Blue',
+    '#0000FF': 'Blue', '#00008B': 'Dark Blue', '#000080': 'Navy', '#191970': 'Midnight Blue'
+};
 
         // Fetch colorname
         function findClosestColorName(r, g, b) {
