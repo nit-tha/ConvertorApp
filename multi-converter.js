@@ -773,7 +773,7 @@ const colorNames = {
  // Improved Navigation JavaScript
         function showSection(targetSection) {
             // Hide all sections
-            const sections = ['sqlConverter', 'hexConverter', 'xmlToBlockSection', 'queryToJsonSection', 'diffcomparerSection', 'codeFormatterSection','testCaseBuilderSection'];
+            const sections = ['sqlConverter', 'hexConverter', 'xmlToBlockSection', 'queryToJsonSection', 'diffcomparerSection', 'codeFormatterSection','testCaseBuilderSection','geocodingSection'];
             sections.forEach(section => {
                 const element = document.getElementById(section);
                 if (element) {
