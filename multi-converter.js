@@ -2801,3 +2801,131 @@ document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('DOMContentLoaded', function() {
             showStatus('Test Case Builder loaded! New: Format Converter added. Keyboard shortcuts: Ctrl+R (Convert), Ctrl+Enter (Preview), Ctrl+E (Export), Ctrl+Shift+C (Clear)', 'info');
         });
+
+// GeoCoding Tool
+        let currentLocationData = null;
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                searchLocation();
+            }
+        }
+
+        async function searchLocation() {
+            const locationInput = document.getElementById('locationInput');
+            const query = locationInput.value.trim();
+            
+            if (!query) {
+                showError('Please enter a location name');
+                return;
+            }
+
+            showLoading(true);
+            hideError();
+            hideResults();
+
+            try {
+                const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1&extratags=1&addressdetails=1`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.length === 0) {
+                    showError('No results found. Please try a different location name.');
+                    return;
+                }
+
+                currentLocationData = data[0];
+                displayResults(currentLocationData);
+                
+            } catch (error) {
+                console.error('Error fetching location data:', error);
+                showError('Failed to fetch location data. Please check your internet connection and try again.');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function displayResults(data) {
+            // Update stats
+            document.getElementById('locationName').textContent = data.display_name.split(',')[0];
+            document.getElementById('locationType').textContent = data.type || 'Unknown';
+            document.getElementById('locationCountry').textContent = data.address?.country || 'Unknown';
+            
+            // Point coordinates
+            const pointCoords = `
+                <div><span class="coordinate-label">Latitude:</span> ${data.lat}</div>
+                <div><span class="coordinate-label">Longitude:</span> ${data.lon}</div>
+                <div><span class="coordinate-label">Decimal Degrees:</span> ${data.lat}, ${data.lon}</div>
+            `;
+            document.getElementById('pointCoordinates').innerHTML = pointCoords;
+            
+            // Bounding box
+            let boundingBoxHTML = '';
+            if (data.boundingbox && data.boundingbox.length === 4) {
+                const [south, north, west, east] = data.boundingbox;
+                boundingBoxHTML = `
+                    <div><span class="coordinate-label">North:</span> ${north}</div>
+                    <div><span class="coordinate-label">South:</span> ${south}</div>
+                    <div><span class="coordinate-label">East:</span> ${east}</div>
+                    <div><span class="coordinate-label">West:</span> ${west}</div>
+                    <div style="margin-top: 10px;"><span class="coordinate-label">Area Coverage:</span> ${north},${west} to ${south},${east}</div>
+                `;
+            } else {
+                boundingBoxHTML = '<div>Bounding box not available for this location</div>';
+            }
+            document.getElementById('boundingBox').innerHTML = boundingBoxHTML;
+            
+            // Additional information
+            const additionalInfo = `
+                <div><span class="coordinate-label">Full Address:</span> ${data.display_name}</div>
+                <div><span class="coordinate-label">Place ID:</span> ${data.place_id}</div>
+                <div><span class="coordinate-label">OSM Type:</span> ${data.osm_type}</div>
+                <div><span class="coordinate-label">OSM ID:</span> ${data.osm_id}</div>
+                <div><span class="coordinate-label">Importance:</span> ${data.importance ? data.importance.toFixed(3) : 'Unknown'}</div>
+            `;
+            document.getElementById('additionalInfo').innerHTML = additionalInfo;
+            
+            // Map link
+            const mapLink = `https://www.openstreetmap.org/?mlat=${data.lat}&mlon=${data.lon}&zoom=12`;
+            document.getElementById('mapLink').href = mapLink;
+            
+            // Show results
+            document.getElementById('coordinateStats').style.display = 'flex';
+            document.getElementById('coordinateResult').style.display = 'block';
+        }
+
+        function showLoading(show) {
+            document.getElementById('loadingIndicator').style.display = show ? 'block' : 'none';
+            document.getElementById('searchBtn').disabled = show;
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        function hideError() {
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        function hideResults() {
+            document.getElementById('coordinateStats').style.display = 'none';
+            document.getElementById('coordinateResult').style.display = 'none';
+        }
+
+        function clearResults() {
+            document.getElementById('locationInput').value = '';
+            hideResults();
+            hideError();
+            currentLocationData = null;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Location Geocoding Tool initialized');
+        });
