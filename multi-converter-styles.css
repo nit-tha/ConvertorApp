@@ -1273,6 +1273,7 @@ nav a.active {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;   /* prevents horizontal overflow */
     transition: border-color .3s;
 }
 #geocodingSection input[type="text"]:focus {
