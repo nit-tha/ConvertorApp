@@ -6,8 +6,8 @@
         <title>Multi Converter Tool for QA & Dev | Epoch Time, JSON, XML, HEX, Text Comparison & More</title>
 
       <!-- Basic SEO Meta Tags -->
-      <meta name="description" content="An all-in-one, user-friendly tool for developers and testers to convert epoch time, JSON, XML, Base64, Hex, Binary, content comparison and format queries. Boost your productivity with this versatile web app.">
-      <meta name="keywords" content="epoch converter, json formatter, xml formatter, base64 encoder decoder, hex converter, binary converter, text formatter, query formatter, developer tool, tester tool, online converter, free web app">
+      <meta name="description" content="An all-in-one, user-friendly tool for developers and testers to convert epoch time, JSON, XML, Base64, Hex, Binary, content comparison, geo locator, testcase builder and format queries. Boost your productivity with this versatile web app.">
+      <meta name="keywords" content="epoch converter, json formatter, xml formatter, base64 encoder decoder, hex converter, binary converter, text formatter, query formatter, developer tool, tester tool, online converter, geocoding tool, test case builder, free web app">
       <meta name="author" content="Nitin Thakur">
       <meta name="google-site-verification" content="6hkOsw9NNupJtItapvYet4gHaWlt2MB9fPS1WMue3n8" />
       <meta name="robots" content="index, follow">
@@ -93,7 +93,8 @@
         <a id="queryToJsonLink" href="#" data-section="queryToJsonSection">JSON Conversion</a>
         <a id="diffcomparerLink" href="#" data-section="diffcomparerSection">Content Comparer</a>
         <a id="codeBeautifierLink" href="#" data-section="codeFormatterSection">Code Refiner</a>
-        <a id="testCaseBuilderLink" href="#" data-section="testCaseBuilderSection">Case Master</a>      
+        <a id="testCaseBuilderLink" href="#" data-section="testCaseBuilderSection">Case Master</a> 
+        <a id="geocodingLink" href="#" data-section="geocodingSection">Geo Sight</a> 
     </nav>
 
     <!-- === SQL & Epoch Conversion Tools === -->
@@ -579,9 +580,66 @@
     </div>
 </div>
 
+<!-- === Location Geocoding Tool === -->
+    <div id="geocodingSection" class="converter-container">
+        <h2>🌍 Location Geocoding Tool</h2>
+        
+        <div class="search-container">
+            <div class="search-panel">
+                <h3>Enter Location Name</h3>
+                <input type="text" id="locationInput" placeholder="Enter city, country, or address (e.g., Paris, London, New York)" onkeypress="handleKeyPress(event)">
+            </div>
+        </div>
+        
+        <div style="display: flex; gap: 10px; margin: 20px 0; justify-content: center;">
+            <button onclick="searchLocation()" title="Search for location coordinates" id="searchBtn">🔍 Search Location</button>
+            <button onclick="clearResults()" title="Clear all results">🗑️ Clear</button>
+        </div>
+        
+        <div id="loadingIndicator" class="loading" style="display: none;">
+            Searching for location...
+        </div>
+        
+        <div id="errorMessage" class="error-message" style="display: none;"></div>
+        
+        <div id="coordinateStats" class="stats-container" style="display: none;">
+            <div class="stat-item">
+                <strong>Found:</strong> <span id="locationName">-</span>
+            </div>
+            <div class="stat-item">
+                <strong>Type:</strong> <span id="locationType">-</span>
+            </div>
+            <div class="stat-item">
+                <strong>Country:</strong> <span id="locationCountry">-</span>
+            </div>
+        </div>
+        
+        <div id="coordinateResult" style="display: none;">
+            <h3>📍 Location Coordinates</h3>
+            <div class="result-panels">
+                <div class="result-panel">
+                    <h4>Point Coordinates (Center)</h4>
+                    <div id="pointCoordinates" class="coordinate-display"></div>
+                </div>
+                <div class="result-panel">
+                    <h4>Bounding Box (Area Coverage)</h4>
+                    <div id="boundingBox" class="coordinate-display"></div>
+                </div>
+            </div>
+            
+            <div class="result-panel">
+                <h4>🗺️ Additional Information</h4>
+                <div id="additionalInfo" class="coordinate-display"></div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <a id="mapLink" class="map-link" href="#" target="_blank">📍 View on OpenStreetMap</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.60 (NT)</span>
+            <span>Version 2.1.62 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
