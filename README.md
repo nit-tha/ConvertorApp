@@ -36,6 +36,7 @@ Access the app here: [Multi Converter Tool](https://nit-tha.github.io/ConvertorA
 - Query String ↔ JSON Converter
 - JSON Validator and Formatter
 - URL Encode/Decode
+- 🌍 **Geocoding Tool** – Search locations and view latitude, longitude, bounding box, and OpenStreetMap link
 
 ### 🧩 XML Tool
 - Convert XML to Block XML format with error highlighting
