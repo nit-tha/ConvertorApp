@@ -110,8 +110,11 @@ function removeDuplicates() {
     document.getElementById('commaRemovedContainer').style.display = 'flex';
 }
 
+// Simple and effective for most use cases
 function refreshPage() {
-    location.reload();
+    // Add cache-busting parameter and reload
+    const separator = window.location.href.includes('?') ? '&' : '?';
+    window.location.href = window.location.href + separator + '_refresh=' + Date.now();
 }
 
 // Updated Hex/Text Converter
