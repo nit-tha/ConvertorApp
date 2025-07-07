@@ -2447,7 +2447,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Clear all data 
-        function clearData() {
+        function clearCMData() {
             document.getElementById('tcInput').value = '';
             document.getElementById('tcPreview').innerHTML = '<p style="color:#666;text-align:center;margin:20px;">Table preview will appear here...</p>';
             currentTableData = [];
