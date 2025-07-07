@@ -280,6 +280,7 @@
             <button onclick="convertColor()" title="Color Converter">Color</button>
             <button onclick="decodeJWT()" title="JWT Decode">JWT</button>
             <button onclick="escapeRegex()" title="Regex Escape">Regex</button>
+            <button onclick="showPassCraft()" title="Password Generator" id="passcraftBtn">PassCraft</button>
             <button onclick="convertMarkdown()" title="Markdown/HTML Converter">MD⇄HTML</button>
         </div>
     </div>
@@ -291,6 +292,70 @@
             <i class="fas fa-copy"></i>
         </button>
     </div>
+
+<!-- PassCraft Password Generator Section -->
+        <div class="passcraft-container" id="passcraftContainer" style="display: none;">
+            <h3 style="text-align: center; margin-top: 0; color: #333;">
+                <i class="fas fa-key"></i> PassCraft Password Generator
+            </h3>
+            
+            <div class="passcraft-options">
+                <div class="option-group">
+                    <label>Password Length:</label>
+                    <div class="length-input">
+                        <input type="number" id="passwordLength" min="4" max="128" value="12">
+                        <span>characters</span>
+                    </div>
+                </div>
+                
+                <div class="option-group">
+                    <label>Character Types:</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="includeUppercase" checked>
+                        <label for="includeUppercase">Uppercase (A-Z)</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="includeLowercase" checked>
+                        <label for="includeLowercase">Lowercase (a-z)</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="includeNumbers" checked>
+                        <label for="includeNumbers">Numbers (0-9)</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="includeSymbols" checked>
+                        <label for="includeSymbols">Symbols (!@#$%^&*)</label>
+                    </div>
+                </div>
+                
+                <div class="option-group">
+                    <label>Advanced Options:</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="excludeSimilar">
+                        <label for="excludeSimilar">Exclude similar (0, O, l, I)</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="excludeAmbiguous">
+                        <label for="excludeAmbiguous">Exclude ambiguous ({ } [ ] ( ) / \ ' " ~ , ; . < >)</label>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="generate-btn" onclick="generatePassword()">
+                <i class="fas fa-sync-alt"></i> Generate Password
+            </button>
+            
+            <div class="password-output">
+                <input type="text" id="generatedPassword" placeholder="Generated password will appear here" readonly>
+                <button onclick="copyToClipboard('generatedPassword')" title="Copy Password">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            
+            <div id="strengthIndicator" class="strength-indicator" style="display: none;">
+                Password Strength: <span id="strengthText">Medium</span>
+            </div>
+        </div>    
 
       <!-- Markdown/HTML Converter Section -->
       <div class="markdown-converter" id="markdownConverter" style="display: none;">
@@ -639,7 +704,7 @@
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.62 (NT)</span>
+            <span>Version 2.1.64 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
