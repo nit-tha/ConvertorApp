@@ -1338,3 +1338,151 @@ nav a.active {
         gap: 15px;
     }
 }
+
+/* ─── PassCraft Password Generator ───────── */
+.passcraft-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 80%;
+    margin: 20px auto;
+}
+
+.passcraft-container h3 {
+    color: #333;
+    margin-bottom: 20px;
+    align-self: center;
+    font-weight: bold;
+}
+
+/* Option groups */
+.passcraft-options {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.option-group {
+    flex: 1 1 250px;
+    min-width: 220px;
+}
+
+.option-group label {
+    font-weight: bold;
+    color: #333;
+}
+
+.length-input {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.length-input input[type="number"] {
+    width: 70px;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    transition: border-color .3s;
+}
+
+.length-input input[type="number"]:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 6px 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+    accent-color: #2c3e50;               /* keeps subtle theme */
+}
+
+/* Generate button (inherits base button hover colours) */
+.generate-btn {
+    align-self: center;
+    background: #fff;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    padding: 8px 18px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+.generate-btn:hover {
+    background: #2c3e50;
+    color: #fff;
+}
+
+/* Password display + copy */
+.password-output {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.password-output input[type="text"] {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: "Courier New", monospace;
+    transition: border-color .3s;
+}
+
+.password-output input[type="text"]:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+/* Re‑use existing button style for copy icon */
+.password-output button {
+    background: #fff;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    padding: 7px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+.password-output button:hover {
+    background: #2c3e50;
+    color: #fff;
+}
+
+/* Strength indicator */
+.strength-indicator {
+    margin-top: 12px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.strength-weak   { color: #ff4d4d; }   /* red   */
+.strength-medium { color: #ffa500; }   /* amber */
+.strength-strong { color: #28a745; }   /* green */
+
+/* ─── Responsive tweaks ───────────────── */
+@media (max-width: 768px) {
+    .passcraft-container            { width: 95%; padding: 15px; }
+    .passcraft-options              { flex-direction: column; gap: 15px; }
+    .generate-btn, .password-output { width: 100%; }
+    .password-output                { flex-direction: column; align-items: stretch; }
+    .password-output button         { width: 100%; }
+}
