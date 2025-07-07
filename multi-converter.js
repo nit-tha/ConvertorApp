@@ -752,10 +752,10 @@ const colorNames = {
           return markdown;
         }
 
-        // Clear fields for Conversion Suite
+     // Clear fields for Conversion Suite
         function clearFields() {
             const elementsToClear = [
-                'textInput', 'output', 'apiKeyOutput', 'markdownInput', 'markdownOutput'
+                'textInput', 'output', 'apiKeyOutput', 'markdownInput', 'markdownOutput', 'generatedPassword'
             ];
             elementsToClear.forEach(id => {
                 const element = document.getElementById(id);
@@ -768,6 +768,17 @@ const colorNames = {
             
             const markdownConverter = document.getElementById('markdownConverter');
             if (markdownConverter) markdownConverter.style.display = 'none';
+            
+            // Hide PassCraft container and strength indicator
+            const passcraftContainer = document.getElementById('passcraftContainer');
+            if (passcraftContainer) passcraftContainer.style.display = 'none';
+            
+            const strengthIndicator = document.getElementById('strengthIndicator');
+            if (strengthIndicator) strengthIndicator.style.display = 'none';
+            
+            // Remove active state from PassCraft button
+            const passcraftBtn = document.getElementById('passcraftBtn');
+            if (passcraftBtn) passcraftBtn.classList.remove('active');
         }
 
  // Improved Navigation JavaScript
@@ -2929,3 +2940,180 @@ document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Location Geocoding Tool initialized');
         });
+
+
+ // Character sets for password generation utility
+        const charSets = {
+            uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            lowercase: 'abcdefghijklmnopqrstuvwxyz',
+            numbers: '0123456789',
+            symbols: '!@#$%^&*()_+-=[]{}|;:,.<>?',
+            similar: '0OlI1',
+            ambiguous: '{}[]()\/\'"~,;.<>'
+        };
+
+        // Show PassCraft container
+        function showPassCraft() {
+            // Hide other sections
+            document.getElementById('markdownConverter').style.display = 'none';
+            document.getElementById('colorPreview').style.display = 'none';
+            
+            // Show PassCraft container
+            const container = document.getElementById('passcraftContainer');
+            container.style.display = container.style.display === 'none' ? 'block' : 'none';
+            
+            // Update button state
+            const btn = document.getElementById('passcraftBtn');
+            btn.classList.toggle('active');
+        }
+
+        // Generate password based on user preferences
+        function generatePassword() {
+            const length = parseInt(document.getElementById('passwordLength').value);
+            const includeUppercase = document.getElementById('includeUppercase').checked;
+            const includeLowercase = document.getElementById('includeLowercase').checked;
+            const includeNumbers = document.getElementById('includeNumbers').checked;
+            const includeSymbols = document.getElementById('includeSymbols').checked;
+            const excludeSimilar = document.getElementById('excludeSimilar').checked;
+            const excludeAmbiguous = document.getElementById('excludeAmbiguous').checked;
+
+            // Validate input
+            if (length < 4 || length > 128) {
+                alert('Password length must be between 4 and 128 characters');
+                return;
+            }
+
+            if (!includeUppercase && !includeLowercase && !includeNumbers && !includeSymbols) {
+                alert('Please select at least one character type');
+                return;
+            }
+
+            // Build character set
+            let charset = '';
+            if (includeUppercase) charset += charSets.uppercase;
+            if (includeLowercase) charset += charSets.lowercase;
+            if (includeNumbers) charset += charSets.numbers;
+            if (includeSymbols) charset += charSets.symbols;
+
+            // Remove similar characters if requested
+            if (excludeSimilar) {
+                charset = charset.split('').filter(char => !charSets.similar.includes(char)).join('');
+            }
+
+            // Remove ambiguous characters if requested
+            if (excludeAmbiguous) {
+                charset = charset.split('').filter(char => !charSets.ambiguous.includes(char)).join('');
+            }
+
+            // Generate password
+            let password = '';
+            const array = new Uint8Array(length);
+            window.crypto.getRandomValues(array);
+            
+            for (let i = 0; i < length; i++) {
+                password += charset[array[i] % charset.length];
+            }
+
+            // Ensure password meets requirements (at least one character from each selected type)
+            password = ensurePasswordComplexity(password, {
+                includeUppercase,
+                includeLowercase,
+                includeNumbers,
+                includeSymbols,
+                excludeSimilar,
+                excludeAmbiguous
+            });
+
+            // Display password
+            document.getElementById('generatedPassword').value = password;
+            
+            // Show and update strength indicator
+            updatePasswordStrength(password);
+        }
+
+        // Ensure password meets complexity requirements
+        function ensurePasswordComplexity(password, options) {
+            const chars = password.split('');
+            let replacements = 0;
+            const maxReplacements = Math.floor(password.length / 4);
+
+            // Check for required character types and replace if missing
+            if (options.includeUppercase && !/[A-Z]/.test(password) && replacements < maxReplacements) {
+                const pos = Math.floor(Math.random() * password.length);
+                chars[pos] = getRandomChar(charSets.uppercase, options);
+                replacements++;
+            }
+
+            if (options.includeLowercase && !/[a-z]/.test(password) && replacements < maxReplacements) {
+                const pos = Math.floor(Math.random() * password.length);
+                chars[pos] = getRandomChar(charSets.lowercase, options);
+                replacements++;
+            }
+
+            if (options.includeNumbers && !/[0-9]/.test(password) && replacements < maxReplacements) {
+                const pos = Math.floor(Math.random() * password.length);
+                chars[pos] = getRandomChar(charSets.numbers, options);
+                replacements++;
+            }
+
+            if (options.includeSymbols && !/[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]/.test(password) && replacements < maxReplacements) {
+                const pos = Math.floor(Math.random() * password.length);
+                chars[pos] = getRandomChar(charSets.symbols, options);
+                replacements++;
+            }
+
+            return chars.join('');
+        }
+
+        // Get random character from charset with exclusions
+        function getRandomChar(charset, options) {
+            let filteredCharset = charset;
+            
+            if (options.excludeSimilar) {
+                filteredCharset = filteredCharset.split('').filter(char => !charSets.similar.includes(char)).join('');
+            }
+            
+            if (options.excludeAmbiguous) {
+                filteredCharset = filteredCharset.split('').filter(char => !charSets.ambiguous.includes(char)).join('');
+            }
+            
+            const array = new Uint8Array(1);
+            window.crypto.getRandomValues(array);
+            return filteredCharset[array[0] % filteredCharset.length];
+        }
+
+        // Update password strength indicator
+        function updatePasswordStrength(password) {
+            const indicator = document.getElementById('strengthIndicator');
+            const strengthText = document.getElementById('strengthText');
+            
+            let score = 0;
+            
+            // Length scoring
+            if (password.length >= 8) score += 1;
+            if (password.length >= 12) score += 1;
+            if (password.length >= 16) score += 1;
+            
+            // Character variety scoring
+            if (/[a-z]/.test(password)) score += 1;
+            if (/[A-Z]/.test(password)) score += 1;
+            if (/[0-9]/.test(password)) score += 1;
+            if (/[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]/.test(password)) score += 1;
+            
+            // Determine strength
+            let strength, className;
+            if (score < 4) {
+                strength = 'Weak';
+                className = 'strength-weak';
+            } else if (score < 6) {
+                strength = 'Medium';
+                className = 'strength-medium';
+            } else {
+                strength = 'Strong';
+                className = 'strength-strong';
+            }
+            
+            strengthText.textContent = strength;
+            indicator.className = 'strength-indicator ' + className;
+            indicator.style.display = 'block';
+        }
