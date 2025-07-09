@@ -277,6 +277,7 @@
             <button onclick="encodeToBase64()" title="Base64 Encode/Decode">Base64</button>
             <button onclick="convertCase()" title="Case Converter">Case</button>
             <button onclick="reverseText()" title="Reverse Text">Reverse</button>
+            <button onclick="generateApiKey()" title="Generate API Key">API Key</button>
             <button onclick="convertColor()" title="Color Converter">Color</button>
             <button onclick="decodeJWT()" title="JWT Decode">JWT</button>
             <button onclick="escapeRegex()" title="Regex Escape">Regex</button>
@@ -379,15 +380,7 @@
         <label>Color Preview:</label>
         <div class="color-swatch" id="colorSwatch"></div>
         <div class="color-info" id="colorInfo"></div>
-    </div>
-
-    <div class="container">
-        <button onclick="generateApiKey()" title="Generate API Key">API Key</button>
-        <input type="text" id="apiKeyOutput" placeholder="Generated API Key" readonly>
-        <button onclick="copyToClipboard('apiKeyOutput')" title="Copy">
-            <i class="fas fa-copy"></i>
-        </button>
-    </div>
+    </div>  
 
     <div class="buttons">
         <button onclick="clearFields()" title="Clear All">🗑️ Clear</button>
@@ -704,7 +697,7 @@
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.64 (NT)</span>
+            <span>Version 2.1.65 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
