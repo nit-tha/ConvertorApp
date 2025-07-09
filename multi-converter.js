@@ -1601,7 +1601,7 @@ function generateApiKey() {
         apiKey += characters.charAt(randomValues[i] % characters.length); // Map to valid character
     }
     // Display the generated API key in the designated input field
-    document.getElementById('apiKeyOutput').value = apiKey;
+    document.getElementById('output').value = apiKey;
 }
 
 // Select all anchor tags within the <nav> element
