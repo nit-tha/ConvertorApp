@@ -428,6 +428,10 @@ const colorNames = {
     '#E6D3B7': 'Champagne', '#C9B37D': 'Khaki Brown', '#B8860B': 'Dark Goldenrod', '#DAA520': 'Goldenrod',
     '#E8D5B7': 'Antique Brass', '#F0E68C': 'Khaki', '#EEE8AA': 'Pale Goldenrod', '#FAEBD7': 'Antique White',
 
+    // Green variants (fixed the CFDFCE issue)
+    '#C1E1C1': 'Tea Green', '#B2D8B2': 'Pastel Green', '#A8E6CF': 'Mint Cream Green', '#BEEBC1': 'Muted Mint', '#CFDFCE': 'Light Sage Green',
+    '#D0F0C0': 'Honeydew Green', '#A2D5AB': 'Celery Green', '#CAEAC7': 'Frosted Mint', '#BFD8B8': 'Dusty Green',
+
     // Pastel Colors
     '#FFB3BA': 'Pastel Pink', '#FFDFBA': 'Pastel Peach', '#FFFFBA': 'Pastel Yellow', '#BAFFC9': 'Pastel Green',
     '#BAE1FF': 'Pastel Blue', '#E6E6FA': 'Pastel Lavender', '#F0E68C': 'Pastel Khaki', '#DDA0DD': 'Pastel Plum',
