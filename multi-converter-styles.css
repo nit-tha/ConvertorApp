@@ -1648,9 +1648,12 @@ input[type="file"] {
     height: auto;
     max-height: 300px;
     border-radius: 6px;
-    margin-bottom: 10px;
+    margin: 0 auto;    
     border: 1px solid #ccc;
     object-fit: contain;
+    display: block;
+    background: #f9f9f9;
+    padding: 4px;
 }
 .file-info p {
     font-size: 13px;
@@ -1716,10 +1719,7 @@ input[type="file"] {
     .preview-item {
         flex: 1 1 100%;
         min-width: 100%;
-    }
-    .preview-item img {
-        max-height: 250px;
-    }
+    }    
     .size-stats {
         flex-direction: column;
         gap: 10px;
@@ -1738,10 +1738,7 @@ input[type="file"] {
 @media (max-width: 480px) {
     .upload-area {
         padding: 20px 15px;
-    }
-    .preview-item img {
-        max-height: 200px;
-    }
+    }  
     .buttons,
     .inline-buttons {
         flex-direction: column;
@@ -1753,4 +1750,12 @@ input[type="file"] {
         width: 100%;
         max-width: 200px;
     }
+}
+
+#previewContainer,
+#sizeComparison,
+#controls,
+#progressBar,
+#downloadBtn {
+    display: none;
 }
