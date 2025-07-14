@@ -385,7 +385,106 @@
     <div class="buttons">
         <button onclick="clearFields()" title="Clear All">🗑️ Clear</button>
     </div>
-</div>
+
+    <!-- Image Processor Tool Styling -->
+    <div class="image-container">
+            <h2>🖼️ Image Processor</h2>
+    
+            <div class="upload-area" id="uploadArea" style="margin-bottom: 20px;">
+                <div class="upload-icon">📁</div>
+                <div class="upload-text long-text">Drop your image here or click to browse</div>
+                <div class="upload-subtext">Supports JPG, PNG, WebP, GIF • Max 50MB</div>
+                <input type="file" id="fileInput" accept="image/*">
+            </div>
+    
+            <div class="controls" id="controls">
+        <div class="control-row-group">
+            <div class="control-group">
+                <label>🗜️ Compression Quality</label>
+                <div class="control-row">
+                    <input type="range" id="qualitySlider" min="0.1" max="1" step="0.1" value="0.8">
+                    <span class="range-info" id="qualityValue">80%</span>
+                </div>
+            </div>
+    
+            <div class="control-group">
+                <label>📏 Resize Options</label>
+                <div class="control-row">
+                    <input type="number" id="widthInput" placeholder="Width" min="1">
+                    <span>×</span>
+                    <input type="number" id="heightInput" placeholder="Height" min="1">
+                    <label><input type="checkbox" id="maintainAspect" checked> Keep aspect ratio</label>
+                </div>
+            </div>
+    
+            <div class="control-group">
+                <label>🔄 Output Format</label>
+                <div class="control-row">
+                    <select id="formatSelect">
+                        <option value="image/jpeg">JPEG</option>
+                        <option value="image/png">PNG</option>
+                        <option value="image/webp">WebP</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ✅ New Order -->
+    <div class="size-comparison" id="sizeComparison">
+        <h3>📊 Size Comparison</h3>
+        <div class="size-stats">
+            <div class="size-stat">
+                <div class="value" id="originalSize">-</div>
+                <div class="label">Original</div>
+            </div>
+            <div class="size-stat">
+                <div class="value" id="compressedSize">-</div>
+                <div class="label">Compressed</div>
+            </div>
+            <div class="size-stat">
+                <div class="value savings" id="savings">-</div>
+                <div class="label">Saved</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ✅ Buttons appear right below size stats -->
+    <div class="buttons inline-buttons">
+        <button class="btn" id="processBtn" disabled>⚡ Process Image</button>
+        <button class="btn btn-secondary" id="resetBtn">🔄 Reset</button>
+        <a class="btn" id="downloadBtn" style="display: none;">💾 Download</a>
+    </div>
+    
+     <!-- ✅ Then comes the preview section -->
+    <div class="preview-container" id="previewContainer">
+        <div class="preview-grid">
+            <div class="preview-item">
+                <h3>Original</h3>
+                <img id="originalPreview" alt="Original">
+                <div class="file-info">
+                    <p><strong>Size:</strong> <span id="originalFileSize">-</span></p>
+                    <p><strong>Dimensions:</strong> <span id="originalDimensions">-</span></p>
+                    <p><strong>Format:</strong> <span id="originalFormat">-</span></p>
+                </div>
+            </div>
+            <div class="preview-item">
+                <h3>Processed</h3>
+                <img id="processedPreview" alt="Processed">
+                <div class="file-info">
+                    <p><strong>Size:</strong> <span id="processedFileSize">-</span></p>
+                    <p><strong>Dimensions:</strong> <span id="processedDimensions">-</span></p>
+                    <p><strong>Format:</strong> <span id="processedFormat">-</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="progress-bar" id="progressBar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+</div> <!-- Closing for #hexConverter -->
+
        
 <!-- === XML to Block Converter Section === -->
  <div id="xmlToBlockSection" class="converter-container" style="display: none;">
@@ -631,8 +730,8 @@
         <div class="sample-data" style="display:none;" id="sampleDataTemplate">
             TC-AUTH-001|Valid Basic Authentication|Authentication|High|Verify successful authentication with valid credentials|Both endpoints|POST|Valid API key and credentials available|Headers: Valid API_KEY and Basic Authorization|Authentication successful, proceed to endpoint logic|200
             TC-AUTH-002|Invalid Username/Password|Authentication|High|Verify proper handling of invalid credentials|Both endpoints|POST|Invalid credentials prepared|Headers: Invalid API_KEY or Basic Authorization|Authentication failure with 2-second timeout|401
-            TC-SET-001|Valid WWD Confirmation|Functional|High|Verify successful WWD event confirmation|setVerificationMsg|POST|Valid auth, active WWD device available|{"DeviceID": 20106, "MsgVerified": 1}|TCPBC command $20106,20,msgVerified=1 sent|200
-            TC-SET-002|Valid WWD Cancellation|Functional|High|Verify successful WWD event cancellation|setVerificationMsg|POST|Valid auth, active WWD device available|{"DeviceID": 20106, "MsgVerified": 0}|TCPBC command $20106,20,msgVerified=0 sent|200
+            TC-SET-001|Valid WWD Confirmation|Functional|High|Verify successful WWD event confirmation|setVerificationMsg|POST|Valid auth, active WWD device available|{"Device": 206, "MsgVerified": 1}|Test command $206,20,msgVerified=1 sent|200
+            TC-SET-002|Valid WWD Cancellation|Functional|High|Verify successful WWD event cancellation|setVerificationMsg|POST|Valid auth, active WWD device available|{"Device": 206, "MsgVerified": 0}|Test command $206,20,msgVerified=0 sent|200
             TC-GET-001|Get All Active Devices|Functional|High|Verify retrieval of all active WWD devices|getActiveDevices|POST|Valid auth, active WWD devices exist|{"DeviceID": null} or {}|List of devices with alarm status = 6 (Active)|200
         </div>
     </div>
@@ -697,7 +796,7 @@
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.65 (NT)</span>
+            <span>Version 2.1.67 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
