@@ -3120,3 +3120,325 @@ document.addEventListener('DOMContentLoaded', function() {
             indicator.className = 'strength-indicator ' + className;
             indicator.style.display = 'block';
         }
+
+     // --- Image Processor Tool ---
+    let originalFile = null;
+    let processedBlob = null;
+
+    // DOM elements
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+    const controls = document.getElementById('controls');
+    const previewContainer = document.getElementById('previewContainer');
+    const sizeComparison = document.getElementById('sizeComparison');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    const processBtn = document.getElementById('processBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    // Control elements
+    const qualitySlider = document.getElementById('qualitySlider');
+    const qualityValue = document.getElementById('qualityValue');
+    const widthInput = document.getElementById('widthInput');
+    const heightInput = document.getElementById('heightInput');
+    const maintainAspect = document.getElementById('maintainAspect');
+    const formatSelect = document.getElementById('formatSelect');
+
+    // Preview elements
+    const originalPreview = document.getElementById('originalPreview');
+    const processedPreview = document.getElementById('processedPreview');
+
+    // File info elements
+    const originalFileSize = document.getElementById('originalFileSize');
+    const originalDimensions = document.getElementById('originalDimensions');
+    const originalFormat = document.getElementById('originalFormat');
+    const processedFileSize = document.getElementById('processedFileSize');
+    const processedDimensions = document.getElementById('processedDimensions');
+    const processedFormat = document.getElementById('processedFormat');
+
+    // Size comparison elements
+    const originalSize = document.getElementById('originalSize');
+    const compressedSize = document.getElementById('compressedSize');
+    const savings = document.getElementById('savings');
+
+    // Upload area events
+    uploadArea.addEventListener('click', () => fileInput.click());
+    uploadArea.addEventListener('dragover', handleDragOver);
+    uploadArea.addEventListener('dragleave', handleDragLeave);
+    uploadArea.addEventListener('drop', handleDrop);
+
+    // File input change
+    fileInput.addEventListener('change', handleFileSelect);
+
+    // Control events
+    qualitySlider.addEventListener('input', updateQualityValue);
+    widthInput.addEventListener('input', handleDimensionChange);
+    heightInput.addEventListener('input', handleDimensionChange);
+    maintainAspect.addEventListener('change', handleAspectRatioChange);
+
+    // Button events
+    processBtn.addEventListener('click', processImage);
+    resetBtn.addEventListener('click', resetApp);
+
+    function handleDragOver(e) {
+        e.preventDefault();
+        uploadArea.classList.add('dragover');
+    }
+
+    function handleDragLeave(e) {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+    }
+
+    function handleDrop(e) {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            handleFile(files[0]);
+        }
+    }
+
+    function handleFileSelect(e) {
+        const file = e.target.files[0];
+        if (file) {
+            handleFile(file);
+        }
+    }
+
+    function handleFile(file) {
+        if (!file.type.startsWith('image/')) {
+            alert('Please select a valid image file.');
+            return;
+        }
+
+        if (file.size > 50 * 1024 * 1024) {
+            alert('File size must be less than 50MB.');
+            return;
+        }
+
+        originalFile = file;
+        loadOriginalImage();
+    }
+
+    function loadOriginalImage() {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            originalPreview.src = e.target.result;
+            
+            // Create image to get dimensions
+            const img = new Image();
+            img.onload = function() {
+                // Update UI
+                controls.style.display = 'block';
+                previewContainer.style.display = 'block';
+                processBtn.disabled = false;
+                
+                // Set original dimensions in inputs
+                widthInput.value = img.width;
+                heightInput.value = img.height;
+                
+                // Update original file info
+                originalFileSize.textContent = formatFileSize(originalFile.size);
+                originalDimensions.textContent = `${img.width} × ${img.height}`;
+                originalFormat.textContent = originalFile.type.split('/')[1].toUpperCase();
+                
+                // Set default format based on original
+                if (originalFile.type === 'image/png') {
+                    formatSelect.value = 'image/png';
+                } else if (originalFile.type === 'image/webp') {
+                    formatSelect.value = 'image/webp';
+                } else {
+                    formatSelect.value = 'image/jpeg';
+                }
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(originalFile);
+    }
+
+    function updateQualityValue() {
+        const quality = Math.round(qualitySlider.value * 100);
+        qualityValue.textContent = quality + '%';
+    }
+
+    function handleDimensionChange() {
+        if (maintainAspect.checked && originalPreview.src) {
+            const img = originalPreview;
+            const originalWidth = img.naturalWidth;
+            const originalHeight = img.naturalHeight;
+            const aspectRatio = originalWidth / originalHeight;
+            
+            if (document.activeElement === widthInput) {
+                const newWidth = parseInt(widthInput.value);
+                if (newWidth && newWidth > 0) {
+                    heightInput.value = Math.round(newWidth / aspectRatio);
+                }
+            } else if (document.activeElement === heightInput) {
+                const newHeight = parseInt(heightInput.value);
+                if (newHeight && newHeight > 0) {
+                    widthInput.value = Math.round(newHeight * aspectRatio);
+                }
+            }
+        }
+    }
+
+    function handleAspectRatioChange() {
+        if (maintainAspect.checked) {
+            handleDimensionChange();
+        }
+    }
+
+    function processImage() {
+        if (!originalFile) return;
+
+        showProgress(true);
+        
+        setTimeout(() => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            const img = new Image();
+            img.onload = function() {
+                // Set canvas dimensions
+                const targetWidth = parseInt(widthInput.value) || img.width;
+                const targetHeight = parseInt(heightInput.value) || img.height;
+                
+                canvas.width = targetWidth;
+                canvas.height = targetHeight;
+                
+                // Draw resized image
+                ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+                
+                // Get quality and format
+                const quality = parseFloat(qualitySlider.value);
+                const format = formatSelect.value;
+                
+                // Convert to blob
+                canvas.toBlob(function(blob) {
+                    processedBlob = blob;
+                    
+                    // Update processed preview
+                    const url = URL.createObjectURL(blob);
+                    processedPreview.src = url;
+                    
+                    // Update processed file info
+                    processedFileSize.textContent = formatFileSize(blob.size);
+                    processedDimensions.textContent = `${targetWidth} × ${targetHeight}`;
+                    processedFormat.textContent = format.split('/')[1].toUpperCase();
+                    
+                    // Update size comparison
+                    updateSizeComparison();
+                    
+                    // Show download button
+                    downloadBtn.style.display = 'inline-flex';
+                    downloadBtn.href = url;
+                    downloadBtn.download = `processed_${originalFile.name.split('.')[0]}.${format.split('/')[1]}`;
+                    
+                    showProgress(false);
+                }, format, quality);
+            };
+            
+            img.src = URL.createObjectURL(originalFile);
+        }, 100);
+    }
+
+   function updateSizeComparison() {
+        if (!originalFile || !processedBlob) return;
+        
+        const originalSizeBytes = originalFile.size;
+        const processedSizeBytes = processedBlob.size;
+        const savedBytes = originalSizeBytes - processedSizeBytes;
+        const savedPercentage = Math.round((savedBytes / originalSizeBytes) * 100);
+        
+        originalSize.textContent = formatFileSize(originalSizeBytes);
+        compressedSize.textContent = formatFileSize(processedSizeBytes);
+        
+        // Handle savings display
+        if (savedBytes > 0) {
+            savings.textContent = `${savedPercentage}% (${formatFileSize(savedBytes)})`;
+            savings.className = 'value savings';
+        } else if (savedBytes < 0) {
+            const increasedBytes = Math.abs(savedBytes);
+            const increasedPercentage = Math.round((increasedBytes / originalSizeBytes) * 100);
+            savings.textContent = `+${increasedPercentage}% (${formatFileSize(increasedBytes)})`;
+            savings.className = 'value increased';
+        } else {
+            savings.textContent = '0% (No change)';
+            savings.className = 'value';
+        }
+        
+        sizeComparison.style.display = 'block';
+    }
+
+    function showProgress(show) {
+        if (show) {
+            progressBar.style.display = 'block';
+            progressFill.style.width = '0%';
+            
+            // Simulate progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 30;
+                if (progress > 90) progress = 90;
+                progressFill.style.width = progress + '%';
+                
+                if (progress >= 90) {
+                    clearInterval(interval);
+                }
+            }, 100);
+        } else {
+            progressFill.style.width = '100%';
+            setTimeout(() => {
+                progressBar.style.display = 'none';
+            }, 500);
+        }
+    }
+
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    function resetApp() {
+        originalFile = null;
+        processedBlob = null;
+        
+        // Reset UI
+        controls.style.display = 'none';
+        previewContainer.style.display = 'none';
+        sizeComparison.style.display = 'none';
+        progressBar.style.display = 'none';
+        downloadBtn.style.display = 'none';
+        
+        // Reset controls
+        qualitySlider.value = 0.8;
+        updateQualityValue();
+        widthInput.value = '';
+        heightInput.value = '';
+        maintainAspect.checked = true;
+        formatSelect.value = 'image/jpeg';
+        
+        // Reset file input
+        fileInput.value = '';
+        processBtn.disabled = true;
+        
+        // Clear previews
+        originalPreview.src = '';
+        processedPreview.src = '';
+        
+        // Reset file info
+        originalFileSize.textContent = '-';
+        originalDimensions.textContent = '-';
+        originalFormat.textContent = '-';
+        processedFileSize.textContent = '-';
+        processedDimensions.textContent = '-';
+        processedFormat.textContent = '-';
+    }
+
+    // Initialize quality value
+    updateQualityValue();
