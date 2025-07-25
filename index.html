@@ -283,6 +283,7 @@
             <button onclick="escapeRegex()" title="Regex Escape">Regex</button>
             <button onclick="showPassCraft()" title="Password Generator" id="passcraftBtn">PassCraft</button>
             <button onclick="convertMarkdown()" title="Markdown/HTML Converter">MD⇄HTML</button>
+            <button onclick="toggleTool('epochToolContainer')" title="Date→Epoch Converter">Date→Epoch</button>
         </div>
     </div>
 
@@ -385,6 +386,43 @@
     <div class="buttons">
         <button onclick="clearFields()" title="Clear All">🗑️ Clear</button>
     </div>
+
+    <!-- Epoch Tool Container (Hidden by default) -->
+        <div id="epochToolContainer" style="display: none;">
+            <h3>Date→Epoch Converter</h3>
+            
+            <!-- Format Dropdown -->
+            <label for="dateFormat">Select Date Format:</label>
+            <select id="dateFormat">
+                <option value="dd-MMM-yy">dd-MMM-yy (e.g., 01-Jan-23)</option>
+                <option value="dd/mm/yyyy">dd/mm/yyyy (e.g., 01/01/2023)</option>
+                <option value="dd/mm/yy">dd/mm/yy (e.g., 01/01/23)</option>
+                <option value="mm/dd/yyyy">mm/dd/yyyy (e.g., 01/01/2023)</option>
+                <option value="mm/dd/yy">mm/dd/yy (e.g., 01/01/23)</option>
+                <option value="yyyy-mm-dd">yyyy-mm-dd (e.g., 2023-01-01)</option>
+                <option value="dd.mm.yyyy">dd.mm.yyyy (e.g., 01.01.2023)</option>
+                <option value="dd.mm.yy">dd.mm.yy (e.g., 01.01.23)</option>
+            </select>
+            
+            <!-- Textarea Input -->
+            <label for="dateInput" style="display:block; margin-top:10px;">Enter Dates (one per line):</label>
+            <textarea id="dateInput" rows="6" placeholder="Enter dates here, one date per line...
+Example:
+01-Jan-23
+02-Feb-23
+03-Mar-23"></textarea>
+            
+            <!-- Buttons -->
+            <div style="margin-top:10px;">
+                <button class="btn-primary" onclick="convertDates()">Convert to Epoch</button>
+                <button class="btn-secondary" onclick="clearAll()">Clear All</button>
+                <button class="btn-success" id="copyBtn" style="display: none;" onclick="copyEpochTimes()">Copy Epoch Times</button>
+                <button class="btn-secondary" id="downloadBtn" style="display: none;" onclick="downloadResults()">Download Results</button>
+            </div>
+            
+            <!-- Results Area -->
+            <div id="resultsContainer" style="display: none;"></div>
+        </div> 
 
     <!-- Image Processor Tool Styling -->
     <div class="image-container">
@@ -796,7 +834,7 @@
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.68 (NT)</span>
+            <span>Version 2.1.70 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
