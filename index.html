@@ -233,35 +233,12 @@
         <button type="button" onclick="HumanToEpochTZ()" title="In Epochtime">Human Date</button>
         <span id="hf-result" class="result-container"></span>
     </div>
-</form>  
-
-    <!-- === Epoch Clock & Timezones === -->
-    <div class="epoch-container">    
-    <div class="hf-container">
-         <span>Seconds Calculator: </span>
-        <!-- Hours Dropdown -->
-        <div class="input-group">
-            <label for="hours">Select Hours:</label>
-            <select id="hours"></select>
-        </div>
-        <!-- Minutes Dropdown -->
-        <div class="input-group">
-            <label for="minutes">Select Minutes:</label>
-            <select id="minutes"></select>
-        </div>
-        <!-- Calculate Button -->
-        <div>
-            <button onclick="calculateSeconds()">Calculate</button>
-        </div>
-        <!-- Result Container -->
-        <div class="result-container" id="result2"></div>
+</form>
+            
+    <div class="container">
+        <button onclick="clearData()" class="clear-button" title="Clear All">🗑️ Clear</button>
     </div>
 </div>
-
-            <div class="container">
-                <button onclick="clearData()" class="clear-button" title="Clear All">🗑️ Clear</button>
-            </div>
-        </div>
 
     <!-- === Hex, Binary, Base64, Text Utilities === -->
     <div id="hexConverter" class="hex-container" style="display: none;">
