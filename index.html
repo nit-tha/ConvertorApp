@@ -753,27 +753,40 @@ Example:
 </div>
 
 <!-- === Location Geocoding Tool === -->
-    <div id="geocodingSection" class="converter-container">
-        <h2>🌍 Location Geocoding Tool</h2>
-
-        <div class="search-container">
-            <div class="search-panel">
-                <h3>Enter Location Name</h3>
-                <input type="text" id="locationInput" placeholder="Enter city, country, or address (e.g., India, London, New York)" onkeypress="handleKeyPress(event)">
+        <div id="geocodingSection" class="converter-container">
+            <h2>🌍 Location Geocoding Tool</h2>
+            
+            <div class="search-section">
+                <div class="method-selector">
+                    <label for="methodSelect">Choose Geocoding Method: </label>
+                    <select id="methodSelect">
+                        <option value="locationiq">LocationIQ (Recommended)</option>
+                        <option value="proxy1">Nominatim via CORS Proxy 1</option>
+                        <option value="proxy2">Nominatim via CORS Proxy 2</option>
+                        <option value="direct">Direct Nominatim (May fail due to CORS)</option>
+                    </select>
+                </div>
+            
+            <div class="search-container">
+                <div class="search-panel">
+                    <h3>Enter Location Name</h3>
+                    <input type="text" id="locationInput" placeholder="Enter city, country, or address (e.g., India, London, New York)" onkeypress="handleKeyPress(event)">
+                </div>
             </div>
+            
+            <div style="display: flex; gap: 10px; margin: 20px 0; justify-content: center;">
+                <button onclick="searchLocation()" title="Search for location coordinates" id="searchBtn">🔍 Search Location</button>
+                <button onclick="clearResults()" title="Clear all results">🗑️ Clear</button>
+            </div>
+            
+            <div id="loadingIndicator" class="loading" style="display: none;">
+                Searching for location...
+            </div>
+            
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
         </div>
-
-        <div style="display: flex; gap: 10px; margin: 20px 0; justify-content: center;">
-            <button onclick="searchLocation()" title="Search for location coordinates" id="searchBtn">🔍 Search Location</button>
-            <button onclick="clearResults()" title="Clear all results">🗑️ Clear</button>
-        </div>
-
-        <div id="loadingIndicator" class="loading" style="display: none;">
-            Searching for location...
-        </div>
-
-        <div id="errorMessage" class="error-message" style="display: none;"></div>
-
+        
+        
         <div id="coordinateStats" class="stats-container" style="display: none;">
             <div class="stat-item">
                 <strong>Found:</strong> <span id="locationName">-</span>
@@ -785,7 +798,7 @@ Example:
                 <strong>Country:</strong> <span id="locationCountry">-</span>
             </div>
         </div>
-
+        
         <div id="coordinateResult" style="display: none;">
             <h3>📍 Location Coordinates</h3>
             <div class="result-panels">
@@ -798,7 +811,7 @@ Example:
                     <div id="boundingBox" class="coordinate-display"></div>
                 </div>
             </div>
-
+            
             <div class="result-panel">
                 <h4>🗺️ Additional Information</h4>
                 <div id="additionalInfo" class="coordinate-display"></div>
