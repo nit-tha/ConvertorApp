@@ -1755,8 +1755,7 @@ input[type="file"] {
 #previewContainer,
 #sizeComparison,
 #controls,
-#progressBar,
-#downloadBtn {
+#progressBar {
     display: none;
 }
 
