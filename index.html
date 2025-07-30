@@ -364,44 +364,63 @@
         <button onclick="clearFields()" title="Clear All">🗑️ Clear</button>
     </div>
 
-    <!-- Epoch Tool Container (Hidden by default) -->
+   <!-- Epoch Tool Container (Hidden by default) -->
         <div id="epochToolContainer" style="display: none;">
             <h3>Date→Epoch Converter</h3>
-
-            <!-- Date Generator Section -->
-        <div id="dateGeneratorSection" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
-            <h4>Date Generator</h4>
             
-            <!-- Updated layout for Year and Month -->
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-                <label for="yearInput">Year:</label>
-                <input type="number" id="yearInput" min="2000" max="2050" style="width: 80px;">
-
-                <label for="monthSelect">Month:</label>
-                <select id="monthSelect" style="width: 100px;">
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                </select>
-            </div>
-
-            <!-- Interval and Button remain unchanged -->
-            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px;">
-                <label for="dayInterval">Day Interval:</label>
-                <input type="number" id="dayInterval" value="3" min="1" max="30" style="width: 60px;">
+            <!-- Date Generator Section -->
+            <div id="dateGeneratorSection">
+                <h4>Date Generator</h4>
                 
-                <button class="btn-primary" onclick="generateDates()">Generate Dates</button>
+                <!-- Date Range Selection -->
+                <div class="range-inputs" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+                    <label for="startYearInput">From Year:</label>
+                    <input type="number" id="startYearInput" min="2000" max="2050" style="width: 80px;">
+                    
+                    <label for="startMonthSelect">Month:</label>
+                    <select id="startMonthSelect" style="width: 100px;">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>              
+                
+                    <label for="endYearInput">To Year:</label>
+                    <input type="number" id="endYearInput" min="2000" max="2050" style="width: 80px;">
+                    
+                    <label for="endMonthSelect">Month:</label>
+                    <select id="endMonthSelect" style="width: 100px;">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                </div>
+                
+                <!-- Interval and Button -->
+                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px;">
+                    <label for="dayInterval">Day Interval:</label>
+                    <input type="number" id="dayInterval" value="3" min="1" max="30" style="width: 60px;">
+                    
+                    <button class="btn-primary" onclick="generateDates()">Generate Dates</button>
+                </div>
             </div>
-        </div>
             
             <!-- Format Dropdown -->
             <label for="dateFormat">Select Date Format:</label>
@@ -414,15 +433,16 @@
                 <option value="yyyy-mm-dd">yyyy-mm-dd (e.g., 2023-01-01)</option>
                 <option value="dd.mm.yyyy">dd.mm.yyyy (e.g., 01.01.2023)</option>
                 <option value="dd.mm.yy">dd.mm.yy (e.g., 01.01.23)</option>
+                <option value="MMM dd, yyyy HH:mm:ss">MMM dd, yyyy HH:mm:ss (e.g., February 25, 2025 13:23:51)</option>
             </select>
             
             <!-- Textarea Input -->
             <label for="dateInput" style="display:block; margin-top:10px;">Enter Dates (one per line):</label>
-            <textarea id="dateInput" rows="6" placeholder="Enter dates here, one date per line...
-Example:
-01-Jan-23
-02-Feb-23
-03-Mar-23"></textarea>
+            <textarea id="dateInput" rows="6" placeholder="Enter dates here, one date per line...Example:
+01-Jan-25
+02-Feb-26
+03-Mar-28
+February 25, 2025 13:23:51"></textarea>
             
             <!-- Buttons -->
             <div style="margin-top:10px;">
@@ -434,7 +454,7 @@ Example:
             
             <!-- Results Area -->
             <div id="resultsContainer" style="display: none;"></div>
-        </div> 
+        </div>
 
     <!-- Image Processor Tool Styling -->
     <div class="image-container">
@@ -846,7 +866,7 @@ Example:
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.72 (NT)</span>
+            <span>Version 2.1.73 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
