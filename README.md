@@ -38,6 +38,8 @@ Access the app here: [Multi Converter Tool](https://nit-tha.github.io/ConvertorA
 - Real-time epoch clock
 - Testcase creator (from plain text to excel)
 - Password generator
+- Image Resizer
+- Remove duplicate
 - API Key generator
 
 ### 🌐 Web & API Utilities
