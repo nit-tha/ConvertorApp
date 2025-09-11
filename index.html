@@ -269,6 +269,7 @@
             <button onclick="showPassCraft()" title="Password Generator" id="passcraftBtn">PassCraft</button>
             <button onclick="convertMarkdown()" title="Markdown/HTML Converter">MD⇄HTML</button>
             <button onclick="toggleTool('epochToolContainer')" title="Date→Epoch Converter">Date→Epoch</button>
+            <button onclick="showDuplicateCounter()" title="Find and Analyze Duplicates">Duplicates</button>
         </div>
     </div>
 
@@ -463,6 +464,57 @@ February 25, 2025 13:23:51"></textarea>
             <!-- Results Area -->
             <div id="resultsContainer" style="display: none;"></div>
         </div>
+
+         <!-- Duplicate Counter Section -->
+        <div class="duplicate-counter" id="duplicateCounter" style="display: none;">
+
+            <div class="dup-grid">
+                <!-- Input -->
+                <div class="dup-panel">
+                    <label for="duplicateInput">Input List (one item per line):</label>
+                    <textarea id="duplicateInput"
+                              placeholder="Enter items (one per line)&#10;apple&#10;banana&#10;apple&#10;orange&#10;banana"
+                              rows="12"
+                              oninput="countDuplicatesLive()"></textarea>
+                </div>
+
+                <!-- Results -->
+                <div class="dup-panel">
+                    <label for="duplicateOutput">Results:</label>
+                    <textarea id="duplicateOutput" readonly rows="12"></textarea>
+                    <div class="dup-actions">
+                        <button onclick="copyToClipboard('duplicateOutput')" title="Copy Results">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                        <button onclick="downloadResults()" title="Download Results">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="dup-controls">
+                <label><input type="checkbox" id="showCountsCheckbox" checked onchange="updateDuplicateDisplay()"> Show Counts</label>
+                <label><input type="checkbox" id="duplicatesOnlyCheckbox" onchange="updateDuplicateDisplay()"> Duplicates Only</label>
+                <label for="outputFormat">Output Format:</label>
+                <select id="outputFormat" onchange="updateDuplicateDisplay()">
+                    <option value="tab">TAB (Excel)</option>
+                    <option value="csv">CSV</option>
+                    <option value="plain">Plain Text</option>
+                </select>
+            </div>
+
+            <!-- Stats -->
+            <div id="duplicateStats" class="dup-stats"></div>
+
+            <!-- Footer buttons -->
+            <div class="buttons" style="text-align: center;">
+                <button onclick="clearDuplicateFields()" title="Clear All">🗑️ Clear</button>
+                <button onclick="restoreDuplicateInput()" title="Restore Last Input">↶ Restore</button>
+            </div>
+        </div>
+        
 
     <!-- Image Processor Tool Styling -->
     <div class="image-container">
@@ -922,7 +974,7 @@ February 25, 2025 13:23:51"></textarea>
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.77 (NT)</span>
+            <span>Version 2.1.78 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
@@ -931,6 +983,7 @@ February 25, 2025 13:23:51"></textarea>
         <script src="multi-converter.js"></script>
     </body>
 </html>
+
 
 
 
