@@ -622,6 +622,7 @@ February 25, 2025 13:23:51"></textarea>
         <textarea id="fullXml" class="pasteable" placeholder="Paste your full XML here..." style="width: 449px; height: 160px;"></textarea>
         <div style="display: flex; gap: 10px; margin-bottom: 20px;">      
         <button onclick="convertToBlock()" title="Convert's FullXml to Block">Convert</button>
+        <button onclick="convertJsonToXml()" title="Convert JSON to XML">JSON → XML</button>
         <button onclick="clearText('fullXml', 'blockXml', 'errorMsg')">🗑️ Clear</button>
         </div>  
         <h3>Block XML Output</h3>
@@ -640,6 +641,7 @@ February 25, 2025 13:23:51"></textarea>
                 <button onclick="convertToJson()">Convert</button>
                 <button onclick="urlEncodeDecode()">Url Encode-Decode</button>            
                 <button onclick="validateJson()">Validate</button>
+                <button onclick="convertXmlToJson()">XML→JSON</button>
                 <button onclick="clearText('queryString', 'jsonOutput', 'jsonErrorMsg')">🗑️ Clear</button>  
             </div>         
             <h3>Processed Output</h3>
@@ -974,7 +976,7 @@ February 25, 2025 13:23:51"></textarea>
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.78 (NT)</span>
+            <span>Version 2.1.79 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
@@ -983,6 +985,7 @@ February 25, 2025 13:23:51"></textarea>
         <script src="multi-converter.js"></script>
     </body>
 </html>
+
 
 
 
