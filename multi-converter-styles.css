@@ -1846,6 +1846,29 @@ input[type="file"] {
     font-style: italic;
 }
 
+#epochToolContainer .format-timezone-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+#epochToolContainer input,
+#epochToolContainer select,
+#epochToolContainer textarea {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#epochToolContainer textarea {
+    width: 100%;
+    min-height: 120px;
+    font-family: monospace;
+    resize: vertical;
+}
+
 /* === GeoJSON Converter Tool (no map) === */
 #geojsonSection {
     display: flex;
@@ -2038,5 +2061,3 @@ input[type="file"] {
         flex-direction: column;
     }
 }
-
-
