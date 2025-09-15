@@ -431,19 +431,33 @@
                 </div>
             </div>
             
-            <!-- Format Dropdown -->
-            <label for="dateFormat">Select Date Format:</label>
-            <select id="dateFormat">
-                <option value="dd-MMM-yy">dd-MMM-yy (e.g., 01-Jan-25)</option>
-                <option value="dd/mm/yyyy">dd/mm/yyyy (e.g., 01/01/2025)</option>
-                <option value="dd/mm/yy">dd/mm/yy (e.g., 01/01/25)</option>
-                <option value="mm/dd/yyyy">mm/dd/yyyy (e.g., 01/01/2025)</option>
-                <option value="mm/dd/yy">mm/dd/yy (e.g., 01/01/25)</option>
-                <option value="yyyy-mm-dd">yyyy-mm-dd (e.g., 2025-01-01)</option>
-                <option value="dd.mm.yyyy">dd.mm.yyyy (e.g., 01.01.2025)</option>
-                <option value="dd.mm.yy">dd.mm.yy (e.g., 01.01.25)</option>
-                <option value="MMM dd, yyyy HH:mm:ss">MMM dd, yyyy HH:mm:ss (e.g., February 25, 2025 00:00:00)</option>
-            </select>
+            <!-- Format and Timezone Dropdowns in same row -->
+            <div class="format-timezone-row">
+                <div class="format-group">
+                    <label for="dateFormat">Date Format:</label>
+                    <select id="dateFormat">
+                        <option value="dd-MMM-yy">dd-MMM-yy (e.g., 01-Jan-25)</option>
+                        <option value="dd/mm/yyyy">dd/mm/yyyy (e.g., 01/01/2025)</option>
+                        <option value="dd/mm/yy">dd/mm/yy (e.g., 01/01/25)</option>
+                        <option value="mm/dd/yyyy">mm/dd/yyyy (e.g., 01/01/2025)</option>
+                        <option value="mm/dd/yy">mm/dd/yy (e.g., 01/01/25)</option>
+                        <option value="yyyy-mm-dd">yyyy-mm-dd (e.g., 2025-01-01)</option>
+                        <option value="dd.mm.yyyy">dd.mm.yyyy (e.g., 01.01.2025)</option>
+                        <option value="dd.mm.yy">dd.mm.yy (e.g., 01.01.25)</option>
+                        <option value="MMM dd, yyyy HH:mm:ss">MMM dd, yyyy HH:mm:ss (e.g., February 25, 2025 00:00:00)</option>
+                    </select>
+                </div>
+                
+                <div class="timezone-group">
+                    <label for="timezoneSelect">Timezone:</label>
+                    <select id="detimezoneSelect">
+                        <option value="UTC">UTC</option>
+                        <option value="IST">IST</option>
+                        <option value="EST">EST/EDT</option>
+                        <option value="SAST">SAST</option>
+                    </select>
+                </div>
+            </div>
             
             <!-- Textarea Input -->
             <label for="dateInput" style="display:block; margin-top:10px;">Enter Dates (one per line):</label>
@@ -985,6 +999,7 @@ February 25, 2025 13:23:51"></textarea>
         <script src="multi-converter.js"></script>
     </body>
 </html>
+
 
 
 
