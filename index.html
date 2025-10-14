@@ -477,6 +477,46 @@ February 25, 2025 13:23:51"></textarea>
             
             <!-- Results Area -->
             <div id="resultsContainer" style="display: none;"></div>
+
+            <div id="dbIdContainer">
+                <h3>ID Calculator</h3>
+
+                <h4>Configuration</h4>
+
+                <div style="display:flex;gap:15px;align-items:flex-end;">
+                    <div>
+                        <label for="currentIdInput">Current ID:</label><br>
+                        <input type="number" id="currentIdInput" placeholder="e.g., 4805866449">
+                    </div>
+
+                    <div>
+                        <label for="incrementInput">Increment Value:</label><br>
+                        <input type="number" id="incrementInput" placeholder="e.g., 450000000">
+                    </div>
+
+                    <div>
+                        <label for="iterationsInput">Number of Iterations:</label><br>
+                        <input type="number" id="iterationsInput" placeholder="e.g., 100" value="5" min="1" max="10000">
+                    </div>
+                </div>
+
+
+                <div style="margin-top: 20px;">
+                    <button class="btn btn-primary" onclick="calculateIds()">Generate ID List</button>
+                    <button class="btn btn-secondary" onclick="clearAlls()">Clear All</button>
+                    <button class="btn btn-success" id="copyBtns" style="display: none;" onclick="copyResults()">Copy
+                        Results</button>
+                    <button class="btn btn-secondary" id="downloadBtn" style="display: none;"
+                        onclick="downloadResults()">Download as CSV</button>
+                </div>
+
+                <div id="resultsContainer1" style="display: none;">
+                    <h4>Generated IDs</h4>
+                    <div class="stats" id="statsContainer"></div>
+                    <textarea id="resultsArea" readonly></textarea>
+                    <p class="info-text">Click "Copy Results" to copy all IDs to clipboard</p>
+                </div>
+            </div>
         </div>
 
          <!-- Duplicate Counter Section -->
@@ -991,7 +1031,7 @@ February 25, 2025 13:23:51"></textarea>
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.82 (NT)</span>
+            <span>Version 2.1.83 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
@@ -1000,6 +1040,7 @@ February 25, 2025 13:23:51"></textarea>
         <script src="multi-converter.js"></script>
     </body>
 </html>
+
 
 
 
