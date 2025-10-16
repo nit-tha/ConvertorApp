@@ -267,7 +267,7 @@
             <button onclick="decodeJWT()" title="JWT Decode">JWT</button>
             <button onclick="escapeRegex()" title="Regex Escape">Regex</button>
             <button onclick="showPassCraft()" title="Password Generator" id="passcraftBtn">PassCraft</button>
-            <button onclick="convertMarkdown()" title="Markdown/HTML Converter">MD⇄HTML</button>
+            <button onclick="convertMarkdown()" title="Natural Language/Markdown/HTML Converter">NL⇄MD⇄HTML</button>
             <button onclick="toggleTool('epochToolContainer')" title="Date→Epoch Converter & ID Calculator">Date→Epoch</button>
             <button onclick="showDuplicateCounter()" title="Find and Analyze Duplicates">Duplicates</button>
         </div>
@@ -345,23 +345,78 @@
             </div>
         </div>    
 
-      <!-- Markdown/HTML Converter Section -->
-      <div class="markdown-converter" id="markdownConverter" style="display: none;">
-        <div class="container">
-          <label for="markdownInput">Input:</label>
-          <textarea id="markdownInput" placeholder="Enter Markdown or HTML" rows="6" style="width: 100%; resize: vertical;" oninput="convertMarkdownLive()"></textarea>
+      <!-- Natural Language/Markdown/HTML Converter Section -->
+    <div class="markdown-converter" id="markdownConverter" style="display: none;">
+    <div class="main-container">
+        <div class="header">
+            <h1>📝 Natural Language to HTML Converter</h1>
+            <p>Natural Language → Markdown → HTML (All in one flow)</p>
         </div>
-        <div class="container" style="text-align: center;">
-          <button onclick="toggleConversionMode()" id="conversionModeBtn">Mode: MD → HTML</button>
+        
+        <div class="converter-wrapper" id="converterWrapper">
+            <!-- Stage 1: Natural Language to Markdown -->
+            <div class="converter-section">
+                <div class="section-title">
+                    <span class="section-icon">1️⃣</span>
+                    Natural Language to Markdown
+                </div>
+                <div class="container">
+                    <label for="naturalLanguageInput">Input (Natural Language):</label>
+                    <textarea id="naturalLanguageInput" placeholder="Paste your natural language text here..." rows="10" oninput="convertNLToMarkdown()"></textarea>
+                </div>
+                <div class="container button-group text-center">
+                    <button onclick="clearNLInput()" title="Clear" class="clear-btn">🗑️ Clear</button>
+                    <button onclick="copyToClipboard('nlToMarkdownOutput')" title="Copy" class="copy-btn">
+                        <i class="fas fa-copy"></i> Copy Markdown
+                    </button>
+                </div>
+                <div class="container">
+                    <label for="nlToMarkdownOutput">Output (Markdown):</label>
+                    <textarea id="nlToMarkdownOutput" readonly rows="10"></textarea>
+                </div>
+            </div>
+            
+            <div class="flow-indicator">⬇️</div>
+            
+            <!-- Stage 2: Markdown to HTML -->
+            <div class="converter-section">
+                <div class="section-title">
+                    <span class="section-icon">2️⃣</span>
+                    Markdown to HTML
+                </div>
+                <div class="container">
+                    <label for="markdownInput">Input (Markdown):</label>
+                    <textarea id="markdownInput" placeholder="Enter Markdown" rows="10" oninput="convertMarkdownLive()"></textarea>
+                </div>
+                <div class="container button-group text-center">
+                    <button onclick="toggleConversionMode()" id="conversionModeBtn" class="mode-btn">Mode: MD → HTML</button>
+                    <button onclick="clearMarkdownInput()" title="Clear" class="clear-btn">🗑️ Clear</button>
+                    <button onclick="copyToClipboard('markdownOutput')" title="Copy" class="copy-btn">
+                        <i class="fas fa-copy"></i> Copy HTML
+                    </button>
+                </div>
+                <div class="container">
+                    <label for="markdownOutput">Output (HTML):</label>
+                    <textarea id="markdownOutput" readonly rows="10"></textarea>
+                </div>
+            </div>
+
+            <div class="flow-indicator">👁️ Preview</div>
+
+            <!-- Stage 3: HTML Preview -->
+            <div class="converter-section">
+                <div class="section-title">
+                    <span class="section-icon">3️⃣</span>
+                    HTML Preview
+                </div>
+                <div class="container">
+                    <label>Live Preview:</label>
+                    <div id="htmlPreview" class="html-preview"></div>
+                </div>
+            </div>
         </div>
-        <div class="container">
-          <label for="markdownOutput">Output:</label>
-          <textarea id="markdownOutput" readonly rows="6" style="width: 100%; resize: vertical;"></textarea>
-          <button onclick="copyToClipboard('markdownOutput')" title="Copy"> 
-            <i class="fas fa-copy"></i> 
-          </button>
-        </div>
-      </div>
+    </div>
+</div>
 
     <div class="color-preview" id="colorPreview" style="display: none;">
         <label>Color Preview:</label>
@@ -1031,7 +1086,7 @@ February 25, 2025 13:23:51"></textarea>
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.83 (NT)</span>
+            <span>Version 2.1.84 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
@@ -1040,6 +1095,7 @@ February 25, 2025 13:23:51"></textarea>
         <script src="multi-converter.js"></script>
     </body>
 </html>
+
 
 
 
