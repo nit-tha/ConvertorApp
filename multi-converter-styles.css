@@ -1114,7 +1114,7 @@ nav a.active {
             }
         }
 
-       /* Natural to Markdwon to HTML General container and layout */
+        /* General container and layout */
     .main-container {
         max-width: 900px;
         margin: 20px auto;
@@ -1257,7 +1257,9 @@ nav a.active {
 
     .html-preview:empty {
     display: none;
-}    
+}
+
+  
 
         #conversionModeBtn:hover {
         background-color: #2c3e50;
@@ -1617,6 +1619,62 @@ nav a.active {
     .password-output button         { width: 100%; }
 }
 
+/* === Modern Menu === */
+:root{
+    --menu-height:45px;           /* easy to tweak everywhere                          */
+    --menu-bg:   linear-gradient(90deg,#34495e 0%,#2c3e50 100%);
+    --menu-accent:#ff4757;
+}
+
+.main‑menu{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+    justify-content:center;
+    align-items:center;
+    height:var(--menu-height);
+    padding:0 5px;
+    background:var(--menu-bg);
+    border-radius:5px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    margin:0 0 15px;           /* keeps spacing below menu                            */
+}
+
+.main‑menu a{
+    position:relative;
+    color:#ecf0f1;
+    font-weight:450;
+    text-decoration:none;
+    padding:3px 5px;
+    display:flex;
+    align-items:center;
+    gap:3px;
+    transition:color .25s ease;
+    white-space:nowrap;        /* keeps labels on a single line                       */
+}
+
+.main‑menu a:hover,
+.main‑menu a.active{
+    color:var(--menu-accent);
+}
+
+.main‑menu a::after{          /* animated underline                                  */
+    content:'';
+    position:absolute;
+    bottom:-4px;
+    left:0;
+    width:0;
+    height:2px;
+    background:var(--menu-accent);
+    border-radius:2px;
+    transition:width .25s ease;
+}
+
+.main‑menu a:hover::after,
+.main‑menu a.active::after{
+    width:100%;
+}
+
 /* === Image Processor Tool Styling === */
 .upload-area {
     border: 2px dashed #ccc;
@@ -1849,7 +1907,8 @@ input[type="file"] {
     .preview-item {
         flex: 1 1 100%;
         min-width: 100%;
-    }    
+    }
+   
     .size-stats {
         flex-direction: column;
         gap: 10px;
@@ -1868,7 +1927,7 @@ input[type="file"] {
 @media (max-width: 480px) {
     .upload-area {
         padding: 20px 15px;
-    }  
+    }   
     .buttons,
     .inline-buttons {
         flex-direction: column;
@@ -1881,7 +1940,6 @@ input[type="file"] {
         max-width: 200px;
     }
 }
-
 #previewContainer,
 #sizeComparison,
 #controls,
@@ -1998,6 +2056,8 @@ input[type="file"] {
     font-family: monospace;
     resize: vertical;
 }
+
+
 
 /* === GeoJSON Converter Tool (no map) === */
 #geojsonSection {
@@ -2118,6 +2178,7 @@ input[type="file"] {
     line-height: 1.5;
 }
 
+
 /* Side-by-side layout for input & results */
 .dup-grid {
     display: flex;
@@ -2191,7 +2252,6 @@ input[type="file"] {
         flex-direction: column;
     }
 }
-
 
 
 /* === Database ID Calculator Section === */
@@ -2342,3 +2402,289 @@ input[type="file"] {
 }
 
 
+/* Container and layout */
+.docx2html-container {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 18px 22px 26px;
+    margin-top: 16px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.08);
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+
+.docx2html-title {
+    text-align: center;
+    margin: 0 0 18px;
+    color: #2c3e50;
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+
+.docx2html-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr 310px;
+    gap: 16px;
+}
+
+.panel {
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
+    padding: 14px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    min-height: 320px;
+}
+
+.panel h4 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    color: #34495e;
+    font-weight: 600;
+}
+
+/* Upload Section */
+.upload-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.file-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#docxFile {
+    padding: 7px 10px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 14px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.drag-drop-zone {
+    border: 2px dashed #b9c3d1;
+    border-radius: 8px;
+    text-align: center;
+    padding: 18px 10px;
+    font-size: 13px;
+    color: #607080;
+    background: #f4f7fa;
+    transition: background .2s, border-color .2s;
+}
+.drag-drop-zone.dragover {
+    background: #ecf5ff;
+    border-color: #3498db;
+}
+
+/* Buttons */
+#docx2HtmlBtn,
+.convert-btn,
+.download-btn,
+.clear-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 9px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: .3px;
+}
+
+#docx2HtmlBtn {
+    background: linear-gradient(90deg,#3498db,#4aa3e9);
+    color: #fff;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.15);
+}
+#docx2HtmlBtn:hover {
+    filter: brightness(1.08);
+}
+
+.convert-btn {
+    background: #2980b9;
+    color: #fff;
+}
+.convert-btn:disabled {
+    background: #7f8c8d;
+    cursor: not-allowed;
+}
+
+.download-btn {
+    background: #27ae60;
+    color: #fff;
+}
+.download-btn:disabled {
+    background: #95af9f;
+    cursor: not-allowed;
+}
+.clear-btn {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.actions-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+/* Options */
+.options-group {
+    margin-top: 4px;
+    background: #f7f9fb;
+    border: 1px solid #d9e2ea;
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+.options-group h4 {
+    margin-top: 0;
+    font-size: 14px;
+}
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+.checkbox-row input {
+    cursor: pointer;
+}
+
+/* Progress Bar */
+.progress-wrapper {
+    width: 100%;
+    background: #eef2f5;
+    border-radius: 6px;
+    overflow: hidden;
+    height: 12px;
+    margin-top: 4px;
+}
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg,#4aa3e9,#3498db);
+    transition: width .3s ease;
+}
+
+/* Messages */
+.messages {
+    font-size: 12.5px;
+    color: #555;
+    min-height: 20px;
+    line-height: 1.4;
+}
+
+/* Preview */
+.preview-panel {
+    position: relative;
+}
+.preview-surface {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    padding: 14px 16px;
+    overflow: auto;
+    max-height: 500px;
+    font-size: 14px;
+}
+.preview-surface img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Comments */
+.comments-panel {
+    max-height: 500px;
+    overflow: auto;
+}
+.comments-list {
+    margin: 0;
+    padding-left: 18px;
+    list-style: decimal;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.comments-list li {
+    background: #f0f5fa;
+    border: 1px solid #d1dde8;
+    padding: 8px 10px;
+    border-radius: 6px;
+    line-height: 1.35;
+}
+.comment-meta {
+    display: block;
+    font-size: 11px;
+    color: #607080;
+    margin-bottom: 4px;
+}
+.comment-link {
+    color: #1f6fb2;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 11px;
+}
+.comment-link:hover {
+    text-decoration: underline;
+}
+
+/* Tag inserted markers */
+.comment-marker {
+    background: #ffe9b3;
+    color: #b45d00;
+    padding: 1px 4px;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+    margin-left: 4px;
+}
+
+/* Responsive */
+@media (max-width: 1180px) {
+    .docx2html-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .comments-panel {
+        grid-column: 1 / -1;
+    }
+}
+@media (max-width: 760px) {
+    .docx2html-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Utility & Scrollbar (optional aesthetic) */
+.preview-surface::-webkit-scrollbar,
+.comments-panel::-webkit-scrollbar {
+    width: 10px;
+}
+.preview-surface::-webkit-scrollbar-track,
+.comments-panel::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 6px;
+}
+.preview-surface::-webkit-scrollbar-thumb,
+.comments-panel::-webkit-scrollbar-thumb {
+    background: #b9c3cd;
+    border-radius: 6px;
+}
+.preview-surface::-webkit-scrollbar-thumb:hover,
+.comments-panel::-webkit-scrollbar-thumb:hover {
+    background: #9aa6b2;
+}
