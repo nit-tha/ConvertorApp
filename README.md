@@ -7,7 +7,7 @@ Access the app here: [Multi Converter Tool](https://nit-tha.github.io/ConvertorA
 
 ## ✨ Latest Updates (v2.1.85)
 
-### �️ **NEW: Image Processor**
+### 🎨 **NEW: Image Processor**
 - Image compression with quality control
 - Format conversion (JPEG, PNG, WebP, JPG)
 - Batch resizing with aspect ratio preservation
