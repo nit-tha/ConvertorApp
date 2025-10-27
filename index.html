@@ -96,7 +96,7 @@
     <!-- === Fixed Navigation Menu === -->
     <nav>
         <a id="sqlConverterLink" href="#" data-section="sqlConverter" title="Word/character counter • Add quotes & commas • Date-Epoch converter • Epoch time calculator">Query Formatter</a>
-        <a id="hexConverterLink" href="#" data-section="hexConverter" title="Hex/Binary/Base64 converter • Duplicate Finder • MD to HTML • Color picker • Date to Epoch">Conversion Suite</a>
+        <a id="hexConverterLink" href="#" data-section="hexConverter" title="Hex/Binary/Base64 converter • Duplicate Finder • CSV/TSV Processor • MD to HTML • Color picker • Date to Epoch">Conversion Suite</a>
         <a id="xmlToBlockLink" href="#" data-section="xmlToBlockSection" title="XML validator & error detector • XML to Block converter • JSON to XML transformer">Block Conversion</a>
         <a id="queryToJsonLink" href="#" data-section="queryToJsonSection" title="Web query to JSON • URL encoder/decoder • XML to JSON converter">JSON Conversion</a>
         <a id="diffcomparerLink" href="#" data-section="diffcomparerSection" title="Side-by-side text comparison with difference highlighting">Content Comparer</a>
@@ -270,6 +270,8 @@
             <button onclick="convertMarkdown()" title="Natural Language/Markdown/HTML Converter">NL⇄MD⇄HTML</button>
             <button onclick="toggleTool('epochToolContainer')" title="Date→Epoch Converter & ID Calculator">Date→Epoch</button>
             <button onclick="showDuplicateCounter()" title="Find and Analyze Duplicates">Duplicates</button>
+            <button onclick="showCsvProcessor()" title="CSV/TSV Data Processor & Converter">CSV/TSV</button>
+            <button onclick="showImageProcessor()" title="Image Compression & Format Converter" id="imageProcessorBtn">🖼️ Image</button>
         </div>
     </div>
 
@@ -624,9 +626,88 @@ February 25, 2025 13:23:51"></textarea>
             </div>
         </div>
         
+    <!-- CSV/TSV Processor Section -->
+    <div class="csv-processor" id="csvProcessor" style="display: none;">
+        <h3>📊 CSV/TSV Data Processor</h3>
+        
+        <!-- File Upload Area -->
+        <div class="csv-upload-area" style="border: 2px dashed #ccc; padding: 20px; text-align: center; margin-bottom: 20px; border-radius: 5px;">
+            <div>📁 Drop CSV/TSV file here or click to browse</div>
+            <input type="file" id="csvFileInput" accept=".csv,.tsv,.txt" style="display: none;">
+            <button onclick="document.getElementById('csvFileInput').click()" style="margin-top: 10px;">Choose File</button>
+        </div>
+        
+        <!-- Data Input/Paste Area -->
+        <div style="margin-bottom: 20px;">
+            <label for="csvDataInput">Or paste your CSV/TSV data here:</label>
+            <textarea id="csvDataInput" rows="8" placeholder="Paste CSV data here or use the example below:&#10;&#10;Name,Age,City,Department&#10;John Smith,30,New York,Engineering&#10;Jane Doe,25,Los Angeles,Marketing&#10;Bob Johnson,35,Chicago,Sales" style="width: 100%; box-sizing: border-box;"></textarea>
+        </div>
+        
+        <!-- Controls Row -->
+        <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; align-items: center;">
+            <label>Delimiter:</label>
+            <select id="csvDelimiter">
+                <option value=",">Comma (,)</option>
+                <option value="\t">Tab (\t)</option>
+                <option value=";">Semicolon (;)</option>
+                <option value="|">Pipe (|)</option>
+            </select>
+            
+            <button onclick="loadSampleCsvData()" class="secondary-btn">Load Sample</button>
+            <button onclick="parseCsvData()" class="convert-btn">📊 Parse Data</button>
+            <button onclick="clearCsvProcessor()" class="clear-btn">🗑️ Clear</button>
+        </div>
+        
+        <!-- Data Table Container -->
+        <div id="csvTableContainer" style="display: none;">
+            <h4>Data Table</h4>
+            <div style="overflow-x: auto; max-height: 400px; border: 1px solid #ddd; margin-bottom: 20px;">
+                <table id="csvDataTable" style="width: 100%; border-collapse: collapse;">
+                    <thead id="csvTableHead"></thead>
+                    <tbody id="csvTableBody"></tbody>
+                </table>
+            </div>
+            
+            <!-- Table Operations -->
+            <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                <button onclick="sortCsvTable()" title="Sort by first column">🔄 Sort</button>
+                <button onclick="removeDuplicateRows()" title="Remove duplicate rows">🗑️ Remove Duplicates</button>
+                <button onclick="addColumn()" title="Add new column">➕ Add Column</button>
+                <button onclick="removeColumn()" title="Remove selected column">➖ Remove Column</button>
+            </div>
+            
+            <!-- Export Options -->
+            <div style="margin-bottom: 20px;">
+                <h4>Export Options</h4>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                    <label>Export as:</label>
+                    <select id="csvExportFormat">
+                        <option value="csv">CSV (Comma-separated)</option>
+                        <option value="tsv">TSV (Tab-separated)</option>
+                        <option value="json">JSON</option>
+                        <option value="sql">SQL INSERT statements</option>
+                        <option value="pipe">Pipe-separated (for Test Cases)</option>
+                    </select>
+                    <button onclick="exportCsvData()" class="convert-btn">💾 Export</button>
+                    <button onclick="copyCsvData()" class="secondary-btn">📋 Copy</button>
+                </div>
+            </div>
+            
+            <!-- Export Preview -->
+            <div id="csvExportPreview" style="display: none;">
+                <h4>Export Preview</h4>
+                <textarea id="csvExportOutput" readonly rows="6" style="width: 100%; box-sizing: border-box; background-color: #f8f9fa;"></textarea>
+            </div>
+            
+            <!-- Statistics -->
+            <div id="csvStats" style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+                <strong>Statistics:</strong> <span id="csvStatsText">No data loaded</span>
+            </div>
+        </div>
+    </div>
 
     <!-- Image Processor Tool Styling -->
-    <div class="image-container">
+    <div class="image-container" id="imageProcessorContainer" style="display: none;">
             <h2>🖼️ Image Processor</h2>
     
             <div class="upload-area" id="uploadArea" style="margin-bottom: 20px;">
@@ -1095,21 +1176,3 @@ February 25, 2025 13:23:51"></textarea>
         <script src="multi-converter.js"></script>
     </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
