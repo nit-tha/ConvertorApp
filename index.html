@@ -527,7 +527,7 @@ February 25, 2025 13:23:51"></textarea>
                 <button class="btn-primary" onclick="convertDates()">Convert to Epoch</button>
                 <button class="btn-secondary" onclick="clearAll()">Clear All</button>
                 <button class="btn-success" id="copyBtn" style="display: none;" onclick="copyEpochTimes()">Copy Epoch Times</button>
-                <button class="btn-secondary" id="downloadBtn" style="display: none;" onclick="downloadResults()">Download Results</button>
+                <button class="btn-secondary" id="downloadBtn" style="display: none;" onclick="downloadEpochResults()">Download Results</button>
             </div>
             
             <!-- Results Area -->
@@ -562,7 +562,7 @@ February 25, 2025 13:23:51"></textarea>
                     <button class="btn btn-success" id="copyBtns" style="display: none;" onclick="copyResults()">Copy
                         Results</button>
                     <button class="btn btn-secondary" id="downloadIdBtn" style="display: none;"
-                        onclick="downloadResults()">Download as CSV</button>
+                        onclick="downloadIdResults()">Download as CSV</button>
                 </div>
 
                 <div id="resultsContainer1" style="display: none;">
@@ -595,7 +595,7 @@ February 25, 2025 13:23:51"></textarea>
                         <button onclick="copyToClipboard('duplicateOutput')" title="Copy Results">
                             <i class="fas fa-copy"></i> Copy
                         </button>
-                        <button onclick="downloadResults()" title="Download Results">
+                        <button onclick="downloadDuplicateResults()" title="Download Results">
                             <i class="fas fa-download"></i> Download
                         </button>
                     </div>
@@ -1095,6 +1095,7 @@ February 25, 2025 13:23:51"></textarea>
         <script src="multi-converter.js"></script>
     </body>
 </html>
+
 
 
 
