@@ -431,147 +431,154 @@
     </div>
 
    <!-- Epoch Tool Container (Hidden by default) -->
-        <div id="epochToolContainer" style="display: none;">
-            <h3>Date→Epoch Converter</h3>
+         <div id="epochToolContainer" style="display: none;">
+            <h3>📅 Date→Epoch Converter</h3>
             
-            <!-- Date Generator Section -->
-            <div id="dateGeneratorSection">
-                <h4>Date Generator</h4>
-                
-                <!-- Date Range Selection -->
-                <div class="range-inputs" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-                    <label for="startYearInput">From Year:</label>
-                    <input type="number" id="startYearInput" min="2000" max="2050" style="width: 80px;">
-                    
-                    <label for="startMonthSelect">Month:</label>
-                    <select id="startMonthSelect" style="width: 100px;">
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>              
-                
-                    <label for="endYearInput">To Year:</label>
-                    <input type="number" id="endYearInput" min="2000" max="2050" style="width: 80px;">
-                    
-                    <label for="endMonthSelect">Month:</label>
-                    <select id="endMonthSelect" style="width: 100px;">
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
-                </div>
-                
-                <!-- Interval and Button -->
-                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px;">
-                    <label for="dayInterval">Day Interval:</label>
-                    <input type="number" id="dayInterval" value="3" min="1" max="30" style="width: 60px;">
-                    
-                    <button class="btn-primary" onclick="generateDates()">Generate Dates</button>
-                </div>
+            <!-- Tab Navigation -->
+            <div class="epoch-tabs" style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center;">
+                <button class="epoch-tab-btn active" onclick="switchEpochTab('converter')" id="dateConverterTab">📅 Date→Epoch</button>
+                <button class="epoch-tab-btn" onclick="switchEpochTab('calculator')" id="idCalculatorTab">🔢 ID Calculator</button>
             </div>
-            
-            <!-- Format and Timezone Dropdowns in same row -->
-            <div class="format-timezone-row">
-                <div class="format-group">
-                    <label for="dateFormat">Date Format:</label>
-                    <select id="dateFormat">
-                        <option value="dd-MMM-yy">dd-MMM-yy (e.g., 01-Jan-25)</option>
-                        <option value="dd/mm/yyyy">dd/mm/yyyy (e.g., 01/01/2025)</option>
-                        <option value="dd/mm/yy">dd/mm/yy (e.g., 01/01/25)</option>
-                        <option value="mm/dd/yyyy">mm/dd/yyyy (e.g., 01/01/2025)</option>
-                        <option value="mm/dd/yy">mm/dd/yy (e.g., 01/01/25)</option>
-                        <option value="yyyy-mm-dd">yyyy-mm-dd (e.g., 2025-01-01)</option>
-                        <option value="dd.mm.yyyy">dd.mm.yyyy (e.g., 01.01.2025)</option>
-                        <option value="dd.mm.yy">dd.mm.yy (e.g., 01.01.25)</option>
-                        <option value="MMM dd, yyyy HH:mm:ss">MMM dd, yyyy HH:mm:ss (e.g., February 25, 2025 00:00:00)</option>
-                    </select>
+
+            <!-- Date to Epoch Converter Section -->
+            <div id="epochConverterSection" class="epoch-section">
+                <!-- Date Generator Section -->
+                <div id="dateGeneratorSection">
+                    <h4>Date Generator</h4>
+                    
+                    <!-- Date Range Selection -->
+                    <div class="range-inputs" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+                        <label for="startYearInput">From Year:</label>
+                        <input type="number" id="startYearInput" min="2000" max="2050" style="width: 80px;">
+                        
+                        <label for="startMonthSelect">Month:</label>
+                        <select id="startMonthSelect" style="width: 100px;">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>              
+                    
+                        <label for="endYearInput">To Year:</label>
+                        <input type="number" id="endYearInput" min="2000" max="2050" style="width: 80px;">
+                        
+                        <label for="endMonthSelect">Month:</label>
+                        <select id="endMonthSelect" style="width: 100px;">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Interval and Button -->
+                    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px;">
+                        <label for="dayInterval">Day Interval:</label>
+                        <input type="number" id="dayInterval" value="3" min="1" max="30" style="width: 60px;">
+                        
+                        <button class="btn-primary" onclick="generateDates()">Generate Dates</button>
+                    </div>
                 </div>
                 
-                <div class="timezone-group">
-                    <label for="timezoneSelect">Timezone:</label>
-                    <select id="detimezoneSelect">
-                        <option value="UTC">UTC</option>
-                        <option value="IST">IST</option>
-                        <option value="EST">EST/EDT</option>
-                        <option value="SAST">SAST</option>
-                    </select>
+                <!-- Format and Timezone Dropdowns in same row -->
+                <div class="format-timezone-row">
+                    <div class="format-group">
+                        <label for="dateFormat">Date Format:</label>
+                        <select id="dateFormat">
+                            <option value="dd-MMM-yy">dd-MMM-yy (e.g., 01-Jan-25)</option>
+                            <option value="dd/mm/yyyy">dd/mm/yyyy (e.g., 01/01/2025)</option>
+                            <option value="dd/mm/yy">dd/mm/yy (e.g., 01/01/25)</option>
+                            <option value="mm/dd/yyyy">mm/dd/yyyy (e.g., 01/01/2025)</option>
+                            <option value="mm/dd/yy">mm/dd/yy (e.g., 01/01/25)</option>
+                            <option value="yyyy-mm-dd">yyyy-mm-dd (e.g., 2025-01-01)</option>
+                            <option value="dd.mm.yyyy">dd.mm.yyyy (e.g., 01.01.2025)</option>
+                            <option value="dd.mm.yy">dd.mm.yy (e.g., 01.01.25)</option>
+                            <option value="MMM dd, yyyy HH:mm:ss">MMM dd, yyyy HH:mm:ss (e.g., February 25, 2025 00:00:00)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="timezone-group">
+                        <label for="timezoneSelect">Timezone:</label>
+                        <select id="detimezoneSelect">
+                            <option value="UTC">UTC</option>
+                            <option value="IST">IST</option>
+                            <option value="EST">EST/EDT</option>
+                            <option value="SAST">SAST</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Textarea Input -->
-            <label for="dateInput" style="display:block; margin-top:10px;">Enter Dates (one per line):</label>
-            <textarea id="dateInput" rows="6" placeholder="Enter dates here, one date per line...Example:
+                
+                <!-- Textarea Input -->
+                <label for="dateInput" style="display:block; margin-top:10px;">Enter Dates (one per line):</label>
+                <textarea id="dateInput" rows="6" placeholder="Enter dates here, one date per line...Example:
 01-Jan-25
 02-Feb-26
 03-Mar-28
 February 25, 2025 13:23:51"></textarea>
-            
-            <!-- Buttons -->
-            <div style="margin-top:10px;">
-                <button class="btn-primary" onclick="convertDates()">Convert to Epoch</button>
-                <button class="btn-secondary" onclick="clearAll()">Clear All</button>
-                <button class="btn-success" id="copyBtn" style="display: none;" onclick="copyEpochTimes()">Copy Epoch Times</button>
-                <button class="btn-secondary" id="downloadBtn" style="display: none;" onclick="downloadEpochResults()">Download Results</button>
+                
+                <!-- Buttons -->
+                <div style="margin-top:10px;">
+                    <button class="btn-primary" onclick="convertDates()">Convert to Epoch</button>
+                    <button class="btn-secondary" onclick="clearAll()">Clear All</button>
+                    <button class="btn-success" id="copyBtn" style="display: none;" onclick="copyEpochTimes()">Copy Epoch Times</button>
+                    <button class="btn-secondary" id="downloadBtn" style="display: none;" onclick="downloadEpochResults()">Download Results</button>
+                </div>
+                
+                <!-- Results Area -->
+                <div id="resultsContainer" style="display: none;"></div>
             </div>
-            
-            <!-- Results Area -->
-            <div id="resultsContainer" style="display: none;"></div>
 
-            <div id="dbIdContainer">
-                <h3>ID Calculator</h3>
+            <!-- ID Calculator Section -->
+            <div id="idCalculatorSection" class="epoch-section" style="display: none;">
+                <div id="dbIdContainer">
+                    <h4>Configuration</h4>
 
-                <h4>Configuration</h4>
+                    <div style="display:flex;gap:15px;align-items:flex-end;">
+                        <div>
+                            <label for="currentIdInput">Current ID:</label><br>
+                            <input type="number" id="currentIdInput" placeholder="e.g., 4805866449">
+                        </div>
 
-                <div style="display:flex;gap:15px;align-items:flex-end;">
-                    <div>
-                        <label for="currentIdInput">Current ID:</label><br>
-                        <input type="number" id="currentIdInput" placeholder="e.g., 4805866449">
+                        <div>
+                            <label for="incrementInput">Increment Value:</label><br>
+                            <input type="number" id="incrementInput" placeholder="e.g., 450000000">
+                        </div>
+
+                        <div>
+                            <label for="iterationsInput">Number of Iterations:</label><br>
+                            <input type="number" id="iterationsInput" placeholder="e.g., 100" value="5" min="1" max="10000">
+                        </div>
                     </div>
 
-                    <div>
-                        <label for="incrementInput">Increment Value:</label><br>
-                        <input type="number" id="incrementInput" placeholder="e.g., 450000000">
+                    <div style="margin-top: 20px;">
+                        <button class="btn btn-primary" onclick="calculateIds()">Generate ID List</button>
+                        <button class="btn btn-secondary" onclick="clearAlls()">Clear All</button>
+                        <button class="btn btn-success" id="copyBtns" style="display: none;" onclick="copyResults()">Copy Results</button>
+                        <button class="btn btn-secondary" id="downloadIdBtn" style="display: none;" onclick="downloadIdResults()">Download as CSV</button>
                     </div>
 
-                    <div>
-                        <label for="iterationsInput">Number of Iterations:</label><br>
-                        <input type="number" id="iterationsInput" placeholder="e.g., 100" value="5" min="1" max="10000">
+                    <div id="resultsContainer1" style="display: none;">
+                        <h4>Generated IDs</h4>
+                        <div class="stats" id="statsContainer"></div>
+                        <textarea id="resultsArea" readonly></textarea>
+                        <p class="info-text">Click "Copy Results" to copy all IDs to clipboard</p>
                     </div>
-                </div>
-
-
-                <div style="margin-top: 20px;">
-                    <button class="btn btn-primary" onclick="calculateIds()">Generate ID List</button>
-                    <button class="btn btn-secondary" onclick="clearAlls()">Clear All</button>
-                    <button class="btn btn-success" id="copyBtns" style="display: none;" onclick="copyResults()">Copy
-                        Results</button>
-                    <button class="btn btn-secondary" id="downloadIdBtn" style="display: none;"
-                        onclick="downloadIdResults()">Download as CSV</button>
-                </div>
-
-                <div id="resultsContainer1" style="display: none;">
-                    <h4>Generated IDs</h4>
-                    <div class="stats" id="statsContainer"></div>
-                    <textarea id="resultsArea" readonly></textarea>
-                    <p class="info-text">Click "Copy Results" to copy all IDs to clipboard</p>
                 </div>
             </div>
         </div>
@@ -1167,7 +1174,7 @@ February 25, 2025 13:23:51"></textarea>
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.85 (NT)</span>
+            <span>Version 2.1.86 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
         </footer>
