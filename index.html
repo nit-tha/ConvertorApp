@@ -1068,71 +1068,64 @@ February 25, 2025 13:23:51"></textarea>
     </div>
 </div>
 
-<!-- === Location Geocoding Tool === -->
+<!-- === Geo Sight (Tabbed like Date→Epoch) === -->
     <div id="geocodingSection" class="converter-container">
-        <h2>🌍 Location Geocoding Tool</h2>
+        <h3>🌍 Geo Sight</h3>
 
-        <div class="search-container">
-            <div class="search-panel">
-                <h3>Enter Location Name</h3>
-                <input type="text" id="locationInput" placeholder="Enter city, country, or address (e.g., India, London, New York)" onkeypress="handleKeyPress(event)">
-            </div>
+        <!-- Tab Navigation -->
+        <div class="epoch-tabs" style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center;">
+            <button class="epoch-tab-btn active" onclick="switchGeoTab('geocoding')" id="geocodingTab">📍 Location Lookup</button>
+            <button class="epoch-tab-btn" onclick="switchGeoTab('geojson')" id="geojsonTab">🗺️ GeoJSON Converter</button>
         </div>
 
-        <div style="display: flex; gap: 10px; margin: 20px 0; justify-content: center;">
-            <button onclick="searchLocation()" title="Search for location coordinates" id="searchBtn">🔍 Search Location</button>
-            <button onclick="clearResults()" title="Clear all results">🗑️ Clear</button>
-        </div>
-
-        <div id="loadingIndicator" class="loading" style="display: none;">
-            Searching for location...
-        </div>
-
-        <div id="errorMessage" class="error-message" style="display: none;"></div>
-
-        <div id="coordinateStats" class="stats-container" style="display: none;">
-            <div class="stat-item">
-                <strong>Found:</strong> <span id="locationName">-</span>
+        <!-- Location Lookup (Geocoding) -->
+        <div id="geocodingTabSection" class="epoch-section" style="display: block;">
+            <h4>Enter Location Name</h4>
+            <div class="search-container">
+                <div class="search-panel">
+                    <input type="text" id="locationInput" placeholder="Enter city, country, or address (e.g., India, London, New York)" onkeypress="handleKeyPress(event)">
+                </div>
             </div>
-            <div class="stat-item">
-                <strong>Type:</strong> <span id="locationType">-</span>
+            <div style="display: flex; gap: 10px; margin: 20px 0; justify-content: center;">
+                <button onclick="searchLocation()" title="Search for location coordinates" id="searchBtn">🔍 Search Location</button>
+                <button onclick="clearResults()" title="Clear all results">🗑️ Clear</button>
             </div>
-            <div class="stat-item">
-                <strong>Country:</strong> <span id="locationCountry">-</span>
+            <div id="loadingIndicator" class="loading" style="display: none;">Searching for location...</div>
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+            <div id="coordinateStats" class="stats-container" style="display: none;">
+                <div class="stat-item"><strong>Found:</strong> <span id="locationName">-</span></div>
+                <div class="stat-item"><strong>Type:</strong> <span id="locationType">-</span></div>
+                <div class="stat-item"><strong>Country:</strong> <span id="locationCountry">-</span></div>
             </div>
-        </div>
-
-        <div id="coordinateResult" style="display: none;">
-            <h3>📍 Location Coordinates</h3>
-            <div class="result-panels">
-                <div class="result-panel">
-                    <h4>Point Coordinates (Center)</h4>
-                    <div id="pointCoordinates" class="coordinate-display"></div>
+            <div id="coordinateResult" style="display: none;">
+                <h4>📍 Location Coordinates</h4>
+                <div class="result-panels">
+                    <div class="result-panel">
+                        <h5>Point Coordinates (Center)</h5>
+                        <div id="pointCoordinates" class="coordinate-display"></div>
+                    </div>
+                    <div class="result-panel">
+                        <h5>Bounding Box (Area Coverage)</h5>
+                        <div id="boundingBox" class="coordinate-display"></div>
+                    </div>
                 </div>
                 <div class="result-panel">
-                    <h4>Bounding Box (Area Coverage)</h4>
-                    <div id="boundingBox" class="coordinate-display"></div>
-                </div>
-            </div>
-
-            <div class="result-panel">
-                <h4>🗺️ Additional Information</h4>
-                <div id="additionalInfo" class="coordinate-display"></div>
-                <div style="text-align: center; margin-top: 15px;">
-                    <a id="mapLink" class="map-link" href="#" target="_blank">📍 View on OpenStreetMap</a>
+                    <h5>🗺️ Additional Information</h5>
+                    <div id="additionalInfo" class="coordinate-display"></div>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <a id="mapLink" class="map-link" href="#" target="_blank">📍 View on OpenStreetMap</a>
+                    </div>
                 </div>
             </div>
         </div>
-        
-            <!-- === GeoJSON Converter Tool === -->
-        <div id="geojsonSection" class="converter-container">
-            <h2>🗺️ GeoJSON Converter Tool</h2>
-    
+
+        <!-- GeoJSON Converter -->
+        <div id="geojsonTabSection" class="epoch-section" style="display: none;">
+            <h4>GeoJSON Converter Tool</h4>
             <!-- Instructions Toggle -->
             <div style="text-align: center; margin-bottom: 15px;">
                 <button onclick="toggleInstructions()" title="Show usage instructions">📖 Show Instructions</button>
             </div>
-    
             <div id="geojsonInstructions" class="instruction-box" style="display: none;">
                 <h3>📌 How to Use</h3>
                 <ol>
@@ -1183,3 +1176,4 @@ February 25, 2025 13:23:51"></textarea>
         <script src="multi-converter.js"></script>
     </body>
 </html>
+
