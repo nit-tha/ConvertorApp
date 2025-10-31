@@ -2713,10 +2713,11 @@ input[type="file"] {
 }
 
 .epoch-tab-btn.active {
-    background-color: #007bff;
+    background-color: lightslategray;
     color: #ffffff;
-    border-color: #007bff;
+    border-color: lightslategray;
     box-shadow: 0 2px 4px rgba(0, 123, 255, 0.25);
 }
+
 
 
