@@ -2688,3 +2688,35 @@ input[type="file"] {
 .comments-panel::-webkit-scrollbar-thumb:hover {
     background: #9aa6b2;
 }
+
+/* Base epoch tab button styling (used by Date→Epoch and PDF sections) */
+.epoch-tab-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 5px;
+    background-color: #f8f9fa;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.epoch-tab-btn:hover {
+    background-color: #e9ecef;
+    color: #343a40;
+    border-color: #ced4da;
+}
+
+.epoch-tab-btn.active {
+    background-color: #007bff;
+    color: #ffffff;
+    border-color: #007bff;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.25);
+}
+
+
