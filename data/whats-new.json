@@ -1,0 +1,77 @@
+{
+  "title": "🆕 What's New in v2.1.86",
+  "version": "2.1.86",
+  "sections": [
+    {
+      "title": "🎉 Latest Features (v2.1.86)",
+      "features": [        
+        {
+          "badge": "NEW",
+          "badgeType": "new",
+          "name": "Image Processor",
+          "description": "Advanced image optimization",
+          "details": [
+            "Image compression with quality control",
+            "Drag & drop file upload support",
+            "Resize with aspect ratio preservation",
+            "Format conversion (JPEG, PNG, WebP, JPG)",
+            "Real-time size comparison and savings display"
+          ]
+        },
+        {
+          "badge": "NEW",
+          "badgeType": "new",
+          "name": "CSV/TSV Data Processor",
+          "description": "Advanced data manipulation toolkit",
+          "details": [
+            "Advanced CSV/TSV file parsing and validation",
+            "Interactive data table with sorting and filtering",
+            "Export to multiple formats (CSV, JSON, SQL)",
+            "Duplicate row detection and removal",
+            "Column manipulation (add/remove columns)"
+          ]
+        },
+        {
+          "badge": "ENHANCED",
+          "badgeType": "enhanced",
+          "name": "Date→Epoch Converter",
+          "description": "Improved functionality",
+          "details": [
+            "Tabbed interface with ID Calculator integration",
+            "Bulk date generation with custom intervals",
+            "Multiple date format support",
+            "Download results as files"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "🔧 Recent Improvements",
+      "features": [
+        {
+          "badge": "ENHANCED",
+          "badgeType": "enhanced",
+          "name": "Duplicate Analyzer",
+          "description": "Advanced duplicate detection",
+          "details": [
+            "Smart duplicate detection with multiple output formats",
+            "Statistical analysis (total, unique, duplicate counts)",
+            "Export capabilities for processed data",
+            "Support for large datasets"
+          ]
+        }        
+      ]
+    },
+    {
+      "title": "📈 Performance & Quality",
+      "description": "General improvements across the application:",
+      "improvements": [
+        "Improved loading speeds across all tools",
+        "Enhanced mobile responsiveness",
+        "Better error handling and user feedback",
+        "Optimized memory usage for large files",
+        "Cross-browser compatibility improvements"
+      ]
+    }
+  ]
+}

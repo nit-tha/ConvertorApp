@@ -1,0 +1,259 @@
+{
+  "title": "📚 Complete Multi Converter Tool Guide",
+  "sections": [
+    {
+      "title": "🔧 Query Formatter",
+      "description": "Essential text processing and epoch conversion tools for developers and testers:",
+      "features": [
+        {
+          "name": "Data Manipulation",
+          "description": "Add/remove commas, single/double quotes to text data"
+        },
+        {
+          "name": "Text Analysis",
+          "description": "Count characters (with/without spaces), words, and data elements"
+        },
+        {
+          "name": "Duplicate Management",
+          "description": "Remove duplicate entries and find unique values in datasets"
+        },
+        {
+          "name": "Epoch Time Converter",
+          "description": "Convert epoch timestamps to human-readable dates with timezone support (UTC, IST, EST, SAST)"
+        },
+        {
+          "name": "Date Calculator",
+          "description": "Calculate new epoch times by subtracting minutes from existing timestamps"
+        },
+        {
+          "name": "Human Date to Epoch",
+          "description": "Convert custom date/time inputs to epoch format with timezone selection"
+        },
+        {
+          "name": "Live Clock Display",
+          "description": "Real-time epoch timestamp with multiple timezone displays"
+        }
+      ]
+    },
+    {
+      "title": "🔄 Conversion Suite",
+      "description": "Comprehensive conversion utilities and advanced tools:",
+      "features": [
+        {
+          "name": "Encoding Converters",
+          "description": "Hex↔Text, Binary↔Decimal, Base64 encode/decode, URL encode/decode"
+        },
+        {
+          "name": "Text Utilities",
+          "description": "Case converter (6+ formats), text reversal, regex escaping"
+        },
+        {
+          "name": "Security Tools",
+          "description": "JWT decoder, API key generator, PassCraft password generator with customization"
+        },
+        {
+          "name": "Color Converter",
+          "description": "HEX↔RGB↔HSL conversion with visual preview and color name lookup"
+        },
+        {
+          "name": "Markdown Pipeline",
+          "description": "Natural Language→Markdown→HTML converter with live preview"
+        },
+        {
+          "name": "Date→Epoch Tool",
+          "description": "Generate date ranges with custom intervals and bulk epoch conversion"
+        },
+        {
+          "name": "ID Calculator",
+          "description": "Generate sequential database IDs with custom increments"
+        },
+        {
+          "name": "Duplicate Analyzer",
+          "description": "Advanced duplicate detection with statistics and export options"
+        },
+        {
+          "name": "CSV/TSV Processor",
+          "description": "Parse, validate, and export data tables with sorting and filtering"
+        },
+        {
+          "name": "🖼️ Image Processor",
+          "description": "Compress, resize, and convert images (JPEG, PNG, WebP) with quality control"
+        }
+      ]
+    },
+    {
+      "title": "📝 Block Conversion",
+      "description": "XML processing and validation tools:",
+      "features": [
+        {
+          "name": "XML Validator",
+          "description": "Validate XML syntax with detailed error reporting and line/column highlighting"
+        },
+        {
+          "name": "XML to Block XML",
+          "description": "Convert standard XML to block XML format for better readability"
+        },
+        {
+          "name": "JSON to XML",
+          "description": "Transform JSON data structures to properly formatted XML"
+        },
+        {
+          "name": "Error Detection",
+          "description": "Intelligent error handling with precise location reporting for malformed XML"
+        }
+      ]
+    },
+    {
+      "title": "🌐 JSON Conversion",
+      "description": "Web query and JSON processing utilities:",
+      "features": [
+        {
+          "name": "Query to JSON",
+          "description": "Convert web query strings to formatted JSON objects"
+        },
+        {
+          "name": "URL Encoder/Decoder",
+          "description": "Handle URL encoding and decoding for web development"
+        },
+        {
+          "name": "JSON Validator",
+          "description": "Validate JSON syntax and format with error highlighting"
+        },
+        {
+          "name": "XML to JSON",
+          "description": "Convert XML documents to JSON format for API consumption"
+        }
+      ]
+    },
+    {
+      "title": "📊 Content Comparer",
+      "description": "Advanced text comparison and analysis:",
+      "features": [
+        {
+          "name": "Side-by-Side Comparison",
+          "description": "Visual text comparison with addition/deletion highlighting"
+        },
+        {
+          "name": "Difference Statistics",
+          "description": "Count additions, deletions, and modifications between texts"
+        },
+        {
+          "name": "Unified Diff View",
+          "description": "Standard unified diff format for detailed change tracking"
+        },
+        {
+          "name": "Copy-Paste Friendly",
+          "description": "Easy import of content from various sources for quick comparison"
+        }
+      ]
+    },
+    {
+      "title": "💻 Code Refiner",
+      "description": "Multi-language code formatting and beautification:",
+      "features": [
+        {
+          "name": "Auto-Detection",
+          "description": "Automatically detect programming languages (SQL, JSON, XML, JavaScript, CSS, HTML, Python, Java, C/C++, PHP)"
+        },
+        {
+          "name": "Code Formatter",
+          "description": "Beautify and properly indent code for better readability"
+        },
+        {
+          "name": "Code Minifier",
+          "description": "Compress code by removing whitespace and unnecessary characters"
+        },
+        {
+          "name": "Language Support",
+          "description": "Comprehensive support for web and programming languages"
+        }
+      ]
+    },
+    {
+      "title": "🧪 Case Master",
+      "description": "Test case management and Excel export tools:",
+      "features": [
+        {
+          "name": "Test Case Builder",
+          "description": "Convert descriptive test cases to structured pipe-separated format"
+        },
+        {
+          "name": "Excel Export",
+          "description": "Generate downloadable Excel files with formatted test case tables"
+        },
+        {
+          "name": "HTML Preview",
+          "description": "Preview test cases in formatted HTML table before export"
+        },
+        {
+          "name": "Template Support",
+          "description": "Standard test case template with TestID, Name, Category, Priority, Objective, etc."
+        },
+        {
+          "name": "Copy to Clipboard",
+          "description": "Quick copy functionality for sharing formatted test cases"
+        }
+      ]
+    },
+    {
+      "title": "🌍 Geo Sight",
+      "description": "Geographic tools and coordinate conversion:",
+      "features": [
+        {
+          "name": "Location Lookup",
+          "description": "Convert addresses and place names to precise coordinates"
+        },
+        {
+          "name": "Coordinate Display",
+          "description": "Show both point coordinates and bounding box area coverage"
+        },
+        {
+          "name": "GeoJSON Converter",
+          "description": "Transform coordinates to GeoJSON format for mapping applications"
+        },
+        {
+          "name": "Map Integration",
+          "description": "Direct links to OpenStreetMap for visual location verification"
+        },
+        {
+          "name": "Format Support",
+          "description": "Handle XML coordinate formats and plain lon/lat pairs"
+        }
+      ]
+    },
+    {
+      "title": "💡 Pro Tips & Features",
+      "description": "Advanced features and productivity tips:",
+      "features": [
+        {
+          "name": "Real-Time Processing",
+          "description": "Live conversion and formatting as you type in many tools"
+        },
+        {
+          "name": "Copy Buttons",
+          "description": "One-click copy functionality throughout the application"
+        },
+        {
+          "name": "Batch Operations",
+          "description": "Process multiple items simultaneously in supported tools"
+        },
+        {
+          "name": "Error Handling",
+          "description": "Comprehensive error messages with helpful suggestions"
+        },
+        {
+          "name": "Mobile Responsive",
+          "description": "Fully functional on desktop, tablet, and mobile devices"
+        },
+        {
+          "name": "No Registration",
+          "description": "All tools work instantly without account creation or login"
+        },
+        {
+          "name": "Privacy First",
+          "description": "All processing happens locally in your browser"
+        }
+      ]
+    }
+  ]
+}
