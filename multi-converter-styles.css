@@ -343,6 +343,22 @@ footer {
     min-height: 15px; /* Minimal space when empty */
 }
 
+/* Upload button styling for Content Comparer */
+.upload-btn {
+    background: lightslategray;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.upload-btn:hover {
+    background: #607080;
+}
+
 button {
     background-color: #fff;
     color: #2c3e50; /* Subtle color */
@@ -3011,3 +3027,4 @@ input[type="file"] {
     color: #666;
     font-style: italic;
 }
+
