@@ -1,5 +1,5 @@
 {
-  "title": "🆕 What's New in v2.1.86",
+  "title": "🆕 What's New",
   "version": "2.1.86",
   "sections": [
     {
@@ -34,15 +34,16 @@
         {
           "badge": "ENHANCED",
           "badgeType": "enhanced",
-          "name": "Date→Epoch Converter",
-          "description": "Improved functionality",
+          "name": "XML & JSON Converters",
+          "description": "File upload capabilities added",
           "details": [
-            "Tabbed interface with ID Calculator integration",
-            "Bulk date generation with custom intervals",
-            "Multiple date format support",
-            "Download results as files"
+            "Direct file upload for XML Block Conversion",
+            "File upload support for JSON Query conversion",
+            "Seamless integration with existing conversion tools",
+            "Support for .xml, .txt, .json, and .query file formats",
+            "Auto-population of text areas with uploaded content"
           ]
-        }
+        }        
       ]
     },
     {
@@ -59,7 +60,19 @@
             "Export capabilities for processed data",
             "Support for large datasets"
           ]
-        }        
+        },
+        {
+          "badge": "ENHANCED",
+          "badgeType": "enhanced",
+          "name": "Date→Epoch Converter",
+          "description": "Improved functionality",
+          "details": [
+            "Tabbed interface with ID Calculator integration",
+            "Bulk date generation with custom intervals",
+            "Multiple date format support",
+            "Download results as files"
+          ]
+        }     
       ]
     },
     {
