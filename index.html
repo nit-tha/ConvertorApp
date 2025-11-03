@@ -1170,10 +1170,47 @@ February 25, 2025 13:23:51"></textarea>
             <span>Version 2.1.86 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
+            <br />
+            <div class="footer-links">
+                <a href="#" onclick="openAppGuideModal()" class="footer-link">📚 App Guide</a>
+                <span class="footer-separator">•</span>
+                <a href="#" onclick="openWhatsNewModal()" class="footer-link">🆕 What's New</a>
+            </div>
         </footer>
+
+        <!-- App Guide Modal -->
+        <div id="appGuideModal" class="info-modal" style="display: none;">
+            <div class="info-modal-content">
+                <div class="info-modal-header">
+                    <h2 id="appGuideTitle">📚 Loading...</h2>
+                    <span class="info-modal-close" onclick="closeModal('appGuideModal')">&times;</span>
+                </div>
+                <div class="info-modal-body" id="appGuideContent">
+                    <div class="loading-content">
+                        <p>Loading app guide...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- What's New Modal -->
+        <div id="whatsNewModal" class="info-modal" style="display: none;">
+            <div class="info-modal-content">
+                <div class="info-modal-header">
+                    <h2 id="whatsNewTitle">🆕 Loading...</h2>
+                    <span class="info-modal-close" onclick="closeModal('whatsNewModal')">&times;</span>
+                </div>
+                <div class="info-modal-body" id="whatsNewContent">
+                    <div class="loading-content">
+                        <p>Loading what's new...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
        
     <!-- === Core JavaScript Loader === -->
         <script src="multi-converter.js"></script>
     </body>
 </html>
+
 
