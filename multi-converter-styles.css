@@ -3,6 +3,7 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
+    padding-bottom: 70px; /* Just enough space for the original footer */
 }
 
 /* Container for Epoch Clock and Tools */
@@ -319,6 +320,27 @@ footer {
     color: #ff0000;
     font-size: 0.9em;
     margin-top: 10px;
+}
+
+/* General error class for validation messages */
+.error {
+    color: #ff0000;
+    font-size: 0.9em;
+    margin-top: 10px;
+    margin-bottom: 15px; /* Minimal extra space to prevent footer overlap */
+    padding: 5px;
+    display: block;
+}
+
+/* Specific error message styling for XML and JSON converters */
+#errorMsg, #jsonErrorMsg {
+    color: #ff0000;
+    font-size: 0.9em;
+    margin-top: 10px;
+    margin-bottom: 20px; /* Just enough space for footer clearance */
+    padding: 5px;
+    display: block;
+    min-height: 15px; /* Minimal space when empty */
 }
 
 button {
@@ -2719,6 +2741,7 @@ input[type="file"] {
     box-shadow: 0 2px 4px rgba(0, 123, 255, 0.25);
 }
 
+
 /* ================== Footer Enhancement Styles ================== */
 .footer-links {
     margin-top: 8px;
@@ -2988,5 +3011,3 @@ input[type="file"] {
     color: #666;
     font-style: italic;
 }
-
-
