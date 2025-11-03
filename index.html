@@ -859,11 +859,19 @@ February 25, 2025 13:23:51"></textarea>
     <h2>Compare & Highlight Differences</h2>
     <div class="diff-container">
         <div class="diff-panel">
-            <h3>Original Text</h3>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                <h3 style="margin: 0;">Original Text</h3>
+                <button onclick="document.getElementById('originalTextFileInput').click()" title="Upload original text file" class="upload-btn">📂 Upload</button>
+            </div>
+            <input type="file" id="originalTextFileInput" accept=".txt,.md,.log,.json,.xml,.csv" style="display: none;">
             <textarea id="originalText" placeholder="Paste your original text here..." style="width: 400px; height: 200px;"></textarea>
         </div>
         <div class="diff-panel">
-            <h3>Modified Text</h3>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                <h3 style="margin: 0;">Modified Text</h3>
+                <button onclick="document.getElementById('modifiedTextFileInput').click()" title="Upload modified text file" class="upload-btn">📂 Upload</button>
+            </div>
+            <input type="file" id="modifiedTextFileInput" accept=".txt,.md,.log,.json,.xml,.csv" style="display: none;">
             <textarea id="modifiedText" placeholder="Paste your modified text here..." style="width: 400px; height: 200px;"></textarea>
         </div>
     </div>
@@ -1216,6 +1224,7 @@ February 25, 2025 13:23:51"></textarea>
         <script src="multi-converter.js"></script>
     </body>
 </html>
+
 
 
 
