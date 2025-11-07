@@ -10,7 +10,7 @@ body {
 .epoch-container {
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 8px 10px;
     background-color: #fff;
     border-bottom: 1px solid #ddd;
 }
@@ -19,6 +19,7 @@ body {
     display: flex;
     align-items: center;
     font-size: 1.2em;
+    margin-bottom: 8px;
 }
 
 .ecclock {
@@ -94,18 +95,21 @@ nav a:hover {
 .hex-container label {
     margin-right: 10px;
     font-weight: bold;
-    color: #333;
+    color: #2c3e50;
+    font-size: 14px;
 }
 
 .sql-container input[type="text"],
 .hex-container input[type="text"] {
-    padding: 8px;
+    padding: 6px 8px;
     width: 70%;
     box-sizing: border-box;
     resize: vertical;
     border: 1px solid #ccc;
     border-radius: 4px;
     transition: border-color 0.3s;
+    color: #2c3e50;
+    font-size: 14px;
 }
 
 .sql-container input[type="text"]:focus,
@@ -167,16 +171,554 @@ nav a:hover {
 }
 
 .hex-container input[type="text"] {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #2c3e50;
     width: 74%;
+    box-sizing: border-box;
 }
 
- .color-preview {
-            margin-top: 15px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            border: 2px solid #e0e0e0;
-        }
+.hex-container input[type="text"]:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+/* Converter Buttons Grid Styling */
+.converter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.converter-buttons button {
+    background-color: #fff;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    padding: 7px 7px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+    min-width: 80px;
+    text-align: center;
+}
+
+.converter-buttons button:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.converter-buttons button:focus {
+    outline: none;
+    border-color: #af65d9;
+}
+
+/* Color Preview Styling */
+.color-preview {
+    margin-top: 15px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+}
+
+/* General Buttons Container Styling */
+.buttons {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.buttons button {
+    background-color: #fff;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    padding: 7px 7px;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.buttons button:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.buttons button:focus {
+    outline: none;
+    border-color: #af65d9;
+}
+
+/* Image Processor Container Styling */
+.image-container {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.image-container h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.image-container .upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    background: #f8f9fa;
+    transition: border-color 0.3s;
+    cursor: pointer;
+}
+
+.image-container .upload-area:hover {
+    border-color: #af65d9;
+}
+
+.image-container .upload-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.image-container .upload-text {
+    font-size: 16px;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.image-container .upload-subtext {
+    font-size: 14px;
+    color: #666;
+}
+
+.image-container input[type="file"] {
+    display: none;
+}
+
+.image-container button,
+.image-container .btn {
+    background-color: #fff;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    padding: 7px 7px;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.image-container button:hover,
+.image-container .btn:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.image-container input[type="number"],
+.image-container input[type="range"],
+.image-container select {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.image-container input[type="number"]:focus,
+.image-container select:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+/* Markdown Converter Container Styling */
+.markdown-converter {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.markdown-converter h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.markdown-converter p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.markdown-converter .container {
+    margin-bottom: 15px;
+}
+
+.markdown-converter label {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 14px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.markdown-converter textarea {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #2c3e50;
+    resize: vertical;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+}
+
+.markdown-converter textarea:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+.markdown-converter button {
+    background-color: #fff;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    padding: 7px 7px;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.markdown-converter button:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.markdown-converter .button-group {
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* Default Values Container - for Case Master section */
+.default-values-container {
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.default-values-container label {
+    display: inline-block;
+    width: 100px;
+    font-size: 14px;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.default-values-container input {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.default-values-container input:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+/* Geo Sight Section Styling */
+.button-group-center {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.instructions-toggle {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.geojson-hidden {
+    display: none;
+}
+
+.geojson-result-hidden {
+    display: none;
+}
+
+.inline-copy-btn {
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.geojson-output-container {
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.geojson-output-container pre {
+    margin: 0;
+    max-height: none;
+}
+
+.markdown-converter .html-preview {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    background: #f8f9fa;
+    min-height: 100px;
+}
+
+/* CSV/TSV Processor Container Styling */
+.csv-processor {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.csv-processor h3,
+.csv-processor h4 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.csv-processor .csv-upload-area {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background: #f8f9fa;
+    transition: border-color 0.3s;
+}
+
+.csv-processor .csv-upload-area:hover {
+    border-color: #af65d9;
+}
+
+.csv-processor label {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.csv-processor textarea,
+.csv-processor select,
+.csv-processor input[type="file"] {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.csv-processor textarea {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+    resize: vertical;
+}
+
+.csv-processor textarea:focus,
+.csv-processor select:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+.csv-processor button {
+    background-color: #fff;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    padding: 7px 7px;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.csv-processor button:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.csv-processor table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.csv-processor th,
+.csv-processor td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.csv-processor th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Block Conversion (XML to Block) Container Styling */
+.converter-container h2,
+.converter-container h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.converter-container textarea {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #2c3e50;
+    font-family: 'Courier New', monospace;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    width: 100%;
+    min-height: 160px;
+}
+
+.converter-container textarea:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+/* Specific textarea sizing for different sections */
+#fullXml {
+    width: 449px;
+    height: 160px;
+}
+
+#blockXml {
+    width: 826px;
+    height: 93px;
+}
+
+#queryString {
+    width: 100%;
+    height: 160px;
+}
+
+#jsonOutput {
+    width: 100%;
+    height: 93px;
+}
+
+#originalText, #modifiedText {
+    height: 200px;
+    width: 400px;
+}
+
+#formatInput {
+    width: 100%;
+    height: 200px;
+}
+
+#convertedOutput {
+    width: 100%;
+    height: 150px;
+    background-color: #f8f9fa;
+}
+
+#tcInput {
+    width: 100%;
+    height: 160px;
+}
+
+.converter-container button {
+    background-color: #fff;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    padding: 7px 7px;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.converter-container button:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.converter-container button:focus {
+    outline: none;
+    border-color: #af65d9;
+}
+
+/* Special styling for instructions buttons to match Geo Sight style */
+.converter-container button[title="Show usage instructions"] {
+    background-color: #fff;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.converter-container button[title="Show usage instructions"]:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.converter-container .error {
+    color: #ff0000;
+    background: #ffebee;
+    padding: 10px;
+    border-radius: 4px;
+    border-left: 4px solid #ff0000;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+/* Instructions formatting for Case Master */
+.status-info {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 15px 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.5;
+}
+
+.status-info strong {
+    color: #495057;
+    font-weight: 600;
+}
+
+.status-info br {
+    margin-bottom: 8px;
+}
 
         .color-swatch {
             width: 100%;
@@ -229,10 +771,82 @@ footer {
     margin-bottom: 10px; /* Space between this section and the next */
 }
 
+.epochs-container button {
+    background-color: #fff;
+    color: #2c3e50; /* Subtle color */
+    border: 1px solid #2c3e50;
+    padding: 7px 7px;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.epochs-container button:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.epochs-container select {
+    background-color: #fff;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    padding: 6px 8px;
+    border-radius: 4px;
+    margin: 2px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.epochs-container select:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+.epochs-container input[type="text"] {
+    border: 1px solid #2c3e50;
+    padding: 6px 8px;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+.epochs-container input[type="text"]:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
 .epo-container {
     display: flex;
     align-items: center;
     margin-bottom: 10px; /* Space between the input and the results */
+}
+
+.epo-container button {
+    background-color: #fff;
+    color: #2c3e50; /* Subtle color */
+    border: 1px solid #2c3e50;
+    padding: 7px 7px;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.epo-container button:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.epo-container input[type="number"] {
+    border: 1px solid #2c3e50;
+    padding: 6px 8px;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+.epo-container input[type="number"]:focus {
+    border-color: #af65d9;
+    outline: none;
 }
 
 .results {
@@ -240,11 +854,24 @@ footer {
     align-items: center;
     gap: 5px; /* Add some space between each result item */
     margin-top: 2px; /* Space above the results */
+    margin-left: 5px; /* Consistent spacing */
+    font-size: 14px;
+    color: #2c3e50;
 }
 
 #result {
     margin-left: 10px;
     color: #2c3e50; /* Subtle color */
+    font-size: 14px;
+}
+
+#countDisplay,
+#withoutSpaceCountDisplay,
+#wordCountDisplay {
+    margin-left: 10px;
+    color: #2c3e50; /* Subtle color */
+    font-size: 14px;
+    font-weight: normal;
 }
 
 .btn-container {
@@ -322,25 +949,49 @@ footer {
     margin-top: 10px;
 }
 
-/* General error class for validation messages */
+/* General error class for validation messages - only show red when there's content */
 .error {
-    color: #ff0000;
     font-size: 0.9em;
     margin-top: 10px;
     margin-bottom: 15px; /* Minimal extra space to prevent footer overlap */
     padding: 5px;
-    display: block;
+    min-height: 0;
+}
+
+/* Only show red styling when error class has content */
+.error:not(:empty) {
+    color: #ff0000;
+    border: 1px solid #ff0000;
+    background-color: #ffe6e6;
+    border-radius: 4px;
 }
 
 /* Specific error message styling for XML and JSON converters */
 #errorMsg, #jsonErrorMsg {
-    color: #ff0000;
     font-size: 0.9em;
     margin-top: 10px;
     margin-bottom: 20px; /* Just enough space for footer clearance */
     padding: 5px;
     display: block;
     min-height: 15px; /* Minimal space when empty */
+}
+
+/* Only show error styling when error class is applied AND content exists */
+#errorMsg.error, #jsonErrorMsg.error {
+    color: #ff0000;
+    border: 1px solid #ff0000;
+    background-color: #ffe6e6;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Success styling for validation messages */
+#errorMsg.success, #jsonErrorMsg.success {
+    color: #008000;
+    border: 1px solid #008000;
+    background-color: #e6ffe6;
+    border-radius: 4px;
+    font-weight: bold;
 }
 
 /* Upload button styling for Content Comparer */
@@ -379,6 +1030,7 @@ button:focus {
         display: flex;
         flex-wrap: wrap;
         gap: 10px; /* Controls the spacing between groups */
+        align-items: flex-end; /* Align items to the bottom for consistent button/input height */
     }
 
        .input-group {
@@ -389,11 +1041,67 @@ button:focus {
     .input-group label {
         margin-bottom: 2px; /* Reduces gap between label and input box */
         font-size: 14px; /* Optional: Adjust label font size if needed */
+        color: #2c3e50;
+        font-weight: normal;
+    }
+
+    .input-group input[type="number"] {
+        border: 1px solid #2c3e50;
+        padding: 6px 8px;
+        border-radius: 4px;
+        margin: 2px 0;
+        width: 60px;
+        font-size: 14px;
+    }
+
+    .input-group input[type="number"]:focus {
+        border-color: #af65d9;
+        outline: none;
+    }
+
+    .input-group select {
+        border: 1px solid #2c3e50;
+        padding: 6px 8px;
+        border-radius: 4px;
+        margin: 2px 0;
+        background-color: #fff;
+        color: #2c3e50;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .input-group select:focus {
+        border-color: #af65d9;
+        outline: none;
+    }
+
+    #hf button {
+        background-color: #fff;
+        color: #2c3e50;
+        border: 1px solid #2c3e50;
+        padding: 7px 7px;
+        border-radius: 4px;
+        margin: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 14px;
+        height: fit-content;
+    }
+
+    #hf button:hover {
+        background-color: #2c3e50;
+        color: white;
     }
 
     .result-container {
         margin-left: 15px;         /* Space between button and result display */
-        margin-top: 14px;
+        align-self: flex-end;      /* Align with button at bottom */
+        margin-bottom: 5px;        /* Match button margin */
+        font-size: 14px;
+        color: #2c3e50;
+        display: flex;
+        align-items: center;
+        min-height: 33px;          /* Match button height for proper alignment */
     }
 
  /* General Styles */
@@ -419,8 +1127,8 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
-    gap: 10px 20px;
+    margin-top: 6px;
+    gap: 8px 16px;
 }
 
 /* Each timezone item */
@@ -431,17 +1139,17 @@ body {
 
 /* Label for the time zones */
 .timezone-label {
-    margin-left: 5px;
+    margin-right: 4px;
     font-weight: bold;
     color: #ff0000ed; /* Your specified color */
+    font-size: 14px;
 }
 
 /* Time display styling */
 .timezone-time {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     color: #34495e;
-    margin-left: 5px; /* Small margin between label and time */
 }
 
 /* Inline clock text styling */
@@ -496,13 +1204,15 @@ nav a.active {
 
 .diff-panel textarea {
     padding: 8px;
-    width: 100%;
+    width: 400px;
+    height: 200px;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
     transition: border-color 0.3s;
     font-family: 'Courier New', Monaco, monospace;
     resize: vertical;
+    overflow-y: auto;
 }
 
 .diff-panel textarea:focus {
@@ -519,7 +1229,7 @@ nav a.active {
     background-color: #fff;
     color: #2c3e50;
     border: 1px solid #2c3e50;
-    padding: 7px 15px;
+    padding: 7px 7px;
     border-radius: 4px;
     margin: 5px;
     cursor: pointer;
@@ -2234,18 +2944,20 @@ input[type="file"] {
 .dup-panel label {
     font-weight: bold;
     margin-bottom: 6px;
-    color: #333;
+    color: #2c3e50;
+    font-size: 14px;
 }
 
 .dup-panel textarea {
     flex: 1;
-    padding: 10px;
+    padding: 6px 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-family: 'Courier New', monospace;
     font-size: 14px;
     resize: vertical;
     transition: border-color 0.3s;
+    color: #2c3e50;
 }
 
 .dup-panel textarea:focus {
@@ -2268,12 +2980,22 @@ input[type="file"] {
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
 }
 
 .dup-controls label,
 .dup-controls select {
     font-size: 14px;
-    color: #333;
+    color: #2c3e50;
+}
+
+.dup-controls select {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
 }
 
 /* Stats line */
@@ -2282,6 +3004,29 @@ input[type="file"] {
     font-size: 14px;
     color: #666;
     margin-bottom: 15px;
+}
+
+/* Duplicate Counter Button Styling - Consistent with Application */
+.duplicate-counter button {
+    background-color: #fff;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    padding: 7px 7px;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.duplicate-counter button:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.duplicate-counter button:focus {
+    outline: none;
+    border-color: #af65d9;
 }
 
 /* Responsive */
@@ -2728,6 +3473,13 @@ input[type="file"] {
 }
 
 /* Base epoch tab button styling (used by Date→Epoch and PDF sections) */
+.epoch-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
 .epoch-tab-btn {
     display: inline-block;
     padding: 8px 16px;
@@ -3027,4 +3779,3 @@ input[type="file"] {
     color: #666;
     font-style: italic;
 }
-
