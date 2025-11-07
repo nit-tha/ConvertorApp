@@ -22,9 +22,8 @@
       <meta property="og:type" content="website">
 
       <!-- Twitter Meta Tag -->
-      <meta name="twitter:card" content="summary_large_image">  
-
-      <!-- Google AdsSense -->
+      <meta name="twitter:card" content="summary_large_image">   
+      
       <meta name="google-adsense-account" content="ca-pub-2317488546076814">
 
       <script type="application/ld+json">
@@ -56,26 +55,25 @@
         gtag('js', new Date());
         gtag('config', 'G-JX9G7LMSBB');
       </script>
-        
+      
        <!-- Google AdSense -->
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2317488546076814"
      crossorigin="anonymous"></script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2317488546076814"
-     crossorigin="anonymous"></script>
-    <!-- Test1 -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-2317488546076814"
-         data-ad-slot="5729013010"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+         crossorigin="anonymous"></script>
+        <!-- Test1 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2317488546076814"
+             data-ad-slot="5729013010"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
 
-        <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-        
+        <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>     
     </head>
    <body>
 
@@ -134,10 +132,10 @@
                 <label for="ids">Enter Data:</label>
                 <input type="text" id="ids" oninput="resizeInput(this)" placeholder="Enter data here for conversion." />
                 <div class="tooltip">
-                    <button onclick="removeCommaData()" title="Remove's Comma">DelCom</button>                    
+                    <button onclick="removeCommaData()" title="Smart Comma Removal (Click for ALL removal)">DelCom</button>                    
                 </div>
                 <div class="tooltip">
-                    <button onclick="removeDuplicates()"title="Remove Duplicate Data">Unique</button>
+                    <button onclick="removeDuplicates()" title="Remove Duplicate Data">Unique</button>
                 </div>                
             </div>
             <div class="container" id="commaRemovedContainer" style="display: none;">
@@ -198,24 +196,15 @@
                 </select>
                 <input type="text" id="epochTime" placeholder="Enter epoch time" />
                 <div class="dropdown-container">
-                   <select id="timezoneSelect" onchange="convertEpochTime()" style="background-color: aliceblue;">
+                   <select id="timezoneSelect" onchange="convertEpochTime()">
             <option value="">Select Timezone</option>
             <!-- Placeholder option -->  
             </select>               
-           
-            <!-- DST dropdown -->
-            <div class="dropdown-container">
-                <select id="dstSelect" onchange="convertEpochTime()" style="background-color: aliceblue;">
-                <option value="">Select DST</option>
-                <option value="spring">March</option>   <!-- Spring Forward -->
-                <option value="fall">November</option>   <!-- Fall Back-->
-                </select>
-            </div>
             </div>  
                 <div id="result"></div>
             </div>
             <div class="epo-container">
-                    <input type="number" id="minutesToSubtract" placeholder="Minutes to Subtract" style="margin-left: 10px;" />
+                    <input type="number" id="minutesToSubtract" placeholder="Minutes to Subtract" />
                     <button onclick="calculateNewEpochTime()" title="Shows new epoch after subtraction">Calculate</button>
                      <div class="results" id="results" style="display: block;">
                      <span>Result: </span>
@@ -255,11 +244,16 @@
         <div class="input-group">
             <label for="tz">Timezone</label>
             <select id="tz" name="tz">
-    <option value="0" selected>GMT</option>
-    <option value="330">Local Time (IST)</option> <!-- IST = GMT +5:30 -->
-    <option value="-300">EST/EDT</option>  <!-- EST = GMT -5:00 -->
+    <option value="0" selected>GMT/UTC</option>
+    <option value="330">IST (GMT+5:30)</option>
+    <option value="-300">EST (GMT-5:00)</option>
+    <option value="-480">PST (GMT-8:00)</option>
+    <option value="60">CET (GMT+1:00)</option>
+    <option value="180">MSK (GMT+3:00)</option>
+    <option value="480">CST (GMT+8:00)</option>
+    <option value="540">JST (GMT+9:00)</option>
+    <option value="600">AEST (GMT+10:00)</option>
 </select>
-
         </div>
         <button type="button" onclick="HumanToEpochTZ()" title="In Epochtime">Human Date</button>
         <span id="hf-result" class="result-container"></span>
@@ -623,14 +617,6 @@ February 25, 2025 13:23:51"></textarea>
                 <div class="dup-panel">
                     <label for="duplicateOutput">Results:</label>
                     <textarea id="duplicateOutput" readonly rows="12"></textarea>
-                    <div class="dup-actions">
-                        <button onclick="copyToClipboard('duplicateOutput')" title="Copy Results">
-                            <i class="fas fa-copy"></i> Copy
-                        </button>
-                        <button onclick="downloadDuplicateResults()" title="Download Results">
-                            <i class="fas fa-download"></i> Download
-                        </button>
-                    </div>
                 </div>
             </div>
 
@@ -651,6 +637,12 @@ February 25, 2025 13:23:51"></textarea>
 
             <!-- Footer buttons -->
             <div class="buttons" style="text-align: center;">
+                <button onclick="copyToClipboard('duplicateOutput')" title="Copy Results">
+                    <i class="fas fa-copy"></i> Copy
+                </button>
+                <button onclick="downloadDuplicateResults()" title="Download Results">
+                    <i class="fas fa-download"></i> Download
+                </button>
                 <button onclick="clearDuplicateFields()" title="Clear All">🗑️ Clear</button>
                 <button onclick="restoreDuplicateInput()" title="Restore Last Input">↶ Restore</button>
             </div>
@@ -840,7 +832,7 @@ February 25, 2025 13:23:51"></textarea>
 <!-- === XML to Block Converter Section === -->
  <div id="xmlToBlockSection" class="converter-container" style="display: none;">
         <h2>XML to Block XML Converter</h2>
-        <textarea id="fullXml" class="pasteable" placeholder="Paste your full XML here..." style="width: 449px; height: 160px;"></textarea>
+        <textarea id="fullXml" class="pasteable" placeholder="Paste your full XML here..."></textarea>
         <input type="file" id="blockConverterFileInput" accept=".xml,.txt" style="display: none;">
         <div style="display: flex; gap: 10px; margin-bottom: 20px;">      
         <button onclick="convertToBlock()" title="Convert's FullXml to Block">Convert</button>
@@ -849,17 +841,17 @@ February 25, 2025 13:23:51"></textarea>
         <button onclick="clearText('fullXml', 'blockXml', 'errorMsg')">🗑️ Clear</button>
         </div>  
         <h3>Block XML Output</h3>
-        <textarea id="blockXml" readonly style="width: 826px; height: 93px;"></textarea>
+        <textarea id="blockXml" readonly></textarea>
         <button onclick="copyToClipboard('blockXml')" title="Copy">
             <i class="fas fa-copy"></i>
         </button>
-        <p class="error" id="errorMsg"></p>
+        <p id="errorMsg"></p>
         </div>
 
     <!-- === Web Query String to JSON Converter === -->
         <div id="queryToJsonSection" class="converter-container" style="display: none;">
             <h2>Web Query to JSON Utility</h2>
-            <textarea id="queryString" placeholder="Paste your query string here..." style="width: 100%; height: 160px; box-sizing: border-box;"></textarea>
+            <textarea id="queryString" placeholder="Paste your query string here..."></textarea>
             <input type="file" id="jsonConverterFileInput" accept=".txt,.json,.query" style="display: none;">
             <div style="display: flex; gap: 10px; margin-bottom: 20px;">      
                 <button onclick="convertToJson()" title="Convert Web Query to JSON">Convert</button>
@@ -870,11 +862,11 @@ February 25, 2025 13:23:51"></textarea>
                 <button onclick="clearText('queryString', 'jsonOutput', 'jsonErrorMsg')">🗑️ Clear</button>  
             </div>         
             <h3>Processed Output</h3>
-            <textarea id="jsonOutput" readonly style="width: 100%; height: 93px; box-sizing: border-box;"></textarea>
+            <textarea id="jsonOutput" readonly></textarea>
             <button onclick="copyToClipboard('jsonOutput')" title="Copy">
                 <i class="fas fa-copy"></i>
             </button>
-            <p class="error" id="jsonErrorMsg"></p>             
+            <p id="jsonErrorMsg"></p>             
         </div>
        
      <!-- === Content Comparer Tool === -->
@@ -887,7 +879,7 @@ February 25, 2025 13:23:51"></textarea>
                 <button onclick="document.getElementById('originalTextFileInput').click()" title="Upload original text file" class="upload-btn">📂 Upload</button>
             </div>
             <input type="file" id="originalTextFileInput" accept=".txt,.md,.log,.json,.xml,.csv" style="display: none;">
-            <textarea id="originalText" placeholder="Paste your original text here..." style="width: 400px; height: 200px;"></textarea>
+            <textarea id="originalText" placeholder="Paste your original text here..."></textarea>
         </div>
         <div class="diff-panel">
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
@@ -895,7 +887,7 @@ February 25, 2025 13:23:51"></textarea>
                 <button onclick="document.getElementById('modifiedTextFileInput').click()" title="Upload modified text file" class="upload-btn">📂 Upload</button>
             </div>
             <input type="file" id="modifiedTextFileInput" accept=".txt,.md,.log,.json,.xml,.csv" style="display: none;">
-            <textarea id="modifiedText" placeholder="Paste your modified text here..." style="width: 400px; height: 200px;"></textarea>
+            <textarea id="modifiedText" placeholder="Paste your modified text here..."></textarea>
         </div>
     </div>
     
@@ -986,7 +978,7 @@ February 25, 2025 13:23:51"></textarea>
         <!-- Sample Data Button -->
         <div class="button-group">
             <button onclick="loadConverterSampleData()" class="secondary-btn">Load Sample Format</button>
-            <button onclick="showConverterInstructions()" class="secondary-btn">Show Instructions</button>
+            <button onclick="showConverterInstructions()" title="Show usage instructions">📖 Show Instructions</button>
         </div>
         
         <!-- Instructions -->
@@ -1001,16 +993,15 @@ February 25, 2025 13:23:51"></textarea>
         
         <!-- Input -->
         <textarea id="formatInput"
-                  placeholder="Paste your descriptive test case format here...&#10;&#10;Example:&#10;TC-AUTH-001: Valid Basic Authentication&#10;Objective: Verify successful authentication with valid credentials&#10;Method: POST/GET to both endpoints&#10;Headers: Valid API_KEY and Basic Authorization&#10;Expected Result: Authentication successful, proceed to endpoint logic&#10;Status Code: 200 (if request is otherwise valid)"
-                  style="width:100%;height:200px;box-sizing:border-box;"></textarea>
+                  placeholder="Paste your descriptive test case format here...&#10;&#10;Example:&#10;TC-AUTH-001: Valid Basic Authentication&#10;Objective: Verify successful authentication with valid credentials&#10;Method: POST/GET to both endpoints&#10;Headers: Valid API_KEY and Basic Authorization&#10;Expected Result: Authentication successful, proceed to endpoint logic&#10;Status Code: 200 (if request is otherwise valid)"></textarea>
         
         <!-- Default Values -->
-        <div style="margin: 10px 0;">
-            <label style="display: inline-block; width: 100px;">Default Category:</label>
-            <input type="text" id="defaultCategory" value="Functional" style="margin-right: 20px;">
-            <label style="display: inline-block; width: 100px;">Default Priority:</label>
-            <input type="text" id="defaultPriority" value="High" style="margin-right: 20px;">
-            <label style="display: inline-block; width: 100px;">Default Endpoint:</label>
+        <div class="default-values-container">
+            <label>Default Category:</label>
+            <input type="text" id="defaultCategory" value="Functional">
+            <label>Default Priority:</label>
+            <input type="text" id="defaultPriority" value="High">
+            <label>Default Endpoint:</label>
             <input type="text" id="defaultEndpoint" value="Both endpoints">
         </div>
         
@@ -1028,7 +1019,6 @@ February 25, 2025 13:23:51"></textarea>
         <h3 style="margin-top:20px;">📊 Converted Output</h3>
         <textarea id="convertedOutput" 
                   readonly
-                  style="width:100%;height:150px;box-sizing:border-box;background-color:#f8f9fa;"
                   placeholder="Converted pipe-separated format will appear here..."></textarea>
         
         <!-- Sample Data Template for Converter -->
@@ -1056,7 +1046,7 @@ February 25, 2025 13:23:51"></textarea>
         <!-- Sample Data Button -->
         <div class="button-group">
             <button onclick="loadSampleData()" class="secondary-btn">Load Sample Data</button>
-            <button onclick="showInstructions()" class="secondary-btn">Show Instructions</button>
+            <button onclick="showInstructions()" title="Show usage instructions">📖 Show Instructions</button>
         </div>
         
         <!-- Instructions -->
@@ -1072,8 +1062,7 @@ February 25, 2025 13:23:51"></textarea>
         
         <!-- Input -->
         <textarea id="tcInput"
-                  placeholder="Paste test case data here...&#10;Format: TestID|TestName|Category|Priority|Objective|Endpoint|Method|Prerequisites|TestData|ExpectedResult|ExpectedStatus&#10;&#10;Example:&#10;TC-001|Valid Authentication|Auth|High|Test valid login|/login|POST|Valid credentials|user:pass|Success|200&#10;TC-002|Invalid Password|Auth|High|Test invalid login|/login|POST|Invalid credentials|user:wrong|Failure|401"
-                  style="width:100%;height:160px;box-sizing:border-box;"></textarea>
+                  placeholder="Paste test case data here...&#10;Format: TestID|TestName|Category|Priority|Objective|Endpoint|Method|Prerequisites|TestData|ExpectedResult|ExpectedStatus&#10;&#10;Example:&#10;TC-001|Valid Authentication|Auth|High|Test valid login|/login|POST|Valid credentials|user:pass|Success|200&#10;TC-002|Invalid Password|Auth|High|Test invalid login|/login|POST|Invalid credentials|user:wrong|Failure|401"></textarea>
         
         <!-- Buttons -->
         <div class="button-group">
@@ -1108,20 +1097,20 @@ February 25, 2025 13:23:51"></textarea>
         <h3>🌍 Geo Sight</h3>
 
         <!-- Tab Navigation -->
-        <div class="epoch-tabs" style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center;">
+        <div class="epoch-tabs">
             <button class="epoch-tab-btn active" onclick="switchGeoTab('geocoding')" id="geocodingTab">📍 Location Lookup</button>
             <button class="epoch-tab-btn" onclick="switchGeoTab('geojson')" id="geojsonTab">🗺️ GeoJSON Converter</button>
         </div>
 
         <!-- Location Lookup (Geocoding) -->
-        <div id="geocodingTabSection" class="epoch-section" style="display: block;">
+        <div id="geocodingTabSection" class="epoch-section">
             <h4>Enter Location Name</h4>
             <div class="search-container">
                 <div class="search-panel">
                     <input type="text" id="locationInput" placeholder="Enter city, country, or address (e.g., India, London, New York)" onkeypress="handleKeyPress(event)">
                 </div>
             </div>
-            <div style="display: flex; gap: 10px; margin: 20px 0; justify-content: center;">
+            <div class="button-group-center">
                 <button onclick="searchLocation()" title="Search for location coordinates" id="searchBtn">🔍 Search Location</button>
                 <button onclick="clearResults()" title="Clear all results">🗑️ Clear</button>
             </div>
@@ -1155,10 +1144,10 @@ February 25, 2025 13:23:51"></textarea>
         </div>
 
         <!-- GeoJSON Converter -->
-        <div id="geojsonTabSection" class="epoch-section" style="display: none;">
+        <div id="geojsonTabSection" class="epoch-section geojson-hidden">
             <h4>GeoJSON Converter Tool</h4>
             <!-- Instructions Toggle -->
-            <div style="text-align: center; margin-bottom: 15px;">
+            <div class="instructions-toggle">
                 <button onclick="toggleInstructions()" title="Show usage instructions">📖 Show Instructions</button>
             </div>
             <div id="geojsonInstructions" class="instruction-box" style="display: none;">
@@ -1179,7 +1168,7 @@ February 25, 2025 13:23:51"></textarea>
                 </div>
             </div>
     
-            <div style="display: flex; gap: 10px; margin: 20px 0; justify-content: center; flex-wrap: wrap;">
+            <div class="button-group-center">
                 <button onclick="convertToGeoJSON()" title="Convert XML to GeoJSON">⚙️ Convert</button>
                 <button onclick="downloadGeoJSON()" title="Download GeoJSON">💾 Download</button>
                 <input type="file" id="geojsonUpload" accept=".json" onchange="uploadGeoJSON(event)" style="display:none;">
@@ -1187,14 +1176,14 @@ February 25, 2025 13:23:51"></textarea>
                 <button onclick="clearGeoJSON()" title="Clear results">🗑️ Clear</button>
             </div>
     
-            <div id="geojsonResult" style="display: none;">
+            <div id="geojsonResult" class="geojson-result-hidden">
                 <h3>📌 Generated GeoJSON 
-                    <button onclick="copyToClipboard('geojson')" title="Copy GeoJSON to clipboard" style="margin-left: 10px; padding: 5px 10px; font-size: 12px;">
+                    <button onclick="copyToClipboard('geojson')" title="Copy GeoJSON to clipboard" class="inline-copy-btn">
                         📋 Copy
                     </button>
                 </h3>
-                <div style="max-height: 150px; overflow-y: auto; border: 1px solid #ddd; border-radius: 5px;">
-                    <pre id="geojsonOutput" class="coordinate-display" style="margin: 0; max-height: none;"></pre>
+                <div class="geojson-output-container">
+                    <pre id="geojsonOutput" class="coordinate-display"></pre>
                 </div>
             </div>
         </div>
@@ -1202,7 +1191,7 @@ February 25, 2025 13:23:51"></textarea>
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.86 (NT)</span>
+            <span>Version 2.1.87 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
             <br />
@@ -1247,6 +1236,7 @@ February 25, 2025 13:23:51"></textarea>
         <script src="multi-converter.js"></script>
     </body>
 </html>
+
 
 
 
