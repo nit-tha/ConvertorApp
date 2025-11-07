@@ -3733,6 +3733,18 @@ input[type="file"] {
     box-shadow: 0 2px 4px rgba(168, 230, 207, 0.3);
 }
 
+.feature-badge.fixed {
+    background: linear-gradient(135deg, #ffd93d, #ff6b35);
+    color: #2c3e50;
+    box-shadow: 0 2px 4px rgba(255, 217, 61, 0.3);
+}
+
+.feature-badge.improved {
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    color: #2c3e50;
+    box-shadow: 0 2px 4px rgba(168, 237, 234, 0.3);
+}
+
 /* Responsive design for modals */
 @media (max-width: 768px) {
     .info-modal-content {
@@ -3779,3 +3791,4 @@ input[type="file"] {
     color: #666;
     font-style: italic;
 }
+
