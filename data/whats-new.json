@@ -1,15 +1,100 @@
 {
   "title": "🆕 What's New",
-  "version": "2.1.86",
+  "version": "2.1.87",
   "sections": [
     {
-      "title": "🎉 Latest Features (v2.1.86)",
+      "title": "� Latest UI & UX Improvements (v2.1.87)",
+      "features": [
+        {
+          "badge": "ENHANCED",
+          "badgeType": "enhanced",
+          "name": "Smart Comma Removal (DelCom)",
+          "description": "Intelligent dual-mode comma processing",
+          "details": [
+            "Toggle between Smart and Complete comma removal modes",
+            "Smart Mode: Preserves number formatting (35,085 → 35,085)",
+            "Complete Mode: Removes ALL commas (35,085 → 35085)",
+            "Dynamic tooltip shows current mode and next action",
+            "Perfect for both financial data and general text processing"
+          ]
+        },
+        {
+          "badge": "FIXED",
+          "badgeType": "fixed",
+          "name": "Error Message Persistence",
+          "description": "Resolved sticky error styling issue",
+          "details": [
+            "Fixed red error borders that persisted after clearing content",
+            "Clear buttons now properly remove error/success styling",
+            "Applies to both XML Block Converter and JSON Converter",
+            "Clean slate after each clear operation",
+            "Improved user experience with proper visual feedback"
+          ]
+        },
+        {
+          "badge": "ENHANCED",
+          "badgeType": "enhanced",
+          "name": "Geo Sight Interface",
+          "description": "Centered navigation and improved layout",
+          "details": [
+            "Centered tab buttons for Location Lookup and GeoJSON Converter",
+            "Professional alignment matching other sections",
+            "Consistent spacing and visual hierarchy",
+            "Better overall visual balance"
+          ]
+        },
+        {
+          "badge": "ENHANCED",
+          "badgeType": "enhanced",
+          "name": "Case Master Instructions",
+          "description": "Professional styling and formatting",
+          "details": [
+            "Added 📖 emoji for visual consistency with Geo Sight",
+            "Enhanced button styling with proper hover effects",
+            "Formatted instruction boxes with improved readability",
+            "Clean bordered containers with professional appearance",
+            "Consistent typography and spacing throughout"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "🔧 Technical Enhancements",
+      "features": [
+        {
+          "badge": "IMPROVED",
+          "badgeType": "improved",
+          "name": "CSS Class-Based Styling",
+          "description": "Modernized styling architecture",
+          "details": [
+            "Replaced inline styles with CSS classes for error handling",
+            "Better maintainability and consistency",
+            "Eliminated color toggle conflicts in error messages",
+            "Centralized styling management"
+          ]
+        },
+        {
+          "badge": "IMPROVED",
+          "badgeType": "improved",
+          "name": "Button Interactions",
+          "description": "Unified hover behaviors",
+          "details": [
+            "Consistent blue hover effects across all sections",
+            "Professional color transitions and visual feedback",
+            "Improved accessibility with clear interactive states",
+            "Standardized button styling throughout the application"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "🎯 Previous Major Features",
       "features": [        
         {
-          "badge": "NEW",
+          "badge": "FEATURE",
           "badgeType": "new",
           "name": "Image Processor",
-          "description": "Advanced image optimization",
+          "description": "Advanced image optimization toolkit",
           "details": [
             "Image compression with quality control",
             "Drag & drop file upload support",
@@ -19,7 +104,7 @@
           ]
         },
         {
-          "badge": "NEW",
+          "badge": "FEATURE",
           "badgeType": "new",
           "name": "CSV/TSV Data Processor",
           "description": "Advanced data manipulation toolkit",
@@ -30,60 +115,18 @@
             "Duplicate row detection and removal",
             "Column manipulation (add/remove columns)"
           ]
-        },
-        {
-          "badge": "ENHANCED",
-          "badgeType": "enhanced",
-          "name": "XML & JSON Converters",
-          "description": "File upload capabilities added",
-          "details": [
-            "Direct file upload for XML Block Conversion",
-            "File upload support for JSON Query conversion",
-            "Seamless integration with existing conversion tools",
-            "Support for .xml, .txt, .json, and .query file formats",
-            "Auto-population of text areas with uploaded content"
-          ]
-        }        
-      ]
-    },
-    {
-      "title": "🔧 Recent Improvements",
-      "features": [
-        {
-          "badge": "ENHANCED",
-          "badgeType": "enhanced",
-          "name": "Duplicate Analyzer",
-          "description": "Advanced duplicate detection",
-          "details": [
-            "Smart duplicate detection with multiple output formats",
-            "Statistical analysis (total, unique, duplicate counts)",
-            "Export capabilities for processed data",
-            "Support for large datasets"
-          ]
-        },
-        {
-          "badge": "ENHANCED",
-          "badgeType": "enhanced",
-          "name": "Date→Epoch Converter",
-          "description": "Improved functionality",
-          "details": [
-            "Tabbed interface with ID Calculator integration",
-            "Bulk date generation with custom intervals",
-            "Multiple date format support",
-            "Download results as files"
-          ]
-        }     
+        }
       ]
     },
     {
       "title": "📈 Performance & Quality",
-      "description": "General improvements across the application:",
+      "description": "Ongoing improvements across the application:",
       "improvements": [
-        "Improved loading speeds across all tools",
-        "Enhanced mobile responsiveness",
-        "Better error handling and user feedback",
-        "Optimized memory usage for large files",
-        "Cross-browser compatibility improvements"
+        "Enhanced error handling with proper visual cleanup",
+        "Improved user interface consistency across all tools",
+        "Better accessibility with standardized button behaviors",
+        "Optimized CSS architecture for better maintainability",
+        "Enhanced mobile responsiveness and cross-browser compatibility"
       ]
     }
   ]
