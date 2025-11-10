@@ -4308,3 +4308,243 @@ html[data-theme="dark"] .timezone-label {
     color: #ff0000ed !important;
 }
 
+
+/* ──────────────────────────────────────────────────────────────── */
+/* Deep Dark Theme Overrides for Tools with Legacy Light Styling   */
+/* Ensures consistent dark surfaces & accessible contrast          */
+/* ──────────────────────────────────────────────────────────────── */
+
+/* PassCraft */
+html[data-theme="dark"] .passcraft-container {
+    background: var(--bg-secondary) !important;
+    box-shadow: 0 0 10px var(--shadow) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+html[data-theme="dark"] .passcraft-container h3,
+html[data-theme="dark"] .passcraft-options label {
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .passcraft-options input[type="number"],
+html[data-theme="dark"] .passcraft-options input[type="text"],
+html[data-theme="dark"] .passcraft-options select {
+    background: var(--input-bg) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--input-border) !important;
+}
+
+/* Natural Language → HTML preview */
+html[data-theme="dark"] .markdown-converter .html-preview,
+html[data-theme="dark"] .html-preview {
+    background: var(--bg-tertiary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+/* CSV / TSV upload drop zone */
+html[data-theme="dark"] .csv-processor {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+html[data-theme="dark"] .csv-processor .csv-upload-area {
+    background: var(--bg-tertiary) !important;
+    border: 2px dashed var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Duplicate Remover controls */
+html[data-theme="dark"] .dup-controls {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+html[data-theme="dark"] .dup-controls label,
+html[data-theme="dark"] .dup-controls select {
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .dup-controls select {
+    background: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+}
+
+/* Error / Success messages (JSON & Block converters) */
+html[data-theme="dark"] #errorMsg.error,
+html[data-theme="dark"] #jsonErrorMsg.error {
+    background-color: #3a0d0d !important; /* deep red surface */
+    color: #ffd7d7 !important;            /* light text for contrast */
+    border: 1px solid #771b1b !important;
+}
+html[data-theme="dark"] #errorMsg.success,
+html[data-theme="dark"] #jsonErrorMsg.success {
+    background-color: #0d3320 !important; /* deep green surface */
+    color: #c8f5dc !important;
+    border: 1px solid #1e6b46 !important;
+}
+/* Neutral (empty) state keeps transparent background but inherit text */
+html[data-theme="dark"] #errorMsg:not(.error):not(.success),
+html[data-theme="dark"] #jsonErrorMsg:not(.error):not(.success) {
+    color: var(--text-secondary) !important;
+}
+
+/* Content Comparer panels */
+html[data-theme="dark"] #comparisonResult h3,
+html[data-theme="dark"] #comparisonResult h4 {
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .diff-result {
+    background: var(--bg-tertiary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .diff-unified {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .unified-diff h4 { color: var(--text-primary) !important; }
+
+/* Change Instructions */
+html[data-theme="dark"] .change-instructions {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .change-instructions h4 { color: var(--text-primary) !important; }
+html[data-theme="dark"] .instruction-item {
+    background: var(--bg-tertiary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .instruction-item:hover {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-light) !important;
+}
+html[data-theme="dark"] .no-changes {
+    background-color: #1e3a26 !important;
+    color: #9be2b1 !important;
+    border-color: #2e5a3b !important;
+}
+
+/* Geocoding (Geo Sight) coordinate & info panels */
+html[data-theme="dark"] #geocodingSection .coordinate-display {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #geocodingSection .coordinate-label { color: var(--text-secondary) !important; }
+/* Additional info generic fallbacks */
+html[data-theme="dark"] #geocodingSection .info-panel,
+html[data-theme="dark"] #geocodingSection .additional-info,
+html[data-theme="dark"] #geocodingSection .additional-information,
+html[data-theme="dark"] #geocodingSection .extra-info-container {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Epoch Conversion Results generic container (if present) */
+html[data-theme="dark"] .results-container h4 { color: var(--text-primary) !important; }
+html[data-theme="dark"] .results-container {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Accessibility: ensure dashed borders have sufficient contrast */
+html[data-theme="dark"] .csv-processor .csv-upload-area { border-style: dashed; }
+
+/* Defensive: high specificity in case of global * overrides */
+html[data-theme="dark"] body .passcraft-container,
+html[data-theme="dark"] body .dup-controls,
+html[data-theme="dark"] body .change-instructions,
+html[data-theme="dark"] body .instruction-item { color: var(--text-primary) !important; }
+
+/* End deep dark overrides */
+/* --- Additional Dark Theme Iteration ---------------------------------- */
+/* Date → Epoch specific containers */
+html[data-theme="dark"] #resultsContainer,
+html[data-theme="dark"] #statsContainer {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #resultsContainer h4,
+html[data-theme="dark"] #statsContainer h4 { color: var(--text-primary) !important; }
+
+/* Image Processor container */
+html[data-theme="dark"] #imageProcessorContainer {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #imageProcessorContainer h3,
+html[data-theme="dark"] #imageProcessorContainer h4,
+html[data-theme="dark"] #imageProcessorContainer label { color: var(--text-primary) !important; }
+
+/* Content Comparer – enhance highlight & base readability */
+html[data-theme="dark"] .diff-result,
+html[data-theme="dark"] .diff-unified { color: var(--text-primary) !important; }
+
+/* Line-level diff (adjust to higher contrast for dark surfaces) */
+html[data-theme="dark"] .diff-added { background-color: #264d36 !important; color: #9fe8ba !important; }
+html[data-theme="dark"] .diff-removed { background-color: #4d2626 !important; color: #f6b5b5 !important; }
+html[data-theme="dark"] .diff-modified { background-color: #4d4626 !important; color: #f9e1a6 !important; }
+html[data-theme="dark"] .diff-line-added { background-color: #264d36 !important; color: #9fe8ba !important; }
+html[data-theme="dark"] .diff-line-removed { background-color: #4d2626 !important; color: #f6b5b5 !important; }
+html[data-theme="dark"] .diff-line-context { color: var(--text-secondary) !important; }
+
+/* Word-level diff */
+html[data-theme="dark"] .diff-word-added { background-color: #136f3b !important; color: #ffffff !important; }
+html[data-theme="dark"] .diff-word-highlight { background-color: #b87700 !important; color: #000000 !important; }
+html[data-theme="dark"] .diff-word-added:hover { background-color: #0d572d !important; }
+
+/* Instructions list items on hover already adjusted; ensure no low contrast */
+html[data-theme="dark"] .instruction-item:hover { color: var(--text-primary) !important; }
+
+/* Defensive high specificity if needed */
+html[data-theme="dark"] body #resultsContainer,
+html[data-theme="dark"] body #statsContainer,
+html[data-theme="dark"] body #imageProcessorContainer { color: var(--text-primary) !important; }
+
+/* ---------------------------------------------------------------------- */
+/* Target hidden-then-shown results container for Date→Epoch when populated */
+html[data-theme="dark"] #resultsContainer:not([style*="display: none"]) {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 12px !important;
+    border-radius: 6px !important;
+}
+html[data-theme="dark"] #resultsContainer .result-item {
+    background: var(--bg-tertiary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #resultsContainer .date-part { color: var(--text-primary) !important; }
+html[data-theme="dark"] #resultsContainer .epoch-part { color: var(--text-secondary) !important; }
+
+/* Ensure stats container follows same scheme */
+html[data-theme="dark"] #statsContainer {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 10px !important;
+    border-radius: 6px !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #statsContainer .stat-item { color: var(--text-primary) !important; }
+html[data-theme="dark"] #statsContainer .stat-item strong { color: var(--text-accent) !important; }
+
+/* Dark mode for Image Processor upload area */
+html[data-theme="dark"] .upload-area {
+    background: var(--bg-tertiary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .upload-area:hover {
+    background: var(--bg-secondary) !important;
+    border-color: var(--text-accent) !important;
+}
+html[data-theme="dark"] .upload-area .upload-text { color: var(--text-primary) !important; }
+html[data-theme="dark"] .upload-area .upload-subtext { color: var(--text-secondary) !important; }
+html[data-theme="dark"] .upload-area .upload-icon { color: var(--text-primary) !important; }
+
+/* High specificity fallback if inline style present */
+html[data-theme="dark"] body .upload-area { background: var(--bg-tertiary) !important; }
