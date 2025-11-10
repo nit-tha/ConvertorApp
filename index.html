@@ -23,7 +23,7 @@
 
       <!-- Twitter Meta Tag -->
       <meta name="twitter:card" content="summary_large_image">   
-      
+	  
       <meta name="google-adsense-account" content="ca-pub-2317488546076814">
 
       <script type="application/ld+json">
@@ -55,30 +55,25 @@
         gtag('js', new Date());
         gtag('config', 'G-JX9G7LMSBB');
       </script>
-      
-       <!-- Google AdSense -->
+	  
+	   <!-- Google AdSense -->
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2317488546076814"
      crossorigin="anonymous"></script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2317488546076814"
-         crossorigin="anonymous"></script>
-        <!-- Test1 -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-2317488546076814"
-             data-ad-slot="5729013010"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-
-        <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>     
+		 crossorigin="anonymous"></script>
     </head>
    <body>
 
     <!-- === Epoch Clock & Timezones === -->
         <div class="epoch-container">
+    <!-- Theme Toggle -->
+    <div class="theme-toggle-container">
+        <button id="themeToggle" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+            <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+    </div>
+    
     <div class="inline" id="clocktext">
         Epoch Now&nbsp;
         <div id="ecclock" class="ecclock">Loading...</div>
@@ -125,6 +120,17 @@
         <a id="testCaseBuilderLink" href="#" data-section="testCaseBuilderSection" title="Convert text to pipe format • Generate Excel test case templates">Case Master</a>
         <a id="geocodingLink" href="#" data-section="geocodingSection" title="Address to coordinates lookup • Map visualization with OpenStreetMap • GeoJSON converter">Geo Sight</a>
     </nav>
+
+    <!-- AdSense -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2317488546076814"
+         data-ad-slot="1234567890"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 
     <!-- === SQL & Epoch Conversion Tools === -->
         <div id="sqlConverter" class="sql-container">
@@ -204,8 +210,8 @@
                 <div id="result"></div>
             </div>
             <div class="epo-container">
-                    <input type="number" id="minutesToSubtract" placeholder="Minutes to Subtract/Add" />
-                    <button onclick="calculateNewEpochTime()" title="Shows new/old epoch after calculation">Calculate</button>
+                    <input type="number" id="minutesToSubtract" placeholder="Minutes to Subtract" />
+                    <button onclick="calculateNewEpochTime()" title="Shows new epoch after subtraction">Calculate</button>
                      <div class="results" id="results" style="display: block;">
                      <span>Result: </span>
                 <span>Old Epoch: <span id="oldEpochTime">1724755342</span>, </span>
@@ -1191,7 +1197,7 @@ February 25, 2025 13:23:51"></textarea>
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.87 (NT)</span>
+            <span>Version 2.1.88 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
             <br />
@@ -1236,14 +1242,3 @@ February 25, 2025 13:23:51"></textarea>
         <script src="multi-converter.js"></script>
     </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
