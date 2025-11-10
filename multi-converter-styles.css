@@ -1412,7 +1412,7 @@ button:focus {
         padding: 6px 8px;
         border-radius: 4px;
         margin: 2px 0;
-        width: 60px;
+        width: 63px;
         font-size: 14px;
     }
 
@@ -4307,3 +4307,4 @@ html[data-theme="dark"] .epoch-container .timezone-row > .timezone-label {
 html[data-theme="dark"] .timezone-label {
     color: #ff0000ed !important;
 }
+
