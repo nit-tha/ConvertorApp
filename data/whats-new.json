@@ -1,9 +1,70 @@
 {
   "title": "🆕 What's New",
-  "version": "2.1.87",
+  "version": "2.1.88",
   "sections": [
     {
-      "title": "� Latest UI & UX Improvements (v2.1.87)",
+      "title": "🌟 Latest Theme & UI Improvements (v2.1.88)",
+      "features": [
+        {
+          "badge": "NEW",
+          "badgeType": "new",
+          "name": "Light/Dark Theme Toggle",
+          "description": "Complete theme switching system",
+          "details": [
+            "Toggle button positioned in the epoch container top-right",
+            "Moon/sun icons with smooth transitions",
+            "Theme preference saved in localStorage",
+            "Automatic theme restoration on page reload",
+            "Professional dark mode with proper contrast"
+          ]
+        },
+        {
+          "badge": "ENHANCED",
+          "badgeType": "enhanced",
+          "name": "Comprehensive Dark Mode",
+          "description": "Full application dark theme coverage",
+          "details": [
+            "All containers and form elements themed consistently",
+            "Query formatter and conversion suite with dark backgrounds",
+            "Block conversion, JSON conversion, and content comparer styled",
+            "Code formatter, case master, and geo sight fully supported",
+            "Footer, navigation, and modal dialogs included"
+          ]
+        },
+        {
+          "badge": "IMPROVED",
+          "badgeType": "improved",
+          "name": "CSS Variables Architecture",
+          "description": "Modern theming system implementation",
+          "details": [
+            "CSS custom properties for consistent color management",
+            "Centralized theme definitions with light/dark variants",
+            "Easy maintenance and future theme additions",
+            "Proper contrast ratios for accessibility",
+            "Smooth color transitions between themes"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "🔧 Minor Improvements (v2.1.88)",
+      "features": [
+        {
+          "badge": "IMPROVED",
+          "badgeType": "improved",
+          "name": "Epoch Calculate Function",
+          "description": "Enhanced epoch time calculation",
+          "details": [
+            "Improved calculation accuracy and reliability",
+            "Better error handling for edge cases",
+            "Optimized performance for large time differences",
+            "Enhanced user feedback during calculations"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "🎯 Previous UI & UX Improvements (v2.1.87)",
       "features": [
         {
           "badge": "ENHANCED",
@@ -90,19 +151,6 @@
     {
       "title": "🎯 Previous Major Features",
       "features": [        
-        {
-          "badge": "FEATURE",
-          "badgeType": "new",
-          "name": "Image Processor",
-          "description": "Advanced image optimization toolkit",
-          "details": [
-            "Image compression with quality control",
-            "Drag & drop file upload support",
-            "Resize with aspect ratio preservation",
-            "Format conversion (JPEG, PNG, WebP, JPG)",
-            "Real-time size comparison and savings display"
-          ]
-        },
         {
           "badge": "FEATURE",
           "badgeType": "new",
