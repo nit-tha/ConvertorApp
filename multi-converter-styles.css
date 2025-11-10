@@ -1,18 +1,365 @@
+/* CSS Reset for consistent spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+/* Theme Variables */
+:root {
+    /* Light Theme (Default) */
+    --bg-primary: #f0f0f0;
+    --bg-secondary: #fff;
+    --bg-tertiary: #f9f9f9;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-accent: #ff0000ed;
+    --border-color: #ddd;
+    --border-light: #e0e0e0;
+    --nav-bg: #2c3e50;
+    --nav-text: white;
+    --button-bg: #007bff;
+    --button-hover: #0056b3;
+    --input-bg: white;
+    --input-border: #ddd;
+    --shadow: rgba(0,0,0,0.1);
+    --overlay: rgba(0,0,0,0.5);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #404040;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-accent: #ff6b6b;
+    --border-color: #555;
+    --border-light: #666;
+    --nav-bg: #1e1e1e;
+    --nav-text: #e0e0e0;
+    --button-bg: #0066cc;
+    --button-hover: #004499;
+    --input-bg: #404040;
+    --input-border: #666;
+    --shadow: rgba(0,0,0,0.3);
+    --overlay: rgba(0,0,0,0.7);
+}
+
+/* Dark theme overrides for commonly used containers */
+[data-theme="dark"] .markdown-converter,
+[data-theme="dark"] .csv-processor,
+[data-theme="dark"] .diff-container,
+[data-theme="dark"] .formatter-container,
+[data-theme="dark"] .duplicate-counter,
+[data-theme="dark"] .image-processor-container,
+[data-theme="dark"] .docx2HtmlContainer,
+[data-theme="dark"] #epochToolContainer,
+[data-theme="dark"] #geojsonSection,
+[data-theme="dark"] #dbIdContainer,
+[data-theme="dark"] #xmlToBlockSection,
+[data-theme="dark"] #queryToJsonSection,
+[data-theme="dark"] #diffcomparerSection,
+[data-theme="dark"] #codeFormatterSection,
+[data-theme="dark"] #testCaseBuilderSection,
+[data-theme="dark"] #formatConverterSection,
+[data-theme="dark"] #textToExcelSection,
+[data-theme="dark"] #geocodingSection,
+[data-theme="dark"] #geocodingTabSection,
+[data-theme="dark"] #geojsonTabSection,
+[data-theme="dark"] #epochConverterSection,
+[data-theme="dark"] #dateGeneratorSection,
+[data-theme="dark"] #idCalculatorSection,
+[data-theme="dark"] .epoch-section {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Dark theme text overrides */
+[data-theme="dark"] .markdown-converter *,
+[data-theme="dark"] .csv-processor *,
+[data-theme="dark"] .diff-container *,
+[data-theme="dark"] .formatter-container *,
+[data-theme="dark"] .duplicate-counter *,
+[data-theme="dark"] .image-processor-container *,
+[data-theme="dark"] .docx2HtmlContainer *,
+[data-theme="dark"] #epochToolContainer *,
+[data-theme="dark"] #geojsonSection *,
+[data-theme="dark"] #dbIdContainer *,
+[data-theme="dark"] #xmlToBlockSection *,
+[data-theme="dark"] #queryToJsonSection *,
+[data-theme="dark"] #diffcomparerSection *,
+[data-theme="dark"] #codeFormatterSection *,
+[data-theme="dark"] #testCaseBuilderSection *,
+[data-theme="dark"] #formatConverterSection *,
+[data-theme="dark"] #textToExcelSection *,
+[data-theme="dark"] #geocodingSection *,
+[data-theme="dark"] #geocodingTabSection *,
+[data-theme="dark"] #geojsonTabSection *,
+[data-theme="dark"] #epochConverterSection *,
+[data-theme="dark"] #dateGeneratorSection *,
+[data-theme="dark"] #idCalculatorSection *,
+[data-theme="dark"] .epoch-section * {
+    color: var(--text-primary) !important;
+}
+
+/* Dark theme button overrides */
+[data-theme="dark"] button {
+    background-color: var(--button-bg) !important;
+    color: white !important;
+    border-color: var(--button-bg) !important;
+}
+
+[data-theme="dark"] button:hover {
+    background-color: var(--button-hover) !important;
+}
+
+/* Dark theme input overrides */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+    background-color: var(--input-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--input-border) !important;
+}
+
+/* Dark theme label overrides */
+[data-theme="dark"] label,
+[data-theme="dark"] .label,
+[data-theme="dark"] span:not(.fa):not(.fas):not(.fab),
+[data-theme="dark"] p,
+[data-theme="dark"] div:not(.fa):not(.fas):not(.fab) {
+    color: var(--text-primary) !important;
+}
+
+/* Dark theme table overrides */
+[data-theme="dark"] table {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] th,
+[data-theme="dark"] td {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Dark theme code blocks */
+[data-theme="dark"] pre,
+[data-theme="dark"] code {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Dark theme for status messages */
+[data-theme="dark"] .status-success,
+[data-theme="dark"] .status-error,
+[data-theme="dark"] .status-info,
+[data-theme="dark"] .status-warning {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Dark theme for panels and containers */
+[data-theme="dark"] .panel,
+[data-theme="dark"] .container,
+[data-theme="dark"] .form-group,
+[data-theme="dark"] .input-group,
+[data-theme="dark"] .form-container,
+[data-theme="dark"] .content-panel {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Specific overrides for white background containers */
+[data-theme="dark"] *[style*="background-color: #fff"],
+[data-theme="dark"] *[style*="background-color: white"],
+[data-theme="dark"] *[style*="background: #fff"],
+[data-theme="dark"] *[style*="background: white"] {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Dark theme for specific problematic elements */
+[data-theme="dark"] .results-container,
+[data-theme="dark"] .stats-container,
+[data-theme="dark"] .preview-container {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Additional comprehensive dark theme overrides */
+[data-theme="dark"] div[style*="background-color"],
+[data-theme="dark"] div[style*="background:"],
+[data-theme="dark"] .content-area,
+[data-theme="dark"] .main-content,
+[data-theme="dark"] .tool-container,
+[data-theme="dark"] .section-container {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Force override for any remaining white backgrounds */
+[data-theme="dark"] *:not(.fa):not(.fas):not(.fab):not(.far) {
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] *[style*="background-color: #fff"],
+[data-theme="dark"] *[style*="background-color: white"],
+[data-theme="dark"] *[style*="background: #fff"],
+[data-theme="dark"] *[style*="background: white"],
+[data-theme="dark"] *[style*="background:#fff"],
+[data-theme="dark"] *[style*="background:white"] {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Final comprehensive dark theme coverage */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-field,
+[data-theme="dark"] .input-field,
+[data-theme="dark"] .output-field,
+[data-theme="dark"] .text-field {
+    background-color: var(--input-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--input-border) !important;
+}
+
+/* Dark theme for any missed sections */
+[data-theme="dark"] section,
+[data-theme="dark"] article,
+[data-theme="dark"] aside,
+[data-theme="dark"] main {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Dark theme footer override */
+[data-theme="dark"] footer {
+    background-color: var(--nav-bg) !important;
+    color: var(--nav-text) !important;
+}
+
+[data-theme="dark"] .footer-link {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .footer-link:hover {
+    color: var(--text-accent) !important;
+}
+
+[data-theme="dark"] .footer-separator {
+    color: var(--text-secondary) !important;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-container {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    z-index: 1000;
+}
+
+.theme-toggle-btn {
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+    font-size: 18px;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--bg-secondary);
+    border-color: var(--text-accent);
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.theme-toggle-btn:active {
+    transform: scale(0.95);
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     margin: 0;
     padding: 0;
     padding-bottom: 70px; /* Just enough space for the original footer */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Universal Theme Styles */
+input, select, button {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--input-border);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--text-accent);
+    outline: none;
+}
+
+button {
+    background-color: var(--button-bg);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--button-hover);
+}
+
+/* Labels and Text Elements */
+label, span, p, div {
+    color: var(--text-primary);
+}
+
+/* Specific label styling for forms */
+label {
+    color: var(--text-primary) !important;
+    font-weight: bold;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+}
+
+/* Select dropdowns specific styling */
+select {
+    background-color: var(--input-bg) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--input-border) !important;
 }
 
 /* Container for Epoch Clock and Tools */
 .epoch-container {
+    position: relative;
     justify-content: center;
     align-items: center;
     padding: 8px 10px;
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .inline {
@@ -25,46 +372,50 @@ body {
 .ecclock {
     margin-left: 5px;
     font-weight: bold;
-    color: #ff0000ed;
+    color: var(--text-accent);
 }
 
 /* Navigation Styling */
 nav {
     display: flex;
     justify-content: center;
-    background-color: #2c3e50; /* Subtle color */
+    background-color: var(--nav-bg);
+    color: var(--nav-text);
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
 nav a {
     margin: 0 15px;
     text-decoration: none;
-    color: white;
+    color: var(--nav-text);
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 nav a:hover {
-    color: #ff0000ed;
+    color: var(--text-accent);
     text-decoration: underline;
 }
 
 /* Copy Button Styles */
 .copy-button {
-    background-color: #fff;
-    color: #2c3e50; /* Subtle color */
-    border: 1px solid #2c3e50;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
     padding: 5px 10px;
     border-radius: 4px;
     margin-left: 10px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .copy-button:hover {
-    background-color: #2c3e50;
+    background-color: var(--text-accent);
     color: white;
+    border-color: var(--text-accent);
 }
 
 /* SQL and Hex/Text Converter Styles */
@@ -75,11 +426,12 @@ nav a:hover {
     flex-direction: column;
     align-items: flex-start;
     padding: 20px;
-    background-color: #fff;
+    background-color: var(--bg-secondary);
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px var(--shadow);
     width: 80%;
     margin: 20px auto;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .sql-container .container,
@@ -235,25 +587,26 @@ nav a:hover {
 }
 
 .buttons button {
-    background-color: #fff;
-    color: #2c3e50;
-    border: 1px solid #2c3e50;
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
     padding: 7px 7px;
     border-radius: 4px;
     margin: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     font-size: 14px;
 }
 
 .buttons button:hover {
-    background-color: #2c3e50;
+    background-color: var(--button-bg);
     color: white;
+    border-color: var(--button-bg);
 }
 
 .buttons button:focus {
     outline: none;
-    border-color: #af65d9;
+    border-color: var(--text-accent);
 }
 
 /* Image Processor Container Styling */
@@ -585,26 +938,28 @@ nav a:hover {
 /* Block Conversion (XML to Block) Container Styling */
 .converter-container h2,
 .converter-container h3 {
-    color: #2c3e50;
+    color: var(--text-primary);
     margin-bottom: 15px;
 }
 
 .converter-container textarea {
     padding: 6px 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--input-border);
     border-radius: 4px;
     font-size: 14px;
-    color: #2c3e50;
+    color: var(--text-primary);
+    background-color: var(--input-bg);
     font-family: 'Courier New', monospace;
     resize: vertical;
     box-sizing: border-box;
     margin-bottom: 10px;
     width: 100%;
     min-height: 160px;
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .converter-container textarea:focus {
-    border-color: #af65d9;
+    border-color: var(--text-accent);
     outline: none;
 }
 
@@ -651,25 +1006,25 @@ nav a:hover {
 }
 
 .converter-container button {
-    background-color: #fff;
-    color: #2c3e50;
-    border: 1px solid #2c3e50;
+    background-color: var(--button-bg);
+    color: white;
+    border: 1px solid var(--button-bg);
     padding: 7px 7px;
     border-radius: 4px;
     margin: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     font-size: 14px;
 }
 
 .converter-container button:hover {
-    background-color: #2c3e50;
+    background-color: var(--button-hover);
     color: white;
 }
 
 .converter-container button:focus {
     outline: none;
-    border-color: #af65d9;
+    border-color: var(--text-accent);
 }
 
 /* Special styling for instructions buttons to match Geo Sight style */
@@ -757,11 +1112,12 @@ nav a:hover {
 footer {
     text-align: center;
     padding: 3px;
-    background-color: #2c3e50;
-    color: white;
+    background-color: var(--nav-bg);
+    color: var(--nav-text);
     position: fixed;
     width: 100%;
     bottom: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Aligning Epoch Time and Button */
@@ -940,6 +1296,12 @@ footer {
         width: 95%;
         margin: 10px auto;
     }
+    
+    /* Adjust theme toggle position for mobile to avoid overlap with home icon */
+    .theme-toggle-container {
+        top: 55px !important;
+        right: 15px !important;
+    }
 }
 
 /* Error Message Styles */
@@ -1107,18 +1469,20 @@ button:focus {
  /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Container for the main content */
 .zone-container {
     max-width: 1000px;
     margin: auto;
-    background: white;
+    background: var(--bg-secondary);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px var(--shadow);
 }
 
 /* Flex layout for time zones */
@@ -1867,9 +2231,9 @@ nav a.active {
         max-width: 900px;
         margin: 20px auto;
         padding: 15px;
-        background-color: #f5f5f5; /* subtle background */
+        background-color: var(--bg-secondary); /* subtle background */
         border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 10px var(--shadow);
         font-family: Arial, sans-serif;
     }
 
@@ -1921,9 +2285,10 @@ nav a.active {
         padding: 10px;
         font-size: 0.95em;
         border-radius: 5px;
-        border: 1px solid #ccc;
+        border: 1px solid var(--input-border);
         resize: vertical;
-        background-color: #fafafa;
+        background-color: var(--input-bg);
+        color: var(--text-primary);
     }
 
     /* Button styling */
@@ -2019,6 +2384,8 @@ nav a.active {
         body {
             padding: 10px;
             font-size: 16px;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
         }
 
         nav {
@@ -3517,20 +3884,41 @@ input[type="file"] {
 }
 
 .footer-link {
-    color: #666;
+    color: var(--text-secondary);
     text-decoration: none;
     transition: color 0.2s ease;
     font-weight: 500;
 }
 
 .footer-link:hover {
-    color: #4a90e2;
+    color: var(--text-accent);
     text-decoration: underline;
 }
 
 .footer-separator {
-    color: #999;
+    color: var(--text-secondary);
     margin: 0 8px;
+}
+
+/* Light theme footer visibility fixes - override any previous styles */
+footer {
+    color: #ffffff !important; /* Force white text for version and visit count */
+}
+
+footer span {
+    color: #ffffff !important; /* Force white text for spans in footer */
+}
+
+.footer-link {
+    color: #cccccc !important; /* Light grey for links in light theme */
+}
+
+.footer-link:hover {
+    color: #ffffff !important; /* White on hover in light theme */
+}
+
+.footer-separator {
+    color: #cccccc !important; /* Light grey for separators in light theme */
 }
 
 /* ================== Info Modal Styles ================== */
@@ -3549,9 +3937,9 @@ input[type="file"] {
 }
 
 .info-modal-content {
-    background: #ffffff;
+    background: var(--bg-secondary);
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px var(--overlay);
     max-width: 800px;
     max-height: 85vh;
     width: 90%;
@@ -3745,6 +4133,93 @@ input[type="file"] {
     box-shadow: 0 2px 4px rgba(168, 237, 234, 0.3);
 }
 
+/* ================== Dark Theme Badge Overrides ================== */
+[data-theme="dark"] .feature-badge.new {
+    background: linear-gradient(135deg, #ff5555, #cc2222) !important;
+    color: white !important;
+    box-shadow: 0 2px 6px rgba(255, 85, 85, 0.4) !important;
+}
+
+[data-theme="dark"] .feature-badge.enhanced {
+    background: linear-gradient(135deg, #00d4aa, #007755) !important;
+    color: white !important;
+    box-shadow: 0 2px 6px rgba(0, 212, 170, 0.4) !important;
+}
+
+[data-theme="dark"] .feature-badge.improved {
+    background: linear-gradient(135deg, #4a90e2, #357abd) !important;
+    color: white !important;
+    box-shadow: 0 2px 6px rgba(74, 144, 226, 0.4) !important;
+}
+
+[data-theme="dark"] .feature-badge.fixed {
+    background: linear-gradient(135deg, #ff9500, #cc7700) !important;
+    color: white !important;
+    box-shadow: 0 2px 6px rgba(255, 149, 0, 0.4) !important;
+}
+
+[data-theme="dark"] .feature-badge.coming {
+    background: linear-gradient(135deg, #888888, #555555) !important;
+    color: white !important;
+    box-shadow: 0 2px 6px rgba(136, 136, 136, 0.4) !important;
+}
+
+/* ================== Dark Theme Modal Overrides ================== */
+[data-theme="dark"] .info-modal-content {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .info-modal-body {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .guide-section,
+[data-theme="dark"] .version-section {
+    border-bottom-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .guide-section h3,
+[data-theme="dark"] .version-section h3 {
+    color: var(--text-primary) !important;
+    border-bottom-color: #4a90e2 !important;
+}
+
+[data-theme="dark"] .guide-section p {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .guide-section li,
+[data-theme="dark"] .version-section li {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .guide-section strong {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .guide-section li strong {
+    color: #6bb6ff !important; /* Brighter blue for better visibility in dark theme */
+}
+
+[data-theme="dark"] .version-section li strong {
+    color: #6bb6ff !important; /* Brighter blue for better visibility in dark theme */
+}
+
+[data-theme="dark"] .feature-item {
+    background: var(--bg-tertiary) !important;
+    border-left-color: #4a90e2 !important;
+}
+
+[data-theme="dark"] .feature-item strong {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .feature-item li {
+    color: var(--text-secondary) !important;
+}
+
 /* Responsive design for modals */
 @media (max-width: 768px) {
     .info-modal-content {
@@ -3791,4 +4266,3 @@ input[type="file"] {
     color: #666;
     font-style: italic;
 }
-
