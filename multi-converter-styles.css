@@ -4266,3 +4266,44 @@ footer span {
     color: #666;
     font-style: italic;
 }
+
+/* ================== Final Dark Theme Epoch/Timezone Overrides ==================
+   These high-specificity rules ensure the exact requested colors:
+   Dark Theme Desired:
+     "Epoch Now" -> white
+     Epoch number (.ecclock) -> red (#ff0000ed)
+     Timezone labels (IST, EST/EDT, etc.) -> red (#ff0000ed)
+     Timezone times -> white
+   Light theme remains governed by base styles above. */
+[data-theme="dark"] .epoch-container #clocktext { /* Container holding the label text "Epoch Now" */
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .epoch-container #clocktext .ecclock { /* Epoch number */
+    color: #ff0000ed !important;
+}
+
+[data-theme="dark"] .epoch-container .timezone-label { /* IST:, EST/EDT:, etc. */
+    color: #ff0000ed !important;
+}
+
+[data-theme="dark"] .epoch-container .timezone-time { /* Time values */
+    color: #ffffff !important;
+}
+
+/* In case a broad selector forces color on all descendants, explicitly re-assert the epoch number color */
+[data-theme="dark"] .epoch-container .ecclock { 
+    color: #ff0000ed !important;
+}
+
+/* If other blanket * selectors are still forcing white, raise specificity further */
+html[data-theme="dark"] body .epoch-container .timezone-row .timezone-label {
+    color: #ff0000ed !important;
+}
+html[data-theme="dark"] .epoch-container .timezone-row > .timezone-label {
+    color: #ff0000ed !important;
+}
+/* Fallback using attribute selector to survive aggressive resets */
+html[data-theme="dark"] .timezone-label {
+    color: #ff0000ed !important;
+}
