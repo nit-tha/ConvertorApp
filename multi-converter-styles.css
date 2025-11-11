@@ -1759,7 +1759,7 @@ button:focus {
         padding: 6px 8px;
         border-radius: 4px;
         margin: 2px 0;
-        width: 60px;
+        width: 65px;
         font-size: 14px;
     }
 
@@ -5063,3 +5063,4 @@ html[data-theme="dark"] #previewContainer *:not(input):not(button):not(img) {
     background: inherit !important;
     color: var(--text-primary) !important;
 }
+
