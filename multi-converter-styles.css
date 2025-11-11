@@ -59,6 +59,7 @@ html {
 [data-theme="dark"] .duplicate-counter,
 [data-theme="dark"] .image-processor-container,
 [data-theme="dark"] .docx2HtmlContainer,
+[data-theme="dark"] .epoch-container,
 [data-theme="dark"] #epochToolContainer,
 [data-theme="dark"] #geojsonSection,
 [data-theme="dark"] #dbIdContainer,
@@ -88,6 +89,7 @@ html {
 [data-theme="dark"] .duplicate-counter *,
 [data-theme="dark"] .image-processor-container *,
 [data-theme="dark"] .docx2HtmlContainer *,
+[data-theme="dark"] .epoch-container *,
 [data-theme="dark"] #epochToolContainer *,
 [data-theme="dark"] #geojsonSection *,
 [data-theme="dark"] #dbIdContainer *,
@@ -106,6 +108,21 @@ html {
 [data-theme="dark"] #idCalculatorSection *,
 [data-theme="dark"] .epoch-section * {
     color: var(--text-primary) !important;
+}
+
+/* Dark theme timezone label override - keep red color like light theme */
+[data-theme="dark"] .timezone-label {
+    color: #ff0000ed !important; /* Keep red color in dark theme */
+}
+
+/* Dark theme epoch time override - keep red color */
+[data-theme="dark"] .ecclock {
+    color: var(--text-accent) !important; /* Keep red color for epoch time in dark theme */
+}
+
+/* Dark theme timezone time override - white color for time values */
+[data-theme="dark"] .timezone-time {
+    color: var(--text-primary) !important; /* White color for time values in dark theme */
 }
 
 /* Dark theme button overrides */
@@ -204,6 +221,330 @@ html {
 [data-theme="dark"] .tool-container,
 [data-theme="dark"] .section-container {
     background-color: var(--bg-secondary) !important;
+/* Image Processor – preview container & items */
+html[data-theme="dark"] #previewContainer,
+html[data-theme="dark"] .preview-container {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 12px 15px !important;
+    border-radius: 8px !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .preview-item {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 0 6px var(--shadow) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .preview-item h4,
+html[data-theme="dark"] .preview-item p { color: var(--text-primary) !important; }
+
+/* Download buttons group inside Image Processor */
+html[data-theme="dark"] #downloadBtns button,
+html[data-theme="dark"] #downloadBtns .btn,
+html[data-theme="dark"] #downloadBtns .download-btn {
+    background: var(--button-bg) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--button-bg) !important;
+    box-shadow: 0 2px 6px var(--shadow) !important;
+    transition: background-color .25s ease, box-shadow .25s ease;
+}
+html[data-theme="dark"] #downloadBtns button:hover,
+html[data-theme="dark"] #downloadBtns .btn:hover,
+html[data-theme="dark"] #downloadBtns .download-btn:hover {
+    background: var(--button-hover) !important;
+    border-color: var(--button-hover) !important;
+    box-shadow: 0 3px 8px var(--shadow) !important;
+}
+/* High specificity fallback */
+html[data-theme="dark"] body #downloadBtns button { background: var(--button-bg) !important; color: #fff !important; }
+/* ============================================================= */
+/* Late Cascade Dark Theme Reinforcements (Image Processor)      */
+/* Placed at end to guarantee override after legacy light rules  */
+/* ============================================================= */
+html[data-theme="dark"] .size-stats {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .size-stat .value { color: var(--text-accent) !important; }
+html[data-theme="dark"] .size-stat .label { color: var(--text-secondary) !important; }
+
+/* Download anchor (was not matched by previous descendant selectors) */
+html[data-theme="dark"] #downloadBtns,
+html[data-theme="dark"] a#downloadBtns.btn {
+    background: var(--button-bg) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--button-bg) !important;
+    padding: 8px 14px !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    box-shadow: 0 2px 6px var(--shadow) !important;
+    transition: background-color .25s ease, box-shadow .25s ease;
+    font-weight: bold !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+}
+html[data-theme="dark"] #downloadBtns:hover,
+html[data-theme="dark"] a#downloadBtns.btn:hover {
+    background: var(--button-hover) !important;
+    border-color: var(--button-hover) !important;
+    box-shadow: 0 3px 8px var(--shadow) !important;
+}
+
+/* Preview container & items (final assertion) */
+html[data-theme="dark"] #previewContainer,
+html[data-theme="dark"] .preview-container {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .preview-item {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 0 6px var(--shadow) !important;
+}
+html[data-theme="dark"] .preview-item h3,
+html[data-theme="dark"] .preview-item h4,
+html[data-theme="dark"] .preview-item p,
+html[data-theme="dark"] .preview-item strong { color: var(--text-primary) !important; }
+html[data-theme="dark"] .file-info p strong { color: var(--text-accent) !important; }
+
+/* Defensive specificity for any inline white background */
+html[data-theme="dark"] body .preview-item { background: var(--bg-tertiary) !important; }
+html[data-theme="dark"] body #previewContainer { background: var(--bg-secondary) !important; }
+
+/* ---------- Additional dark overrides for remaining white sections ---------- */
+/* Color Preview container and swatch */
+html[data-theme="dark"] #colorPreview {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--text-primary) !important;
+    padding: 10px !important;
+    border-radius: 6px !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #colorSwatch {
+    border: 2px solid var(--text-primary) !important;
+    box-shadow: 0 0 6px var(--shadow) !important;
+    background: inherit !important; /* Allow JS to set dynamic background */
+}
+/* Override any broad dark theme rules that might force black background on color swatch */
+html[data-theme="dark"] #colorSwatch:not([style*="background"]) {
+    background: transparent !important;
+}
+html[data-theme="dark"] #colorPreview #colorInfo { color: var(--text-secondary) !important; }
+
+/* Additional elements in color preview */
+html[data-theme="dark"] #colorPreview .color-value {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 8px !important;
+    border-radius: 4px !important;
+    margin: 5px 0 !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #colorPreview .color-value strong {
+    color: var(--text-accent) !important;
+}
+
+/* Natural Language converter wrapper */
+html[data-theme="dark"] #converterWrapper {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    color: var(--text-primary) !important;
+}
+
+/* Markdown converter comprehensive dark styling */
+html[data-theme="dark"] #markdownConverter {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #markdownConverter .main-container {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #markdownConverter .converter-section {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 6px !important;
+    color: var(--text-primary) !important;
+    margin-bottom: 15px !important;
+    padding: 15px !important;
+}
+html[data-theme="dark"] #markdownConverter .section-title {
+    background: var(--bg-secondary) !important;
+    color: var(--text-accent) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+html[data-theme="dark"] #markdownConverter .flow-indicator {
+    color: var(--text-secondary) !important;
+}
+html[data-theme="dark"] #markdownConverter .header {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+/* Image processor size comparison */
+html[data-theme="dark"] #sizeComparison {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #sizeComparison h3 { color: var(--text-primary) !important; }
+
+/* Comprehensive Image Processor dark styling */
+html[data-theme="dark"] #imageProcessorContainer {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #imageProcessorContainer h2,
+html[data-theme="dark"] #imageProcessorContainer h3,
+html[data-theme="dark"] #imageProcessorContainer label { color: var(--text-primary) !important; }
+
+/* Size comparison comprehensive styling */
+html[data-theme="dark"] #sizeComparison .size-stats {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+html[data-theme="dark"] #sizeComparison .size-stat {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+    padding: 8px !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #sizeComparison .size-stat .value { 
+    color: var(--text-accent) !important; 
+}
+html[data-theme="dark"] #sizeComparison .size-stat .label { 
+    color: var(--text-secondary) !important; 
+}
+
+/* Preview container comprehensive styling */
+html[data-theme="dark"] #previewContainer {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 15px !important;
+    border-radius: 8px !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #previewContainer .preview-grid {
+    background: var(--bg-secondary) !important;
+}
+html[data-theme="dark"] #previewContainer .preview-item {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 0 6px var(--shadow) !important;
+}
+html[data-theme="dark"] #previewContainer .preview-item h3 { 
+    color: var(--text-primary) !important; 
+}
+html[data-theme="dark"] #previewContainer .file-info { 
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important; 
+}
+html[data-theme="dark"] #previewContainer .file-info p { 
+    color: var(--text-primary) !important; 
+}
+html[data-theme="dark"] #previewContainer .file-info strong { 
+    color: var(--text-accent) !important; 
+}
+
+/* Geo Sight GeoJSON instructions */
+html[data-theme="dark"] #geojsonInstructions {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 0 6px var(--shadow) !important;
+}
+html[data-theme="dark"] #geojsonInstructions strong { color: var(--text-accent) !important; }
+
+/* Instructions toggle button and container */
+html[data-theme="dark"] .instructions-toggle {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    padding: 10px !important;
+    border-radius: 6px !important;
+}
+html[data-theme="dark"] .instructions-toggle button {
+    background: var(--button-bg) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--button-bg) !important;
+    padding: 8px 14px !important;
+    border-radius: 4px !important;
+    font-weight: bold !important;
+}
+html[data-theme="dark"] .instructions-toggle button:hover {
+    background: var(--button-hover) !important;
+    border-color: var(--button-hover) !important;
+}
+/* Any text or labels in instructions toggle */
+html[data-theme="dark"] .instructions-toggle * {
+    color: var(--text-primary) !important;
+}
+
+/* High specificity fallbacks */
+html[data-theme="dark"] body #colorPreview { background: var(--bg-secondary) !important; }
+html[data-theme="dark"] body #converterWrapper { background: var(--bg-secondary) !important; }
+html[data-theme="dark"] body #sizeComparison { background: var(--bg-secondary) !important; }
+html[data-theme="dark"] body #geojsonInstructions { background: var(--bg-tertiary) !important; }
+/* ---------- Additional dark overrides (color preview, converter wrapper, geo json, size comparison) ---------- */
+html[data-theme="dark"] #colorPreview {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 10px !important;
+    border-radius: 6px !important;
+    color: var(--text-primary) !important;
+}
+/* Allow dynamic swatch background set via JS; only adjust frame */
+html[data-theme="dark"] #colorSwatch {
+    border: 2px solid var(--border-color) !important;
+    box-shadow: 0 0 6px var(--shadow) !important;
+    background: transparent !important; /* do NOT force a color; keep dynamic */
+}
+html[data-theme="dark"] #colorPreview #colorInfo { color: var(--text-secondary) !important; }
+
+/* Natural Language / Markdown / HTML converter wrapper */
+html[data-theme="dark"] #converterWrapper {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    color: var(--text-primary) !important;
+}
+
+/* Image Processor size comparison panel */
+html[data-theme="dark"] #sizeComparison {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #sizeComparison h3 { color: var(--text-primary) !important; }
+
+/* Geo Sight instructions box */
+html[data-theme="dark"] #geojsonInstructions {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 0 6px var(--shadow) !important;
+}
+html[data-theme="dark"] #geojsonInstructions strong { color: var(--text-accent) !important; }
+
+/* High specificity fallbacks */
+html[data-theme="dark"] body #colorPreview { background: var(--bg-secondary) !important; }
+html[data-theme="dark"] body #converterWrapper { background: var(--bg-secondary) !important; }
+html[data-theme="dark"] body #sizeComparison { background: var(--bg-secondary) !important; }
+html[data-theme="dark"] body #geojsonInstructions { background: var(--bg-tertiary) !important; }
     color: var(--text-primary) !important;
 }
 
@@ -658,7 +999,8 @@ nav a:hover {
 }
 
 .image-container button,
-.image-container .btn {
+.image-container .btn,
+.image-container #downloadBtns {
     background-color: #fff;
     color: #2c3e50;
     border: 1px solid #2c3e50;
@@ -668,10 +1010,15 @@ nav a:hover {
     cursor: pointer;
     transition: background-color 0.3s;
     font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
 }
 
 .image-container button:hover,
-.image-container .btn:hover {
+.image-container .btn:hover,
+.image-container #downloadBtns:hover {
     background-color: #2c3e50;
     color: white;
 }
@@ -1412,7 +1759,7 @@ button:focus {
         padding: 6px 8px;
         border-radius: 4px;
         margin: 2px 0;
-        width: 63px;
+        width: 60px;
         font-size: 14px;
     }
 
@@ -2799,11 +3146,12 @@ nav a.active {
     border-radius: 8px;
     margin-top: 10px;
     cursor: pointer;
-    transition: border-color 0.3s, background 0.3s;
+    transition: border-color 0.3s, background 0.3s, transform 0.3s ease;
 }
 .upload-area:hover {
     border-color: #2c3e50;
     background: #f0f0f0;
+    transform: scale(1.02);
 }
 .upload-icon {
     font-size: 32px;
@@ -2988,7 +3336,9 @@ input[type="file"] {
 }
 .buttons .btn,
 .buttons .btn-secondary,
-#downloadBtn {
+#downloadBtn,
+#downloadBtns,
+a#downloadBtns.btn {
     background-color: #fff;
     color: #2c3e50;
     border: 1px solid #2c3e50;
@@ -3000,10 +3350,14 @@ input[type="file"] {
     text-decoration: none;
     display: inline-block;
     text-align: center;
+    font-size: 14px;
+    margin: 5px;
 }
 .buttons .btn:hover,
 .buttons .btn-secondary:hover,
-#downloadBtn:hover {
+#downloadBtn:hover,
+#downloadBtns:hover,
+a#downloadBtns.btn:hover {
     background-color: #2c3e50;
     color: #fff;
 }
@@ -4308,7 +4662,6 @@ html[data-theme="dark"] .timezone-label {
     color: #ff0000ed !important;
 }
 
-
 /* ──────────────────────────────────────────────────────────────── */
 /* Deep Dark Theme Overrides for Tools with Legacy Light Styling   */
 /* Ensures consistent dark surfaces & accessible contrast          */
@@ -4541,10 +4894,172 @@ html[data-theme="dark"] .upload-area {
 html[data-theme="dark"] .upload-area:hover {
     background: var(--bg-secondary) !important;
     border-color: var(--text-accent) !important;
+    transform: scale(1.02) !important;
+    box-shadow: 0 4px 12px var(--shadow) !important;
 }
 html[data-theme="dark"] .upload-area .upload-text { color: var(--text-primary) !important; }
 html[data-theme="dark"] .upload-area .upload-subtext { color: var(--text-secondary) !important; }
 html[data-theme="dark"] .upload-area .upload-icon { color: var(--text-primary) !important; }
 
+/* Enhanced upload area with better transitions */
+html[data-theme="dark"] .upload-area {
+    background: var(--bg-tertiary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+    transition: all 0.3s ease !important;
+}
+html[data-theme="dark"] #uploadArea:hover {
+    background: var(--bg-secondary) !important;
+    border-color: var(--text-accent) !important;
+    transform: scale(1.02) !important;
+    box-shadow: 0 4px 12px var(--shadow) !important;
+}
+
 /* High specificity fallback if inline style present */
 html[data-theme="dark"] body .upload-area { background: var(--bg-tertiary) !important; }
+
+/* ========================================================================= */
+/* FINAL OVERRIDE: Color Swatch Dynamic Background Protection                */
+/* Simplified to work with JS setProperty with !important                   */
+/* ========================================================================= */
+/* ========================================================================= */
+/* Force exact same styling for Reset and Download buttons                  */
+/* ========================================================================= */
+#resetBtn,
+#downloadBtns {
+    background-color: #fff !important;
+    color: #2c3e50 !important;
+    border: 1px solid #2c3e50 !important;
+    padding: 8px 14px !important;
+    border-radius: 4px !important;
+    margin: 5px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    text-align: center !important;
+    font-family: inherit !important;
+    line-height: normal !important;
+    box-sizing: border-box !important;
+}
+
+#resetBtn:hover,
+#downloadBtns:hover {
+    background-color: #2c3e50 !important;
+    color: #fff !important;
+}
+
+/* Dark theme for both buttons */
+html[data-theme="dark"] #resetBtn,
+html[data-theme="dark"] #downloadBtns {
+    background: var(--button-bg) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--button-bg) !important;
+}
+
+html[data-theme="dark"] #resetBtn:hover,
+html[data-theme="dark"] #downloadBtns:hover {
+    background: var(--button-hover) !important;
+    border-color: var(--button-hover) !important;
+}
+
+/* Additional high specificity to ensure dark theme blue color */
+html[data-theme="dark"] body #resetBtn,
+html[data-theme="dark"] body #downloadBtns {
+    background-color: #0066cc !important; /* Force blue color */
+    color: #ffffff !important;
+    border-color: #0066cc !important;
+}
+
+html[data-theme="dark"] body #resetBtn:hover,
+html[data-theme="dark"] body #downloadBtns:hover {
+    background-color: #004499 !important; /* Force darker blue on hover */
+    border-color: #004499 !important;
+}
+
+/* ========================================================================= */
+/* Instructions Toggle and GeoJSON Instructions High Specificity Fix       */
+/* ========================================================================= */
+html[data-theme="dark"] body .instructions-toggle,
+html[data-theme="dark"] body #geojsonInstructions {
+    background: var(--bg-tertiary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .instructions-toggle *:not(button),
+html[data-theme="dark"] #geojsonInstructions *:not(button) {
+    background: inherit !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .instruction-box {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    padding: 15px !important;
+    border-radius: 6px !important;
+}
+
+/* ========================================================================= */
+/* Comprehensive Color Preview Dark Mode - Force all elements dark except swatch */
+/* ========================================================================= */
+html[data-theme="dark"] #colorPreview,
+html[data-theme="dark"] #colorPreview .color-value,
+html[data-theme="dark"] #colorPreview div:not(#colorSwatch) {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #colorPreview button {
+    background: var(--button-bg) !important;
+    color: white !important;
+    border: 1px solid var(--button-bg) !important;
+}
+html[data-theme="dark"] #colorPreview button:hover {
+    background: var(--button-hover) !important;
+}
+
+/* ========================================================================= */
+/* Markdown Converter Additional Dark Mode Fixes                           */
+/* ========================================================================= */
+html[data-theme="dark"] body #markdownConverter,
+html[data-theme="dark"] body #converterWrapper {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+/* Force all child elements to inherit dark styling */
+html[data-theme="dark"] #markdownConverter *:not(textarea):not(input):not(button) {
+    background: inherit !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+html[data-theme="dark"] #converterWrapper *:not(textarea):not(input):not(button) {
+    background: inherit !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* ========================================================================= */
+/* Image Processor High-Specificity Dark Mode Fixes                       */
+/* ========================================================================= */
+html[data-theme="dark"] body #imageProcessorContainer,
+html[data-theme="dark"] body #sizeComparison,
+html[data-theme="dark"] body #previewContainer {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+/* Force all child elements in image processor to inherit dark styling */
+html[data-theme="dark"] #imageProcessorContainer *:not(input):not(button):not(img):not(canvas) {
+    background: inherit !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+html[data-theme="dark"] #sizeComparison *:not(input):not(button):not(img) {
+    background: inherit !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #previewContainer *:not(input):not(button):not(img) {
+    background: inherit !important;
+    color: var(--text-primary) !important;
+}
