@@ -23,8 +23,8 @@ html {
     --border-light: #e0e0e0;
     --nav-bg: #2c3e50;
     --nav-text: white;
-    --button-bg: #007bff;
-    --button-hover: #0056b3;
+    --button-bg: #455a64;
+    --button-hover: #333333;
     --input-bg: white;
     --input-border: #ddd;
     --shadow: rgba(0,0,0,0.1);
@@ -43,8 +43,8 @@ html {
     --border-light: #666;
     --nav-bg: #1e1e1e;
     --nav-text: #e0e0e0;
-    --button-bg: #0066cc;
-    --button-hover: #004499;
+    --button-bg: #455a64;
+    --button-hover: #333333;
     --input-bg: #404040;
     --input-border: #666;
     --shadow: rgba(0,0,0,0.3);
@@ -1021,6 +1021,18 @@ nav a:hover {
 .image-container #downloadBtns:hover {
     background-color: #2c3e50;
     color: white;
+}
+
+/* Dark theme override for image-container download buttons */
+[data-theme="dark"] .image-container #downloadBtns {
+    background-color: var(--button-bg) !important;
+    color: #ffffff !important;
+    border-color: var(--button-bg) !important;
+}
+
+[data-theme="dark"] .image-container #downloadBtns:hover {
+    background-color: var(--button-hover) !important;
+    border-color: var(--button-hover) !important;
 }
 
 .image-container input[type="number"],
@@ -3362,6 +3374,20 @@ a#downloadBtns.btn:hover {
     color: #fff;
 }
 
+/* Dark theme override for buttons section download buttons */
+[data-theme="dark"] .buttons #downloadBtns,
+[data-theme="dark"] a#downloadBtns.btn {
+    background-color: var(--button-bg) !important;
+    color: #ffffff !important;
+    border-color: var(--button-bg) !important;
+}
+
+[data-theme="dark"] .buttons #downloadBtns:hover,
+[data-theme="dark"] a#downloadBtns.btn:hover {
+    background-color: var(--button-hover) !important;
+    border-color: var(--button-hover) !important;
+}
+
 @media (max-width: 768px) {
     .controls-row {
         flex-direction: column;
@@ -4230,6 +4256,26 @@ a#downloadBtns.btn:hover {
     box-shadow: 0 2px 4px rgba(0, 123, 255, 0.25);
 }
 
+/* Dark theme overrides for epoch tab buttons */
+[data-theme="dark"] .epoch-tab-btn {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .epoch-tab-btn:hover {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-light) !important;
+}
+
+[data-theme="dark"] .epoch-tab-btn.active {
+    background-color: var(--button-bg) !important;
+    color: #ffffff !important;
+    border-color: var(--button-bg) !important;
+    box-shadow: 0 2px 4px var(--shadow) !important;
+}
+
 
 /* ================== Footer Enhancement Styles ================== */
 .footer-links {
@@ -4965,18 +5011,18 @@ html[data-theme="dark"] #downloadBtns:hover {
     border-color: var(--button-hover) !important;
 }
 
-/* Additional high specificity to ensure dark theme blue color */
+/* Additional high specificity to ensure dark theme button color */
 html[data-theme="dark"] body #resetBtn,
 html[data-theme="dark"] body #downloadBtns {
-    background-color: #0066cc !important; /* Force blue color */
+    background-color: var(--button-bg) !important; /* Use CSS variable */
     color: #ffffff !important;
-    border-color: #0066cc !important;
+    border-color: var(--button-bg) !important;
 }
 
 html[data-theme="dark"] body #resetBtn:hover,
 html[data-theme="dark"] body #downloadBtns:hover {
-    background-color: #004499 !important; /* Force darker blue on hover */
-    border-color: #004499 !important;
+    background-color: var(--button-hover) !important; /* Use CSS variable */
+    border-color: var(--button-hover) !important;
 }
 
 /* ========================================================================= */
@@ -5063,4 +5109,3 @@ html[data-theme="dark"] #previewContainer *:not(input):not(button):not(img) {
     background: inherit !important;
     color: var(--text-primary) !important;
 }
-
