@@ -2837,7 +2837,17 @@ nav a.active {
             flex: 1 1 45%;
             margin-bottom: 10px;
         }
+    /* Block Conversion section responsive styling */
+    #xmlToBlockSection div[style*="display: flex"] {
+        flex-wrap: wrap !important;
+        justify-content: flex-start;
     }
+
+    #xmlToBlockSection button {
+        flex: 1 1 45%;
+        margin-bottom: 10px;
+    }
+}
 
  /* ─── Geocoding Tool ───────── */
 #geocodingSection {               /* overall card */
@@ -5109,3 +5119,4 @@ html[data-theme="dark"] #previewContainer *:not(input):not(button):not(img) {
     background: inherit !important;
     color: var(--text-primary) !important;
 }
+
