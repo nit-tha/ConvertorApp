@@ -204,13 +204,13 @@
                 <label for="countInput">Count Data:</label>
                 <input type="text" id="countInput" oninput="resizeInput(this)" placeholder="Enter data for counting characters." />
                 <div class="tooltip">
-                    <button onclick="countData()" title="Text count with space">Count</button>
+                    <button onclick="countData()" title="Total characters including spaces">Count</button>
                 </div>
                 <div class="tooltip">
-                    <button onclick="countExcludingSpace()"  title="Text count without space">Trim</button>
+                    <button onclick="countExcludingSpace()"  title="Characters excluding whitespace">Trim</button>
                 </div>
                 <div class="tooltip">
-                    <button onclick="countWords()" title="Words Counter">Words</button>
+                    <button onclick="countWords()" title="Total number of distinct words">Words</button>
                 </div> 
                 <span id="countDisplay"></span>
                 <span id="withoutSpaceCountDisplay"></span>
@@ -1292,6 +1292,7 @@ February 25, 2025 13:23:51"></textarea>
         <script src="multi-converter.js"></script>
     </body>
 </html>
+
 
 
 
