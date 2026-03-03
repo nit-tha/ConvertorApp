@@ -1247,7 +1247,7 @@ February 25, 2025 13:23:51"></textarea>
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.88 (NT)</span>
+            <span>Version 2.1.89 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
             <br />
@@ -1259,7 +1259,7 @@ February 25, 2025 13:23:51"></textarea>
         </footer>
 
         <!-- App Guide Modal -->
-        <div id="appGuideModal" class="info-modal" style="display: none;">
+        <div id="appGuideModal" class="info-modal" style="display: none;" onclick="if(event.target === this) closeModal('appGuideModal')">
             <div class="info-modal-content">
                 <div class="info-modal-header">
                     <h2 id="appGuideTitle">📚 Loading...</h2>
@@ -1274,7 +1274,7 @@ February 25, 2025 13:23:51"></textarea>
         </div>
 
         <!-- What's New Modal -->
-        <div id="whatsNewModal" class="info-modal" style="display: none;">
+        <div id="whatsNewModal" class="info-modal" style="display: none;" onclick="if(event.target === this) closeModal('whatsNewModal')">
             <div class="info-modal-content">
                 <div class="info-modal-header">
                     <h2 id="whatsNewTitle">🆕 Loading...</h2>
@@ -1292,8 +1292,3 @@ February 25, 2025 13:23:51"></textarea>
         <script src="multi-converter.js"></script>
     </body>
 </html>
-
-
-
-
-
