@@ -1574,6 +1574,36 @@ footer {
     color: #2c3e50;
 }
 
+/* Day difference indicator styles for epoch converter */
+.day-diff {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 10px;
+    margin-left: 2px;
+}
+
+.day-diff.yesterday {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.day-diff.tomorrow {
+    background: #d4edda;
+    color: #155724;
+}
+
+/* Dark mode support for day-diff */
+html[data-theme="dark"] .day-diff.yesterday {
+    background: #665200;
+    color: #ffc107;
+}
+
+html[data-theme="dark"] .day-diff.tomorrow {
+    background: #0d4023;
+    color: #28a745;
+}
+
 #result {
     margin-left: 10px;
     color: #2c3e50; /* Subtle color */
@@ -4344,6 +4374,7 @@ footer span {
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(3px);
+    cursor: pointer; /* Indicates backdrop is clickable */
 }
 
 .info-modal-content {
@@ -4355,6 +4386,7 @@ footer span {
     width: 90%;
     overflow: hidden;
     animation: modalSlideIn 0.3s ease-out;
+    cursor: default; /* Reset cursor for content area */
 }
 
 @keyframes modalSlideIn {
@@ -5119,4 +5151,5 @@ html[data-theme="dark"] #previewContainer *:not(input):not(button):not(img) {
     background: inherit !important;
     color: var(--text-primary) !important;
 }
+
 
