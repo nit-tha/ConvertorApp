@@ -1,67 +1,77 @@
 {
-  "title": "📚 Complete Multi Converter Tool Guide",
+  "title": "📚 Multi Converter Tool Guide",
   "sections": [
     {
+      "title": "🎨 General Features",
+      "description": "Application-wide features and settings:",
+      "features": [
+        {
+          "name": "Dark/Light Theme",
+          "description": "Toggle between themes using the moon/sun button (top-right). Your preference is saved automatically."
+        },
+        {
+          "name": "Live Epoch Clock",
+          "description": "Real-time epoch timestamp with IST, EST, UTC, SAST timezone displays. Click to copy."
+        }
+      ]
+    },
+    {
       "title": "🔧 Query Formatter",
-      "description": "Essential text processing and epoch conversion tools for developers and testers:",
+      "description": "Text processing and epoch conversion tools:",
       "features": [
         {
           "name": "Data Manipulation",
-          "description": "Add/remove commas, single/double quotes to text data"
+          "description": "Add/remove commas, single/double quotes. DelCom has Smart mode (preserves number formatting) and Complete mode."
         },
         {
           "name": "Text Analysis",
-          "description": "Count characters (with/without spaces), words, and data elements"
+          "description": "Count characters (with/without spaces) and words instantly."
         },
         {
-          "name": "Duplicate Management",
-          "description": "Remove duplicate entries and find unique values in datasets"
+          "name": "Duplicate Removal",
+          "description": "Click 'Unique' to remove duplicate entries from your list."
         },
         {
-          "name": "Epoch Time Converter",
-          "description": "Convert epoch timestamps to human-readable dates with timezone support (UTC, IST, EST, SAST)"
+          "name": "Epoch Converter",
+          "description": "Convert epoch to date with timezone support. Shows day differences when dates vary across timezones (e.g., 'EST/UTC 1 day behind IST')."
         },
         {
-          "name": "Date Calculator",
-          "description": "Calculate new epoch times by subtracting minutes from existing timestamps"
+          "name": "Epoch Calculator",
+          "description": "Add or subtract minutes from epoch timestamps."
         },
         {
           "name": "Human Date to Epoch",
-          "description": "Convert custom date/time inputs to epoch format with timezone selection"
-        },
-        {
-          "name": "Live Clock Display",
-          "description": "Real-time epoch timestamp with multiple timezone displays"
+          "description": "Enter any date/time and convert to epoch with timezone selection."
         }
       ]
     },
     {
       "title": "🔄 Conversion Suite",
-      "description": "Comprehensive conversion utilities and advanced tools:",
+      "description": "Comprehensive conversion utilities:",
       "features": [
         {
-          "name": "Encoding Converters",
-          "description": "Hex↔Text, Binary↔Decimal, Base64 encode/decode, URL encode/decode"
+          "name": "Encoding Tools",
+          "description": "Hex↔Text, Binary, Base64 encode/decode"
         },
         {
           "name": "Text Utilities",
-          "description": "Case converter (6+ formats), text reversal, regex escaping"
+          "description": "Case converter (UPPER, lower, Title, Sentence, camelCase, snake_case), text reversal, regex escaping"
         },
         {
           "name": "Security Tools",
-          "description": "JWT decoder, API key generator, PassCraft password generator with customization"
+          "description": "JWT decoder, API key generator, PassCraft (customizable password generator with strength indicator)"
         },
         {
           "name": "Color Converter",
-          "description": "HEX↔RGB↔HSL conversion with visual preview and color name lookup"
+          "description": "HEX↔RGB↔HSL with visual preview. Recognizes 500+ named colors."
         },
         {
           "name": "Markdown Pipeline",
-          "description": "Natural Language→Markdown→HTML converter with live preview"
+          "description": "Natural Language → Markdown → HTML with live preview"
         },
         {
-          "name": "Date→Epoch Tool",
-          "description": "Generate date ranges with custom intervals and bulk epoch conversion"
+          "name": "Date→Epoch",
+          "description": "Bulk date generation with custom intervals and epoch conversion"
         },
         {
           "name": "ID Calculator",
@@ -69,189 +79,171 @@
         },
         {
           "name": "Duplicate Analyzer",
-          "description": "Advanced duplicate detection with statistics and export options"
+          "description": "Find duplicates with counts, export as TAB/CSV/Plain text"
         },
         {
           "name": "CSV/TSV Processor",
-          "description": "Parse, validate, and export data tables with sorting and filtering"
+          "description": "Parse, sort, filter and export to CSV/TSV/JSON/SQL formats"
         },
         {
-          "name": "🖼️ Image Processor",
-          "description": "Compress, resize, and convert images (JPEG, PNG, WebP) with quality control"
+          "name": "Image Processor",
+          "description": "Compress, resize, convert images (JPEG, PNG, WebP). Shows before/after size comparison."
         }
       ]
     },
     {
       "title": "📝 Block Conversion",
-      "description": "XML processing and validation tools:",
+      "description": "XML processing tools:",
       "features": [
         {
           "name": "XML Validator",
-          "description": "Validate XML syntax with detailed error reporting and line/column highlighting"
+          "description": "Validates XML with precise error location (line/column)"
         },
         {
-          "name": "XML to Block XML",
-          "description": "Convert standard XML to block XML format for better readability"
+          "name": "XML to Block",
+          "description": "Convert standard XML to block format for readability"
         },
         {
           "name": "JSON to XML",
-          "description": "Transform JSON data structures to properly formatted XML"
-        },
-        {
-          "name": "Error Detection",
-          "description": "Intelligent error handling with precise location reporting for malformed XML"
+          "description": "Transform JSON structures to properly formatted XML"
         }
       ]
     },
     {
       "title": "🌐 JSON Conversion",
-      "description": "Web query and JSON processing utilities:",
+      "description": "Web query and JSON utilities:",
       "features": [
         {
           "name": "Query to JSON",
-          "description": "Convert web query strings to formatted JSON objects"
+          "description": "Convert URL query strings to formatted JSON"
         },
         {
-          "name": "URL Encoder/Decoder",
-          "description": "Handle URL encoding and decoding for web development"
+          "name": "URL Encode/Decode",
+          "description": "Handle URL encoding for web development"
         },
         {
           "name": "JSON Validator",
-          "description": "Validate JSON syntax and format with error highlighting"
+          "description": "Validate and format JSON with error highlighting"
         },
         {
           "name": "XML to JSON",
-          "description": "Convert XML documents to JSON format for API consumption"
+          "description": "Convert XML documents to JSON format"
         }
       ]
     },
     {
       "title": "📊 Content Comparer",
-      "description": "Advanced text comparison and analysis:",
+      "description": "Text comparison and diff analysis:",
       "features": [
         {
-          "name": "Side-by-Side Comparison",
-          "description": "Visual text comparison with addition/deletion highlighting"
+          "name": "Side-by-Side View",
+          "description": "Visual comparison with color-coded additions (green) and deletions (red)"
         },
         {
-          "name": "Difference Statistics",
-          "description": "Count additions, deletions, and modifications between texts"
+          "name": "Statistics",
+          "description": "Shows count of additions, deletions, and modifications"
         },
         {
-          "name": "Unified Diff View",
-          "description": "Standard unified diff format for detailed change tracking"
+          "name": "Unified Diff",
+          "description": "Standard diff format for detailed change tracking"
         },
         {
-          "name": "Copy-Paste Friendly",
-          "description": "Easy import of content from various sources for quick comparison"
+          "name": "File Upload",
+          "description": "Upload .txt, .md, .log, .json, .xml, .csv files directly"
         }
       ]
     },
     {
       "title": "💻 Code Refiner",
-      "description": "Multi-language code formatting and beautification:",
+      "description": "Multi-language code formatting:",
       "features": [
         {
           "name": "Auto-Detection",
-          "description": "Automatically detect programming languages (SQL, JSON, XML, JavaScript, CSS, HTML, Python, Java, C/C++, PHP)"
+          "description": "Automatically detects SQL, JSON, XML, JavaScript, CSS, HTML, Python, Java, C/C++, PHP"
         },
         {
-          "name": "Code Formatter",
-          "description": "Beautify and properly indent code for better readability"
+          "name": "Beautify",
+          "description": "Format and indent code for better readability"
         },
         {
-          "name": "Code Minifier",
-          "description": "Compress code by removing whitespace and unnecessary characters"
-        },
-        {
-          "name": "Language Support",
-          "description": "Comprehensive support for web and programming languages"
+          "name": "Minify",
+          "description": "Compress code by removing whitespace"
         }
       ]
     },
     {
       "title": "🧪 Case Master",
-      "description": "Test case management and Excel export tools:",
+      "description": "Test case management:",
       "features": [
         {
+          "name": "Format Converter",
+          "description": "Convert descriptive test cases to pipe-separated format"
+        },
+        {
           "name": "Test Case Builder",
-          "description": "Convert descriptive test cases to structured pipe-separated format"
+          "description": "Create structured test cases with HTML preview"
         },
         {
           "name": "Excel Export",
-          "description": "Generate downloadable Excel files with formatted test case tables"
-        },
-        {
-          "name": "HTML Preview",
-          "description": "Preview test cases in formatted HTML table before export"
-        },
-        {
-          "name": "Template Support",
-          "description": "Standard test case template with TestID, Name, Category, Priority, Objective, etc."
-        },
-        {
-          "name": "Copy to Clipboard",
-          "description": "Quick copy functionality for sharing formatted test cases"
+          "description": "Download formatted test case tables as Excel files"
         }
       ]
     },
     {
       "title": "🌍 Geo Sight",
-      "description": "Geographic tools and coordinate conversion:",
+      "description": "Geographic and coordinate tools:",
       "features": [
         {
           "name": "Location Lookup",
-          "description": "Convert addresses and place names to precise coordinates"
-        },
-        {
-          "name": "Coordinate Display",
-          "description": "Show both point coordinates and bounding box area coverage"
+          "description": "Convert addresses to coordinates with type and country info"
         },
         {
           "name": "GeoJSON Converter",
-          "description": "Transform coordinates to GeoJSON format for mapping applications"
+          "description": "Transform coordinates to GeoJSON for mapping applications"
         },
         {
-          "name": "Map Integration",
-          "description": "Direct links to OpenStreetMap for visual location verification"
-        },
-        {
-          "name": "Format Support",
-          "description": "Handle XML coordinate formats and plain lon/lat pairs"
+          "name": "Map Links",
+          "description": "Direct OpenStreetMap links for visual verification"
         }
       ]
     },
     {
-      "title": "💡 Pro Tips & Features",
-      "description": "Advanced features and productivity tips:",
+      "title": "⌨️ Keyboard Shortcuts",
+      "description": "Productivity shortcuts:",
       "features": [
         {
-          "name": "Real-Time Processing",
-          "description": "Live conversion and formatting as you type in many tools"
+          "name": "Escape",
+          "description": "Close any open modal dialog"
+        },
+        {
+          "name": "Click Outside",
+          "description": "Click the dark backdrop to close modals"
+        }
+      ]
+    },
+    {
+      "title": "💡 Pro Tips",
+      "description": "Get more out of the tools:",
+      "features": [
+        {
+          "name": "Live Processing",
+          "description": "Many tools process as you type - no button click needed"
         },
         {
           "name": "Copy Buttons",
-          "description": "One-click copy functionality throughout the application"
+          "description": "📋 icons copy output to clipboard instantly"
         },
         {
-          "name": "Batch Operations",
-          "description": "Process multiple items simultaneously in supported tools"
-        },
-        {
-          "name": "Error Handling",
-          "description": "Comprehensive error messages with helpful suggestions"
-        },
-        {
-          "name": "Mobile Responsive",
-          "description": "Fully functional on desktop, tablet, and mobile devices"
+          "name": "Privacy",
+          "description": "All processing happens locally in your browser - no data sent to servers"
         },
         {
           "name": "No Registration",
-          "description": "All tools work instantly without account creation or login"
+          "description": "All tools work instantly without login"
         },
         {
-          "name": "Privacy First",
-          "description": "All processing happens locally in your browser"
+          "name": "Mobile Ready",
+          "description": "Fully responsive on desktop, tablet, and mobile"
         }
       ]
     }
