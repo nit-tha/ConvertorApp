@@ -33,7 +33,7 @@
           "description": "Fixed incorrect popup appearing when pressing Enter in Location Lookup",
           "details": [
             "Enter key now correctly triggers location search only",
-            "Removed false ID Calculator validation popup"
+            "Removed false ID Calculator validation popup "
           ]
         }
       ]
@@ -84,3 +84,4 @@
     }
   ]
 }
+
