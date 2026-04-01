@@ -1,9 +1,20 @@
 {
   "title": "🆕 What's New",
-  "version": "2.1.89",
+  "version": "2.1.90",
   "sections": [
     {
-      "title": "🌟 Latest Improvements (v2.1.89)",
+      "title": "🌟 Latest Improvements (v2.1.90)",
+      "features": [
+        {
+          "badge": "NEW",
+          "badgeType": "new",
+          "name": "Clippy Assistant",
+          "description": "Added Clippy mascot that shows helpful tool tips every 15 seconds"
+        }
+      ]
+    },
+    {
+      "title": "🌟 Improvements (v2.1.89)",
       "features": [
         {
           "badge": "ENHANCED",
