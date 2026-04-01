@@ -1247,7 +1247,7 @@ February 25, 2025 13:23:51"></textarea>
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.89 (NT)</span>
+            <span>Version 2.1.90 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
             <br />
@@ -1290,5 +1290,62 @@ February 25, 2025 13:23:51"></textarea>
        
     <!-- === Core JavaScript Loader === -->
         <script src="multi-converter.js"></script>
+
+	   <!-- === Clippy.js (MIT) - https://github.com/pi0/clippyjs === -->
+    <script type="module">
+        import { initAgent } from "https://cdn.jsdelivr.net/npm/clippyjs/dist/index.mjs";
+        import * as agents from "https://cdn.jsdelivr.net/npm/clippyjs/dist/agents/index.mjs";
+
+        // Wait for page to fully load before showing Clippy
+        window.addEventListener("load", async () => {
+            try {
+                const agent = await initAgent(agents.Clippy);
+                agent.show();
+                agent.speak("Hi! Need help with the Multi Converter? I'm Clippy!");
+
+                const tips = [
+                    "Tip: Use the Epoch converter to quickly convert Unix timestamps!",
+                    "Tip: You can compare two texts side by side using the Diff Comparer.",
+                    "Tip: The JSON formatter also converts XML to JSON.",
+                    "Tip: Try the Color Converter to switch between HEX, RGB and HSL.",
+                    "Tip: Use Case Master to quickly change text casing in bulk.",
+                    "It looks like you're using a developer tool. Need any help?",
+                    "Tip: Use the Date -> Epoch converter to quickly convert dates to Unix timestamps.",
+                    "Tip: Use the Count Data tool to get word, characters counts in seconds.",
+                    "Tip: URL Encode/Decode is great for debugging query string parameters.",
+                    "Tip: Use the Duplicate Remover to clean up messy lists in seconds.",
+                    "Tip: The SQL Formatter makes unreadable queries easy to review.",
+                    "Tip: Markdown Converter (NL MD HTML) turns your .md content into clean HTML.",
+                    "Tip: Need to test timezones? The Timezone Clock shows multiple zones at once.",
+                    "Tip: The Date -> Epoch also has ID calculator to calculate very big numbers.",
+                    "Tip: Use the Diff Comparer to spot subtle differences between JSON payloads.",
+                    "Tip: The Code Formatter supports minifying and beautifying in one click.",
+                    "Tip: Generate secure passwords with custom length and character rules using PassCraft.",
+                    "Tip: The XML to JSON tool preserves attributes and nested structures.",
+                    "Tip: Use the Geo Sight tool to get location names and coordinates.",
+                    "Tip: Dark mode is available — click the moon icon in the top corner!"
+                ];
+
+                let lastTipIndex = -1;
+
+                function showRandomTip() {
+                    let idx;
+                    do { idx = Math.floor(Math.random() * tips.length); } while (idx === lastTipIndex);
+                    lastTipIndex = idx;
+                    agent.stopCurrent();
+                    agent.animate();
+                    setTimeout(() => agent.speak(tips[idx]), 400);
+                }
+
+                // Show a new tip every 15 seconds
+                setInterval(showRandomTip, 15000);
+
+            } catch (e) {
+                // Silently fail — Clippy is optional fun, not critical
+                console.warn("Clippy could not load:", e);
+            }
+        });
+    </script>
+	   
     </body>
 </html>
