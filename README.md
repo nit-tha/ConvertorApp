@@ -222,6 +222,10 @@ python -m http.server 8000
 ## 📄 License
 This project is open-source.
 
+## 🙏 Credits & Attributions
+- **Clippy.js** - MIT licensed assistant library by [pi0](https://github.com/pi0/clippyjs)
+- **Clippy Character** - © Microsoft Corporation (nostalgic retro feature)
+
 ## ✍️ Author
 [Nitin Thakur](https://github.com/nit-tha)
 
