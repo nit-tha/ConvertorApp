@@ -1289,9 +1289,9 @@ February 25, 2025 13:23:51"></textarea>
         </div>
        
     <!-- === Core JavaScript Loader === -->
-        <script src="multi-converter.js"></script>
+        <script src="v2.1.89.js"></script>
 
-	   <!-- === Clippy.js (MIT) - https://github.com/pi0/clippyjs === -->
+    <!-- === Clippy.js (MIT) - https://github.com/pi0/clippyjs === -->
     <script type="module">
         import { initAgent } from "https://cdn.jsdelivr.net/npm/clippyjs/dist/index.mjs";
         import * as agents from "https://cdn.jsdelivr.net/npm/clippyjs/dist/agents/index.mjs";
@@ -1301,7 +1301,6 @@ February 25, 2025 13:23:51"></textarea>
             try {
                 const agent = await initAgent(agents.Clippy);
                 agent.show();
-                agent.speak("Hi! Need help with the Multi Converter? I'm Clippy!");
 
                 const tips = [
                     "Tip: Use the Epoch converter to quickly convert Unix timestamps!",
@@ -1327,18 +1326,38 @@ February 25, 2025 13:23:51"></textarea>
                 ];
 
                 let lastTipIndex = -1;
+                let isTipRunning = false;
+                let tipInterval = null;
 
                 function showRandomTip() {
+                    if (isTipRunning) return;
+                    isTipRunning = true;
+
                     let idx;
                     do { idx = Math.floor(Math.random() * tips.length); } while (idx === lastTipIndex);
                     lastTipIndex = idx;
+                    
                     agent.stopCurrent();
                     agent.animate();
-                    setTimeout(() => agent.speak(tips[idx]), 400);
+
+                    setTimeout(() => {
+                        // Keep speech bubble text but disable text-to-speech audio.
+                        agent.speak(tips[idx], { tts: false });
+
+                        // Release lock after the bubble has had enough time to be read.
+                        const bubbleReadMs = Math.max(5000, tips[idx].length * 55);
+                        setTimeout(() => {
+                            isTipRunning = false;
+                        }, bubbleReadMs);
+                    }, 400);
                 }
 
-                // Show a new tip every 15 seconds
-                setInterval(showRandomTip, 15000);
+                // Show first tip shortly after load, then continue every 15 seconds.
+                setTimeout(showRandomTip, 1500);
+
+                tipInterval = setInterval(() => {
+                    showRandomTip();
+                }, 15000);
 
             } catch (e) {
                 // Silently fail — Clippy is optional fun, not critical
