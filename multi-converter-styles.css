@@ -51,6 +51,39 @@ html {
     --overlay: rgba(0,0,0,0.7);
 }
 
+/* Clippy Assistant - Exclude from dark theme styling */
+[data-theme="dark"] .clippy,
+[data-theme="dark"] #clippy,
+[data-theme="dark"] [class*="clippy"],
+[data-theme="dark"] [id*="clippy"],
+[data-theme="dark"] iframe[src*="clippy"],
+[data-theme="dark"] .clipping-container {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure Clippy elements don't inherit dark theme colors */
+[data-theme="dark"] [class*="clippy"] *,
+[data-theme="dark"] [id*="clippy"] * {
+    background-color: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Prevent dark theme from applying borders to all elements when Clippy is present */
+[data-theme="dark"] [class*="clippy"],
+[data-theme="dark"] [id*="clippy"] {
+    border: 0 !important;
+    border-width: 0 !important;
+    border-style: none !important;
+}
+
 /* Dark theme overrides for commonly used containers */
 [data-theme="dark"] .markdown-converter,
 [data-theme="dark"] .csv-processor,
@@ -148,9 +181,9 @@ html {
 /* Dark theme label overrides */
 [data-theme="dark"] label,
 [data-theme="dark"] .label,
-[data-theme="dark"] span:not(.fa):not(.fas):not(.fab),
+[data-theme="dark"] span:not(.fa):not(.fas):not(.fab):not([class*="clippy"]):not([id*="clippy"]),
 [data-theme="dark"] p,
-[data-theme="dark"] div:not(.fa):not(.fas):not(.fab) {
+[data-theme="dark"] div:not(.fa):not(.fas):not(.fab):not([class*="clippy"]):not([id*="clippy"]) {
     color: var(--text-primary) !important;
 }
 
