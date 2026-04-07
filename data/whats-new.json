@@ -10,6 +10,11 @@
           "badgeType": "new",
           "name": "Clippy Assistant",
           "description": "Added Clippy mascot that shows helpful tool tips every 15 seconds"
+          "details": [
+            "Added Show/Hide Clippy toggle in the footer",
+            "Hide action now disables Clippy immediately",
+            "Show action brings Clippy back with tip bubbles"            
+          ]
         }
       ]
     },
