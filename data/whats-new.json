@@ -13,7 +13,7 @@
           "details": [
             "Added Show/Hide Clippy toggle in the footer",
             "Hide action now disables Clippy immediately",
-            "Show action brings Clippy back with tip bubbles"            
+            "Show action brings Clippy back with tip bubbles."            
           ]
         }
       ]
