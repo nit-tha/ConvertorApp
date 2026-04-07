@@ -9,17 +9,17 @@
           "badge": "NEW",
           "badgeType": "new",
           "name": "Clippy Assistant",
-          "description": "Added Clippy mascot that shows helpful tool tips every 15 seconds"
+          "description": "Added Clippy mascot that shows helpful tool tips every 15 seconds",
           "details": [
             "Added Show/Hide Clippy toggle in the footer",
             "Hide action now disables Clippy immediately",
-            "Show action brings Clippy back with tip bubbles."            
+            "Show action brings Clippy back with tip bubbles"
           ]
         }
       ]
     },
     {
-      "title": "🌟 Improvements (v2.1.89)",
+      "title": "✨ Improvements (v2.1.89)",
       "features": [
         {
           "badge": "ENHANCED",
@@ -49,7 +49,7 @@
           "description": "Fixed incorrect popup appearing when pressing Enter in Location Lookup",
           "details": [
             "Enter key now correctly triggers location search only",
-            "Removed false ID Calculator validation popup "
+            "Removed false ID Calculator validation popup"
           ]
         }
       ]
@@ -61,13 +61,15 @@
           "badge": "NEW",
           "badgeType": "new",
           "name": "Light/Dark Theme Toggle",
-          "description": "Complete theme switching system with localStorage persistence"
+          "description": "Complete theme switching system with localStorage persistence",
+          "details": []
         },
         {
           "badge": "ENHANCED",
           "badgeType": "enhanced",
           "name": "Comprehensive Dark Mode",
-          "description": "Full application dark theme coverage across all containers and tools"
+          "description": "Full application dark theme coverage across all containers and tools",
+          "details": []
         }
       ]
     },
@@ -78,19 +80,21 @@
           "badge": "ENHANCED",
           "badgeType": "enhanced",
           "name": "Smart Comma Removal (DelCom)",
-          "description": "Toggle between Smart and Complete comma removal modes"
+          "description": "Toggle between Smart and Complete comma removal modes",
+          "details": []
         },
         {
           "badge": "FEATURE",
           "badgeType": "new",
           "name": "CSV/TSV Data Processor",
-          "description": "Advanced data manipulation with parsing, sorting, filtering and export"
+          "description": "Advanced data manipulation with parsing, sorting, filtering and export",
+          "details": []
         }
       ]
     },
     {
       "title": "📈 Performance & Quality",
-      "description": "Ongoing improvements across the application:",
+      "description": "Ongoing improvements across the application",
       "improvements": [
         "Enhanced error handling with proper visual cleanup",
         "Improved user interface consistency across all tools",
@@ -100,4 +104,3 @@
     }
   ]
 }
-
