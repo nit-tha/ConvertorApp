@@ -1255,6 +1255,8 @@ February 25, 2025 13:23:51"></textarea>
                 <a href="#" onclick="openAppGuideModal()" class="footer-link">📚 App Guide</a>
                 <span class="footer-separator">•</span>
                 <a href="#" onclick="openWhatsNewModal()" class="footer-link">🆕 What's New</a>
+				<span class="footer-separator">•</span>
+                <a href="#" id="clippyToggleLink" class="footer-link">🤖 Hide Clippy</a>
             </div>
         </footer>
 
@@ -1292,83 +1294,6 @@ February 25, 2025 13:23:51"></textarea>
         <script src="multi-converter.js"></script>
 
     <!-- === Clippy.js (MIT) - https://github.com/pi0/clippyjs === -->
-    <script type="module">
-        import { initAgent } from "https://cdn.jsdelivr.net/npm/clippyjs/dist/index.mjs";
-        import * as agents from "https://cdn.jsdelivr.net/npm/clippyjs/dist/agents/index.mjs";
-
-        // Silence Clippy's animation sound effects while keeping speech bubbles
-        const _NativeAudio = window.Audio;
-        window.Audio = function(...args) {
-            const el = new _NativeAudio(...args);
-            el.volume = 0;
-            return el;
-        };
-
-        // Wait for page to fully load before showing Clippy
-        window.addEventListener("load", async () => {
-            try {
-                const agent = await initAgent(agents.Clippy);
-                agent.show();
-
-                const tips = [
-                    "Tip: Use the Epoch converter to quickly convert Unix timestamps!",
-                    "Tip: You can compare two texts side by side using the Diff Comparer.",
-                    "Tip: The JSON formatter also converts XML to JSON.",
-                    "Tip: Try the Color Converter to switch between HEX, RGB and HSL.",
-                    "Tip: Use Case Master to quickly change text casing in bulk.",
-                    "It looks like you're using a developer tool. Need any help?",
-                    "Tip: Use the Date -> Epoch converter to quickly convert dates to Unix timestamps.",
-                    "Tip: Use the Count Data tool to get word, characters counts in seconds.",
-                    "Tip: URL Encode/Decode is great for debugging query string parameters.",
-                    "Tip: Use the Duplicate Remover to clean up messy lists in seconds.",
-                    "Tip: The SQL Formatter makes unreadable queries easy to review.",
-                    "Tip: Markdown Converter (NL MD HTML) turns your .md content into clean HTML.",
-                    "Tip: Need to test timezones? The Timezone Clock shows multiple zones at once.",
-                    "Tip: The Date -> Epoch also has ID calculator to calculate very big numbers.",
-                    "Tip: Use the Diff Comparer to spot subtle differences between JSON payloads.",
-                    "Tip: The Code Formatter supports minifying and beautifying in one click.",
-                    "Tip: Generate secure passwords with custom length and character rules using PassCraft.",
-                    "Tip: The XML to JSON tool preserves attributes and nested structures.",
-                    "Tip: Use the Geo Sight tool to get location names and coordinates.",
-                    "Tip: Dark mode is available — click the moon icon in the top corner!"
-                ];
-
-                let lastTipIndex = -1;
-                let isTipRunning = false;
-                let tipInterval = null;
-
-                function showRandomTip() {
-                    if (isTipRunning) return;
-                    isTipRunning = true;
-
-                    let idx;
-                    do { idx = Math.floor(Math.random() * tips.length); } while (idx === lastTipIndex);
-                    lastTipIndex = idx;
-                    
-                    agent.stopCurrent();
-                    agent.animate();
-
-                    setTimeout(() => {
-                        agent.speak(tips[idx]);
-                        // Release lock after the bubble has had enough time to be read.
-                        const bubbleReadMs = Math.max(5000, tips[idx].length * 55);
-                        setTimeout(() => {
-                            isTipRunning = false;
-                        }, bubbleReadMs);
-                    }, 400);
-                }
-
-                // Show first tip shortly after load, then continue every 15 seconds.
-                setTimeout(showRandomTip, 1500);
-                tipInterval = setInterval(() => {
-                    showRandomTip();
-                }, 15000);
-
-            } catch (e) {
-                // Silently fail — Clippy is optional fun, not critical
-                console.warn("Clippy could not load:", e);
-            }
-        });
-    </script>	   
+    <script type="module" src="js/clippy-init.js"></script>   
     </body>
 </html>
