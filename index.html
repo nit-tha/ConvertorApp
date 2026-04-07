@@ -1296,6 +1296,14 @@ February 25, 2025 13:23:51"></textarea>
         import { initAgent } from "https://cdn.jsdelivr.net/npm/clippyjs/dist/index.mjs";
         import * as agents from "https://cdn.jsdelivr.net/npm/clippyjs/dist/agents/index.mjs";
 
+        // Silence Clippy's animation sound effects while keeping speech bubbles
+        const _NativeAudio = window.Audio;
+        window.Audio = function(...args) {
+            const el = new _NativeAudio(...args);
+            el.volume = 0;
+            return el;
+        };
+
         // Wait for page to fully load before showing Clippy
         window.addEventListener("load", async () => {
             try {
@@ -1341,9 +1349,7 @@ February 25, 2025 13:23:51"></textarea>
                     agent.animate();
 
                     setTimeout(() => {
-                        // Keep speech bubble text but disable text-to-speech audio.
-                        agent.speak(tips[idx], { tts: false });
-
+                        agent.speak(tips[idx]);
                         // Release lock after the bubble has had enough time to be read.
                         const bubbleReadMs = Math.max(5000, tips[idx].length * 55);
                         setTimeout(() => {
@@ -1354,7 +1360,6 @@ February 25, 2025 13:23:51"></textarea>
 
                 // Show first tip shortly after load, then continue every 15 seconds.
                 setTimeout(showRandomTip, 1500);
-
                 tipInterval = setInterval(() => {
                     showRandomTip();
                 }, 15000);
@@ -1364,7 +1369,6 @@ February 25, 2025 13:23:51"></textarea>
                 console.warn("Clippy could not load:", e);
             }
         });
-    </script>
-	   
+    </script>	   
     </body>
 </html>
