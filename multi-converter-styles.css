@@ -843,6 +843,20 @@ nav a:hover {
     border-color: #af65d9;
 }
 
+
+.sql-container input[type="text"][readonly] {
+    background-color: #f4f6f9;
+    border-color: #b8c2cc;
+    border-style: dashed;
+    color: #5f6b7a;
+    cursor: not-allowed;
+}
+
+.sql-container input[type="text"][readonly]:focus {
+    border-color: #b8c2cc;
+    outline: none;
+}
+
 .sql-container button,
 .hex-container button {
     background-color: #fff;
