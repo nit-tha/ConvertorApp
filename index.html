@@ -216,142 +216,149 @@
 
     <!-- === SQL & Epoch Conversion Tools === -->
         <div id="sqlConverter" class="sql-container">
-            <div class="container">
-                <label for="ids">Enter Data:</label>
-                <input type="text" id="ids" oninput="resizeInput(this)" placeholder="Enter data here for conversion." />
-                <div class="tooltip">
-                    <button onclick="removeCommaData()" title="Smart Comma Removal (Click for ALL removal)">DelCom</button>                    
+            <div class="sql-card">
+                <div class="sql-card-header">
+                    <h4>Data Formatter</h4>
+                    <button class="card-clear-btn" onclick="clearData()" title="Clear All" aria-label="Clear All">🗑</button>
                 </div>
-                <div class="tooltip">
-                    <button onclick="removeDuplicates()" title="Remove Duplicate Data">Unique</button>
-                </div>                
-            </div>
-            <div class="container" id="commaRemovedContainer" style="display: none;">
-                <input type="text" id="commaRemoved" readonly oninput="resizeInput(this)" placeholder="Shows data for removed comma or unique data." />
-                <button onclick="copyToClipboard('commaRemoved')" title="Copy">
-                    <i class="fas fa-copy"></i>
-                </button>
-            </div>
-            <div class="container">
-                <label for="countInput">Count Data:</label>
-                <input type="text" id="countInput" oninput="resizeInput(this)" placeholder="Enter data for counting characters." />
-                <div class="tooltip">
-                    <button onclick="countData()" title="Total characters including spaces">Count</button>
+                <div class="container">
+                    <label for="ids">Enter Data:</label>
+                    <input type="text" id="ids" oninput="resizeInput(this)" placeholder="Paste source data here..." title="Used by Add Comma, Add ', Add &quot;, DelCom, and Unique." />
+                    <div class="tooltip">
+                        <button onclick="removeCommaData()" title="Smart Comma Removal (Click for ALL removal)">DelCom</button>
+                    </div>
+                    <div class="tooltip">
+                        <button onclick="removeDuplicates()" title="Remove Duplicate Data">Unique</button>
+                    </div>
                 </div>
-                <div class="tooltip">
-                    <button onclick="countExcludingSpace()"  title="Characters excluding whitespace">Trim</button>
-                </div>
-                <div class="tooltip">
-                    <button onclick="countWords()" title="Total number of distinct words">Words</button>
-                </div> 
-                <span id="countDisplay"></span>
-                <span id="withoutSpaceCountDisplay"></span>
-                <span id="wordCountDisplay"></span>
-            </div>
-           <div class="container">
-                <button onclick="convertToCommaSeparated()" title="Comma to string">Add Comma</button>
-                <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)" placeholder="Shows comma-separated data." />
-                <div class="btn-container">
-                    <button onclick="copyToClipboard('commaSeparated')" title="Copy">
+                <div class="container" id="commaRemovedContainer" style="display: none;">
+                    <input type="text" id="commaRemoved" readonly oninput="resizeInput(this)" placeholder="Shows data for removed comma or unique data." />
+                    <button onclick="copyToClipboard('commaRemoved')" title="Copy">
                         <i class="fas fa-copy"></i>
                     </button>
                 </div>
-            </div>
-            
-        <!-- Combined Quote Buttons with Shared Output -->
-        <div class="container">
-        <button onclick="convertToSingleQuotes()" title="Single Quotation with Comma">Add '</button>
-        <button onclick="convertToDoubleQuotes()" title="Double Quotation with Comma">Add "</button>
-        <input type="text" id="quotesOutput" readonly oninput="resizeInput(this)" placeholder="Shows quotes and comma to data." />
-        <div class="btn-container">
-            <button onclick="copyToClipboard('quotesOutput')" title="Copy">
-                <i class="fas fa-copy"></i>
-            </button>
-        </div>
-        </div>
-        
-            <div class="epochs-container">
-                <div class="tooltip">
-                    <button onclick="convertEpochTime()" title="Convert's Epochtime">Date</button>
+                <div class="container">
+                    <label for="countInput">Count Data:</label>
+                    <input type="text" id="countInput" oninput="resizeInput(this)" placeholder="Enter data for counting characters." />
+                    <div class="tooltip">
+                        <button onclick="countData()" title="Total characters including spaces">Count</button>
+                    </div>
+                    <div class="tooltip">
+                        <button onclick="countExcludingSpace()" title="Characters excluding whitespace">Trim</button>
+                    </div>
+                    <div class="tooltip">
+                        <button onclick="countWords()" title="Total number of distinct words">Words</button>
+                    </div>
+                    <span id="countDisplay"></span>
+                    <span id="withoutSpaceCountDisplay"></span>
+                    <span id="wordCountDisplay"></span>
                 </div>
-                <select id="timeFormat">
-                     <div class="tooltip">
-                <option value="seconds">Sec</option>
-                <span class="tooltiptext">Seconds</span>   </div> 
-                <div class="tooltip">
-                <option value="milliseconds">Msec</option>
-                 <span class="tooltiptext">Milli Seconds</span>  </div>
-                </select>
-                <input type="text" id="epochTime" placeholder="Enter epoch time" />
-                <div class="dropdown-container">
-                   <select id="timezoneSelect" onchange="convertEpochTime()">
-            <option value="">Select Timezone</option>
-            <!-- Placeholder option -->  
-            </select>               
-            </div>  
-                <div id="result"></div>
-            </div>
-            <div class="epo-container">
-                    <input type="number" id="minutesToSubtract" placeholder="Minutes to Add/Subtract" />
-                    <button onclick="calculateNewEpochTime()" title="Shows new & old epoch after calculation">Calculate</button>
-                     <div class="results" id="results" style="display: block;">
-                     <span>Result: </span>
-                <span>Old Epoch: <span id="oldEpochTime">1724755342</span>, </span>
-                <span>New Epoch: <span id="newEpochTime">1724749342</span>, </span>
-                <span>Time Difference (Minutes): <span id="timeDiff">100</span> </span>
-                </div> 
+                <div class="container">
+                    <button onclick="convertToCommaSeparated()" title="Comma to string">Add Comma</button>
+                    <input type="text" id="commaSeparated" readonly oninput="resizeInput(this)" placeholder="Shows comma-separated data." />
+                    <div class="btn-container">
+                        <button onclick="copyToClipboard('commaSeparated')" title="Copy">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="container">
+                    <button onclick="convertToSingleQuotes()" title="Single Quotation with Comma">Add '</button>
+                    <button onclick="convertToDoubleQuotes()" title="Double Quotation with Comma">Add "</button>
+                    <input type="text" id="quotesOutput" readonly oninput="resizeInput(this)" placeholder="Shows quotes and comma to data." />
+                    <div class="btn-container">
+                        <button onclick="copyToClipboard('quotesOutput')" title="Copy">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
 
-  <!-- Human date to Epoch time conversion section -->
-  <form id="hf">
-    <div class="hf-container">
-        <div class="input-group">
-            <label for="yyyy">Year</label>
-            <input type="number" id="yyyy" name="yyyy" min="1970" max="2099" required>
+            <div class="sql-card">
+                <div class="sql-card-header">
+                    <h4>Convert & Adjust Timestamp</h4>
+                    <button class="card-clear-btn" onclick="clearData()" title="Clear All" aria-label="Clear All">🗑</button>
+                </div>
+                <div class="epochs-container">
+                    <div class="tooltip">
+                        <button onclick="convertEpochTime()" title="Convert's Epochtime">Date</button>
+                    </div>
+                    <select id="timeFormat">
+                        <option value="seconds">Sec</option>
+                        <option value="milliseconds">Msec</option>
+                    </select>
+                    <input type="text" id="epochTime" placeholder="Enter epoch time" />
+                    <div class="dropdown-container">
+                        <select id="timezoneSelect" onchange="convertEpochTime()">
+                            <option value="">Select Timezone</option>
+                            <!-- Placeholder option -->
+                        </select>
+                    </div>
+                    <div id="result"></div>
+                </div>
+                <div class="epo-container">
+                    <input type="number" id="minutesToSubtract" placeholder="Minutes to Add/Subtract" />
+                    <button onclick="calculateNewEpochTime()" title="Shows new & old epoch after calculation">Calculate</button>
+                    <div class="results" id="results" style="display: block;">
+                        <span>Result: </span>
+                        <span>Old Epoch: <span id="oldEpochTime">1724755342</span>, </span>
+                        <span>New Epoch: <span id="newEpochTime">1724749342</span>, </span>
+                        <span>Time Difference (Minutes): <span id="timeDiff">100</span> </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sql-card">
+                <div class="sql-card-header">
+                    <h4>Human Date To Epoch</h4>
+                    <button class="card-clear-btn" onclick="clearData()" title="Clear All" aria-label="Clear All">🗑</button>
+                </div>
+                <form id="hf">
+                    <div class="hf-container">
+                        <div class="input-group">
+                            <label for="yyyy">Year</label>
+                            <input type="number" id="yyyy" name="yyyy" min="1970" max="2099" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="mm">Month</label>
+                            <input type="number" id="mm" name="mm" min="1" max="12" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="dd">Day</label>
+                            <input type="number" id="dd" name="dd" min="1" max="31" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="hh">Hour</label>
+                            <input type="number" id="hh" name="hh" min="0" max="23" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="mn">Minute</label>
+                            <input type="number" id="mn" name="mn" min="0" max="59" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="ss">Second</label>
+                            <input type="number" id="ss" name="ss" min="0" max="59" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="tz">Timezone</label>
+                            <select id="tz" name="tz">
+                                <option value="0" selected>GMT/UTC</option>
+                                <option value="330">IST (GMT+5:30)</option>
+                                <option value="-300">EST (GMT-5:00)</option>
+                                <option value="-480">PST (GMT-8:00)</option>
+                                <option value="60">CET (GMT+1:00)</option>
+                                <option value="180">MSK (GMT+3:00)</option>
+                                <option value="480">CST (GMT+8:00)</option>
+                                <option value="540">JST (GMT+9:00)</option>
+                                <option value="600">AEST (GMT+10:00)</option>
+                            </select>
+                        </div>
+                        <button type="button" onclick="HumanToEpochTZ()" title="In Epochtime">Human Date</button>
+                        <span id="hf-result" class="result-container"></span>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="input-group">
-            <label for="mm">Month</label>
-            <input type="number" id="mm" name="mm" min="1" max="12" required>
-        </div>
-        <div class="input-group">
-            <label for="dd">Day</label>
-            <input type="number" id="dd" name="dd" min="1" max="31" required>
-        </div>
-        <div class="input-group">
-            <label for="hh">Hour</label>
-            <input type="number" id="hh" name="hh" min="0" max="23" required>
-        </div>
-        <div class="input-group">
-            <label for="mn">Minute</label>
-            <input type="number" id="mn" name="mn" min="0" max="59" required>
-        </div>
-        <div class="input-group">
-            <label for="ss">Second</label>
-            <input type="number" id="ss" name="ss" min="0" max="59" required>
-        </div>
-        <div class="input-group">
-            <label for="tz">Timezone</label>
-            <select id="tz" name="tz">
-    <option value="0" selected>GMT/UTC</option>
-    <option value="330">IST (GMT+5:30)</option>
-    <option value="-300">EST (GMT-5:00)</option>
-    <option value="-480">PST (GMT-8:00)</option>
-    <option value="60">CET (GMT+1:00)</option>
-    <option value="180">MSK (GMT+3:00)</option>
-    <option value="480">CST (GMT+8:00)</option>
-    <option value="540">JST (GMT+9:00)</option>
-    <option value="600">AEST (GMT+10:00)</option>
-</select>
-        </div>
-        <button type="button" onclick="HumanToEpochTZ()" title="In Epochtime">Human Date</button>
-        <span id="hf-result" class="result-container"></span>
-    </div>
-</form>
-            
-    <div class="container">
-        <button onclick="clearData()" class="clear-button" title="Clear All">🗑️ Clear</button>
-    </div>
-</div>
 
     <!-- === Hex, Binary, Base64, Text Utilities === -->
     <div id="hexConverter" class="hex-container" style="display: none;">
@@ -360,7 +367,7 @@
         <input type="text" id="textInput" placeholder="Enter data here" oninput="handleColorInput()" />
     </div>
 
-    <div class="container" style="display: flex; justify-content: center;">
+    <div class="container hex-tools-card" style="display: flex; justify-content: center;">
         <div class="converter-buttons">
             <button onclick="convertHexText()" title="Hex/Text Convert">Hex/Text</button>
             <button onclick="convertToBinary()" title="Binary Convert/Decode">Binary</button>
@@ -1279,7 +1286,7 @@ February 25, 2025 13:23:51"></textarea>
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.90 (NT)</span>
+            <span>Version 2.1.91 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
             <br />
