@@ -891,6 +891,89 @@ nav a:hover {
     margin-top: 13px;
 }
 
+/* SQL sectioned card layout */
+.sql-container .sql-card {
+    width: 100%;
+    background-color: #f9fbff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px 14px 10px;
+    margin-bottom: 14px;
+    box-sizing: border-box;
+}
+
+[data-theme="dark"] .sql-container .sql-card {
+    background-color: var(--bg-secondary);
+}
+
+.sql-container .sql-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.sql-container .sql-card h4 {
+    margin: 0;
+    font-size: 15px;
+    color: var(--text-primary);
+}
+
+.sql-container .card-clear-btn {
+    min-width: 28px;
+    height: 28px;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 6px;
+}
+
+.sql-container .sql-card .container,
+.sql-container .sql-card .epochs-container,
+.sql-container .sql-card .epo-container,
+.sql-container .sql-card .hf-container {
+    margin-bottom: 12px;
+}
+
+.sql-container .sql-card .container:last-child,
+.sql-container .sql-card .epochs-container:last-child,
+.sql-container .sql-card .epo-container:last-child,
+.sql-container .sql-card .hf-container:last-child {
+    margin-bottom: 0;
+}
+
+.sql-container .sql-actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sql-container #result,
+.sql-container #results,
+.sql-container #hf-result {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 8px 10px;
+}
+
+/* Hex tools button area card layout */
+.hex-container .hex-tools-card {
+    width: 100%;
+    background-color: #f9fbff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px 14px 10px;
+    margin-bottom: 14px;
+    box-sizing: border-box;
+    display: block;
+}
+
+[data-theme="dark"] .hex-container .hex-tools-card {
+    background-color: var(--bg-secondary);
+}
+
 /* Adjustments for Hex/Text Converter */
 .hex-container .container {
     flex-wrap: wrap;
