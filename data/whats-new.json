@@ -3,7 +3,24 @@
   "version": "2.1.90",
   "sections": [
     {
-      "title": "🌟 Latest Improvements (v2.1.90)",
+      "title": "🌟 Latest Improvements (v2.1.91)",
+      "features": [
+        {
+          "badge": "NEW",
+          "badgeType": "new",
+          "name": "Query Formatter Layout",
+          "description": "Reorganized tools into cleaner cards for better readability and flow",
+          "details": [
+            "Split area into dedicated cards for data formatting and time tools",
+            "Added compact clear button on each card for quicker reset",
+            "Kept all existing actions and behavior unchanged",
+            "Includes dark theme compatible styling"
+          ]
+        }       
+      ]
+    },
+    {
+      "title": "🌟 Previous Improvements (v2.1.90)",
       "features": [
         {
           "badge": "NEW",
