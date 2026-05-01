@@ -181,9 +181,9 @@ html {
 /* Dark theme label overrides */
 [data-theme="dark"] label,
 [data-theme="dark"] .label,
-[data-theme="dark"] span:not(.fa):not(.fas):not(.fab):not([class*="clippy"]):not([id*="clippy"]),
+[data-theme="dark"] span:not(.fa):not(.fas):not(.fab):not(.timezone-label):not([class*="clippy"]):not([id*="clippy"]),
 [data-theme="dark"] p,
-[data-theme="dark"] div:not(.fa):not(.fas):not(.fab):not([class*="clippy"]):not([id*="clippy"]) {
+[data-theme="dark"] div:not(.fa):not(.fas):not(.fab):not(.timezone-label):not([class*="clippy"]):not([id*="clippy"]) {
     color: var(--text-primary) !important;
 }
 
