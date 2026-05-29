@@ -86,6 +86,10 @@
           "description": "Parse, sort, filter and export to CSV/TSV/JSON/SQL formats"
         },
         {
+          "name": "Excel Flow",
+          "description": "Bulk row/column transformations: convert multiline rows to one line, split delimited data into rows, copy as Excel columns, remove duplicates, and wrap each row with custom prefix/suffix. Auto-detects delimiter. Use presets for SQL-style wrapping like ('value'),."
+        },
+        {
           "name": "Image Processor",
           "description": "Compress, resize, convert images (JPEG, PNG, WebP). Shows before/after size comparison."
         }
@@ -228,6 +232,10 @@
         {
           "name": "Live Processing",
           "description": "Many tools process as you type - no button click needed"
+        },
+        {
+          "name": "Single-Focus Tool Sections",
+          "description": "In the Conversion Suite, clicking any tool button (Excel Flow, Duplicates, CSV/TSV, PassCraft, etc.) automatically closes whichever tool was open before. Click the same button again to collapse it."
         },
         {
           "name": "Copy Buttons",
