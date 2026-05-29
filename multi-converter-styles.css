@@ -843,7 +843,6 @@ nav a:hover {
     border-color: #af65d9;
 }
 
-
 .sql-container input[type="text"][readonly] {
     background-color: #f4f6f9;
     border-color: #b8c2cc;
@@ -1040,6 +1039,34 @@ nav a:hover {
 .converter-buttons button:focus {
     outline: none;
     border-color: #af65d9;
+}
+
+/* Keep Conversion Suite action buttons in two neat rows on desktop */
+.hex-tools-card .converter-buttons {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(88px, 1fr));
+    width: 100%;
+    max-width: 1080px;
+    gap: 8px;
+}
+
+.hex-tools-card .converter-buttons button {
+    width: 100%;
+    min-width: 0;
+    font-size: 13px;
+    padding: 6px 6px;
+}
+
+@media (max-width: 1200px) {
+    .hex-tools-card .converter-buttons {
+        grid-template-columns: repeat(6, minmax(88px, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .hex-tools-card .converter-buttons {
+        grid-template-columns: repeat(4, minmax(88px, 1fr));
+    }
 }
 
 /* Color Preview Styling */
@@ -3915,6 +3942,74 @@ a#downloadBtns.btn:hover {
     background-color: white;
 }
 
+/* Excel Flow controls styling aligned to Duplicate Counter design */
+.excel-flow-controls {
+    margin-top: 8px;
+    justify-content: flex-start;
+}
+
+.excel-flow-controls label {
+    white-space: nowrap;
+}
+
+.excel-flow-delimiter {
+    flex: 0 0 60px !important;
+    width: 60px !important;
+    min-width: 0 !important;
+    max-width: 60px !important;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    color: #2c3e50;
+}
+
+.excel-flow-wrap-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    margin-top: 8px;
+}
+
+.excel-flow-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+}
+
+/* Keep Join with dropdown same compact size as Prefix/Suffix inputs */
+.excel-flow-field--joiner {
+    flex: 1;
+}
+
+.excel-flow-field label {
+    font-size: 14px;
+    color: #2c3e50;
+    white-space: nowrap;
+}
+
+.excel-flow-field input,
+.excel-flow-field select {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    color: #2c3e50;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.excel-flow-presets {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
 /* Stats line */
 .dup-stats {
     text-align: center;
@@ -5281,5 +5376,4 @@ html[data-theme="dark"] #previewContainer *:not(input):not(button):not(img) {
     background: inherit !important;
     color: var(--text-primary) !important;
 }
-
 
