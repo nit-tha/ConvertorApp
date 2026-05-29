@@ -1,9 +1,52 @@
 {
   "title": "🆕 What's New",
-  "version": "2.1.90",
+  "version": "2.1.92",
   "sections": [
     {
-      "title": "🌟 Latest Improvements (v2.1.91)",
+      "title": "🌟 Latest Improvements (v2.1.92)",
+      "features": [
+        {
+          "badge": "NEW",
+          "badgeType": "new",
+          "name": "Excel Flow Text Utility",
+          "description": "New bulk text transformation tool for data wrangling tasks",
+          "details": [
+            "Convert multiline rows to a single delimited line",
+            "Split one-line or delimited data back into rows",
+            "Copy output directly as TAB-separated Excel columns",
+            "Remove duplicate rows with optional case-insensitive mode",
+            "Auto-detects delimiter (comma, tab, pipe, semicolon)",
+            "Wrap each row with custom prefix/suffix (e.g. ('value'),)",
+            "Built-in presets for single-quote and double-quote SQL wrapping",
+            "Join wrapped rows by newline, space, comma, or tab"
+          ]
+        },
+        {
+          "badge": "FIXED",
+          "badgeType": "fixed",
+          "name": "Conversion Suite Section Switching",
+          "description": "Opening any tool section now correctly closes the previously open one",
+          "details": [
+            "Date→Epoch, Duplicates, CSV/TSV, Excel Flow, Image, PassCraft, NL⇄MD⇄HTML all follow the same exclusive-open behavior",
+            "Introduced shared hideAllToolSections() helper to ensure consistency",
+            "PassCraft toggle (click twice to close) now works correctly"
+          ]
+        },
+        {
+          "badge": "FIXED",
+          "badgeType": "fixed",
+          "name": "Clear Button Placement",
+          "description": "Main Clear button in Conversion Suite no longer shifts down when a tool section opens",
+          "details": [
+            "Moved Clear button to sit directly below the nav buttons row",
+            "Button is hidden by default and only visible when Hex/Text, Binary, Base64, Case, Reverse, API Key, Color, JWT, or Regex is active",
+            "Hides automatically when switching to any expandable tool section"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "🌟 Previous Improvements (v2.1.91)",
       "features": [
         {
           "badge": "NEW",
@@ -88,35 +131,6 @@
           "description": "Full application dark theme coverage across all containers and tools",
           "details": []
         }
-      ]
-    },
-    {
-      "title": "🎯 Previous Features (v2.1.87)",
-      "features": [
-        {
-          "badge": "ENHANCED",
-          "badgeType": "enhanced",
-          "name": "Smart Comma Removal (DelCom)",
-          "description": "Toggle between Smart and Complete comma removal modes",
-          "details": []
-        },
-        {
-          "badge": "FEATURE",
-          "badgeType": "new",
-          "name": "CSV/TSV Data Processor",
-          "description": "Advanced data manipulation with parsing, sorting, filtering and export",
-          "details": []
-        }
-      ]
-    },
-    {
-      "title": "📈 Performance & Quality",
-      "description": "Ongoing improvements across the application",
-      "improvements": [
-        "Enhanced error handling with proper visual cleanup",
-        "Improved user interface consistency across all tools",
-        "Better accessibility with standardized button behaviors",
-        "Optimized CSS architecture for better maintainability"
       ]
     }
   ]
