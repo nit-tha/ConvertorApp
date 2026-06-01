@@ -474,11 +474,11 @@
 
         <div class="dup-grid">
             <div class="dup-panel">
-                <label for="excelFlowInput">Input Data:</label>
+                <label for="excelFlowInput">Input Data: <span id="excelFlowInputCount" class="ef-record-count"></span></label>
                 <textarea id="excelFlowInput" rows="10" placeholder="Paste rows, single-line text, or delimited data here..."></textarea>
             </div>
             <div class="dup-panel">
-                <label for="excelFlowOutput">Output:</label>
+                <label for="excelFlowOutput">Output: <span id="excelFlowOutputCount" class="ef-record-count"></span></label>
                 <textarea id="excelFlowOutput" rows="10" readonly placeholder="Processed output will appear here."></textarea>
             </div>
         </div>
@@ -489,6 +489,7 @@
 
             <label><input type="checkbox" id="excelFlowAutoDelimiter" checked> Auto detect delimiter</label>
             <label><input type="checkbox" id="excelFlowCaseInsensitive"> Case-insensitive dedupe</label>
+            <label><input type="checkbox" id="excelFlowTrimLineDelimiters"> Trim delimiter from row ends</label>
         </div>
 
         <div class="buttons" style="text-align: center;">
