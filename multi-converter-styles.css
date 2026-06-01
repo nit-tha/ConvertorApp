@@ -3892,6 +3892,27 @@ a#downloadBtns.btn:hover {
     font-size: 14px;
 }
 
+.ef-record-count {
+    display: inline-block;
+    background-color: #af65d9;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 5px;
+    vertical-align: middle;
+    letter-spacing: 0.3px;
+}
+
+.ef-record-count:empty {
+    display: none;
+}
+
+[data-theme="dark"] .ef-record-count {
+    background-color: #9b4dc2;
+}
+
 .dup-panel textarea {
     flex: 1;
     padding: 6px 8px;
