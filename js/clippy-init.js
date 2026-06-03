@@ -15,7 +15,7 @@ window.addEventListener("load", async () => {
     const toggleLink = document.getElementById("clippyToggleLink");
 
     if (localStorage.getItem(CLIPPY_PREF_KEY) === null) {
-        localStorage.setItem(CLIPPY_PREF_KEY, "0");
+        localStorage.setItem(CLIPPY_PREF_KEY, "1");
     }
 
     function isClippyDisabled() {
