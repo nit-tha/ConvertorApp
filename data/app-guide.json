@@ -92,6 +92,10 @@
         {
           "name": "Image Processor",
           "description": "Compress, resize, convert images (JPEG, PNG, WebP). Shows before/after size comparison."
+        },
+        {
+          "name": "Processor (Video Mode)",
+          "description": "Use Video mode inside Processor to compress and convert videos with trim range, quality/resolution presets, and download output. Shows size comparison and processing progress."
         }
       ]
     },
