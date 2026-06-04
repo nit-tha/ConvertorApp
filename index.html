@@ -386,7 +386,7 @@
             <button onclick="hexIOHide(); showDuplicateCounter()" title="Find and Analyze Duplicates">Duplicates</button>            
             <button onclick="hexIOHide(); showCsvProcessor()" title="CSV/TSV Data Processor & Converter">CSV/TSV</button>
             <button onclick="hexIOHide(); showExcelFlowTool()" title="Row/Column transforms, dynamic split, dedupe, and bulk wrapping">Excel Flow</button>
-            <button onclick="hexIOHide(); showImageProcessor()" title="Image Compression & Format Converter" id="imageProcessorBtn">🖼️ Image</button>
+            <button onclick="hexIOHide(); showImageProcessor()" title="Image and Video Processing Tools" id="imageProcessorBtn">🛠️ Processor</button>
         </div>
     </div>
 
@@ -903,103 +903,226 @@ February 25, 2025 13:23:51"></textarea>
         </div>
     </div>
 
-    <!-- Image Processor Tool Styling -->
+   <!-- Image Processor Tool Styling -->
     <div class="image-container" id="imageProcessorContainer" style="display: none;">
-            <h2>🖼️ Image Processor</h2>
-    
-            <div class="upload-area" id="uploadArea" style="margin-bottom: 20px;">
-                <div class="upload-icon">📁</div>
-                <div class="upload-text long-text">Drop your image here or click to browse</div>
-                <div class="upload-subtext">Supports JPG, PNG, WebP, GIF • Max 50MB</div>
-                <input type="file" id="fileInput" accept="image/*">
+            <h2>🛠️ Processor</h2>
+
+            <div class="processor-mode-switch" id="processorModeSwitch">
+                <button class="processor-mode-btn active" id="processorImageModeBtn" type="button">🖼️ Image</button>
+                <button class="processor-mode-btn" id="processorVideoModeBtn" type="button">🎬 Video</button>
             </div>
-    
-            <div class="controls" id="controls">
-        <div class="control-row-group">
-            <div class="control-group">
-                <label>🗜️ Compression Quality</label>
-                <div class="control-row">
-                    <input type="range" id="qualitySlider" min="0.1" max="1" step="0.1" value="0.8">
-                    <span class="range-info" id="qualityValue">80%</span>
+
+            <div id="imageProcessorPanel">
+                <div class="upload-area" id="uploadArea" style="margin-bottom: 20px;">
+                    <div class="upload-icon">📁</div>
+                    <div class="upload-text long-text">Drop your image here or click to browse</div>
+                    <div class="upload-subtext">Supports JPG, PNG, WebP, GIF • Max 50MB</div>
+                    <input type="file" id="fileInput" accept="image/*">
+                </div>
+
+                <div class="controls" id="controls">
+                    <div class="control-row-group">
+                        <div class="control-group">
+                            <label>🗜️ Compression Quality</label>
+                            <div class="control-row">
+                                <input type="range" id="qualitySlider" min="0.1" max="1" step="0.1" value="0.8">
+                                <span class="range-info" id="qualityValue">80%</span>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label>📏 Resize Options</label>
+                            <div class="control-row">
+                                <input type="number" id="widthInput" placeholder="Width" min="1">
+                                <span>×</span>
+                                <input type="number" id="heightInput" placeholder="Height" min="1">
+                                <label><input type="checkbox" id="maintainAspect" checked> Keep aspect ratio</label>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label>🔄 Output Format</label>
+                            <div class="control-row">
+                                <select id="formatSelect">
+                                    <option value="jpeg">JPEG</option>
+                                    <option value="png">PNG</option>
+                                    <option value="webp">WebP</option>
+                                    <option value="jpg">JPG</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="size-comparison" id="sizeComparison">
+                    <h3>📊 Size Comparison</h3>
+                    <div class="size-stats">
+                        <div class="size-stat">
+                            <div class="value" id="originalSize">-</div>
+                            <div class="label">Original</div>
+                        </div>
+                        <div class="size-stat">
+                            <div class="value" id="compressedSize">-</div>
+                            <div class="label">Compressed</div>
+                        </div>
+                        <div class="size-stat">
+                            <div class="value savings" id="savings">-</div>
+                            <div class="label">Saved</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buttons inline-buttons">
+                    <button class="btn" id="processBtn" disabled>⚡ Process Image</button>
+                    <button class="btn btn-secondary" id="resetBtn">🔄 Reset</button>
+                    <a class="btn" id="downloadBtns" style="display: none;">💾 Download</a>
+                </div>
+
+                <div class="preview-container" id="previewContainer">
+                    <div class="preview-grid">
+                        <div class="preview-item">
+                            <h3>Original</h3>
+                            <img id="originalPreview" alt="Original">
+                            <div class="file-info">
+                                <p><strong>Size:</strong> <span id="originalFileSize">-</span></p>
+                                <p><strong>Dimensions:</strong> <span id="originalDimensions">-</span></p>
+                                <p><strong>Format:</strong> <span id="originalFormat">-</span></p>
+                            </div>
+                        </div>
+                        <div class="preview-item">
+                            <h3>Processed</h3>
+                            <img id="processedPreview" alt="Processed">
+                            <div class="file-info">
+                                <p><strong>Size:</strong> <span id="processedFileSize">-</span></p>
+                                <p><strong>Dimensions:</strong> <span id="processedDimensions">-</span></p>
+                                <p><strong>Format:</strong> <span id="processedFormat">-</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
                 </div>
             </div>
-    
-            <div class="control-group">
-                <label>📏 Resize Options</label>
-                <div class="control-row">
-                    <input type="number" id="widthInput" placeholder="Width" min="1">
-                    <span>×</span>
-                    <input type="number" id="heightInput" placeholder="Height" min="1">
-                    <label><input type="checkbox" id="maintainAspect" checked> Keep aspect ratio</label>
+
+            <div id="videoProcessorPanel" style="display: none;">
+                <div class="upload-area" id="videoUploadArea" style="margin-bottom: 20px;">
+                    <div class="upload-icon">🎞️</div>
+                    <div class="upload-text long-text">Drop your video here or click to browse</div>
+                    <div class="upload-subtext">Supports common video formats • Max 100MB • Up to 5 minutes</div>
+                    <input type="file" id="videoFileInput" accept="video/*">
+                </div>
+
+                <div class="controls" id="videoControls" style="display: none;">
+                    <div class="control-row-group">
+                        <div class="control-group">
+                            <label>🔄 Output Format</label>
+                            <div class="control-row">
+                                <select id="videoFormatSelect">
+                                    <option value="webm">WebM</option>
+                                    <option value="mp4">MP4</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label>⚡ Quality</label>
+                            <div class="control-row">
+                                <select id="videoQualitySelect">
+                                    <option value="high">High</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="low">Low</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label>📐 Resolution</label>
+                            <div class="control-row">
+                                <select id="videoResolutionSelect">
+                                    <option value="original" selected>Original</option>
+                                    <option value="1080">1080p</option>
+                                    <option value="720">720p</option>
+                                    <option value="480">480p</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label>✂️ Trim (Seconds)</label>
+                            <div class="control-row">
+                                <input type="number" id="videoTrimStart" min="0" step="0.1" value="0" placeholder="Start">
+                                <span>to</span>
+                                <input type="number" id="videoTrimEnd" min="0" step="0.1" value="0" placeholder="End">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label>🔇 Audio</label>
+                            <div class="control-row">
+                                <label><input type="checkbox" id="videoMuteAudio"> Mute output audio</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="size-comparison" id="videoSizeComparison" style="display: none;">
+                    <h3>📊 Video Size Comparison</h3>
+                    <div class="size-stats">
+                        <div class="size-stat">
+                            <div class="value" id="videoOriginalSize">-</div>
+                            <div class="label">Original</div>
+                        </div>
+                        <div class="size-stat">
+                            <div class="value" id="videoProcessedSize">-</div>
+                            <div class="label">Processed</div>
+                        </div>
+                        <div class="size-stat">
+                            <div class="value savings" id="videoSavings">-</div>
+                            <div class="label">Saved</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buttons inline-buttons">
+                    <button class="btn" id="videoProcessBtn" disabled>⚡ Process Video</button>
+                    <button class="btn btn-secondary" id="videoResetBtn">🔄 Reset</button>
+                    <a class="btn" id="videoDownloadBtn" style="display: none;">💾 Download</a>
+                </div>
+
+                <div class="preview-container" id="videoPreviewContainer" style="display: none;">
+                    <div class="preview-grid">
+                        <div class="preview-item">
+                            <h3>Original</h3>
+                            <video id="videoOriginalPreview" controls preload="metadata"></video>
+                            <div class="file-info">
+                                <p><strong>Size:</strong> <span id="videoOriginalFileSize">-</span></p>
+                                <p><strong>Duration:</strong> <span id="videoOriginalDuration">-</span></p>
+                                <p><strong>Dimensions:</strong> <span id="videoOriginalDimensions">-</span></p>
+                            </div>
+                        </div>
+                        <div class="preview-item">
+                            <h3>Processed</h3>
+                            <video id="videoProcessedPreview" controls preload="metadata"></video>
+                            <div class="file-info">
+                                <p><strong>Size:</strong> <span id="videoProcessedFileSize">-</span></p>
+                                <p><strong>Duration:</strong> <span id="videoProcessedDuration">-</span></p>
+                                <p><strong>Format:</strong> <span id="videoProcessedFormat">-</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="progress-bar" id="videoProgressBar" style="display: none;">
+                    <div class="progress-fill" id="videoProgressFill"></div>
+                </div>
+                <div class="video-loader-overlay" id="videoLoaderOverlay" style="display: none;">
+                    <div class="video-loader-card">
+                        <div class="video-loader-spinner" aria-hidden="true"></div>
+                        <div class="video-loader-title">Processing video...</div>
+                        <div class="video-loader-status" id="videoLoaderStatus">Preparing encoder</div>
+                    </div>
                 </div>
             </div>
-    
-            <div class="control-group">
-                <label>🔄 Output Format</label>
-                <div class="control-row">
-                    <select id="formatSelect">
-                        <option value="jpeg">JPEG</option>
-                        <option value="png">PNG</option>
-                        <option value="webp">WebP</option>
-                        <option value="jpg">JPG</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- ✅ New Order -->
-    <div class="size-comparison" id="sizeComparison">
-        <h3>📊 Size Comparison</h3>
-        <div class="size-stats">
-            <div class="size-stat">
-                <div class="value" id="originalSize">-</div>
-                <div class="label">Original</div>
-            </div>
-            <div class="size-stat">
-                <div class="value" id="compressedSize">-</div>
-                <div class="label">Compressed</div>
-            </div>
-            <div class="size-stat">
-                <div class="value savings" id="savings">-</div>
-                <div class="label">Saved</div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- ✅ Buttons appear right below size stats -->
-    <div class="buttons inline-buttons">
-        <button class="btn" id="processBtn" disabled>⚡ Process Image</button>
-        <button class="btn btn-secondary" id="resetBtn">🔄 Reset</button>
-        <a class="btn" id="downloadBtns" style="display: none;">💾 Download</a>
-    </div>
-    
-     <!-- ✅ Then comes the preview section -->
-    <div class="preview-container" id="previewContainer">
-        <div class="preview-grid">
-            <div class="preview-item">
-                <h3>Original</h3>
-                <img id="originalPreview" alt="Original">
-                <div class="file-info">
-                    <p><strong>Size:</strong> <span id="originalFileSize">-</span></p>
-                    <p><strong>Dimensions:</strong> <span id="originalDimensions">-</span></p>
-                    <p><strong>Format:</strong> <span id="originalFormat">-</span></p>
-                </div>
-            </div>
-            <div class="preview-item">
-                <h3>Processed</h3>
-                <img id="processedPreview" alt="Processed">
-                <div class="file-info">
-                    <p><strong>Size:</strong> <span id="processedFileSize">-</span></p>
-                    <p><strong>Dimensions:</strong> <span id="processedDimensions">-</span></p>
-                    <p><strong>Format:</strong> <span id="processedFormat">-</span></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="progress-bar" id="progressBar">
-        <div class="progress-fill" id="progressFill"></div>
-    </div>
   </div>
 </div> <!-- Closing for #hexConverter -->
 
