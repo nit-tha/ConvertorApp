@@ -202,6 +202,10 @@ python -m http.server 8000
 
 ## 🔄 Updates & Maintenance
 
+### Recent Changes
+- **Excel Flow** - Added bulk row/column transformations with delimiter auto-detect, dedupe, wrapping presets, and Excel-friendly output.
+- **Processor (Video)** - Added Video mode under Processor with client-side compression, trim support, format conversion, size comparison, and processing loader.
+
 ### Version Management
 - Semantic versioning for clear update tracking
 - Feature additions documented in What's New section
