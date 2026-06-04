@@ -8,6 +8,20 @@
         {
           "badge": "NEW",
           "badgeType": "new",
+          "name": "Processor: Video Mode",
+          "description": "Added in-browser video processing inside the Processor tab",
+          "details": [
+            "Processor now includes Image and Video modes",
+            "Video mode supports compression, trim range, and resolution presets",
+            "Output format options include WebM and MP4 (with browser capability fallback)",
+            "Displays original vs processed size comparison and download action",
+            "Added processing loader/status indicator for long-running conversions",
+            "Includes browser safety limits for file size and duration"
+          ]
+        },
+        {
+          "badge": "NEW",
+          "badgeType": "new",
           "name": "Excel Flow Text Utility",
           "description": "New bulk text transformation tool for data wrangling tasks",
           "details": [
