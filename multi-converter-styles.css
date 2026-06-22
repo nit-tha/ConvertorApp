@@ -3290,6 +3290,67 @@ nav a.active {
     .password-output button         { width: 100%; }
 }
 
+/* Regex Tool (Conversion Suite) */
+.regex-tool .regex-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.regex-tool .regex-grid--top {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+}
+
+.regex-tool input[type="text"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+}
+
+.regex-tool input[type="text"]:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+.regex-tool textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.regex-tool textarea:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+.regex-tool .regex-actions {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.regex-tool #regexStats {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .regex-tool .regex-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* === Modern Menu === */
 :root{
     --menu-height:45px;           /* easy to tweak everywhere                          */
@@ -5135,6 +5196,18 @@ html[data-theme="dark"] .timezone-label {
 /* Deep Dark Theme Overrides for Tools with Legacy Light Styling   */
 /* Ensures consistent dark surfaces & accessible contrast          */
 /* ──────────────────────────────────────────────────────────────── */
+
+/*Regex */
+html[data-theme="dark"] .regex-tool textarea {
+    background: var(--input-bg) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--input-border) !important;
+}
+html[data-theme="dark"] .regex-tool input[type="text"] {
+    background: var(--input-bg) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--input-border) !important;
+}
 
 /* PassCraft */
 html[data-theme="dark"] .passcraft-container {
