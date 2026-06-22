@@ -5,6 +5,8 @@ A comprehensive and user-friendly web-based utility suite designed for developer
 ## 🌐 Live Demo
 Access the app here: [Multi Converter Tool](https://nit-tha.github.io/ConvertorApp/)
 
+⭐ If this tool saved you time, a star helps others find it!
+
 ## 🚀 Features Overview
 
 ### Core Conversion Tools
