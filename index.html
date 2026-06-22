@@ -466,7 +466,78 @@
             <div id="strengthIndicator" class="strength-indicator" style="display: none;">
                 Password Strength: <span id="strengthText">Medium</span>
             </div>
-        </div>    
+        </div>  
+
+	<!-- Regex Tester Tool Section -->
+        <div class="passcraft-container regex-tool" id="regexToolContainer" style="display: none;">
+            <h3 style="text-align: center; margin-top: 0; color: #333;">
+                <i class="fas fa-code"></i> Regex Tester Engine
+            </h3>
+
+            <div class="instructions-toggle">
+                <button onclick="showRegexInstructions()" title="Show usage instructions">📖 Show Instructions</button>
+            </div>
+
+            <div id="regexToolInstructions" style="display: none;" class="status-info">
+                <strong>How to use:</strong><br>
+                1. Enter Regex Pattern (without leading/trailing slash), e.g. ^user_(\d+)$<br>
+                2. Enter Flags (optional), e.g. g, i, m, s, u, y, gi<br>
+                &nbsp;&nbsp;&nbsp;Flag meanings: g = global (all matches), i = ignore case, m = multiline (^ and $ per line), s = dot matches newline, u = Unicode-aware, y = sticky (match from current position)<br>
+                3. Paste test content into Test Input.<br>
+                4. Click Test Matches to see matched values. Enable Advanced details to also show index positions and capture groups.<br>
+                5. To run replacement, enter Replace With (supports $1, $2, etc.) and click Find + Replace.<br>
+                6. Use Escape Pattern / Unescape Pattern if you need literal-safe pattern editing.
+            </div>
+
+            <div class="regex-grid regex-grid--top">
+                <div class="option-group">
+                    <label for="regexPattern">Regex Pattern:</label>
+                    <input type="text" id="regexPattern" placeholder="Example: ^user_(\\d+)$">
+                </div>
+                <div class="option-group">
+                    <label for="regexFlags">Flags:</label>
+                    <input type="text" id="regexFlags" value="g" placeholder="Example: gi">
+                </div>
+            </div>
+
+            <div class="regex-grid">
+                <div class="option-group">
+                    <label for="regexInputText">Test Input:</label>
+                    <textarea id="regexInputText" rows="6" placeholder="Enter text or escaped regex here..."></textarea>
+                </div>
+                <div class="option-group">
+                    <label for="regexOutputText">Output:</label>
+                    <textarea id="regexOutputText" rows="6" readonly placeholder="Result appears here..."></textarea>
+                </div>
+            </div>
+
+            <div class="regex-grid regex-grid--top">
+                <div class="option-group" style="grid-column: 1 / -1;">
+                    <label for="regexReplaceText">Replace With:</label>
+                    <input type="text" id="regexReplaceText" placeholder="Example: user-$1">
+                </div>
+            </div>
+
+            <div class="option-group" style="margin-top: 4px;">
+                <label style="display: flex; align-items: center; gap: 8px; font-weight: normal;">
+                    <input type="checkbox" id="regexShowAdvanced">
+                    Show advanced details (Index + Groups)
+                </label>
+            </div>
+
+            <div id="regexStats" class="status-info" style="display: none;"></div>
+
+            <div class="buttons regex-actions" style="text-align: center;">
+                <button onclick="runRegexTool('test')" title="Test regex matches against input">Test Matches</button>
+                <button onclick="runRegexTool('replace')" title="Run find and replace using regex">Find + Replace</button>
+                <button onclick="runRegexTool('escapePattern')" title="Escape regex pattern text">Escape Pattern</button>
+                <button onclick="runRegexTool('unescapePattern')" title="Unescape regex pattern text">Unescape Pattern</button>
+                <button onclick="copyToClipboard('regexOutputText')" title="Copy output">
+                    <i class="fas fa-copy"></i> Copy Output
+                </button>
+                <button onclick="clearRegexTool()" title="Clear regex input and output">🗑️ Clear</button>
+            </div>
+        </div>
 
     <!-- Excel Flow Tool Section -->
     <div class="duplicate-counter" id="excelFlowTool" style="display: none; width: 100%;">
