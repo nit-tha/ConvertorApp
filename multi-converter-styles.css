@@ -1769,7 +1769,8 @@ html[data-theme="dark"] .day-diff.tomorrow {
 
 #countDisplay,
 #withoutSpaceCountDisplay,
-#wordCountDisplay {
+#wordCountDisplay,
+#betweenCountDisplay {
     margin-left: 10px;
     color: #2c3e50; /* Subtle color */
     font-size: 14px;
