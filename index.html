@@ -197,7 +197,7 @@
         <a id="queryToJsonLink" href="#" data-section="queryToJsonSection" title="Web query to JSON • URL encoder/decoder • XML to JSON converter">JSON Conversion</a>
         <a id="diffcomparerLink" href="#" data-section="diffcomparerSection" title="Side-by-side text comparison with difference highlighting">Content Comparer</a>
         <a id="codeBeautifierLink" href="#" data-section="codeFormatterSection" title="Auto-indent and beautify code for multiple programming languages">Code Refiner</a>
-        <a id="testCaseBuilderLink" href="#" data-section="testCaseBuilderSection" title="Convert text to pipe format • Generate Excel test case templates">Case Master</a>
+        <a id="testCaseBuilderLink" href="#" data-section="testCaseBuilderSection" title="Convert text to pipe format • Generate Excel test case templates">Testcase Builder</a>
         <a id="geocodingLink" href="#" data-section="geocodingSection" title="Address to coordinates lookup • Map visualization with OpenStreetMap • GeoJSON converter">Geo Sight</a>
     </nav>
 
@@ -379,7 +379,7 @@
             <button onclick="hexIOShow(); convertToBinary()" title="Binary Convert/Decode">Binary</button>
             <button onclick="hexIOShow(); encodeToBase64()" title="Base64 Encode/Decode">Base64</button>
             <button onclick="hexIOShow(); convertCase()" title="Case Converter">Case</button>
-            <button onclick="hexIOShow(); reverseText()" title="Reverse Text">Reverse</button>
+            <button onclick="hexIOHide(); showWebLab()" title="Open HTML/CSS/JS Playground" id="webLabBtn">Web Lab</button>
             <button onclick="hexIOShow(); generateApiKey()" title="Generate API Key">API Key</button>
             <button onclick="hexIOShow(); convertColor()" title="Color Converter">Color</button>
             <button onclick="hexIOShow(); decodeJWT()" title="JWT Decode">JWT</button>
@@ -540,6 +540,48 @@
                     <i class="fas fa-copy"></i> Copy Output
                 </button>
                 <button onclick="clearRegexTool()" title="Clear regex input and output">🗑️ Clear</button>
+            </div>
+        </div>
+
+	        <!-- Web Playground Tool Section -->
+        <div class="passcraft-container regex-tool" id="webLabContainer" style="display: none;">
+            <h3 style="text-align: center; margin-top: 0; color: #333;">
+                <i class="fas fa-code"></i> HTML + CSS + JS Playground
+            </h3>
+
+            <div class="regex-grid regex-grid--top">
+                <div class="option-group" style="grid-column: 1 / -1;">
+                    <label for="webLabHtmlInput">HTML:</label>
+                    <textarea id="webLabHtmlInput" rows="6" placeholder="Enter HTML markup here..."></textarea>
+                </div>
+            </div>
+
+            <div class="regex-grid regex-grid--top">
+                <div class="option-group">
+                    <label for="webLabCssInput">CSS:</label>
+                    <textarea id="webLabCssInput" rows="6" placeholder="Enter CSS here..."></textarea>
+                </div>
+                <div class="option-group">
+                    <label for="webLabJsInput">JS:</label>
+                    <textarea id="webLabJsInput" rows="6" placeholder="Enter JavaScript here... (optional if script is already in HTML)"></textarea>
+                </div>
+            </div>
+
+            <div class="regex-grid" style="margin-top: 10px;">
+                <div class="option-group" style="grid-column: 1 / -1;">
+                    <label for="webLabPreviewFrame">Preview:</label>
+                    <iframe
+                        id="webLabPreviewFrame"
+                        title="Web Lab Preview"
+                        sandbox="allow-scripts"
+                        style="width: 100%; height: 420px; border: 1px solid #ccc; border-radius: 6px; background: #fff;"
+                    ></iframe>
+                </div>
+            </div>
+
+            <div class="buttons regex-actions" style="text-align: center;">
+                <button onclick="runWebLab()" title="Render the preview">Run Preview</button>
+                <button onclick="clearWebLab()" title="Clear HTML, CSS, JS, and preview">🗑️ Clear</button>
             </div>
         </div>
 
@@ -1565,7 +1607,7 @@ February 25, 2025 13:23:51"></textarea>
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.92 (NT)</span>
+            <span>Version 2.1.93 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
             <br />
