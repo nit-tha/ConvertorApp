@@ -58,6 +58,10 @@
           "description": "Case converter (UPPER, lower, Title, Sentence, camelCase, snake_case), text reversal, regex escaping"
         },
         {
+          "name": "Web Lab (HTML/CSS/JS)",
+          "description": "Use the Web Lab button to open a mini playground with separate HTML, CSS, and JS inputs plus live preview."
+        },
+        {
           "name": "Security Tools",
           "description": "JWT decoder, API key generator, PassCraft (customizable password generator with strength indicator)"
         },
