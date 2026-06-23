@@ -1,9 +1,33 @@
 {
   "title": "🆕 What's New",
-  "version": "2.1.92",
+  "version": "2.1.93",
   "sections": [
     {
-      "title": "🌟 Latest Improvements (v2.1.92)",
+      "title": "🌟 Latest Improvements (v2.1.93)",
+      "features": [
+        {
+          "badge": "NEW",
+          "badgeType": "new",
+          "name": "Web Lab (HTML/CSS/JS)",
+          "description": "Mini web playground for HTML, CSS, and JS with live preview",
+          "details": [
+            "Added separate HTML, CSS, and JS inputs",
+            "Renders output in a larger preview frame for better visibility"
+          ]
+        },
+        {
+          "badge": "NEW",
+          "badgeType": "new",
+          "name": "Range Counter",
+          "description": "Added Range tool to count numbers between two values",
+          "details": [
+            "Accepts inputs like 486-585 and returns the count in range"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "🌟 Previous Improvements (v2.1.92)",
       "features": [
         {
           "badge": "NEW",
@@ -53,7 +77,7 @@
           "description": "Main Clear button in Conversion Suite no longer shifts down when a tool section opens",
           "details": [
             "Moved Clear button to sit directly below the nav buttons row",
-            "Button is hidden by default and only visible when Hex/Text, Binary, Base64, Case, Reverse, API Key, Color, JWT, or Regex is active",
+            "Button is hidden by default and only visible when Hex/Text, Binary, Base64, Case, Web Lab, API Key, Color, JWT, or Regex is active",
             "Hides automatically when switching to any expandable tool section"
           ]
         }
