@@ -865,7 +865,7 @@ nav a:hover {
     border-radius: 4px;
     margin: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s;    
 }
 
 .sql-container button:hover,
@@ -1066,6 +1066,57 @@ nav a:hover {
 @media (max-width: 900px) {
     .hex-tools-card .converter-buttons {
         grid-template-columns: repeat(4, minmax(88px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    #hexConverter {
+        width: 95%;
+        padding: 14px;
+        overflow-x: hidden;
+    }
+
+    #hexConverter .hex-tools-card {
+        padding: 10px;
+    }
+
+    #hexConverter .hex-tools-card .converter-buttons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        gap: 6px;
+    }
+
+    #hexConverter .hex-tools-card .converter-buttons button {
+        width: 100%;
+        min-width: 0;
+        min-height: 42px;
+        padding: 8px 6px;
+        line-height: 1.2;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    #hexConverter .excel-flow-wrap-controls {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    #hexConverter .excel-flow-controls label,
+    #hexConverter .excel-flow-field label {
+        white-space: normal;
+    }
+
+    #hexConverter .status-info,
+    #hexConverter .dup-stats {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+}
+
+@media (max-width: 480px) {
+    #hexConverter .hex-tools-card .converter-buttons {
+        grid-template-columns: 1fr;
     }
 }
 
