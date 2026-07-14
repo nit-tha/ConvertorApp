@@ -1,9 +1,21 @@
 {
   "title": "🆕 What's New",
-  "version": "2.1.93",
+  "version": "2.1.94",
   "sections": [
     {
-      "title": "🌟 Latest Improvements (v2.1.93)",
+      "title": "🌟 Latest Improvements (v2.1.94)",
+      "features": [
+        {
+          "badge": "UPDATED",
+          "badgeType": "improved",
+          "name": "Web Lab, Query Formatter & PassCraft",
+          "description": "Small fixes and tweaks across Web Lab, Query Formatter tab, and PassCraft",
+          "details": []
+        }
+      ]
+    },
+    {
+      "title": "🌟 Previous Improvements (v2.1.93)",
       "features": [
         {
           "badge": "NEW",
