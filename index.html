@@ -219,7 +219,7 @@
             <div class="sql-card">
                 <div class="sql-card-header">
                     <h4>Data Formatter</h4>
-                    <button class="card-clear-btn" onclick="clearData()" title="Clear All" aria-label="Clear All">🗑</button>
+                    <button class="card-clear-btn" onclick="clearDataFormatter()" title="Clear All" aria-label="Clear All">🗑</button>
                 </div>
                 <div class="container">
                     <label for="ids">Enter Data:</label>
@@ -249,13 +249,13 @@
                     <div class="tooltip">
                         <button onclick="countWords()" title="Total number of distinct words">Words</button>
                     </div>
-				    <div class="tooltip">
+                    <div class="tooltip">
                         <button onclick="countBetween()" title="Count numbers between range (e.g., 486-585)">Range</button>
                     </div>
                     <span id="countDisplay"></span>
                     <span id="withoutSpaceCountDisplay"></span>
                     <span id="wordCountDisplay"></span>
-				    <span id="betweenCountDisplay"></span>
+                    <span id="betweenCountDisplay"></span>
                 </div>
                 <div class="container">
                     <button onclick="convertToCommaSeparated()" title="Comma to string">Add Comma</button>
@@ -281,7 +281,7 @@
             <div class="sql-card">
                 <div class="sql-card-header">
                     <h4>Convert & Adjust Timestamp</h4>
-                    <button class="card-clear-btn" onclick="clearData()" title="Clear All" aria-label="Clear All">🗑</button>
+                    <button class="card-clear-btn" onclick="clearTimestampConverter()" title="Clear All" aria-label="Clear All">🗑</button>
                 </div>
                 <div class="epochs-container">
                     <div class="tooltip">
@@ -315,7 +315,7 @@
             <div class="sql-card">
                 <div class="sql-card-header">
                     <h4>Human Date To Epoch</h4>
-                    <button class="card-clear-btn" onclick="clearData()" title="Clear All" aria-label="Clear All">🗑</button>
+                    <button class="card-clear-btn" onclick="clearHumanDateToEpoch()" title="Clear All" aria-label="Clear All">🗑</button>
                 </div>
                 <form id="hf">
                     <div class="hf-container">
@@ -413,8 +413,13 @@
             <h3 style="text-align: center; margin-top: 0; color: #333;">
                 <i class="fas fa-key"></i> PassCraft Password Generator
             </h3>
-            
-            <div class="passcraft-options">
+
+            <div class="processor-mode-switch" id="passcraftModeSwitch">
+                <button class="processor-mode-btn active" id="passcraftRandomModeBtn" type="button" onclick="setPassCraftMode('random')" title="Generate a random-character password">🔑 Random Password</button>
+                <button class="processor-mode-btn" id="passcraftPhraseModeBtn" type="button" onclick="setPassCraftMode('phrase')" title="Generate a memorable word-based passphrase">📝 Passphrase</button>
+            </div>
+
+            <div class="passcraft-options" id="passcraftRandomOptions">
                 <div class="option-group">
                     <label>Password Length:</label>
                     <div class="length-input">
@@ -422,7 +427,7 @@
                         <span>characters</span>
                     </div>
                 </div>
-                
+
                 <div class="option-group">
                     <label>Character Types:</label>
                     <div class="checkbox-group">
@@ -442,37 +447,86 @@
                         <label for="includeSymbols">Symbols (!@#$%^&*)</label>
                     </div>
                 </div>
-                
+
                 <div class="option-group">
                     <label>Advanced Options:</label>
                     <div class="checkbox-group">
                         <input type="checkbox" id="excludeSimilar">
-                        <label for="excludeSimilar">Exclude similar (0, O, l, I)</label>
+                        <label for="excludeSimilar">Exclude similar (0, O, l, I, 1)</label>
                     </div>
                     <div class="checkbox-group">
                         <input type="checkbox" id="excludeAmbiguous">
-                        <label for="excludeAmbiguous">Exclude ambiguous ({ } [ ] ( ) / \ ' " ~ , ; . < >)</label>
+                        <label for="excludeAmbiguous">Exclude ambiguous ({ } [ ] ( ) , ; . < >)</label>
                     </div>
                 </div>
             </div>
-            
+
+            <div class="passcraft-options" id="passcraftPhraseOptions" style="display: none;">
+                <div class="option-group">
+                    <label for="phraseWordCount">Number of Words:</label>
+                    <div class="length-input">
+                        <input type="number" id="phraseWordCount" min="3" max="10" value="4">
+                        <span>words</span>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <label for="phraseSeparator">Word Separator:</label>
+                    <div class="length-input">
+                        <input type="text" id="phraseSeparator" maxlength="3" value="-" style="width: 60px;">
+                    </div>
+                </div>
+                <div class="option-group">
+                    <label>Passphrase Options:</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="phraseCapitalize" checked>
+                        <label for="phraseCapitalize">Capitalize Each Word</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="phraseAddNumber" checked>
+                        <label for="phraseAddNumber">Append a Random Number</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="passcraft-options">
+                <div class="option-group">
+                    <label for="passwordCount">Generate:</label>
+                    <div class="length-input">
+                        <select id="passwordCount">
+                            <option value="1">1 password</option>
+                            <option value="3">3 passwords</option>
+                            <option value="5">5 passwords</option>
+                            <option value="10">10 passwords</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <button class="generate-btn" onclick="generatePassword()">
                 <i class="fas fa-sync-alt"></i> Generate Password
             </button>
-            
-            <div class="password-output">
+
+            <div class="password-output" id="passwordSingleOutput">
                 <input type="text" id="generatedPassword" placeholder="Generated password will appear here" readonly>
                 <button onclick="copyToClipboard('generatedPassword')" title="Copy Password">
                     <i class="fas fa-copy"></i>
                 </button>
             </div>
-            
-            <div id="strengthIndicator" class="strength-indicator" style="display: none;">
-                Password Strength: <span id="strengthText">Medium</span>
-            </div>
-        </div>  
 
-	<!-- Regex Tester Tool Section -->
+            <ol class="passcraft-list" id="passwordListOutput" style="display: none;"></ol>
+
+            <div id="strengthIndicator" class="strength-indicator" style="display: none;">
+                <div class="strength-label-row">
+                    Password Strength: <span id="strengthText">Medium</span>
+                    <span id="strengthBits" class="strength-bits"></span>
+                </div>
+                <div class="strength-bar-track">
+                    <div id="strengthBarFill" class="strength-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Regex Tester Tool Section -->
         <div class="passcraft-container regex-tool" id="regexToolContainer" style="display: none;">
             <h3 style="text-align: center; margin-top: 0; color: #333;">
                 <i class="fas fa-code"></i> Regex Tester Engine
@@ -543,20 +597,25 @@
             </div>
         </div>
 
-	        <!-- Web Playground Tool Section -->
+        <!-- Web Playground Tool Section -->
         <div class="passcraft-container regex-tool" id="webLabContainer" style="display: none;">
             <h3 style="text-align: center; margin-top: 0; color: #333;">
                 <i class="fas fa-code"></i> HTML + CSS + JS Playground
             </h3>
 
+            <div class="processor-mode-switch" id="webLabModeSwitch">
+                <button class="processor-mode-btn active" id="webLabSplitModeBtn" type="button" onclick="setWebLabMode('split')" title="Show separate HTML, CSS, and JS boxes">🔀 Split View</button>
+                <button class="processor-mode-btn" id="webLabSingleModeBtn" type="button" onclick="setWebLabMode('single')" title="Hide CSS/JS boxes for pasting one complete HTML file">📄 Single File</button>
+            </div>
+
             <div class="regex-grid regex-grid--top">
                 <div class="option-group" style="grid-column: 1 / -1;">
-                    <label for="webLabHtmlInput">HTML:</label>
+                    <label for="webLabHtmlInput" id="webLabHtmlLabel">HTML:</label>
                     <textarea id="webLabHtmlInput" rows="6" placeholder="Enter HTML markup here..."></textarea>
                 </div>
             </div>
 
-            <div class="regex-grid regex-grid--top">
+            <div class="regex-grid regex-grid--top" id="webLabCssJsRow">
                 <div class="option-group">
                     <label for="webLabCssInput">CSS:</label>
                     <textarea id="webLabCssInput" rows="6" placeholder="Enter CSS here..."></textarea>
@@ -1002,7 +1061,7 @@ February 25, 2025 13:23:51"></textarea>
                         <option value="sql">SQL INSERT statements</option>
                         <option value="pipe">Pipe-separated (for Test Cases)</option>
                     </select>
-					<button onclick="previewCsvData()" class="secondary-btn">👁️ Preview</button>
+                    <button onclick="previewCsvData()" class="secondary-btn">👁️ Preview</button>
                     <button onclick="exportCsvData()" class="convert-btn">💾 Export</button>
                     <button onclick="copyCsvData()" class="secondary-btn">📋 Copy</button>
                 </div>
@@ -1607,7 +1666,7 @@ February 25, 2025 13:23:51"></textarea>
 
 <!-- === Page Footer === -->
         <footer>
-            <span>Version 2.1.93 (NT)</span>
+            <span>Version 2.1.94 (NT)</span>
             <br />
             <span id="visit-counter">Visit count: Loading...</span>
             <br />
