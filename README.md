@@ -227,7 +227,7 @@ python -m http.server 8000
 - **Libraries** - JSZip, Mammoth.js (for document processing)
 
 ## 📄 License
-This project is open-source.
+Free to use, not free to reuse. © 2026 Nitin Thakur — all rights reserved. See the app live at [nit-tha.github.io/ConvertorApp](https://nit-tha.github.io/ConvertorApp/); source code here is for reference only, not for copying into other projects.
 
 ## 🙏 Credits & Attributions
 - **Clippy.js** - MIT licensed assistant library by [pi0](https://github.com/pi0/clippyjs)
