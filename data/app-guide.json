@@ -55,7 +55,11 @@
         },
         {
           "name": "Text Utilities",
-          "description": "Case converter (UPPER, lower, Title, Sentence, camelCase, snake_case), text reversal, regex escaping"
+          "description": "Text reversal, regex escaping"
+        },
+        {
+          "name": "Finance Lab",
+          "description": "Use the Finance Lab button to open a bank & investment calculator suite: Interest & Deposits, Loan/EMI, SIP & Investments, and Govt Schemes & Utility calculators, each with a summary and year-by-year breakdown table."
         },
         {
           "name": "Web Lab (HTML/CSS/JS)",
@@ -100,6 +104,32 @@
         {
           "name": "Processor (Video Mode)",
           "description": "Use Video mode inside Processor to compress and convert videos with trim range, quality/resolution presets, and download output. Shows size comparison and processing progress."
+        }
+      ]
+    },
+    {
+      "title": "💰 Finance Lab",
+      "description": "Bank & investment calculator suite, opened from the Finance Lab button in Conversion Suite:",
+      "features": [
+        {
+          "name": "Interest & Deposits",
+          "description": "Compound Interest, Simple Interest, Fixed Deposit (FD), and Recurring Deposit (RD) calculators"
+        },
+        {
+          "name": "Loan / EMI",
+          "description": "EMI/Loan calculator with a year-by-year amortization schedule (principal paid, interest paid, outstanding balance)"
+        },
+        {
+          "name": "SIP & Investments",
+          "description": "Systematic Investment Plan (SIP) and Lumpsum investment calculators with year-by-year growth breakdown"
+        },
+        {
+          "name": "Govt Schemes & Utility",
+          "description": "PPF, NSC, KVP, and Sukanya Samriddhi Yojana (SSY) scheme calculators, plus CAGR and Rule of 72 (doubling time) utilities"
+        },
+        {
+          "name": "Currency Symbol",
+          "description": "Switch the displayed currency symbol (₹, $, etc.) for all calculator results"
         }
       ]
     },
