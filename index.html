@@ -196,23 +196,23 @@
         <a id="xmlToBlockLink" href="#" data-section="xmlToBlockSection" title="XML validator & error detector • XML to Block converter • JSON to XML transformer">Block Conversion</a>
         <a id="queryToJsonLink" href="#" data-section="queryToJsonSection" title="Web query to JSON • URL encoder/decoder • XML to JSON converter">JSON Conversion</a>
         <a id="diffcomparerLink" href="#" data-section="diffcomparerSection" title="Side-by-side text comparison with difference highlighting">Content Comparer</a>
-        <a id="codeBeautifierLink" href="#" data-section="codeFormatterSection" title="Auto-indent and beautify code for multiple programming languages">Code Refiner</a>
+        <a id="codeBeautifierLink" href="#" data-section="codeFormatterSection" title="Auto-indent and beautify code for multiple programming languages">Code Formatter</a>
         <a id="testCaseBuilderLink" href="#" data-section="testCaseBuilderSection" title="Convert text to pipe format • Generate Excel test case templates">Testcase Builder</a>
-        <a id="geocodingLink" href="#" data-section="geocodingSection" title="Address to coordinates lookup • Map visualization with OpenStreetMap • GeoJSON converter">Geo Sight</a>
+        <a id="geocodingLink" href="#" data-section="geocodingSection" title="Address to coordinates lookup • Map visualization with OpenStreetMap • GeoJSON converter">GeoSight</a>
     </nav>
 
     <!-- AdSense -->
-	<!-- 
+    <!-- 
     <ins class="adsbygoogle"
          style="display:block"
          data-ad-client="ca-pub-2317488546076814"
          data-ad-slot="1234567890"
-         data-ad-format="auto"
+         data-ad-format="auto"csvExportFormat
          data-full-width-responsive="true"></ins>
     <script>
          (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-	  -->
+      -->
 
     <!-- === SQL & Epoch Conversion Tools === -->
         <div id="sqlConverter" class="sql-container">
@@ -378,7 +378,7 @@
             <button onclick="hexIOShow(); convertHexText()" title="Hex/Text Convert">Hex/Text</button>
             <button onclick="hexIOShow(); convertToBinary()" title="Binary Convert/Decode">Binary</button>
             <button onclick="hexIOShow(); encodeToBase64()" title="Base64 Encode/Decode">Base64</button>
-            <button onclick="hexIOShow(); convertCase()" title="Case Converter">Case</button>
+            <button onclick="hexIOHide(); showFinanceLab()" title="Bank & Investment Calculators — Interest, EMI, SIP, PPF and more" id="financeLabBtn">Finance Lab</button>
             <button onclick="hexIOHide(); showWebLab()" title="Open HTML/CSS/JS Playground" id="webLabBtn">Web Lab</button>
             <button onclick="hexIOShow(); generateApiKey()" title="Generate API Key">API Key</button>
             <button onclick="hexIOShow(); convertColor()" title="Color Converter">Color</button>
@@ -643,6 +643,45 @@
                 <button onclick="clearWebLab()" title="Clear HTML, CSS, JS, and preview">🗑️ Clear</button>
             </div>
         </div>
+
+    <!-- Finance Lab: Bank & Investment Calculators -->
+    <div class="passcraft-container regex-tool finance-lab" id="financeLabContainer" style="display: none;">
+        <h3 style="text-align: center; margin-top: 0; color: #333;">
+            <i class="fas fa-piggy-bank"></i> Finance Lab — Bank &amp; Investment Calculators
+        </h3>
+
+        <div class="finance-currency-row">
+            <label for="financeCurrencySelect">Currency:</label>
+            <select id="financeCurrencySelect" onchange="setFinanceCurrency(this.value)">
+                <option value="₹" selected>₹ INR</option>
+                <option value="$">$ USD</option>
+                <option value="">No symbol</option>
+            </select>
+        </div>
+
+        <div class="processor-mode-switch" id="financeCategorySwitch"></div>
+        <div class="processor-mode-switch finance-sub-switch" id="financeCalcSwitch"></div>
+
+        <div class="finance-grid" id="financeCalcForm"></div>
+
+        <div class="buttons finance-actions" style="text-align: center;">
+            <button onclick="runFinanceCalc()" title="Calculate">🧮 Calculate</button>
+            <button onclick="clearFinanceCalc()" title="Reset this calculator's inputs">🗑️ Clear</button>
+        </div>
+
+        <div id="financeNote" class="finance-note" style="display:none;"></div>
+
+        <div id="financeResult" class="finance-result" style="display:none;">
+            <div id="financeSummary" class="finance-summary-grid"></div>
+            <h4 class="finance-breakdown-title">📊 Year-by-Year Breakdown</h4>
+            <div class="finance-table-wrap">
+                <table class="finance-table" id="financeBreakdownTable">
+                    <thead><tr></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <!-- Excel Flow Tool Section -->
     <div class="duplicate-counter" id="excelFlowTool" style="display: none; width: 100%;">
