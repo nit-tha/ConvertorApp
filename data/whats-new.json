@@ -5,6 +5,17 @@
     {
       "title": "🌟 Latest Improvements (v2.1.94)",
       "features": [
+       {
+          "badge": "NEW",
+          "badgeType": "new",
+          "name": "Finance Lab",
+          "description": "New bank & investment calculator suite, replacing the old Case converter button in the Conversion Suite toolbar",
+          "details": [
+            "4 categories: Interest & Deposits, Loan/EMI, SIP & Investments, Govt Schemes & Utility",
+            "12 calculators: Compound Interest, Simple Interest, FD, RD, EMI/Loan (with amortization schedule), SIP, Lumpsum, PPF, NSC, KVP, Sukanya Samriddhi (SSY), CAGR, and Rule of 72",
+            "Each calculator shows summary stat cards plus a year-by-year breakdown table"
+          ]
+        },
         {
           "badge": "UPDATED",
           "badgeType": "improved",
