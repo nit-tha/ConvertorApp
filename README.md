@@ -13,7 +13,6 @@ Access the app here: [Multi Converter Tool](https://nit-tha.github.io/ConvertorA
 - **Epoch Time Converter** - Bidirectional epoch/timestamp conversion with timezone support
 - **Text Format Converter** - Hex, Binary, Base64, URL encoding/decoding
 - **Color Converter** - Hex, RGB, HSL color conversions with live preview
-- **Case Converter** - Text case transformations (upper, lower, camel, etc.)
 - **JSON/XML Converter** - Format validation, conversion, and beautification
 
 ### Developer Tools
@@ -63,6 +62,12 @@ Access the app here: [Multi Converter Tool](https://nit-tha.github.io/ConvertorA
 - **JWT Decoder**: Parse and validate JWT tokens
 - **Password Generator**: Secure password creation with customizable options
 - **API Key Generator**: Cryptographically secure API key generation
+
+### 💰 Finance Lab
+- **Interest & Deposits**: Compound Interest, Simple Interest, Fixed Deposit (FD), Recurring Deposit (RD)
+- **Loan / EMI**: EMI calculator with year-by-year amortization schedule
+- **SIP & Investments**: SIP and Lumpsum calculators with growth breakdown
+- **Govt Schemes & Utility**: PPF, NSC, KVP, Sukanya Samriddhi Yojana (SSY), CAGR, Rule of 72
 
 ### 📄 Document & Data Processing
 - **Markdown Converter**: Natural Language → Markdown → HTML pipeline
