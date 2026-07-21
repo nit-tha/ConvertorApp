@@ -3571,6 +3571,169 @@ nav a.active {
     border-color: var(--button-hover);
 }
 
+/* ─── Finance Lab: Bank & Investment Calculators ───────── */
+.finance-lab .finance-currency-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.finance-lab .finance-currency-row select {
+    padding: 6px 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    background: var(--input-bg);
+    color: var(--text-primary);
+}
+
+.finance-lab .finance-sub-switch {
+    margin-top: -6px;
+}
+
+.finance-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 10px 0 16px;
+}
+
+.finance-field label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+.finance-field input[type="number"],
+.finance-field select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    background: var(--input-bg);
+    color: var(--text-primary);
+    box-sizing: border-box;
+}
+
+.finance-field input[type="number"]:focus,
+.finance-field select:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+.finance-hint {
+    margin-top: 4px;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+.finance-actions {
+    width: 100%;
+}
+
+.finance-note {
+    width: 100%;
+    margin: 4px 0 16px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    background: rgba(255, 165, 0, 0.12);
+    border: 1px solid rgba(255, 165, 0, 0.35);
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.finance-result {
+    width: 100%;
+}
+
+.finance-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.finance-stat-card {
+    padding: 14px 16px;
+    border-radius: 8px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.finance-stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.finance-stat-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.finance-breakdown-title {
+    text-align: center;
+    margin: 0 0 10px;
+    color: var(--text-primary);
+}
+
+.finance-table-wrap {
+    width: 100%;
+    max-height: 420px;
+    overflow: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+.finance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.finance-table th,
+.finance-table td {
+    padding: 8px 12px;
+    text-align: right;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.finance-table th:first-child,
+.finance-table td:first-child {
+    text-align: left;
+}
+
+.finance-table thead th {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+.finance-table tbody tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="dark"] .finance-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+@media (max-width: 768px) {
+    .finance-grid { grid-template-columns: 1fr; }
+    .finance-summary-grid { grid-template-columns: 1fr; }
+}
+
 /* === Image Processor Tool Styling === */
 .upload-area {
     border: 2px dashed #ccc;
