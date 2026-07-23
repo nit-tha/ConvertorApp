@@ -1465,6 +1465,11 @@ February 25, 2025 13:23:51"></textarea>
                 <option value="c">C/C++</option>
                 <option value="php">PHP</option>
             </select>
+            <select id="indentSizeSelector" class="language-selector" title="Choose indentation width">
+                <option value="4" selected>4 spaces</option>
+                <option value="2">2 spaces</option>
+                <option value="tab">Tab</option>
+            </select>
             <button onclick="formatCode()" title="Format and beautify the code">Format Code</button>
             <button onclick="minifyCode()" title="Minify/compress the code">Minify Code</button>
             <button onclick="clearFormatter()" title="Clear all content">🗑️ Clear</button>
@@ -1571,17 +1576,17 @@ February 25, 2025 13:23:51"></textarea>
             3. Each line represents one test case<br>
             4. You can also paste tab-separated data from Excel<br>
             5. Click "Preview Table" to see the HTML table<br>
-            6. Click "Download Excel" to export as Excel file
+            6. Click "Download CSV" to export as a CSV file (opens directly in Excel)
         </div>
-        
+
         <!-- Input -->
         <textarea id="tcInput"
                   placeholder="Paste test case data here...&#10;Format: TestID|TestName|Category|Priority|Objective|Endpoint|Method|Prerequisites|TestData|ExpectedResult|ExpectedStatus&#10;&#10;Example:&#10;TC-001|Valid Authentication|Auth|High|Test valid login|/login|POST|Valid credentials|user:pass|Success|200&#10;TC-002|Invalid Password|Auth|High|Test invalid login|/login|POST|Invalid credentials|user:wrong|Failure|401"></textarea>
-        
+
         <!-- Buttons -->
         <div class="button-group">
             <button onclick="previewTestCases()">📋 Preview Table</button>
-            <button onclick="exportTestCases()">📊 Download Excel</button>
+            <button onclick="exportTestCases()">📊 Download CSV</button>
             <button onclick="clearCMData()" class="clear-btn">🗑️ Clear</button>
             <button onclick="copyTableToClipboard()" class="secondary-btn">📋 Copy Table</button>
         </div>
