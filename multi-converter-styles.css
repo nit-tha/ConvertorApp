@@ -3734,6 +3734,20 @@ nav a.active {
     .finance-summary-grid { grid-template-columns: 1fr; }
 }
 
+/* ─── Binary Lab: Number Base & Bitwise Toolkit ───────── */
+.binary-lab .finance-sub-switch {
+    margin-top: -6px;
+}
+
+.binary-mono {
+    display: block;
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 14px;
+    text-align: left;
+    word-break: break-all;
+    letter-spacing: 0.02em;
+}
+
 /* === Image Processor Tool Styling === */
 .upload-area {
     border: 2px dashed #ccc;
