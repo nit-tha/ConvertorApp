@@ -376,7 +376,7 @@
     <div class="container hex-tools-card" style="display: flex; justify-content: center;">
         <div class="converter-buttons">
             <button onclick="hexIOShow(); convertHexText()" title="Hex/Text Convert">Hex/Text</button>
-            <button onclick="hexIOShow(); convertToBinary()" title="Binary Convert/Decode">Binary</button>
+            <button onclick="hexIOHide(); showBinaryLab()" title="Number Bases, Text⇄Binary, Bitwise Ops, Two's Complement, IEEE-754, IPv4/CIDR" id="binaryLabBtn">Binary Lab</button>
             <button onclick="hexIOShow(); encodeToBase64()" title="Base64 Encode/Decode">Base64</button>
             <button onclick="hexIOHide(); showFinanceLab()" title="Bank & Investment Calculators — Interest, EMI, SIP, PPF and more" id="financeLabBtn">Finance Lab</button>
             <button onclick="hexIOHide(); showWebLab()" title="Open HTML/CSS/JS Playground" id="webLabBtn">Web Lab</button>
@@ -680,6 +680,29 @@
                     <tbody></tbody>
                 </table>
             </div>
+        </div>
+    </div>
+
+    <!-- Binary Lab: Number Base, Bitwise & Encoding Toolkit -->
+    <div class="passcraft-container regex-tool binary-lab" id="binaryLabContainer" style="display: none;">
+        <h3 style="text-align: center; margin-top: 0; color: #333;">
+            <i class="fas fa-microchip"></i> Binary Lab — Number Base &amp; Bitwise Toolkit
+        </h3>
+
+        <div class="processor-mode-switch" id="binaryCategorySwitch"></div>
+        <div class="processor-mode-switch finance-sub-switch" id="binaryToolSwitch"></div>
+
+        <div class="finance-grid" id="binaryToolForm"></div>
+
+        <div class="buttons finance-actions" style="text-align: center;">
+            <button onclick="runBinaryTool()" title="Convert">🔁 Convert</button>
+            <button onclick="clearBinaryTool()" title="Reset this tool's inputs">🗑️ Clear</button>
+        </div>
+
+        <div id="binaryNote" class="finance-note" style="display:none;"></div>
+
+        <div id="binaryResult" class="finance-result" style="display:none;">
+            <div id="binarySummary" class="finance-summary-grid"></div>
         </div>
     </div>
 
