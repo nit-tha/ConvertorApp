@@ -15,6 +15,16 @@
             "12 calculators: Compound Interest, Simple Interest, FD, RD, EMI/Loan (with amortization schedule), SIP, Lumpsum, PPF, NSC, KVP, Sukanya Samriddhi (SSY), CAGR, and Rule of 72",
             "Each calculator shows summary stat cards plus a year-by-year breakdown table"
           ]
+         },
+        {
+          "badge": "NEW",
+          "badgeType": "new",
+          "name": "Binary Lab",
+          "description": "New number-base & bitwise toolkit, replacing the old Binary converter button in the Conversion Suite toolbar",
+          "details": [
+            "5 categories: Number Bases, Text ⇄ Binary, Bit Operations, Advanced, Networking",
+            "9 tools: Multi-Base Converter, Custom Base, Text/Binary encode-decode, Bitwise Calculator, Two's Complement, IEEE-754 Float, Parity/Checksum, IPv4/CIDR"
+          ]        
         },
         {
           "badge": "UPDATED",
