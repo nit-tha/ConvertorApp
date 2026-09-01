@@ -148,7 +148,7 @@ Access the app here: [Multi Converter Tool](https://nit-tha.github.io/ConvertorA
 ### Third-Party Requests
 - **Geo Sight** - Address lookups are sent to the public OpenStreetMap Nominatim API
 - **Fonts/Icons & Clippy** - Font Awesome and Clippy.js are loaded from third-party CDNs (cdnjs, jsDelivr)
-- **Analytics & Ads** - The site uses Google Analytics and Google AdSense, which set cookies and collect usage data per Google's policies
+- **Analytics** - The site uses Google Analytics, which sets cookies and collects usage data per Google's policies (AdSense is present in the code but not currently active/serving ads)
 
 ### Security Features
 - **Client-Side Processing** - Conversion data never leaves your device
