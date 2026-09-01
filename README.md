@@ -141,15 +141,18 @@ Access the app here: [Multi Converter Tool](https://nit-tha.github.io/ConvertorA
 ## 🔒 Privacy & Security
 
 ### Data Handling
-- **No Data Collection** - All processing happens locally
-- **No External Requests** - Operates completely offline
-- **No Storage** - Data is not saved unless explicitly requested
-- **Session-Only** - Data cleared when browser is closed
+- **Local Conversions** - All conversion/formatting tools process your input entirely in the browser; that data is never sent to any server
+- **No Account Storage** - Data isn't saved server-side unless a tool explicitly says so (e.g. Geo Sight's geocoding lookups)
+- **Session-Only** - Locally processed data is cleared when the browser is closed, aside from saved preferences (theme, etc.) in local storage
+
+### Third-Party Requests
+- **Geo Sight** - Address lookups are sent to the public OpenStreetMap Nominatim API
+- **Fonts/Icons & Clippy** - Font Awesome and Clippy.js are loaded from third-party CDNs (cdnjs, jsDelivr)
+- **Analytics & Ads** - The site uses Google Analytics and Google AdSense, which set cookies and collect usage data per Google's policies
 
 ### Security Features
-- **Client-Side Processing** - Data never leaves your device
+- **Client-Side Processing** - Conversion data never leaves your device
 - **Secure Algorithms** - Industry-standard encoding/hashing methods
-- **No Tracking** - No analytics or user behavior monitoring
 
 ## 🔧 Customization
 
