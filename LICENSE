@@ -1,0 +1,21 @@
+Copyright (c) 2026 Nitin Thakur. All Rights Reserved.
+
+This repository is published for reference and personal use.
+
+Permitted:
+- Using the officially hosted version at nit-tha.github.io/ConvertorApp free of charge.
+- Cloning or downloading this repository and running it locally for your own personal or internal business use.
+- Viewing and learning from the source code.
+
+Not permitted without prior written permission from the copyright holder:
+- Hosting a public version of this software or a derivative under a different domain, app name, or as part of another converter suite.
+- Copying, reproducing, or reusing the source code, in whole or in part, in another project, product, or repository. Referencing a small excerpt for learning purposes is fine; copying a tool's logic wholesale is not.
+- Redistributing, sublicensing, publishing, or selling this software or any derivative of it.
+- Removing or altering this notice from copies of the software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM,
+OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
