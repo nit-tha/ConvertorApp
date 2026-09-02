@@ -1,0 +1,826 @@
+.diff-result {
+    border: 1px solid #ccc;
+    padding: 15px;
+    background: #fff;
+    min-height: 200px;
+    white-space: pre-wrap;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    overflow-y: auto;
+    max-height: 400px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    word-wrap: break-word; /* For older browser support */
+    overflow-x: hidden; /* Change from auto to hidden to prevent horizontal scroll */
+}
+
+.diff-result:focus {
+    border-color: #af65d9;
+}
+
+/* Unified diff container */
+.unified-diff {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.unified-diff h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.diff-unified {
+    border: 1px solid #ccc;
+    padding: 15px;
+    background: #f0f0f0;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    overflow-x: auto;
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    /* Properties for better text wrapping */
+    word-break: break-all;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+/* Line-level diff highlighting styles (lighter background) */
+.diff-added {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 2px 4px;
+    border-radius: 3px;
+    display: inline-block; /* Ensure proper wrapping */
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+.diff-removed {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 2px 4px;
+    border-radius: 3px;
+    display: inline-block;
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+.diff-modified {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 2px 4px;
+    border-radius: 3px;
+    display: inline-block;
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+/* Word-level diff highlighting styles (darker background for precise changes) */
+.diff-word-added {
+    background-color: #28a745; /* Dark green for added words */
+    color: #ffffff;
+    padding: 1px 3px;
+    border-radius: 2px;
+    font-weight: bold;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    position: relative;
+    display: inline-block;
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+.diff-word-highlight {
+    background-color: #ffc107; /* Yellow/orange for words to be removed */
+    color: #000000;
+    padding: 1px 3px;
+    border-radius: 2px;
+    font-weight: bold;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    position: relative;
+    display: inline-block;
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+/* Enhanced word-level highlighting for better visibility */
+.diff-added .diff-word-added {
+    background-color: #1e7e34; /* Even darker green when inside added line */
+    border: 1px solid #155724;
+}
+
+.diff-removed .diff-word-highlight {
+    background-color: #fd7e14; /* Darker orange when inside removed line */
+    border: 1px solid #e8590c;
+    color: #000000;
+}
+
+/* Change Instructions Section */
+.change-instructions {
+    width: 98%;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Add overflow handling */
+    overflow-x: hidden;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.change-instructions h4 {
+    color: #495057;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.change-instructions ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.instruction-item {
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 1.4;
+    /* Add word breaking for long instruction text */
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.instruction-item:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.no-changes {
+    color: #28a745;
+    font-style: italic;
+    background-color: #d4edda !important;
+    border-color: #c3e6cb !important;
+}
+
+/* Unified diff line styles */
+.diff-line-added {
+    background-color: #d4edda;
+    color: #155724;
+    display: block;
+    padding: 2px 0;
+}
+
+.diff-line-removed {
+    background-color: #f8d7da;
+    color: #721c24;
+    display: block;
+    padding: 2px 0;
+}
+
+.diff-line-context {
+    color: #666;
+    display: block;
+    padding: 2px 0;
+}
+
+/* Hover effects for better interactivity */
+.diff-word-added:hover {
+    background-color: #1c7430;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
+
+.diff-word-removed:hover {
+    background-color: #a71e2a;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
+
+/* Error message styling for diff comparer */
+#diffcomparerSection .error {
+    color: #ff0000;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+/* Enhanced tooltip for word changes */
+.diff-word-added::after,
+.diff-word-removed::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 1000;
+}
+
+.diff-word-added:hover::after,
+.diff-word-removed:hover::after {
+    opacity: 1;
+}
+
+/* Responsive Design for diff comparer */
+@media (max-width: 1500px) {
+    #diffcomparerSection {
+        margin-top: 0px;
+    }
+    
+    .diff-container {
+        margin-bottom: 15px;
+    }
+    
+    .stats-container {
+        margin: 15px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    #diffcomparerSection {
+        width: 95%;
+        margin: 10px auto;
+        padding: 15px;
+    }
+    
+    .diff-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .diff-panel textarea {
+        height: 150px;
+    }
+    
+    .result-panels {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .stats-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .diff-result {
+        min-height: 150px;
+        max-height: 250px;
+    }
+    
+    .diff-unified {
+        max-height: 200px;
+    }
+    
+    /* Adjust word-level highlighting for mobile */
+    .diff-word-added,
+    .diff-word-highlight {
+        font-size: 13px;
+        padding: 1px 2px;
+    }
+    
+    .change-instructions {
+        padding: 10px;
+        margin-top: 15px;
+    }
+    
+    .instruction-item {
+        font-size: 13px;
+        padding: 6px 10px;
+        margin-bottom: 6px;
+    }
+}
+
+/* Tooltip styles for diff comparer buttons */
+#diffcomparerSection .tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+#diffcomparerSection .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 150px;
+    background-color: #d3d3d3;
+    color: #000;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+#diffcomparerSection .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Additional styling for better visual hierarchy */
+.diff-result .diff-added,
+.diff-result .diff-removed {
+    display: block;
+    margin: 1px 0;
+}
+
+/* Improved contrast for accessibility */
+@media (prefers-high-contrast: high) {
+    .diff-word-added {
+        background-color: #000080;
+        border: 2px solid #ffffff;
+    }
+    
+    .diff-word-highlight {
+        background-color: #800080;
+        color: #ffffff;
+        border: 2px solid #ffffff;
+    }
+}
+
+ .converter-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .converter-container h2 {
+            color: #333;
+            margin-bottom: 20px;
+            align-self: center;
+        }
+
+        .converter-container button {
+            background-color: #fff;
+            color: #2c3e50;
+            border: 1px solid #2c3e50;
+            padding: 7px 15px;
+            border-radius: 4px;
+            margin: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .converter-container button:hover {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .converter-container button:focus {
+            outline: none;
+        }
+
+        .formatter-input-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .formatter-input-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .formatter-textarea {
+            width: 100%;
+            min-height: 200px;
+            max-height: 400px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: 'Courier New', Monaco, monospace;
+            font-size: 14px;
+            line-height: 1.4;
+            resize: vertical;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .formatter-textarea:focus {
+            border-color: #af65d9;
+            outline: none;
+        }
+
+        .formatter-controls {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .language-selector {
+            padding: 7px 10px;
+            border: 1px solid #2c3e50;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #2c3e50;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .language-selector:focus {
+            outline: none;
+            border-color: #af65d9;
+        }
+
+        .language-selector:hover {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .formatter-output-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .formatter-output-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .formatter-output {
+            width: 100%;
+            min-height: 200px;
+            max-height: 400px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: 'Courier New', Monaco, monospace;
+            font-size: 14px;
+            line-height: 1.4;
+            background-color: #f8f9fa;
+            resize: vertical;
+            box-sizing: border-box;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .copy-button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .copy-button {
+            background-color: #fff;
+            color: #2c3e50;
+            border: 1px solid #2c3e50;
+            padding: 7px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .copy-button:hover {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .copy-button:focus {
+            outline: none;
+        }
+
+        .error-message {
+            color: #ff0000;
+            font-size: 0.9em;
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #ffebee;
+            border-radius: 4px;
+            border-left: 4px solid #ff0000;
+        }
+
+        .success-message {
+            color: #155724;
+            font-size: 0.9em;
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #d4edda;
+            border-radius: 4px;
+            border-left: 4px solid #28a745;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .converter-container {
+                width: 95%;
+                margin: 10px auto;
+                padding: 15px;
+            }
+
+            .formatter-controls {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .formatter-textarea,
+            .formatter-output {
+                min-height: 150px;
+                max-height: 300px;
+            }
+        }
+
+        /* General container and layout */
+    .main-container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 15px;
+        background-color: var(--bg-secondary); /* subtle background */
+        border-radius: 10px;
+        box-shadow: 0 4px 10px var(--shadow);
+        font-family: Arial, sans-serif;
+    }
+
+    .header h1 {
+        font-size: 1.8em;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    .header p {
+        font-size: 1em;
+        text-align: center;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    /* Converter wrapper and sections */
+    .converter-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .converter-section {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    .section-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .flow-indicator {
+        text-align: center;
+        font-size: 1.2em;
+        margin: 10px 0;
+    }
+
+    /* Textarea styling */
+    textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.95em;
+        border-radius: 5px;
+        border: 1px solid var(--input-border);
+        resize: vertical;
+        background-color: var(--input-bg);
+        color: var(--text-primary);
+    }
+
+    /* Button styling */
+    button {
+        padding: 8px 15px;
+        font-size: 0.95em;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        margin: 5px;
+        transition: background-color 0.2s, color 0.2s;
+    }
+
+    button:hover {
+        background-color: #007acc;
+        color: white;
+    }
+
+    /* Specific buttons */
+    .clear-btn {
+        background-color: #e74c3c;
+        color: white;
+    }
+
+    .clear-btn:hover {
+        background-color: #c0392b;
+    }
+
+    .copy-btn {
+        background-color: #3498db;
+        color: white;
+    }
+
+    .copy-btn:hover {
+        background-color: #2980b9;
+    }
+
+    .mode-btn {
+        background-color: #2ecc71;
+        color: white;
+    }
+
+    .mode-btn:hover {
+        background-color: #27ae60;
+    }
+
+    /* HTML preview container */
+    .html-preview {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        min-height: 80px;
+        background-color: #fff;
+        overflow: auto;
+    }
+
+    /* Button group alignment */
+    .button-group {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+        textarea {
+            font-size: 0.9em;
+        }
+
+        .header h1 {
+            font-size: 1.4em;
+        }
+
+        .header p {
+            font-size: 0.9em;
+        }
+    }
+
+    .html-preview:empty {
+    display: none;
+}
+
+  
+
+        #conversionModeBtn:hover {
+        background-color: #2c3e50;
+        color: white;
+        }
+
+    /* Enhanced Mobile Responsiveness for iPhones and Android Devices */
+    @media (max-width: 768px) {
+        body {
+            padding: 10px;
+            font-size: 16px;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        nav {
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 8px;
+        }
+
+        nav a {
+            margin: 6px;
+            font-size: 14px;
+            display: inline-block;
+            padding: 6px 10px;
+        }
+
+        .epoch-container,
+        .sql-container,
+        .hex-container,
+        .converter-container,
+        #diffcomparerSection {
+            width: 100% !important;
+            padding: 12px;
+            margin: 10px auto;
+            box-sizing: border-box;
+        }
+
+        .container,
+        .epochs-container,
+        .epo-container,
+        .dropdown-container,
+        .hf-container,
+        .results {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            width: 100%;
+        }
+
+        .timezone-grid {
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea,
+        button {
+            width: 100% !important;
+            margin: 6px 0;
+            font-size: 15px;
+        }
+
+        .copy-button,
+        .tooltip button,
+        .btn-container button {
+            width: auto;
+            font-size: 14px;
+        }
+
+        .diff-container,
+        .result-panels,
+        .stats-container {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .color-info {
+            grid-template-columns: 1fr;
+        }
+
+        footer {
+            position: relative;
+            font-size: 13px;
+        }
+
+        .clocknotice {
+            margin-top: 10px;
+        }
+    }
+
+ /* Make button group wrap on small screens */
+    @media (max-width: 600px) {
+        #queryToJsonSection div[style*="display: flex"] {
+            flex-wrap: wrap !important;
+            justify-content: flex-start;
+        }
+
+        #queryToJsonSection button {
+            flex: 1 1 45%;
+            margin-bottom: 10px;
+        }
+    /* Block Conversion section responsive styling */
+    #xmlToBlockSection div[style*="display: flex"] {
+        flex-wrap: wrap !important;
+        justify-content: flex-start;
+    }
+
+    #xmlToBlockSection button {
+        flex: 1 1 45%;
+        margin-bottom: 10px;
+    }
+}
+
+ /* ─── Geocoding Tool ───────── */

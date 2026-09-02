@@ -1,0 +1,603 @@
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #404040;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-accent: #ff6b6b;
+    --border-color: #555;
+    --border-light: #666;
+    --nav-bg: #1e1e1e;
+    --nav-text: #e0e0e0;
+    --button-bg: #455a64;
+    --button-hover: #333333;
+    --input-bg: #404040;
+    --input-border: #666;
+    --shadow: rgba(0,0,0,0.3);
+    --overlay: rgba(0,0,0,0.7);
+}
+
+/* Clippy Assistant - Exclude from dark theme styling */
+[data-theme="dark"] .clippy,
+[data-theme="dark"] #clippy,
+[data-theme="dark"] [class*="clippy"],
+[data-theme="dark"] [id*="clippy"],
+[data-theme="dark"] iframe[src*="clippy"],
+[data-theme="dark"] .clipping-container {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure Clippy elements don't inherit dark theme colors */
+[data-theme="dark"] [class*="clippy"] *,
+[data-theme="dark"] [id*="clippy"] * {
+    background-color: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Prevent dark theme from applying borders to all elements when Clippy is present */
+[data-theme="dark"] [class*="clippy"],
+[data-theme="dark"] [id*="clippy"] {
+    border: 0 !important;
+    border-width: 0 !important;
+    border-style: none !important;
+}
+
+/* Dark theme overrides for commonly used containers */
+[data-theme="dark"] .markdown-converter,
+[data-theme="dark"] .csv-processor,
+[data-theme="dark"] .diff-container,
+[data-theme="dark"] .formatter-container,
+[data-theme="dark"] .duplicate-counter,
+[data-theme="dark"] .image-processor-container,
+[data-theme="dark"] .docx2HtmlContainer,
+[data-theme="dark"] .epoch-container,
+[data-theme="dark"] #epochToolContainer,
+[data-theme="dark"] #geojsonSection,
+[data-theme="dark"] #dbIdContainer,
+[data-theme="dark"] #xmlToBlockSection,
+[data-theme="dark"] #queryToJsonSection,
+[data-theme="dark"] #diffcomparerSection,
+[data-theme="dark"] #codeFormatterSection,
+[data-theme="dark"] #testCaseBuilderSection,
+[data-theme="dark"] #formatConverterSection,
+[data-theme="dark"] #textToExcelSection,
+[data-theme="dark"] #geocodingSection,
+[data-theme="dark"] #geocodingTabSection,
+[data-theme="dark"] #geojsonTabSection,
+[data-theme="dark"] #epochConverterSection,
+[data-theme="dark"] #dateGeneratorSection,
+[data-theme="dark"] #idCalculatorSection,
+[data-theme="dark"] .epoch-section {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Dark theme text overrides */
+[data-theme="dark"] .markdown-converter *,
+[data-theme="dark"] .csv-processor *,
+[data-theme="dark"] .diff-container *,
+[data-theme="dark"] .formatter-container *,
+[data-theme="dark"] .duplicate-counter *,
+[data-theme="dark"] .image-processor-container *,
+[data-theme="dark"] .docx2HtmlContainer *,
+[data-theme="dark"] .epoch-container *,
+[data-theme="dark"] #epochToolContainer *,
+[data-theme="dark"] #geojsonSection *,
+[data-theme="dark"] #dbIdContainer *,
+[data-theme="dark"] #xmlToBlockSection *,
+[data-theme="dark"] #queryToJsonSection *,
+[data-theme="dark"] #diffcomparerSection *,
+[data-theme="dark"] #codeFormatterSection *,
+[data-theme="dark"] #testCaseBuilderSection *,
+[data-theme="dark"] #formatConverterSection *,
+[data-theme="dark"] #textToExcelSection *,
+[data-theme="dark"] #geocodingSection *,
+[data-theme="dark"] #geocodingTabSection *,
+[data-theme="dark"] #geojsonTabSection *,
+[data-theme="dark"] #epochConverterSection *,
+[data-theme="dark"] #dateGeneratorSection *,
+[data-theme="dark"] #idCalculatorSection *,
+[data-theme="dark"] .epoch-section * {
+    color: var(--text-primary) !important;
+}
+
+/* Dark theme timezone label override - keep red color like light theme */
+[data-theme="dark"] .timezone-label {
+    color: #ff0000ed !important; /* Keep red color in dark theme */
+}
+
+/* Dark theme epoch time override - keep red color */
+[data-theme="dark"] .ecclock {
+    color: var(--text-accent) !important; /* Keep red color for epoch time in dark theme */
+}
+
+/* Dark theme timezone time override - white color for time values */
+[data-theme="dark"] .timezone-time {
+    color: var(--text-primary) !important; /* White color for time values in dark theme */
+}
+
+/* Dark theme button overrides */
+[data-theme="dark"] button {
+    background-color: var(--button-bg) !important;
+    color: white !important;
+    border-color: var(--button-bg) !important;
+}
+
+[data-theme="dark"] button:hover {
+    background-color: var(--button-hover) !important;
+}
+
+/* Dark theme input overrides */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+    background-color: var(--input-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--input-border) !important;
+}
+
+/* Dark theme label overrides */
+[data-theme="dark"] label,
+[data-theme="dark"] .label,
+[data-theme="dark"] span:not(.fa):not(.fas):not(.fab):not(.timezone-label):not([class*="clippy"]):not([id*="clippy"]),
+[data-theme="dark"] p,
+[data-theme="dark"] div:not(.fa):not(.fas):not(.fab):not(.timezone-label):not([class*="clippy"]):not([id*="clippy"]) {
+    color: var(--text-primary) !important;
+}
+
+/* Dark theme table overrides */
+[data-theme="dark"] table {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] th,
+[data-theme="dark"] td {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Dark theme code blocks */
+[data-theme="dark"] pre,
+[data-theme="dark"] code {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Dark theme for status messages */
+[data-theme="dark"] .status-success,
+[data-theme="dark"] .status-error,
+[data-theme="dark"] .status-info,
+[data-theme="dark"] .status-warning {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Dark theme for panels and containers */
+[data-theme="dark"] .panel,
+[data-theme="dark"] .container,
+[data-theme="dark"] .form-group,
+[data-theme="dark"] .input-group,
+[data-theme="dark"] .form-container,
+[data-theme="dark"] .content-panel {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Specific overrides for white background containers */
+[data-theme="dark"] *[style*="background-color: #fff"],
+[data-theme="dark"] *[style*="background-color: white"],
+[data-theme="dark"] *[style*="background: #fff"],
+[data-theme="dark"] *[style*="background: white"] {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Dark theme for specific problematic elements */
+[data-theme="dark"] .results-container,
+[data-theme="dark"] .stats-container,
+[data-theme="dark"] .preview-container {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Additional comprehensive dark theme overrides */
+[data-theme="dark"] div[style*="background-color"],
+[data-theme="dark"] div[style*="background:"],
+[data-theme="dark"] .content-area,
+[data-theme="dark"] .main-content,
+[data-theme="dark"] .tool-container,
+[data-theme="dark"] .section-container {
+    background-color: var(--bg-secondary) !important;
+/* Image Processor – preview container & items */
+html[data-theme="dark"] #previewContainer,
+html[data-theme="dark"] .preview-container {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 12px 15px !important;
+    border-radius: 8px !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .preview-item {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 0 6px var(--shadow) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .preview-item h4,
+html[data-theme="dark"] .preview-item p { color: var(--text-primary) !important; }
+
+/* Download buttons group inside Image Processor */
+html[data-theme="dark"] #downloadBtns button,
+html[data-theme="dark"] #downloadBtns .btn,
+html[data-theme="dark"] #downloadBtns .download-btn {
+    background: var(--button-bg) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--button-bg) !important;
+    box-shadow: 0 2px 6px var(--shadow) !important;
+    transition: background-color .25s ease, box-shadow .25s ease;
+}
+html[data-theme="dark"] #downloadBtns button:hover,
+html[data-theme="dark"] #downloadBtns .btn:hover,
+html[data-theme="dark"] #downloadBtns .download-btn:hover {
+    background: var(--button-hover) !important;
+    border-color: var(--button-hover) !important;
+    box-shadow: 0 3px 8px var(--shadow) !important;
+}
+/* High specificity fallback */
+html[data-theme="dark"] body #downloadBtns button { background: var(--button-bg) !important; color: #fff !important; }
+/* ============================================================= */
+/* Late Cascade Dark Theme Reinforcements (Image Processor)      */
+/* Placed at end to guarantee override after legacy light rules  */
+/* ============================================================= */
+html[data-theme="dark"] .size-stats {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .size-stat .value { color: var(--text-accent) !important; }
+html[data-theme="dark"] .size-stat .label { color: var(--text-secondary) !important; }
+
+/* Download anchor (was not matched by previous descendant selectors) */
+html[data-theme="dark"] #downloadBtns,
+html[data-theme="dark"] a#downloadBtns.btn {
+    background: var(--button-bg) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--button-bg) !important;
+    padding: 8px 14px !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    box-shadow: 0 2px 6px var(--shadow) !important;
+    transition: background-color .25s ease, box-shadow .25s ease;
+    font-weight: bold !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+}
+html[data-theme="dark"] #downloadBtns:hover,
+html[data-theme="dark"] a#downloadBtns.btn:hover {
+    background: var(--button-hover) !important;
+    border-color: var(--button-hover) !important;
+    box-shadow: 0 3px 8px var(--shadow) !important;
+}
+
+/* Preview container & items (final assertion) */
+html[data-theme="dark"] #previewContainer,
+html[data-theme="dark"] .preview-container {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .preview-item {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 0 6px var(--shadow) !important;
+}
+html[data-theme="dark"] .preview-item h3,
+html[data-theme="dark"] .preview-item h4,
+html[data-theme="dark"] .preview-item p,
+html[data-theme="dark"] .preview-item strong { color: var(--text-primary) !important; }
+html[data-theme="dark"] .file-info p strong { color: var(--text-accent) !important; }
+
+/* Defensive specificity for any inline white background */
+html[data-theme="dark"] body .preview-item { background: var(--bg-tertiary) !important; }
+html[data-theme="dark"] body #previewContainer { background: var(--bg-secondary) !important; }
+
+/* ---------- Additional dark overrides for remaining white sections ---------- */
+/* Color Preview container and swatch */
+html[data-theme="dark"] #colorPreview {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--text-primary) !important;
+    padding: 10px !important;
+    border-radius: 6px !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #colorSwatch {
+    border: 2px solid var(--text-primary) !important;
+    box-shadow: 0 0 6px var(--shadow) !important;
+    background: inherit !important; /* Allow JS to set dynamic background */
+}
+/* Override any broad dark theme rules that might force black background on color swatch */
+html[data-theme="dark"] #colorSwatch:not([style*="background"]) {
+    background: transparent !important;
+}
+html[data-theme="dark"] #colorPreview #colorInfo { color: var(--text-secondary) !important; }
+
+/* Additional elements in color preview */
+html[data-theme="dark"] #colorPreview .color-value {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 8px !important;
+    border-radius: 4px !important;
+    margin: 5px 0 !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #colorPreview .color-value strong {
+    color: var(--text-accent) !important;
+}
+
+/* Natural Language converter wrapper */
+html[data-theme="dark"] #converterWrapper {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    color: var(--text-primary) !important;
+}
+
+/* Markdown converter comprehensive dark styling */
+html[data-theme="dark"] #markdownConverter {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #markdownConverter .main-container {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #markdownConverter .converter-section {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 6px !important;
+    color: var(--text-primary) !important;
+    margin-bottom: 15px !important;
+    padding: 15px !important;
+}
+html[data-theme="dark"] #markdownConverter .section-title {
+    background: var(--bg-secondary) !important;
+    color: var(--text-accent) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+html[data-theme="dark"] #markdownConverter .flow-indicator {
+    color: var(--text-secondary) !important;
+}
+html[data-theme="dark"] #markdownConverter .header {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+/* Image processor size comparison */
+html[data-theme="dark"] #sizeComparison {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #sizeComparison h3 { color: var(--text-primary) !important; }
+
+/* Comprehensive Image Processor dark styling */
+html[data-theme="dark"] #imageProcessorContainer {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #imageProcessorContainer h2,
+html[data-theme="dark"] #imageProcessorContainer h3,
+html[data-theme="dark"] #imageProcessorContainer label { color: var(--text-primary) !important; }
+
+/* Size comparison comprehensive styling */
+html[data-theme="dark"] #sizeComparison .size-stats {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+html[data-theme="dark"] #sizeComparison .size-stat {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+    padding: 8px !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #sizeComparison .size-stat .value { 
+    color: var(--text-accent) !important; 
+}
+html[data-theme="dark"] #sizeComparison .size-stat .label { 
+    color: var(--text-secondary) !important; 
+}
+
+/* Preview container comprehensive styling */
+html[data-theme="dark"] #previewContainer {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 15px !important;
+    border-radius: 8px !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #previewContainer .preview-grid {
+    background: var(--bg-secondary) !important;
+}
+html[data-theme="dark"] #previewContainer .preview-item {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 0 6px var(--shadow) !important;
+}
+html[data-theme="dark"] #previewContainer .preview-item h3 { 
+    color: var(--text-primary) !important; 
+}
+html[data-theme="dark"] #previewContainer .file-info { 
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important; 
+}
+html[data-theme="dark"] #previewContainer .file-info p { 
+    color: var(--text-primary) !important; 
+}
+html[data-theme="dark"] #previewContainer .file-info strong { 
+    color: var(--text-accent) !important; 
+}
+
+/* Geo Sight GeoJSON instructions */
+html[data-theme="dark"] #geojsonInstructions {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 0 6px var(--shadow) !important;
+}
+html[data-theme="dark"] #geojsonInstructions strong { color: var(--text-accent) !important; }
+
+/* Instructions toggle button and container */
+html[data-theme="dark"] .instructions-toggle {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    padding: 10px !important;
+    border-radius: 6px !important;
+}
+html[data-theme="dark"] .instructions-toggle button {
+    background: var(--button-bg) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--button-bg) !important;
+    padding: 8px 14px !important;
+    border-radius: 4px !important;
+    font-weight: bold !important;
+}
+html[data-theme="dark"] .instructions-toggle button:hover {
+    background: var(--button-hover) !important;
+    border-color: var(--button-hover) !important;
+}
+/* Any text or labels in instructions toggle */
+html[data-theme="dark"] .instructions-toggle * {
+    color: var(--text-primary) !important;
+}
+
+/* High specificity fallbacks */
+html[data-theme="dark"] body #colorPreview { background: var(--bg-secondary) !important; }
+html[data-theme="dark"] body #converterWrapper { background: var(--bg-secondary) !important; }
+html[data-theme="dark"] body #sizeComparison { background: var(--bg-secondary) !important; }
+html[data-theme="dark"] body #geojsonInstructions { background: var(--bg-tertiary) !important; }
+/* ---------- Additional dark overrides (color preview, converter wrapper, geo json, size comparison) ---------- */
+html[data-theme="dark"] #colorPreview {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 10px !important;
+    border-radius: 6px !important;
+    color: var(--text-primary) !important;
+}
+/* Allow dynamic swatch background set via JS; only adjust frame */
+html[data-theme="dark"] #colorSwatch {
+    border: 2px solid var(--border-color) !important;
+    box-shadow: 0 0 6px var(--shadow) !important;
+    background: transparent !important; /* do NOT force a color; keep dynamic */
+}
+html[data-theme="dark"] #colorPreview #colorInfo { color: var(--text-secondary) !important; }
+
+/* Natural Language / Markdown / HTML converter wrapper */
+html[data-theme="dark"] #converterWrapper {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    color: var(--text-primary) !important;
+}
+
+/* Image Processor size comparison panel */
+html[data-theme="dark"] #sizeComparison {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    color: var(--text-primary) !important;
+}
+html[data-theme="dark"] #sizeComparison h3 { color: var(--text-primary) !important; }
+
+/* Geo Sight instructions box */
+html[data-theme="dark"] #geojsonInstructions {
+    background: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 0 6px var(--shadow) !important;
+}
+html[data-theme="dark"] #geojsonInstructions strong { color: var(--text-accent) !important; }
+
+/* High specificity fallbacks */
+html[data-theme="dark"] body #colorPreview { background: var(--bg-secondary) !important; }
+html[data-theme="dark"] body #converterWrapper { background: var(--bg-secondary) !important; }
+html[data-theme="dark"] body #sizeComparison { background: var(--bg-secondary) !important; }
+html[data-theme="dark"] body #geojsonInstructions { background: var(--bg-tertiary) !important; }
+    color: var(--text-primary) !important;
+}
+
+/* Force override for any remaining white backgrounds */
+[data-theme="dark"] *:not(.fa):not(.fas):not(.fab):not(.far) {
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] *[style*="background-color: #fff"],
+[data-theme="dark"] *[style*="background-color: white"],
+[data-theme="dark"] *[style*="background: #fff"],
+[data-theme="dark"] *[style*="background: white"],
+[data-theme="dark"] *[style*="background:#fff"],
+[data-theme="dark"] *[style*="background:white"] {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Final comprehensive dark theme coverage */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-field,
+[data-theme="dark"] .input-field,
+[data-theme="dark"] .output-field,
+[data-theme="dark"] .text-field {
+    background-color: var(--input-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--input-border) !important;
+}
+
+/* Dark theme for any missed sections */
+[data-theme="dark"] section,
+[data-theme="dark"] article,
+[data-theme="dark"] aside,
+[data-theme="dark"] main {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Dark theme footer override */
+[data-theme="dark"] footer {
+    background-color: var(--nav-bg) !important;
+    color: var(--nav-text) !important;
+}
+
+[data-theme="dark"] .footer-link {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .footer-link:hover {
+    color: var(--text-accent) !important;
+}
+
+[data-theme="dark"] .footer-separator {
+    color: var(--text-secondary) !important;
+}
+

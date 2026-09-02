@@ -1,0 +1,279 @@
+.csv-processor {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.csv-processor h3,
+.csv-processor h4 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.csv-processor .csv-upload-area {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background: #f8f9fa;
+    transition: border-color 0.3s;
+}
+
+.csv-processor .csv-upload-area:hover {
+    border-color: #af65d9;
+}
+
+.csv-processor label {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.csv-processor textarea,
+.csv-processor select,
+.csv-processor input[type="file"] {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.csv-processor textarea {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+    resize: vertical;
+}
+
+.csv-processor textarea:focus,
+.csv-processor select:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+.csv-processor button {
+    background-color: #fff;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    padding: 7px 7px;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.csv-processor button:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.csv-processor table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.csv-processor th,
+.csv-processor td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.csv-processor th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Block Conversion (XML to Block) Container Styling */
+.converter-container h2,
+.converter-container h3 {
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.converter-container textarea {
+    padding: 6px 8px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--text-primary);
+    background-color: var(--input-bg);
+    font-family: 'Courier New', monospace;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    width: 100%;
+    min-height: 160px;
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.converter-container textarea:focus {
+    border-color: var(--text-accent);
+    outline: none;
+}
+
+/* Specific textarea sizing for different sections */
+#fullXml {
+    width: 449px;
+    height: 160px;
+}
+
+#blockXml {
+    width: 826px;
+    height: 93px;
+}
+
+#queryString {
+    width: 100%;
+    height: 160px;
+}
+
+#jsonOutput {
+    width: 100%;
+    height: 93px;
+}
+
+#originalText, #modifiedText {
+    height: 200px;
+    width: 400px;
+}
+
+#formatInput {
+    width: 100%;
+    height: 200px;
+}
+
+#convertedOutput {
+    width: 100%;
+    height: 150px;
+    background-color: #f8f9fa;
+}
+
+#tcInput {
+    width: 100%;
+    height: 160px;
+}
+
+.converter-container button {
+    background-color: var(--button-bg);
+    color: white;
+    border: 1px solid var(--button-bg);
+    padding: 7px 7px;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    font-size: 14px;
+}
+
+.converter-container button:hover {
+    background-color: var(--button-hover);
+    color: white;
+}
+
+.converter-container button:focus {
+    outline: none;
+    border-color: var(--text-accent);
+}
+
+/* Special styling for instructions buttons to match Geo Sight style */
+.converter-container button[title="Show usage instructions"] {
+    background-color: #fff;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.converter-container button[title="Show usage instructions"]:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.converter-container .error {
+    color: #ff0000;
+    background: #ffebee;
+    padding: 10px;
+    border-radius: 4px;
+    border-left: 4px solid #ff0000;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+/* Instructions formatting for Case Master */
+.status-info {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 15px 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.5;
+}
+
+.status-info strong {
+    color: #495057;
+    font-weight: 600;
+}
+
+.status-info br {
+    margin-bottom: 8px;
+}
+
+        .color-swatch {
+            width: 100%;
+            height: 80px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .color-value {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        .color-value strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 3px;
+    background-color: var(--nav-bg);
+    color: var(--nav-text);
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Aligning Epoch Time and Button */

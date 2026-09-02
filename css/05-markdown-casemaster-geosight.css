@@ -1,0 +1,149 @@
+.markdown-converter {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.markdown-converter h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.markdown-converter p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.markdown-converter .container {
+    margin-bottom: 15px;
+}
+
+.markdown-converter label {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 14px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.markdown-converter textarea {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #2c3e50;
+    resize: vertical;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+}
+
+.markdown-converter textarea:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+.markdown-converter button {
+    background-color: #fff;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    padding: 7px 7px;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.markdown-converter button:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.markdown-converter .button-group {
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* Default Values Container - for Case Master section */
+.default-values-container {
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.default-values-container label {
+    display: inline-block;
+    width: 100px;
+    font-size: 14px;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.default-values-container input {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.default-values-container input:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+/* Geo Sight Section Styling */
+.button-group-center {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.instructions-toggle {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.geojson-hidden {
+    display: none;
+}
+
+.geojson-result-hidden {
+    display: none;
+}
+
+.inline-copy-btn {
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.geojson-output-container {
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.geojson-output-container pre {
+    margin: 0;
+    max-height: none;
+}
+
+.markdown-converter .html-preview {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    background: #f8f9fa;
+    min-height: 100px;
+}
+
+/* CSV/TSV Processor Container Styling */

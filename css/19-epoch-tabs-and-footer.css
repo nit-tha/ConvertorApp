@@ -1,0 +1,102 @@
+/* Base epoch tab button styling (used by Date→Epoch and PDF sections) */
+.epoch-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.epoch-tab-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 5px;
+    background-color: #f8f9fa;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.epoch-tab-btn:hover {
+    background-color: #e9ecef;
+    color: #343a40;
+    border-color: #ced4da;
+}
+
+.epoch-tab-btn.active {
+    background-color: lightslategray;
+    color: #ffffff;
+    border-color: lightslategray;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.25);
+}
+
+/* Dark theme overrides for epoch tab buttons */
+[data-theme="dark"] .epoch-tab-btn {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .epoch-tab-btn:hover {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-light) !important;
+}
+
+[data-theme="dark"] .epoch-tab-btn.active {
+    background-color: var(--button-bg) !important;
+    color: #ffffff !important;
+    border-color: var(--button-bg) !important;
+    box-shadow: 0 2px 4px var(--shadow) !important;
+}
+
+
+/* ================== Footer Enhancement Styles ================== */
+.footer-links {
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+.footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: 500;
+}
+
+.footer-link:hover {
+    color: var(--text-accent);
+    text-decoration: underline;
+}
+
+.footer-separator {
+    color: var(--text-secondary);
+    margin: 0 8px;
+}
+
+/* Light theme footer visibility fixes - override any previous styles */
+footer {
+    color: #ffffff !important; /* Force white text for version and visit count */
+}
+
+footer span {
+    color: #ffffff !important; /* Force white text for spans in footer */
+}
+
+.footer-link {
+    color: #cccccc !important; /* Light grey for links in light theme */
+}
+
+.footer-link:hover {
+    color: #ffffff !important; /* White on hover in light theme */
+}
+
+.footer-separator {
+    color: #cccccc !important; /* Light grey for separators in light theme */
+}
+

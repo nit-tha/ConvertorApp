@@ -1,0 +1,366 @@
+/* SQL and Hex/Text Converter Styles */
+.sql-container,
+.hex-container,
+.converter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--shadow);
+    width: 80%;
+    margin: 20px auto;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sql-container .container,
+.hex-container .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.sql-container label,
+.hex-container label {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.sql-container input[type="text"],
+.hex-container input[type="text"] {
+    padding: 6px 8px;
+    width: 70%;
+    box-sizing: border-box;
+    resize: vertical;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.sql-container input[type="text"]:focus,
+.hex-container input[type="text"]:focus {
+    border-color: #af65d9;
+}
+
+.sql-container input[type="text"][readonly] {
+    background-color: #f4f6f9;
+    border-color: #b8c2cc;
+    border-style: dashed;
+    color: #5f6b7a;
+    cursor: not-allowed;
+}
+
+.sql-container input[type="text"][readonly]:focus {
+    border-color: #b8c2cc;
+    outline: none;
+}
+
+.sql-container button,
+.hex-container button {
+    background-color: #fff;
+    color: #2c3e50; /* Subtle color */
+    border: 1px solid #2c3e50;
+    padding: 7px 7px;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;    
+}
+
+.sql-container button:hover,
+.hex-container button:hover,
+.converter-container button:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.sql-container .clear-button {
+    background-color: #fff;
+}
+
+.sql-container .clear-button:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.sql-container span {
+    margin-left: 5px;
+    font-weight: normal;
+    margin-top: 13px;
+}
+
+/* SQL sectioned card layout */
+.sql-container .sql-card {
+    width: 100%;
+    background-color: #f9fbff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px 14px 10px;
+    margin-bottom: 14px;
+    box-sizing: border-box;
+}
+
+[data-theme="dark"] .sql-container .sql-card {
+    background-color: var(--bg-secondary);
+}
+
+.sql-container .sql-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.sql-container .sql-card h4 {
+    margin: 0;
+    font-size: 15px;
+    color: var(--text-primary);
+}
+
+.sql-container .card-clear-btn {
+    min-width: 28px;
+    height: 28px;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 6px;
+}
+
+.sql-container .sql-card .container,
+.sql-container .sql-card .epochs-container,
+.sql-container .sql-card .epo-container,
+.sql-container .sql-card .hf-container {
+    margin-bottom: 12px;
+}
+
+.sql-container .sql-card .container:last-child,
+.sql-container .sql-card .epochs-container:last-child,
+.sql-container .sql-card .epo-container:last-child,
+.sql-container .sql-card .hf-container:last-child {
+    margin-bottom: 0;
+}
+
+.sql-container .sql-actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sql-container #result,
+.sql-container #results,
+.sql-container #hf-result {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 8px 10px;
+}
+
+/* Hex tools button area card layout */
+.hex-container .hex-tools-card {
+    width: 100%;
+    background-color: #f9fbff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px 14px 10px;
+    margin-bottom: 14px;
+    box-sizing: border-box;
+    display: block;
+}
+
+[data-theme="dark"] .hex-container .hex-tools-card {
+    background-color: var(--bg-secondary);
+}
+
+/* Adjustments for Hex/Text Converter */
+.hex-container .container {
+    flex-wrap: wrap;
+}
+
+.hex-container .container:nth-child(2),
+.hex-container .container:nth-child(3),
+.hex-container .container:nth-child(4),
+.hex-container .container:nth-child(5) {
+    flex: 1 1 48%;
+    margin-right: 2%;
+}
+
+.hex-container .container:nth-child(3),
+.hex-container .container:nth-child(5)
+ {
+    margin-right: 0;
+}
+
+.hex-container input[type="text"] {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #2c3e50;
+    width: 74%;
+    box-sizing: border-box;
+}
+
+.hex-container input[type="text"]:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+/* Converter Buttons Grid Styling */
+.converter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.converter-buttons button {
+    background-color: #fff;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    padding: 7px 7px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+    min-width: 80px;
+    text-align: center;
+}
+
+.converter-buttons button:hover {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.converter-buttons button:focus {
+    outline: none;
+    border-color: #af65d9;
+}
+
+/* Keep Conversion Suite action buttons in two neat rows on desktop */
+.hex-tools-card .converter-buttons {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(88px, 1fr));
+    width: 100%;
+    max-width: 1080px;
+    gap: 8px;
+}
+
+.hex-tools-card .converter-buttons button {
+    width: 100%;
+    min-width: 0;
+    font-size: 13px;
+    padding: 6px 6px;
+}
+
+@media (max-width: 1200px) {
+    .hex-tools-card .converter-buttons {
+        grid-template-columns: repeat(6, minmax(88px, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .hex-tools-card .converter-buttons {
+        grid-template-columns: repeat(4, minmax(88px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    #hexConverter {
+        width: 95%;
+        padding: 14px;
+        overflow-x: hidden;
+    }
+
+    #hexConverter .hex-tools-card {
+        padding: 10px;
+    }
+
+    #hexConverter .hex-tools-card .converter-buttons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        gap: 6px;
+    }
+
+    #hexConverter .hex-tools-card .converter-buttons button {
+        width: 100%;
+        min-width: 0;
+        min-height: 42px;
+        padding: 8px 6px;
+        line-height: 1.2;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    #hexConverter .excel-flow-wrap-controls {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    #hexConverter .excel-flow-controls label,
+    #hexConverter .excel-flow-field label {
+        white-space: normal;
+    }
+
+    #hexConverter .status-info,
+    #hexConverter .dup-stats {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+}
+
+@media (max-width: 480px) {
+    #hexConverter .hex-tools-card .converter-buttons {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Color Preview Styling */
+.color-preview {
+    margin-top: 15px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+}
+
+/* General Buttons Container Styling */
+.buttons {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.buttons button {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 7px 7px;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    font-size: 14px;
+}
+
+.buttons button:hover {
+    background-color: var(--button-bg);
+    color: white;
+    border-color: var(--button-bg);
+}
+
+.buttons button:focus {
+    outline: none;
+    border-color: var(--text-accent);
+}
+
