@@ -1,1 +1,33 @@
+/* CSS Reset for consistent spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+/* Theme Variables */
+:root {
+    /* Light Theme (Default) */
+    --bg-primary: #f0f0f0;
+    --bg-secondary: #fff;
+    --bg-tertiary: #f9f9f9;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-accent: #ff0000ed;
+    --border-color: #ddd;
+    --border-light: #e0e0e0;
+    --nav-bg: #2c3e50;
+    --nav-text: white;
+    --button-bg: #455a64;
+    --button-hover: #333333;
+    --input-bg: white;
+    --input-border: #ddd;
+    --shadow: rgba(0,0,0,0.1);
+    --overlay: rgba(0,0,0,0.5);
+}
 
