@@ -5,17 +5,16 @@
     {
       "title": "🌟 Latest Improvements (v2.1.94)",
       "features": [
-       {
+        {
           "badge": "NEW",
           "badgeType": "new",
           "name": "Finance Lab",
           "description": "New bank & investment calculator suite, replacing the old Case converter button in the Conversion Suite toolbar",
           "details": [
-            "4 categories: Interest & Deposits, Loan/EMI, SIP & Investments, Govt Schemes & Utility",
-            "12 calculators: Compound Interest, Simple Interest, FD, RD, EMI/Loan (with amortization schedule), SIP, Lumpsum, PPF, NSC, KVP, Sukanya Samriddhi (SSY), CAGR, and Rule of 72",
-            "Each calculator shows summary stat cards plus a year-by-year breakdown table"
+            "12 calculators across Interest & Deposits, Loan/EMI, SIP & Investments, and Govt Schemes",
+            "Each shows summary stats plus a year-by-year breakdown table"
           ]
-         },
+        },
         {
           "badge": "NEW",
           "badgeType": "new",
@@ -24,7 +23,7 @@
           "details": [
             "5 categories: Number Bases, Text ⇄ Binary, Bit Operations, Advanced, Networking",
             "9 tools: Multi-Base Converter, Custom Base, Text/Binary encode-decode, Bitwise Calculator, Two's Complement, IEEE-754 Float, Parity/Checksum, IPv4/CIDR"
-          ]        
+          ]
         },
         {
           "badge": "UPDATED",
@@ -56,151 +55,6 @@
           "details": [
             "Accepts inputs like 486-585 and returns the count in range"
           ]
-        }
-      ]
-    },
-    {
-      "title": "🌟 Previous Improvements (v2.1.92)",
-      "features": [
-        {
-          "badge": "NEW",
-          "badgeType": "new",
-          "name": "Processor: Video Mode",
-          "description": "Added in-browser video processing inside the Processor tab",
-          "details": [
-            "Processor now includes Image and Video modes",
-            "Video mode supports compression, trim range, and resolution presets",
-            "Output format options include WebM and MP4 (with browser capability fallback)",
-            "Displays original vs processed size comparison and download action",
-            "Added processing loader/status indicator for long-running conversions",
-            "Includes browser safety limits for file size and duration"
-          ]
-        },
-        {
-          "badge": "NEW",
-          "badgeType": "new",
-          "name": "Excel Flow Text Utility",
-          "description": "New bulk text transformation tool for data wrangling tasks",
-          "details": [
-            "Convert multiline rows to a single delimited line",
-            "Split one-line or delimited data back into rows",
-            "Copy output directly as TAB-separated Excel columns",
-            "Remove duplicate rows with optional case-insensitive mode",
-            "Auto-detects delimiter (comma, tab, pipe, semicolon)",
-            "Wrap each row with custom prefix/suffix (e.g. ('value'),)",
-            "Built-in presets for single-quote and double-quote SQL wrapping",
-            "Join wrapped rows by newline, space, comma, or tab"
-          ]
-        },
-        {
-          "badge": "FIXED",
-          "badgeType": "fixed",
-          "name": "Conversion Suite Section Switching",
-          "description": "Opening any tool section now correctly closes the previously open one",
-          "details": [
-            "Date→Epoch, Duplicates, CSV/TSV, Excel Flow, Image, PassCraft, NL⇄MD⇄HTML all follow the same exclusive-open behavior",
-            "Introduced shared hideAllToolSections() helper to ensure consistency",
-            "PassCraft toggle (click twice to close) now works correctly"
-          ]
-        },
-        {
-          "badge": "FIXED",
-          "badgeType": "fixed",
-          "name": "Clear Button Placement",
-          "description": "Main Clear button in Conversion Suite no longer shifts down when a tool section opens",
-          "details": [
-            "Moved Clear button to sit directly below the nav buttons row",
-            "Button is hidden by default and only visible when Hex/Text, Binary, Base64, Case, Web Lab, API Key, Color, JWT, or Regex is active",
-            "Hides automatically when switching to any expandable tool section"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "🌟 Previous Improvements (v2.1.91)",
-      "features": [
-        {
-          "badge": "NEW",
-          "badgeType": "new",
-          "name": "Query Formatter Layout",
-          "description": "Reorganized tools into cleaner cards for better readability and flow",
-          "details": [
-            "Split area into dedicated cards for data formatting and time tools",
-            "Added compact clear button on each card for quicker reset",
-            "Kept all existing actions and behavior unchanged",
-            "Includes dark theme compatible styling"
-          ]
-        }       
-      ]
-    },
-    {
-      "title": "🌟 Previous Improvements (v2.1.90)",
-      "features": [
-        {
-          "badge": "NEW",
-          "badgeType": "new",
-          "name": "Clippy Assistant",
-          "description": "Added Clippy mascot that shows helpful tool tips every 15 seconds",
-          "details": [
-            "Added Show/Hide Clippy toggle in the footer",
-            "Hide action now disables Clippy immediately",
-            "Show action brings Clippy back with tip bubbles"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "✨ Improvements (v2.1.89)",
-      "features": [
-        {
-          "badge": "ENHANCED",
-          "badgeType": "enhanced",
-          "name": "Epoch Time Converter",
-          "description": "Improved timezone display with day difference indicators",
-          "details": [
-            "Shows IST date as reference for cross-timezone comparison",
-            "Grouped day difference indicators (e.g., 'EST/UTC/SAST 1 day behind IST')",
-            "Clearer understanding when dates differ across timezones"
-          ]
-        },
-        {
-          "badge": "IMPROVED",
-          "badgeType": "improved",
-          "name": "Modal Dialogs",
-          "description": "Better modal interaction behavior",
-          "details": [
-            "Click outside modal to close (backdrop click)",
-            "Visual cursor feedback on clickable backdrop"
-          ]
-        },
-        {
-          "badge": "FIXED",
-          "badgeType": "fixed",
-          "name": "Geo Sight Enter Key",
-          "description": "Fixed incorrect popup appearing when pressing Enter in Location Lookup",
-          "details": [
-            "Enter key now correctly triggers location search only",
-            "Removed false ID Calculator validation popup"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "🎨 Theme & UI (v2.1.88)",
-      "features": [
-        {
-          "badge": "NEW",
-          "badgeType": "new",
-          "name": "Light/Dark Theme Toggle",
-          "description": "Complete theme switching system with localStorage persistence",
-          "details": []
-        },
-        {
-          "badge": "ENHANCED",
-          "badgeType": "enhanced",
-          "name": "Comprehensive Dark Mode",
-          "description": "Full application dark theme coverage across all containers and tools",
-          "details": []
         }
       ]
     }
