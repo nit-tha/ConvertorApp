@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nit-tha.github.io/ConvertorApp/sitemap.xml
