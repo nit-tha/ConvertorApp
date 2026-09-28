@@ -397,7 +397,7 @@
     <div class="container hex-tools-card" style="display: flex; justify-content: center;">
         <div class="converter-buttons">
             <button onclick="hexIOShow(); convertHexText()" title="Hex/Text Convert">Hex/Text</button>
-            <button onclick="hexIOHide(); showBinaryLab()" title="Number Bases, Text⇄Binary, Bitwise Ops, Two's Complement, IEEE-754, IPv4/CIDR" id="binaryLabBtn">Binary Lab</button>
+            <button onclick="hexIOHide(); showBinaryLab()" title="Number Bases, Text⇄Binary, ASCII⇄Hex, Bitwise Ops, Two's Complement, IEEE-754, IPv4/CIDR" id="binaryLabBtn">Binary Lab</button>
             <button onclick="hexIOShow(); encodeToBase64()" title="Base64 Encode/Decode">Base64</button>
             <button onclick="hexIOHide(); showFinanceLab()" title="Bank & Investment Calculators — Interest, EMI, SIP, PPF and more" id="financeLabBtn">Finance Lab</button>
             <button onclick="hexIOHide(); showWebLab()" title="Open HTML/CSS/JS Playground" id="webLabBtn">Web Lab</button>
@@ -724,6 +724,7 @@
 
         <div id="binaryResult" class="finance-result" style="display:none;">
             <div id="binarySummary" class="finance-summary-grid"></div>
+			<div id="binaryTableWrap" style="display:none;"></div>
         </div>
     </div>
 
