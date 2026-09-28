@@ -175,3 +175,42 @@
     letter-spacing: 0.02em;
 }
 
+
+.binary-lab .binary-wide {
+    grid-column: 1 / -1;
+}
+
+.binary-lab .finance-field textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    background: var(--input-bg);
+    color: var(--text-primary);
+    box-sizing: border-box;
+    font-family: 'Courier New', Consolas, monospace;
+    resize: vertical;
+}
+
+.binary-lab .finance-field textarea:focus {
+    border-color: #af65d9;
+    outline: none;
+}
+
+.binary-lab .finance-stat-card.binary-wide .binary-mono {
+    white-space: pre-wrap;
+    max-height: 240px;
+    overflow: auto;
+}
+
+.binary-copy-btn {
+    margin-left: 8px;
+    padding: 2px 8px;
+    font-size: 11px;
+    text-transform: none;
+    cursor: pointer;
+}
+
+.binary-table td {
+    font-family: 'Courier New', Consolas, monospace;
+}
