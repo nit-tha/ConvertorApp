@@ -1,0 +1,159 @@
+/* ─── Mobile Layout (phones only) ─────────────────────────────
+   Everything that changes the layout lives inside the phone-only
+   media query below, so the desktop web UI is untouched.
+   Pinned epoch row + nav, timezones folded behind the 🌍 button,
+   tap-to-copy on the epoch number. Logic: js/src/27-mobile.js */
+
+/* Timezone toggle only exists on phones */
+.tz-toggle-btn {
+    display: none;
+}
+
+@media (max-width: 768px) and (pointer: coarse) {
+
+    /* Epoch row: pinned, full-bleed, single line */
+    .epoch-container {
+        position: sticky;
+        top: 0;
+        z-index: 900;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        width: calc(100% + 20px) !important;  /* cancel body's 10px mobile padding */
+        margin: -10px -10px 0 !important;
+        padding: 6px 8px !important;
+        border-radius: 0;
+        box-sizing: border-box;
+    }
+
+    #clocktext {
+        flex: 1;
+        justify-content: flex-start;
+        margin-bottom: 0;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    #clocktext .ecclock {
+        position: relative;
+        font-size: 18px;
+        margin-right: 2px;
+        cursor: pointer;
+    }
+
+    #clocktext .copy-button {
+        width: 36px !important;
+        height: 36px;
+        margin: 0 0 0 6px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+    }
+
+    /* Theme button joins the row instead of floating over it */
+    .theme-toggle-container {
+        position: static !important;
+        order: 2;
+        margin-left: 6px;
+    }
+
+    .theme-toggle-btn {
+        width: 36px !important;
+        height: 36px;
+        margin: 0;
+        font-size: 15px;
+    }
+
+    /* Tap-to-copy confirmation */
+    #clocktext .ecclock.copied::after {
+        content: "Copied ✓";
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        transform: translateX(-50%);
+        margin-top: 4px;
+        padding: 2px 8px;
+        border-radius: 10px;
+        background: #27ae60;
+        color: #fff !important;
+        font-size: 12px;
+        font-weight: bold;
+        white-space: nowrap;
+        pointer-events: none;
+    }
+
+    /* Timezones: hidden until 🌍 is tapped, then one swipeable line */
+    .tz-toggle-btn {
+        display: inline-flex;
+    }
+
+    .tz-open #tzToggleBtn {  /* id + !important to beat the dark theme's button overrides */
+        background-color: var(--text-accent) !important;
+        border-color: var(--text-accent) !important;
+        color: #fff !important;
+    }
+
+    .timezone-grid {
+        display: none;
+    }
+
+    .tz-open .timezone-grid {
+        display: flex;
+        order: 3;
+        flex-basis: 100%;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 14px;
+        margin-top: 6px;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .tz-open .timezone-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .timezone-row {
+        flex: 0 0 auto;
+    }
+
+    .timezone-label,
+    .timezone-time {
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    /* Nav: pinned under the epoch row, one swipeable strip of tabs */
+    nav {
+        position: sticky;
+        top: var(--epoch-row-height, 48px);
+        z-index: 899;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        scrollbar-width: none;
+        margin: 0 -10px 12px;
+        padding: 0 4px;
+        border-radius: 0;
+    }
+
+    nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    nav a {
+        flex: 0 0 auto;
+        margin: 0;
+        padding: 12px 10px;
+        white-space: nowrap;
+    }
+
+    nav a.active {
+        box-shadow: inset 0 -3px 0 currentColor;
+        text-decoration: none;
+    }
+}
