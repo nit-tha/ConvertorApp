@@ -157,3 +157,284 @@
         text-decoration: none;
     }
 }
+
+/* ─── Touch comfort (phones only) ─────────────────────────────
+   Undoes the "every button full width" stacking for the tools
+   where it costs the most scrolling, and stops iOS auto-zoom. */
+@media (max-width: 768px) and (pointer: coarse) {
+
+    /* iOS zooms the page into any field with text smaller than 16px */
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]),
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+
+    /* Query Formatter: card clear button back to a small icon */
+    .sql-container .card-clear-btn {
+        flex: 0 0 auto;
+        width: 40px !important;
+        height: 36px;
+        margin: 0 !important;
+    }
+
+    /* Data Formatter rows: buttons share a line, outputs sit beside their copy button */
+    .sql-container .sql-card .container {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 8px;
+    }
+
+    .sql-container .sql-card .container > * {
+        flex: 1 1 100%;
+        margin: 0 !important;
+    }
+
+    .sql-container .sql-card .container > span:empty {
+        display: none;
+    }
+
+    .sql-container .sql-card .container > .tooltip,
+    .sql-container .sql-card .container > button {
+        flex: 1 1 20%;
+    }
+
+    .sql-container .sql-card .container .tooltip button {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .sql-container .sql-card .container > input[readonly] {
+        flex: 1 1 calc(100% - 52px);
+        min-width: 0;
+    }
+
+    .sql-container .sql-card .container > .btn-container,
+    #commaRemovedContainer > button {
+        flex: 0 0 44px;
+    }
+
+    .sql-container .sql-card .container .btn-container button,
+    #commaRemovedContainer > button {
+        width: 44px !important;
+        height: 40px;
+        margin: 0 !important;
+        padding: 0;
+    }
+
+    /* Convert & Adjust Timestamp: [Sec][epoch input] / [timezone][Date] / [minutes][Calculate] */
+    .sql-container .epochs-container,
+    .sql-container .epo-container {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 8px;
+    }
+
+    .sql-container .epochs-container > *,
+    .sql-container .epo-container > * {
+        margin: 0 !important;
+    }
+
+    .sql-container .epochs-container select,
+    .sql-container .epochs-container input,
+    .sql-container .epo-container input,
+    .sql-container .epo-container button {
+        margin: 0 !important;
+    }
+
+    #timeFormat {
+        order: 1;
+        flex: 0 0 90px;
+    }
+
+    #epochTime {
+        order: 2;
+        flex: 1 1 calc(100% - 98px);  /* fills the rest of the line, pushing the timezone down */
+        min-width: 0;
+    }
+
+    .sql-container .epochs-container .dropdown-container {
+        order: 3;
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    #timezoneSelect {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .sql-container .epochs-container > .tooltip {
+        order: 4;
+        flex: 0 0 90px;
+    }
+
+    .sql-container .epochs-container .tooltip button {
+        width: 100% !important;
+    }
+
+    #result {
+        order: 5;
+        flex: 1 1 100%;
+    }
+
+    #result:empty {
+        display: none;
+    }
+
+    #minutesToSubtract {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .sql-container .epo-container > button {
+        flex: 0 0 110px;
+        width: 110px !important;
+    }
+
+    .sql-container .epo-container .results {
+        flex: 1 1 100%;
+    }
+
+    /* Human Date To Epoch: Year/Month/Day and Hour/Minute/Second as rows of three */
+    .sql-container .hf-container {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        align-items: end;
+    }
+
+    .sql-container .hf-container .input-group {
+        min-width: 0;
+        margin: 0;
+    }
+
+    .sql-container .hf-container .input-group input,
+    .sql-container .hf-container .input-group select {
+        width: 100% !important;
+        min-width: 0;
+        margin: 0 !important;
+        box-sizing: border-box;
+    }
+
+    .sql-container .hf-container .input-group:nth-of-type(7) {
+        grid-column: span 2;
+    }
+
+    .sql-container .hf-container > button {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .sql-container .hf-container .result-container {
+        grid-column: 1 / -1;
+    }
+
+    .sql-container .hf-container .result-container:empty {
+        display: none;
+    }
+
+    /* Conversion Suite: two columns of tool buttons instead of one */
+    #hexConverter .hex-tools-card .converter-buttons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Code Formatter: [language][indent] / [Format][Minify][Clear], small copy button */
+    #codeFormatterSection .formatter-controls {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        margin: 12px 0;
+    }
+
+    #codeFormatterSection .formatter-controls > * {
+        width: 100% !important;
+        min-width: 0;
+        margin: 0 !important;
+    }
+
+    #languageSelector {
+        grid-column: span 2;
+    }
+
+    #codeFormatterSection .formatter-controls button {
+        height: auto;
+        min-height: 40px;
+        padding: 8px 4px;
+        white-space: nowrap;
+    }
+
+    #codeFormatterSection .copy-button-container .copy-button {
+        width: 56px !important;
+        height: 40px;
+        margin: 0 !important;
+    }
+
+    /* Testcase Builder: buttons two per row, default values side by side */
+    #testCaseBuilderSection .button-group {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    #testCaseBuilderSection .button-group button {
+        width: 100% !important;
+        min-width: 0;
+        margin: 0 !important;
+    }
+
+    /* A lone first button in a group of three gets the full row */
+    #testCaseBuilderSection .button-group > button:first-child:nth-last-child(3) {
+        grid-column: span 2;
+    }
+
+    #testCaseBuilderSection .default-values-container {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 4px 8px;
+    }
+
+    #testCaseBuilderSection .default-values-container > * {
+        min-width: 0;
+        margin: 0 !important;
+    }
+
+    #testCaseBuilderSection .default-values-container > label:nth-of-type(1) { grid-area: 1 / 1; }
+    #testCaseBuilderSection .default-values-container > input:nth-of-type(1) { grid-area: 2 / 1; }
+    #testCaseBuilderSection .default-values-container > label:nth-of-type(2) { grid-area: 1 / 2; }
+    #testCaseBuilderSection .default-values-container > input:nth-of-type(2) { grid-area: 2 / 2; }
+    #testCaseBuilderSection .default-values-container > label:nth-of-type(3) { grid-area: 3 / 1 / 4 / 3; margin-top: 6px !important; }
+    #testCaseBuilderSection .default-values-container > input:nth-of-type(3) { grid-area: 4 / 1 / 5 / 3; }
+
+    /* PassCraft: in the stacked layout the 250px flex-basis became a 250px height per option group */
+    .passcraft-options .option-group {
+        flex: 0 0 auto;
+        min-width: 0;
+    }
+
+    /* Excel Flow and NL⇄MD⇄HTML: buttons two per row */
+    #excelFlowTool .buttons,
+    #excelFlowTool .excel-flow-presets,
+    #markdownConverter .button-group {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    #excelFlowTool .buttons > button,
+    #excelFlowTool .excel-flow-presets > button,
+    #markdownConverter .button-group > button {
+        width: 100% !important;
+        min-width: 0;
+        margin: 0 !important;
+    }
+
+    /* An odd last button gets the full row */
+    #excelFlowTool .buttons > button:last-child:nth-child(odd),
+    #excelFlowTool .excel-flow-presets > button:last-child:nth-child(odd),
+    #markdownConverter .button-group > button:last-child:nth-child(odd) {
+        grid-column: span 2;
+    }
+}
