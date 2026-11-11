@@ -12,6 +12,14 @@
         {
           "name": "Live Epoch Clock",
           "description": "Real-time epoch timestamp with IST, EST, UTC, SAST timezone displays. Click to copy."
+        },
+        {
+          "name": "Mobile Layout",
+          "description": "On phones the epoch row and tool tabs stay pinned. Tap the epoch number to copy it; the 🌍 button shows/hides the timezones."
+        },
+        {
+          "name": "Install as App",
+          "description": "Add it to your home screen (Android: Chrome menu → Install app; iPhone: Share → Add to Home Screen). Works offline after the first visit."
         }
       ]
     },
