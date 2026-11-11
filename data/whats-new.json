@@ -1,9 +1,42 @@
 {
   "title": "🆕 What's New",
-  "version": "2.1.94",
+  "version": "2.1.95",
   "sections": [
     {
-      "title": "🌟 Latest Improvements (v2.1.94)",
+      "title": "🌟 Latest Improvements (v2.1.95)",
+      "features": [
+        {
+          "badge": "NEW",
+          "badgeType": "new",
+          "name": "Mobile Layout",
+          "description": "Phones get a layout built for touch; the desktop view is unchanged",
+          "details": [
+            "Epoch row and tool tabs stay pinned at the top; tap the epoch number to copy it",
+            "🌍 button shows/hides the timezones in one compact line",
+            "Buttons share rows and tools open right where you tapped, so far less scrolling"
+          ]
+        },
+        {
+          "badge": "NEW",
+          "badgeType": "new",
+          "name": "Install as App",
+          "description": "Add Multi Converter to your home screen and it opens full-screen like an app",
+          "details": [
+            "Works offline after your first visit (Geo Sight lookups still need internet)",
+            "Android: Chrome menu → Install app · iPhone: Safari Share → Add to Home Screen"
+          ]
+        },
+        {
+          "badge": "UPDATED",
+          "badgeType": "improved",
+          "name": "New Icon & Fixes",
+          "description": "Fresh app icon and link-preview artwork, plus a fix for PassCraft spacing on phones",
+          "details": []
+        }
+      ]
+    },
+    {
+      "title": "🌟 Previous Improvements (v2.1.94)",
       "features": [
         {
           "badge": "NEW",
@@ -15,7 +48,7 @@
             "11 tools: Multi-Base Converter, Custom Base, Text/Binary encode-decode, ASCII/Hex encode-decode, Bitwise Calculator, Two's Complement, IEEE-754 Float, Parity/Checksum, IPv4/CIDR",
             "ASCII ⇄ Hex: ASCII, UTF-8 and UTF-16 (BE/LE) encodings, selectable delimiter, 0x or \\x byte prefix, upper/lower case, one-click copy and a per-character breakdown table"
           ]
-        },        
+        },
         {
           "badge": "NEW",
           "badgeType": "new",
@@ -24,37 +57,6 @@
           "details": [
             "12 calculators across Interest & Deposits, Loan/EMI, SIP & Investments, and Govt Schemes",
             "Each shows summary stats plus a year-by-year breakdown table"
-          ]
-        },
-        {
-          "badge": "UPDATED",
-          "badgeType": "improved",
-          "name": "Web Lab, Query Formatter & PassCraft",
-          "description": "Small fixes and tweaks across Web Lab, Query Formatter tab, and PassCraft",
-          "details": []
-        }
-      ]
-    },
-    {
-      "title": "🌟 Previous Improvements (v2.1.93)",
-      "features": [
-        {
-          "badge": "NEW",
-          "badgeType": "new",
-          "name": "Web Lab (HTML/CSS/JS)",
-          "description": "Mini web playground for HTML, CSS, and JS with live preview",
-          "details": [
-            "Added separate HTML, CSS, and JS inputs",
-            "Renders output in a larger preview frame for better visibility"
-          ]
-        },
-        {
-          "badge": "NEW",
-          "badgeType": "new",
-          "name": "Range Counter",
-          "description": "Added Range tool to count numbers between two values",
-          "details": [
-            "Accepts inputs like 486-585 and returns the count in range"
           ]
         }
       ]
