@@ -14,6 +14,7 @@ Access the app here: [Multi Converter Tool](https://nit-tha.github.io/ConvertorA
 - **Text Format Converter** - Hex, Binary, Base64, URL encoding/decoding
 - **Color Converter** - Hex, RGB, HSL color conversions with live preview
 - **JSON/XML Converter** - Format validation, conversion, and beautification
+- **Finance Lab** - Bank & investment calculator suite (Interest, EMI, SIP, PPF, and more)
 
 ### Developer Tools
 - **Code Formatter** - Multi-language code beautification and minification
@@ -42,6 +43,8 @@ Access the app here: [Multi Converter Tool](https://nit-tha.github.io/ConvertorA
 - **Light Mode** - Clean, professional interface
 - **Dark Mode** - Eye-friendly dark theme with blue accents
 - **Responsive Design** - Optimized for desktop, tablet, and mobile
+- **Mobile Layout** - On phones the epoch row and tool tabs stay pinned, with tap-to-copy epoch and a 🌍 timezone toggle; the desktop layout is unchanged
+- **Installable App** - Add it to your home screen to open it full-screen like an app, with offline support
 
 ### Navigation
 - **Tabbed Interface** - Organized tool categories
@@ -96,7 +99,7 @@ Access the app here: [Multi Converter Tool](https://nit-tha.github.io/ConvertorA
 
 ### Navigation Structure
 - **Query Formatter**: Text processing, epoch conversion, data counting
-- **Conversion Suite**: Encoding, color tools, password generation, image processing
+- **Conversion Suite**: Encoding, color tools, password generation, image processing, Finance Lab
 - **Block Conversion**: XML processing and validation  
 - **JSON Conversion**: JSON utilities and web query tools
 - **Content Comparer**: Text difference analysis
@@ -115,11 +118,12 @@ Access the app here: [Multi Converter Tool](https://nit-tha.github.io/ConvertorA
 ### Browser Compatibility
 - **Modern Browsers** - Chrome, Firefox, Safari, Edge (latest versions)
 - **Progressive Enhancement** - Graceful degradation for older browsers
-- **Mobile Support** - Touch-friendly interface on mobile devices
+- **Mobile Support** - Touch-friendly phone layout with larger tap targets
+- **Installable (PWA)** - Can be installed on Android, iPhone, and desktop Chrome/Edge
 
 ### Performance
 - **Lightweight** - Fast loading and minimal resource usage
-- **Offline Capable** - Works without internet connection
+- **Offline Capable** - Works without an internet connection after the first visit (Geo Sight lookups still need internet)
 - **Memory Efficient** - Optimized for large data processing
 
 ## 📋 Usage Examples
@@ -182,6 +186,11 @@ Access the app here: [Multi Converter Tool](https://nit-tha.github.io/ConvertorA
 ### Online Access
 Simply visit [Multi Converter Tool](https://nit-tha.github.io/ConvertorApp/) - no installation required!
 
+### Install as an App (optional)
+- **Android** - Open the site in Chrome → ⋮ menu → **Install app**
+- **iPhone/iPad** - Open the site in Safari → Share → **Add to Home Screen**
+- **Desktop** - In Chrome or Edge, click the install icon in the address bar
+
 ### Local Development
 ```bash
 git clone https://github.com/nit-tha/ConvertorApp.git
@@ -213,7 +222,9 @@ python -m http.server 8000
 ## 🔄 Updates & Maintenance
 
 ### Recent Changes
-- **Web Lab (NEW)** - Added a mini HTML/CSS/JS playground with separate inputs, live preview, and a viewport.
+- **Mobile Layout & Installable App (NEW, v2.1.95)** - Phone-friendly layout with a pinned epoch row and tool tabs, and the tool can now be installed to the home screen and used offline. New app icon and link-preview artwork.
+- **Finance Lab (NEW)** - Replaced the Case converter button with a bank & investment calculator suite: Interest & Deposits, Loan/EMI, SIP & Investments, and Govt Schemes & Utility, each with summary stats and a year-by-year breakdown table.
+- **Web Lab (NEW)** - Added a mini HTML/CSS/JS playground with separate inputs, live preview, and a larger viewport.
 - **Excel Flow** - Added bulk row/column transformations with delimiter auto-detect, dedupe, wrapping presets, and Excel-friendly output.
 - **Processor (Video)** - Added Video mode under Processor with client-side compression, trim support, format conversion, size comparison, and processing loader.
 
@@ -235,7 +246,7 @@ python -m http.server 8000
 - **Libraries** - JSZip, Mammoth.js (for document processing)
 
 ## 📄 License
-Free to use, not free to reuse. This tool is free to use in your browser, but the source code here is for reference only, not for copying into other projects. © 2026 Nitin Thakur. All rights reserved.
+Free to use, not free to reuse. This tool is free to use in your browser, but the source code here is for reference only, not for copying into other projects. See [LICENSE](LICENSE) for the full terms. © 2026 Nitin Thakur. All rights reserved.
 
 ## 🙏 Credits & Attributions
 - **Clippy.js** - MIT licensed assistant library by [pi0](https://github.com/pi0/clippyjs)
@@ -246,6 +257,6 @@ Free to use, not free to reuse. This tool is free to use in your browser, but th
 
 ---
 
-**Note:** This tool is designed to be maintenance-free for end users. All updates are seamless and automatic when accessing the latest version. No installation, configuration, or manual updates required.
+**Note:** This tool is designed to be maintenance-free for end users. All updates are seamless and automatic when accessing the latest version, including the installed app. No installation, configuration, or manual updates required.
 
 *For the most current features and detailed usage instructions, please refer to the in-app App Guide.*
