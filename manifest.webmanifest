@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "Multi Converter for QA & Developers",
+  "short_name": "Multi Conv",
+  "description": "Epoch/Unix timestamps, Hex, Base64, XML, JSON, CSV, code formatting, diff and more QA & developer tools.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f0f0f0",
+  "theme_color": "#ffffff",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
