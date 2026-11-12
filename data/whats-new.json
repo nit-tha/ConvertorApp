@@ -26,6 +26,16 @@
             "Android: Chrome menu → Install app · iPhone: Safari Share → Add to Home Screen"
           ]
         },
+         {
+          "badge": "UPDATED",
+          "badgeType": "improved",
+          "name": "Code Formatter: JSON Lines / Logs",
+          "description": "Paste one-JSON-per-line logs (e.g. Serilog, Docker) and get a clean, readable JSON array",
+          "details": [
+            "Auto-detected, or pick JSON Lines / Logs from the list",
+            "Escaped JSON inside fields (like Serilog's @mt) is unpacked into real objects"
+          ]
+        },
         {
           "badge": "UPDATED",
           "badgeType": "improved",
