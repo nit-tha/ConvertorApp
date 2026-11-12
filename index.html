@@ -1513,6 +1513,7 @@ February 25, 2025 13:23:51"></textarea>
                 <option value="auto">Auto-detect</option>
                 <option value="sql">SQL</option>
                 <option value="json">JSON</option>
+				<option value="jsonl">JSON Lines / Logs</option>
                 <option value="xml">XML</option>
                 <option value="javascript">JavaScript</option>
                 <option value="css">CSS</option>
@@ -1843,14 +1844,18 @@ February 25, 2025 13:23:51"></textarea>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(() => navigator.serviceWorker.ready)
-                    .then(reg => {
-                        // Hand over what this first visit already loaded, so it works offline straight away
-                        const urls = [location.href, ...performance.getEntriesByType('resource').map(e => e.name)];
-                        reg.active.postMessage({ type: 'cache-urls', urls });
-                    })
-                    .catch(err => console.warn('Service worker registration failed:', err));
+				try {
+                    navigator.serviceWorker.register('sw.js')
+                        .then(() => navigator.serviceWorker.ready)
+                        .then(reg => {
+                            // Hand over what this first visit already loaded, so it works offline straight away
+                            const urls = [location.href, ...performance.getEntriesByType('resource').map(e => e.name)];
+                            reg.active.postMessage({ type: 'cache-urls', urls });
+                        })
+                        .catch(err => console.warn('Service worker registration failed:', err));
+                } catch (err) {
+                    // Sandboxed/embedded pages can't use service workers; the site still works without one
+                }
             });
         }
 
