@@ -211,6 +211,10 @@
           "name": "Auto-Detection",
           "description": "Automatically detects SQL, JSON, XML, JavaScript, CSS, HTML, Python, Java, C/C++, PHP"
         },
+         {
+          "name": "JSON Lines / Logs",
+          "description": "Cleans one-JSON-per-line logs (e.g. Serilog, Docker): unpacks escaped JSON inside fields and outputs a readable JSON array"
+        },
         {
           "name": "Beautify",
           "description": "Format and indent code for better readability"
