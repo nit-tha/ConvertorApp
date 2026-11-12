@@ -88,6 +88,12 @@ footer span {
     color: #ffffff !important; /* Force white text for spans in footer */
 }
 
+/* "NT" in the version line links to the author but looks like plain text */
+.footer-author {
+    color: inherit !important;
+    text-decoration: none;
+}
+
 .footer-link {
     color: #cccccc !important; /* Light grey for links in light theme */
 }
