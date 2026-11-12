@@ -251,6 +251,8 @@ Free to use, not free to reuse. This tool is free to use in your browser, but th
 ## 🙏 Credits & Attributions
 - **Clippy.js** - MIT licensed assistant library by [pi0](https://github.com/pi0/clippyjs)
 - **Clippy Character** - © Microsoft Corporation (nostalgic retro feature)
+- **Font Awesome** - Free icons by [Fonticons, Inc.](https://fontawesome.com/license/free) (icons CC BY 4.0, fonts SIL OFL 1.1, code MIT)
+- **Geocoding** - Geo Sight lookups use the [OpenStreetMap Nominatim](https://nominatim.org/) API; map data © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), available under the ODbL
 
 ## ✍️ Author
 [Nitin Thakur](https://github.com/nit-tha)
